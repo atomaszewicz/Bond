@@ -14,4 +14,4 @@ require("xlsx")
 require("ggplot2")
 ```
 
-Then we data frames from the relevant pages of 
+At this point, I have already scraped the data from the individual pages into an [excel spreadsheet](https://github.com/atomaszewicz/Bond/blob/master/Data/jb_raw.xlsx). You can read more about the sources of this data [here](https://github.com/atomaszewicz/Bond/tree/master/Data). 
