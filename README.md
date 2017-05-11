@@ -1,8 +1,12 @@
 # Bond
 
-6 Actors, 25 films, over $7 billion in box office gross (adjusted for inflation), and innumerable car chases, gadgets, martinis and babes, Agent 007 is one of film's most iconic characters. Ranked as the fourth most financially successful film franchise in history (after Star Wars, Harry Potter, and Marvel, in that order) 
+6 Actors, 25 films, over $17 billion in box office gross (worldwide, adjusted for inflation), and innumerable car chases, gadgets, martinis and babes. Agent 007 is one of film's most iconic characters and his film francise ranks as the fourth most financially successful in history (after Star Wars, Harry Potter, and Marvel, in that order). The mixture of exaggerated villainy, epic heroism and bad puns are just right to make us both invested in the plot and characters, and able to laugh it off when Bond jumps his boat from lake to lake, over a road. 
 
-The mixture of exaggerated villainy, epic heroism and bad puns is just right to keep us from taking these films too seriously. 
+# Data
+
+For this project, we use box office data from [Box Office Mojo](http://www.boxofficemojo.com/franchises/chart/?id=jamesbond.htm) and [The Numbers](http://www.the-numbers.com/movies/franchise/James-Bond#tab=summary), and online rating scores from IMDB, Letterboxd and both critic and users scores from Rotten Tomatoes (RT).
+
+There are 2 James Bond Films that were not produced Eon productions: Casino Royale (1967) staring David Niven as Bond, and Never Say Never Again (1983) where Sean Connery reprises his role as 007 12 years after his last film. I decided to disclude Casino Royale, but include Never Say Never Again because.... lmao.
 
 
 # Improvements
