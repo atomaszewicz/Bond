@@ -14,4 +14,15 @@ require("xlsx")
 require("ggplot2")
 ```
 
-At this point, I have already scraped the data from the individual pages into an [excel spreadsheet](https://github.com/atomaszewicz/Bond/blob/master/Data/jb_raw.xlsx). You can read more about the sources of this data [here](https://github.com/atomaszewicz/Bond/tree/master/Data). 
+At this point, I have already scraped the data from the individual pages into an [excel spreadsheet](https://github.com/atomaszewicz/Bond/blob/master/Data/jb_raw.xlsx). You can read more about the sources of this data, you can look at the [Data folder](https://github.com/atomaszewicz/Bond/tree/master/Data) or the [README](https://github.com/atomaszewicz/Bond/blob/master/Data/README.md) in the Data folder.
+
+We now bring this data into RStudio, creating seperate variables for the seperate pages of the excel spreadsheet:
+
+```R
+#We create data frames for the Box Office Mojo (bom) data, The Numbers (numb) data, and the date from the rating websites (rate)
+bom<-read.xlsx("jb_clean.xlsx",1)
+numb<-read.xlsx("jb_clean.xlsx",2)
+rate<-read.xlsx("jb_clean.xlsx",3)
+```
+
+
