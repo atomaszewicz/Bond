@@ -24,5 +24,20 @@ bom<-read.xlsx("jb_clean.xlsx",1)
 numb<-read.xlsx("jb_clean.xlsx",2)
 rate<-read.xlsx("jb_clean.xlsx",3)
 ```
+To begin, I want to look at how the different sites average ratings relate.
 
+```R
+#We make variables for each rating type, as well as the average of the 4, then make a table of the values
+avg_rtc<-mean(rate$RT.Crit)
+avg_rtu<-mean(rate$RT.User)
+avg_Ltbx<-mean(rate$LetterBoxd)
+avg_imdb<-mean(rate$IMDB)
+avg_all<-mean(c(avg_imdb,avg_Ltbx,avg_rtc,avg_rtu))
+avgs<-data.frame(RT.Crit=(avg_rtc),RT.User=(avg_rtu),LetterBoxd=(avg_Ltbx),IMDB=(avg_imdb),Avg.All=(avg_all))
+```
+Here is what the table looks like:
+
+|RT.Crit|RT.User|LetterBoxd|IMDB|Avg.All|
+|---|---|---|---|---|
+|70.8|63.8|79.1|68.7|70.585|
 
