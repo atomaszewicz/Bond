@@ -28,6 +28,7 @@ To begin, I want to look at how the different sites average ratings relate.
 
 ```R
 #We make variables for each rating type, as well as the average of the 4, then make a table of the values
+#We also note that all the ratings have been set to be out of 100
 avg_rtc<-mean(rate$RT.Crit)
 avg_rtu<-mean(rate$RT.User)
 avg_Ltbx<-mean(rate$LetterBoxd)
