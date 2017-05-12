@@ -7,10 +7,12 @@ After countless discussions with friends about which is the best/worst bond film
 
 # Data
 
-For this project, we use box office data from [Box Office Mojo](http://www.boxofficemojo.com/franchises/chart/?id=jamesbond.htm), box office and budget data from [The Numbers](http://www.the-numbers.com/movies/franchise/James-Bond#tab=summary), and online rating scores from IMDB, Letterboxd and both critic and users scores from Rotten Tomatoes (RT).
+For this project, we use box office data from [Box Office Mojo](http://www.boxofficemojo.com/franchises/chart/?id=jamesbond.htm), box office and budget data from [The Numbers](http://www.the-numbers.com/movies/franchise/James-Bond#tab=summary), and online rating scores from IMDB, Letterboxd and both critic and users scores from Rotten Tomatoes (RT). If you want more information on the data collection and 
 
 There are 26 Bond films total, with 24 of them having been produced by Eon productions. The two films not produced by Eon are: Casino Royale (1967) staring David Niven as Bond, and Never Say Never Again (1983) where Sean Connery reprises his role as 007 over a decade after his last performance as the super spy. I decided to disclude Casino Royale, but include Never Say Never Again because.... lmao.
 
 
 # Improvements
 One thing missing from this analysis is the amount paid to an actor for a given film. That is because this info is missing for many films and when it is there, it is rather complicated as some actors recieved just a paycheck while some recieved a percentage of net merch or film gross. 
+
+Another idea I had was to analyse the IMDB data for the Bond films by age and gender. The site has this data available for any given title (example, but not easily available for 
