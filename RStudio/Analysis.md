@@ -28,7 +28,7 @@ rate<-read.xlsx("jb_clean.xlsx",3)
 ```
 
 ## Ratings
-To begin, I want to look at how the different sites average ratings relate.
+First let's look at how the different sites average ratings relate.
 
 ```R
 #We make variables for each rating type, as well as the average of the 4, then make a table of the values
@@ -54,9 +54,34 @@ The average for all the Bond films, based on the 4 metrics of choice is 71% whic
 
 It seems that Rotten Tomatoe users think lower of these films than users do critics, with the average user rating being 9% less than the critic ratings. This is an interesting result because in an intuitive sense I expected critics to be more ... critical of movies than your average Joe Rotten Tomatoes. This theory is reinforced by a FiveThirtyEight [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) where they compare online movie ratings for ~200 titles. In this article Rotten Tomatoes user ratings were on average 19% higher <sup>[1]</sup> than Rotten Tomatoes critic scores. On the other hand, critics probably better understand the place of the James Bond movies while our average theater-goer is keeping their score of Citizen Kane or Lawrence of Arabia in mind when they pencil in their rating for the 007 films.
 
+Now let's see how individual films were rated. 
 
+```R
+#We reshape the 'rate' dataframe to have all the numerical ratings in one column
+rate_1col<-melt(rate,id="Title")
+colnames(rate_1col)[c(1,2,3)]<-c("Title","Metric","Rating")
+#Now we find the row information for the max/min value in the 'Rating' column
+rate1_col[which.max(rate_1col$Rating),]
+[1]            Title     Metric Rating
+[1] 72 Casino Royale LetterBoxd   97.5
 
+rate1_col[which.min(rate_1col$Rating),]
+[1]               Title  Metric Rating
+[1] 15 A View to a Kill RT.Crit     36
+```
+So the minimum score of all 4 metrics is 36/100 from Rotten Tomatoes critics for the Bond film "A View to a Kill" and the maxium score is 97.5 from LetterBoxd for "Casino Royale". It is not surprising that LetterBoxd has the highest rated film since it's average rating was the highest at 79.1 (12% higher than the average of our 4 metrics). RT critic score was actually the second highest among our 4 metrics with an average rating of 70.76, but evidently "A View to a Kill" was a weak entry in the series according to critics. 
 
+We now check what is the highest/lowest rated films on average:
+```R
+rate[which.max(rate$Avg.Dumb),]
+[1]   RT.Crit RT.User LetterBoxd IMDB Avg.Dumb         Title
+[1]22      95      89       97.5   80   90.375 Casino Royale
+
+rate[which.min(rate$Avg.Dumb),]
+[1]    RT.Crit RT.User LetterBoxd IMDB Avg.Dumb            Title
+[1] 15      36      41       67.5   63   51.875 A View to a Kill
+```
+An unsuprising result, the films with the highest and lowest average scores are also the ones with the highest and lowest individual ratings. Since it's only an average over 4 the high/low rating will drag up/down the rating significantly, not to mention that each individual rating is presumed a trustworthy metric on the quality of the film. 
 
 
 
