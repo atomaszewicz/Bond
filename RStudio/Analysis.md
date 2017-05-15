@@ -48,18 +48,18 @@ avgs_t<-melt(avgs)
 avg_rating_plot<-ggplot(avgs_t,aes(x=variable,y=value))+geom_col()+coord_cartesian(ylim=c(60,80))
 labels<-xlab("Rating Metric")+ylab("Average Score/100")+ggtitle("Bond Film Average Rating by Metric")
 ```
-![avg_rating_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/avg_rating.png)
+![avg_rating_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/avg_rating.png?raw=TRUE)
 
 The average for all the Bond films, based on the 4 metrics of choice is 71% which translates to a 3.5/5 star rating or in American Colleges, a C- or 1.67/4.00 GPA. 
 
 It seems that Rotten Tomatoe users think lower of these films than users do critics, with the average user rating being 9% less than the critic ratings. This is an interesting result because in an intuitive sense I expected critics to be more ... critical of movies than your average Joe Rotten Tomatoes. This theory is reinforced by a FiveThirtyEight [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) where they compare online movie ratings for ~200 titles. In this article Rotten Tomatoes user ratings were on average 19% higher <sup>[1]</sup> than Rotten Tomatoes critic scores. On the other hand, critics probably better understand the place of the James Bond movies while our average theater-goer is keeping their score of Citizen Kane or Lawrence of Arabia in mind when they pencil in their rating for the 007 films.
 
-Now let's see how individual films were rated. 
+Now let's see how individual films were rated. First let's look at the max and min scores.
 
 ```R
 #We reshape the 'rate' dataframe to have all the numerical ratings in one column
 rate_1col<-melt(rate,id="Title")
-colnames(rate_1col)[c(1,2,3)]<-c("Title","Metric","Rating")
+colnames(rate_1col)[c(2,3)]<-c("Metric","Rating")
 #Now we find the row information for the max/min value in the 'Rating' column
 rate1_col[which.max(rate_1col$Rating),]
 [1]            Title     Metric Rating
@@ -73,19 +73,30 @@ So the minimum score of all 4 metrics is 36/100 from Rotten Tomatoes critics for
 
 We now check what is the highest/lowest rated films on average:
 ```R
-rate[which.max(rate$Avg.Dumb),]
-[1]   RT.Crit RT.User LetterBoxd IMDB Avg.Dumb         Title
+rate[which.max(rate$Avg.All),]
+[1]    RT.Crit RT.User LetterBoxd IMDB Avg.All         Title
 [1]22      95      89       97.5   80   90.375 Casino Royale
 
-rate[which.min(rate$Avg.Dumb),]
-[1]    RT.Crit RT.User LetterBoxd IMDB Avg.Dumb            Title
+rate[which.min(rate$Avg.All),]
+[1]     RT.Crit RT.User LetterBoxd IMDB Avg.All            Title
 [1] 15      36      41       67.5   63   51.875 A View to a Kill
 ```
 An unsuprising result, the films with the highest and lowest average scores are also the ones with the highest and lowest individual ratings. Since it's only an average over 4 the high/low rating will drag up/down the rating significantly, not to mention that each individual rating is presumed a trustworthy metric on the quality of the film. 
 
+Let's visualize all the film ratings over time. I don't wish to have our average of the other ratings on this graph because it become too muddled with lines. First we must add a 'date' column to our 'rate' data frame.
 
+```R
+date<-c(bom$Release)
+rate$Date<-date
+#Note that by doing this we are taking our average of 4 out of the column with all the ratings.
+rate_1col<-melt(rate,id=("Title","Date","Avg.All"))
+colnames(rate_1col)[c(4,5)]<-c("Metric","Rating")
+#Not that we add colour and linetype to amplify the distinction between lines
+rate_bymetric<- ggplot(rate1,aes(x=Date,y=value,col=variable))+geom_line(aes(linetype=variable))
+labels<-ylab("Rating/100")+ggtitle("James Bond Film Ratings by Metric")+labs(col="Metric",linetype="Metric")
+```
 
- 
+ ![rate_bymetric](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/rate_bymetric.png?raw=TRUE)
 
 
 Footnotes:
