@@ -19,3 +19,5 @@ There are 26 Bond films total, with 24 of them having been produced by Eon produ
 One thing missing from this analysis is the amount paid to an actor for a given film. That is because this info is missing for many films and when it is there, it is rather complicated as some actors recieved just a paycheck while some recieved a percentage of net merch or film gross. 
 
 Another idea I had was to analyse the IMDB data for the Bond films by age and gender. The site has this data available for any given title (example, but not easily available for 
+
+Lastly, something that I started to do, but ended up being confusing and difficult to formalize, was to create a sort of "confidence" metric based on how many submissions go into the aggregated rating. That way I could use a lot more sites scores. The first hitch is that generally the older a film is, the less ratings it has, and devising a schema for the decline in votes with age is a whole project by itself. The second hitch is that critics scores usually involve 10-1000x less votes than do users. 
