@@ -83,7 +83,7 @@ rate[which.min(rate$Avg.All),]
 ```
 An unsuprising result, the films with the highest and lowest average scores are also the ones with the highest and lowest individual ratings. Since it's only an average over 4 the high/low rating will drag up/down the rating significantly, not to mention that each individual rating is presumed a trustworthy metric on the quality of the film. 
 
-Let's visualize all the film ratings over time. I don't wish to have our average of the other ratings on this graph because it become too muddled with lines. First we must add a 'date' column to our 'rate' data frame.
+Let's visualize all the film ratings over time. I choose not to graph the average of our 4 metrics because it become too muddled with lines. First we must add a 'date' column to our 'rate' data frame.
 
 ```R
 date<-c(bom$Release)
@@ -95,11 +95,32 @@ colnames(rate_1col)[c(4,5)]<-c("Metric","Rating")
 rate_bymetric<- ggplot(rate1,aes(x=Date,y=value,col=variable))+geom_line(aes(linetype=variable))
 labels<-ylab("Rating/100")+ggtitle("James Bond Film Ratings by Metric")+labs(col="Metric",linetype="Metric")
 ```
-
  ![rate_bymetric](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/rate_bymetric.png?raw=TRUE)
+ 
+We note the LetterBoxd ratings are almost always above all the others. We also notice that the IMDb ratings don't change that much while the RT critic and user ratings are very sporadic. 
+
+Let's visualize how much higher the LetterBoxd ratings are above the maximum of the others:
+
+```R
+#Create the data frame to store the infor
+lb_extra<-data.frame()
+#Input into our data frame the difference between the LB rating and the max of the other 3
+for(i in 1:25){
+    lb_extra[i]<-(rate$LetterBoxd[i]-max(c(rate$RT.Crit[i],rate$RT.User[i],rate$IMDB[i])))
+}
+colnames(lb_extra)[1]<-"LB.Diff.Max"
+#We now tag the numbers as positive and negative for later
+lb_extra$sign<-ifelse(lb_extra$LB.Diff.Max >=0,'positive','negative')
+#Now we plot, with red being negative and blue being positive
+lb_diff_plot<-ggplot(lb_extra,aes(x=c(1:25),y=LB.Diff.Max,fill=sign))+geom_col()
+colouring<-scale_fill_manual(values=c("positive"="BLUE","negative"="RED"))
+labels<-xlab("Film Number in Series")+ylab("Difference in Points for Rating/100")+ggtitle("Difference Between LetterBoxd Score and Max of the Other 3*")+labs(caption="*Other 3: RT critic, RT User, IMDb")
+```
+![lb_diff_plo](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/lb_diff_plot.png?raw=TRUE)
+ 
 
 
-Footnotes:
+# Footnotes
 <sup>[1]</sup> : In the FiveThirtyEight [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) I referenced, the point of interest is this paragraph: "The ratings from IMDb, Metacritic and Rotten Tomatoes were typically in the same ballpark, which makes this finding unsurprising: Fandango’s star rating was higher than the IMDb rating 79 percent of the time, the Metacritic aggregate critic score 77 percent of the time, the Metacritic user score 86 percent of the time, the Rotten Tomatoes critic score 62 percent of the time, and the Rotten Tomatoes user score 74 percent of the time." Therefore to see how much higher user scores are than the critics scores, we simply divide the two averages to eliminate the Fandango term: RT.Crit / RT. User =1.19 which gives us our quoted 19%. 
 
 If we wish to continue this analysis:
