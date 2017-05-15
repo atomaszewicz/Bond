@@ -13,6 +13,14 @@ There are 26 Bond films total, with 24 of them having been produced by Eon produ
 
 
 # Analysis
+The average ratings for all the films based on the source are summarized in a table:
+
+|RT.Crit|RT.User|LetterBoxd|IMDB|Avg.All|
+|---|---|---|---|---|
+|70.8|63.8|79.1|68.7|70.585|
+
+Intuitively I expected Rotten Tomatoes Users to rate the films more highly, but that is not the case. 
+
 
 
 # Improvements
