@@ -50,13 +50,9 @@ labels<-xlab("Rating Metric")+ylab("Average Score/100")+ggtitle("Bond Film Avera
 ```
 ![avg_rating_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/avg_rating.png)
 
-It seems that Rotten Tomatoe users think lower of these films than users do critics, with the average user rating being about 9% less than the critic ratings. This is an interesting result because in a FiveThirtyEight [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) where they compare online movie ratings for 200 titles, Rotten Tomatoes user ratings were 19% higher [^1] than Rotten Tomatoes critic scores. Even in an intuitive sense I expected critics to be more ... critical of movies than your average Joe Rotten Tomatoes. It is a critics job to judge movies, they are presumably more hardened against nostalgia and flashy explosions than your average theater-goer. On the other hand, critics probably better understand the place of the James Bond movies while our average theater-goer is keeping their score of Citizen Kane or Lawrence of Arabia in mind when they pencil in their rating for the 007 films, but I digress.
+The average for all the Bond films, based on the 4 metrics of choice is 71% which translates to a 3.5/5 star rating or in American Colleges, a C- or 1.67/4.00 GPA. 
 
-The average for all the Bond films, based on the 4 metrics of choice, is about 71/100, which translates to a 3.5/5 star rating or a C+ (on B.C.'s highschool grading scale). 
-
-plot_avgs<-ggplot(avgs1,aes(x=variable))+geom_col(aes(y=value))+coord_cartesian(ylim=c(60,80))+xlab("Rating")+ylab("Average Score/100")+ggtitle("Bond Film Average Ratings by Metric")
-
-
+It seems that Rotten Tomatoe users think lower of these films than users do critics, with the average user rating being 9% less than the critic ratings. This is an interesting result because in an intuitive sense I expected critics to be more ... critical of movies than your average Joe Rotten Tomatoes. This theory is reinforced by a FiveThirtyEight [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) where they compare online movie ratings for ~200 titles. In this article Rotten Tomatoes user ratings were on average 19% higher <sup>[1]</sup> than Rotten Tomatoes critic scores. On the other hand, critics probably better understand the place of the James Bond movies while our average theater-goer is keeping their score of Citizen Kane or Lawrence of Arabia in mind when they pencil in their rating for the 007 films.
 
 
 
@@ -68,5 +64,10 @@ plot_avgs<-ggplot(avgs1,aes(x=variable))+geom_col(aes(y=value))+coord_cartesian(
 
 
 Footnotes:
-[^1] : In the FiveThirtyEight [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) I referenced, the point of interest
-is this paragraph: "The ratings from IMDb, Metacritic and Rotten Tomatoes were typically in the same ballpark, which makes this finding unsurprising: Fandango’s star rating was higher than the IMDb rating 79 percent of the time, the Metacritic aggregate critic score 77 percent of the time, the Metacritic user score 86 percent of the time, the Rotten Tomatoes critic score 62 percent of the time, and the Rotten Tomatoes user score 74 percent of the time." Therefore to see how much higher user scores are than the critics scores, we simply divide the two averages to eliminate the Fandango term: RT.Crit / RT. User =1.19 which gives us our quoted 19%.
+<sup>[1]</sup> : In the FiveThirtyEight [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) I referenced, the point of interest is this paragraph: "The ratings from IMDb, Metacritic and Rotten Tomatoes were typically in the same ballpark, which makes this finding unsurprising: Fandango’s star rating was higher than the IMDb rating 79 percent of the time, the Metacritic aggregate critic score 77 percent of the time, the Metacritic user score 86 percent of the time, the Rotten Tomatoes critic score 62 percent of the time, and the Rotten Tomatoes user score 74 percent of the time." Therefore to see how much higher user scores are than the critics scores, we simply divide the two averages to eliminate the Fandango term: RT.Crit / RT. User =1.19 which gives us our quoted 19%. 
+
+If we wish to continue this analysis:
+
+IMDb vs. RT.Crit: Our metric suggests RT critics rate Bond films 3% higher than IMDb while FiveThirtyEight says that RT critcs scores are 21% lower.
+
+IMDb vs. RT.User: Our metric says RT Users scores are 7% lower than IMDb and FiveThirtyEight puts this number at 6%.
