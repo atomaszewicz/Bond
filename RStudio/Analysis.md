@@ -155,8 +155,7 @@ We summarize the results in a table
 |IMDB|19|-13|-0.21|5.5|-4.6|
 |Avg|35.5|-26.4|-0.69|14|-12|
 
-The main thing we notice is that although 
-
+We notice a few things from this, the max is always larger than the min (in absolute value), the mean>0 is always greater than the mean<0 and yet the mean is still always negative! This clearly means that there are more negative changes than positive ones, but the positive changes are much larger. Interpreting this, we see that generally people think the movies are worse than the last one, but when there is a positive change, people are very satisfied with the result.
 
 
 ```R
