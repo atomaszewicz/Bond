@@ -112,11 +112,11 @@ for(i in 1:23){
     diff[i,5]<-i
 }
 #Fix the column names
-colnames(diff)[c(1,2,3,4,5)]<-c("RT.Crit","RT.User","LetterBoxd","IMDB","Film.Number")
+colnames(diff)[c(1,2,3,4,5)]<-c("RT.Crit","RT.User","LetterBoxd","IMDB","Change.Number")
 #We transform to put all the ratings in one column to plot and analyze
-diff_1col<-melt(diff,id="Film.Number")
+diff_1col<-melt(diff,id="Change.Number")
 colnames(diff_1col)[c(2,3)]<-c("Metric","Rating.Change")
-#Now let's find the max/min/mean
+#Now let's find the max/min of the set
 max(diff_1col$Rating.Change)
 [1] 48
 min(diff_1col$Rating.Change)
@@ -124,7 +124,28 @@ min(diff_1col$Rating.Change)
 mean(diff_1col$Rating.Change)
 [1] -0.6875
 ```
-The largest change was a 48 point boost between films, the smallest a -33 point drop, and on average, the films dropped about -0.7 points between films. So overall it appears the films have dropped in quality very slightly. Next question is how much is the average positive/negative change:
+The largest change was a 48 point boost between films, the smallest a -33 point drop, and on average, the films dropped about -0.7 points between films. So overall it appears the films have dropped in quality very slightly. Next let's look at these numbers for the individual metrics:
+
+```R
+max(diff$RT.Crit)
+[1] 37
+min(diff$RT.Crit)
+[1] -32
+mean(diff$RT.Crit)
+[1] -1.29
+#etc...
+```
+We summarize the results in a table
+
+|Metric|Max|Min|Mean|
+|---|---|---|---|
+|RT.Crit|37|-32|-1.29|
+|RT.User|48|-33|-0.83|
+|LetterBoxd|40|-27.5|-0.42|
+|IMDB|19|-13|-0.21|
+
+
+As we saw earlier, the average change is -0.7 points, but how much is the average change by sign?
 
 ```R
 mean(subset(diff1$Rating.Change,diff1$Rating.Change>0))
@@ -159,9 +180,9 @@ Lastly, let's graph these changes:
 #First we add a column to diff_1col to indicate the sign
 diff_1col$sign<-ifelse(diff_1col$Rating.Change>=0,'positive','negative')
 #Now we graph, making the 4 different metrics on 4 different graphs but in the same plot
-chng_rat_plot<-ggplot(diff1,aes(x=Film.Number,y=Rating.Change,fill=sign))+geom_col()+facet_grid(Metric ~ .)
+chng_rat_plot<-ggplot(diff1,aes(x=Change.Number,y=Rating.Change,fill=sign))+geom_col()+facet_grid(Metric ~ .)
 coloring<-scale_fill_manual(values=c("positive"="BLUE","negative"="RED"))
-labels<-xlab("Film in Series")+ylab("Change in Rating/100 from Previous")+ggtitle("James Bond Film Change in Rating From Previous",subtitle="Sorted by Metric")
+labels<-xlab("Change Between Films")+ylab("Change in Rating/100 from Previous")+ggtitle("James Bond Film Change in Rating From Previous",subtitle="Sorted by Metric")
 linebreaks<-scale_x_continuous(breaks=c(0,2,4,6,8,10,12,14,16,18,20,22,24))
 ```
 ![chng_rat_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/chng_rat_plot.png?raw=TRUE)
