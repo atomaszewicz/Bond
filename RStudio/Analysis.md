@@ -69,7 +69,7 @@ rate1_col[which.min(rate_1col$Rating),]
 [1]               Title  Metric Rating
 [1] 15 A View to a Kill RT.Crit     36
 ```
-So the minimum score of all 4 metrics is 36/100 from Rotten Tomatoes critics for the Bond film "A View to a Kill" and the maxium score is 97.5 from LetterBoxd for "Casino Royale". It is not surprising that LetterBoxd has the highest rated film since it's average rating was the highest at 79.1 (12% higher than the average of our 4 metrics). RT critic score was actually the second highest among our 4 metrics with an average rating of 70.76, but evidently "A View to a Kill" was a weak entry in the series according to critics. 
+So the minimum score of all 4 metrics is 36/100 from Rotten Tomatoes critics for the Bond film "A View to a Kill" and the maxium score is 97.5 from LetterBoxd for "Casino Royale". It is not surprising that LetterBoxd has the highest rated film since it has the highest average rating of 79.1/100 (12% higher than the average of our 4 metrics). RT critic score was actually the second highest average rating among our 4 metrics,  of 70.76, but evidently "A View to a Kill" was a weak entry in the series according to critics. 
 
 We now check what is the highest/lowest rated films on average:
 ```R
@@ -83,7 +83,7 @@ rate[which.min(rate$Avg.All),]
 ```
 An unsuprising result, the films with the highest and lowest average scores are also the ones with the highest and lowest individual ratings. Since it's only an average over 4 the high/low rating will drag up/down the rating significantly, not to mention that each individual rating is presumed a trustworthy metric on the quality of the film. 
 
-Let's visualize all the film ratings over time. I choose not to graph the average of our 4 metrics because it become too muddled with lines. First we must add a 'date' column to our 'rate' data frame.
+Let's visualize how our 4 metrics change over time. First we must add a 'date' column to our 'rate' data frame.
 
 ```R
 date<-c(bom$Release)
@@ -97,12 +97,14 @@ labels<-ylab("Rating/100")+ggtitle("James Bond Film Ratings by Metric")+labs(col
 ```
  ![rate_bymetric](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/rate_bymetric.png?raw=TRUE)
  
-We note the LetterBoxd ratings are almost always above all the others. We also notice that the IMDb ratings don't change that much while the RT critic and user ratings are very sporadic. So let's study how much each rating changes between titles:
+We note the LetterBoxd ratings are almost always above all the others. We also notice that the IMDb ratings don't change that much while the RT critic and user ratings are very sporadic. We also notice that the LetterBoxd scores are almost always above the others;this is investigated in part A of the Appendix.
+
+So let's study how much each rating changes between titles:
 
 ```R
 #Create a blank data frame and fill it up with the differences
 diff<-data.frame()
-for(i in 1:24){
+for(i in 1:23){
     diff[i,1]<-(rate$RT.Crit[i+1]-rate$RT.Crit[i])
     diff[i,2]<-(rate$RT.User[i+1]-rate$RT.User[i])
     diff[i,3]<-(rate$LetterBoxd[i+1]-rate$LetterBoxd[i])
@@ -120,15 +122,44 @@ max(diff_1col$Rating.Change)
 min(diff_1col$Rating.Change)
 [1] -33
 mean(diff_1col$Rating.Change)
-[1] -1.45
+[1] -0.6875
+```
+The largest change was a 48 point boost between films, the smallest a -33 point drop, and on average, the films dropped about -0.7 points between films. So overall it appears the films have dropped in quality very slightly. Next question is how much is the average positive/negative change:
+
+```R
+mean(subset(diff1$Rating.Change,diff1$Rating.Change>0))
+[1] 14
+mean(subset(diff1$Rating.Change,diff1$Rating.Change<0))
+[1] -12.04
+```
+Even though the general trend is a -0.7 point change, the average increase is about 2 points larger in absolute value than the average decrease. Thus we there must be are more negative entries than positive ones. 
+
+```R
+pos_chng=0
+neg_chng=0
+no_chang=0
+#The loop is out of 100 because there are 4 ratings, and each rating has 24 changes between the 25 films
+for(i in 1:96){
+   
+}
 ```
 
 
 
 
+# Footnotes
+<sup>[1]</sup> : In the FiveThirtyEight [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) I referenced, the point of interest is this paragraph: "The ratings from IMDb, Metacritic and Rotten Tomatoes were typically in the same ballpark, which makes this finding unsurprising: Fandango’s star rating was higher than the IMDb rating 79 percent of the time, the Metacritic aggregate critic score 77 percent of the time, the Metacritic user score 86 percent of the time, the Rotten Tomatoes critic score 62 percent of the time, and the Rotten Tomatoes user score 74 percent of the time." Therefore to see how much higher user scores are than the critics scores, we simply divide the two averages to eliminate the Fandango term: RT.Crit / RT. User =1.19 which gives us our quoted 19%. 
 
+If we wish to continue this analysis:
 
-Let's study how much higher the LetterBoxd ratings are above the maximum of the others:
+IMDb vs. RT.Crit: Our metric suggests RT critics rate Bond films 3% higher than IMDb while FiveThirtyEight says that RT critcs scores are 21% lower.
+
+IMDb vs. RT.User: Our metric says RT Users scores are 7% lower than IMDb and FiveThirtyEight puts this number at 6%.
+
+# Appendix
+
+## A
+We note in this [graph](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/rate_bymetric.png?raw=TRUE) that the LetterBoxd scores are almost always above the other 3. We will study this observation:
 
 ```R
 #Create the data frame to store the infor
@@ -146,7 +177,16 @@ min(lb_extra$LB.Diff.Max)
 [1] -8.5
 mean(lb_extra$Score.Above.Max)
 [1] 3.82
+#And the total sum of the differences, which we could find using the mean, but that's boring
+extra_sum=0
+for(i in 1:25){
+     extra_sum<-extra_sum+lb_extra$LB.Diff.Max[i]
+}
+print(extra_sum)
+[1] 95.5
 ```
+At it's highest LetterBoxd score is 12.5 points above the next highest, at it's lowest, it is 8.5 points below the highest, it's average height above the next heighest is 3.8 points and the total sum of it's height above the others is 95.5. 
+
 
 Now we visualize this data:
 ```R
@@ -158,14 +198,3 @@ colouring<-scale_fill_manual(values=c("positive"="BLUE","negative"="RED"))
 labels<-xlab("Film Number in Series")+ylab("Difference in Points for Rating/100")+ggtitle("Difference Between LetterBoxd Score and Max of the Other 3*")+labs(caption="*Other 3: RT critic, RT User, IMDb")
 ```
 ![lb_diff_plo](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/lb_diff_plot.png?raw=TRUE)
-
-
-
-# Footnotes
-<sup>[1]</sup> : In the FiveThirtyEight [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) I referenced, the point of interest is this paragraph: "The ratings from IMDb, Metacritic and Rotten Tomatoes were typically in the same ballpark, which makes this finding unsurprising: Fandango’s star rating was higher than the IMDb rating 79 percent of the time, the Metacritic aggregate critic score 77 percent of the time, the Metacritic user score 86 percent of the time, the Rotten Tomatoes critic score 62 percent of the time, and the Rotten Tomatoes user score 74 percent of the time." Therefore to see how much higher user scores are than the critics scores, we simply divide the two averages to eliminate the Fandango term: RT.Crit / RT. User =1.19 which gives us our quoted 19%. 
-
-If we wish to continue this analysis:
-
-IMDb vs. RT.Crit: Our metric suggests RT critics rate Bond films 3% higher than IMDb while FiveThirtyEight says that RT critcs scores are 21% lower.
-
-IMDb vs. RT.User: Our metric says RT Users scores are 7% lower than IMDb and FiveThirtyEight puts this number at 6%.
