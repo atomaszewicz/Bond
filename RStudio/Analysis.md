@@ -156,7 +156,7 @@ As expected there are more negative entries than positive entries. We can verify
 Lastly, let's graph these changes:
 
 ```R
-$First we add a column to diff_1col to indicate the sign
+#First we add a column to diff_1col to indicate the sign
 diff_1col$sign<-ifelse(diff_1col$Rating.Change>=0,'positive','negative')
 #Now we graph, making the 4 different metrics on 4 different graphs but in the same plot
 chng_rat_plot<-ggplot(diff1,aes(x=Film.Number,y=Rating.Change,fill=sign))+geom_col()+facet_grid(Metric ~ .)
