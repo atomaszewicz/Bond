@@ -97,18 +97,59 @@ labels<-ylab("Rating/100")+ggtitle("James Bond Film Ratings by Metric")+labs(col
 ```
  ![rate_bymetric](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/rate_bymetric.png?raw=TRUE)
  
-We note the LetterBoxd ratings are almost always above all the others. We also notice that the IMDb ratings don't change that much while the RT critic and user ratings are very sporadic. 
+We note the LetterBoxd ratings are almost always above all the others. We also notice that the IMDb ratings don't change that much while the RT critic and user ratings are very sporadic. So let's study how much each rating changes between titles:
 
-Let's visualize how much higher the LetterBoxd ratings are above the maximum of the others:
+```R
+#Create a blank data frame and fill it up with the differences
+diff<-data.frame()
+for(i in 1:24){
+    diff[i,1]<-(rate$RT.Crit[i+1]-rate$RT.Crit[i])
+    diff[i,2]<-(rate$RT.User[i+1]-rate$RT.User[i])
+    diff[i,3]<-(rate$LetterBoxd[i+1]-rate$LetterBoxd[i])
+    diff[i,4]<-(rate$IMDB[i+1]-rate$IMDB[i])
+    diff[i,5]<-i
+}
+#Fix the column names
+colnames(diff)[c(1,2,3,4,5)]<-c("RT.Crit","RT.User","LetterBoxd","IMDB","Film.Number")
+#We transform to put all the ratings in one column to plot and analyze
+diff_1col<-melt(diff,id="Film.Number")
+colnames(diff_1col)[c(2,3)]<-c("Metric","Rating.Change")
+#Now let's find the max/min/mean
+max(diff_1col$Rating.Change)
+[1] 48
+min(diff_1col$Rating.Change)
+[1] -33
+mean(diff_1col$Rating.Change)
+[1] -1.45
+```
+
+
+
+
+
+
+Let's study how much higher the LetterBoxd ratings are above the maximum of the others:
 
 ```R
 #Create the data frame to store the infor
 lb_extra<-data.frame()
 #Input into our data frame the difference between the LB rating and the max of the other 3
 for(i in 1:25){
-    lb_extra[i]<-(rate$LetterBoxd[i]-max(c(rate$RT.Crit[i],rate$RT.User[i],rate$IMDB[i])))
+    lb_extra[i,1]<-(rate$LetterBoxd[i]-max(c(rate$RT.Crit[i],rate$RT.User[i],rate$IMDB[i])))
 }
 colnames(lb_extra)[1]<-"LB.Diff.Max"
+
+#What are the biggest/smallest differences and the mean difference
+max(lb_extra$LB.Diff.Max)
+[1] 12.5
+min(lb_extra$LB.Diff.Max)
+[1] -8.5
+mean(lb_extra$Score.Above.Max)
+[1] 3.82
+```
+
+Now we visualize this data:
+```R
 #We now tag the numbers as positive and negative for later
 lb_extra$sign<-ifelse(lb_extra$LB.Diff.Max >=0,'positive','negative')
 #Now we plot, with red being negative and blue being positive
@@ -117,7 +158,7 @@ colouring<-scale_fill_manual(values=c("positive"="BLUE","negative"="RED"))
 labels<-xlab("Film Number in Series")+ylab("Difference in Points for Rating/100")+ggtitle("Difference Between LetterBoxd Score and Max of the Other 3*")+labs(caption="*Other 3: RT critic, RT User, IMDb")
 ```
 ![lb_diff_plo](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/lb_diff_plot.png?raw=TRUE)
- 
+
 
 
 # Footnotes
