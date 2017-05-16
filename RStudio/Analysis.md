@@ -151,15 +151,20 @@ for(i in 1:96){
 print(c(pos_chng,neg_chng,no_chng))
 [1] 40 4 52
 ```
-As expected there are more negative entries than positive entries. Now we verify this has been done correclty with a little bit of algebra. We multiply the mean of the different signs by the number of entries of that sign, and that should sum up to the total mean multiplied by the total number of entries. 
+As expected there are more negative entries than positive entries. We can verify these numbers with a little algebra, see Appendix B for this treatment. 
 
-(avg of positives)\*(# of positives)+(avg of zeroes)\*(# of zeroes)+(avg of negatives)\*(# negatives)=(avg of set)\*(# in set)
+Lastly, let's graph these changes:
 
-Left Hand Side: 14\*40+0\*4-12.04\*52=560-626.08=-66.08
-Right Hand Side: -0.687\*96=-65.9
-
-Which agrees 
-
+```R
+$First we add a column to diff_1col to indicate the sign
+diff_1col$sign<-ifelse(diff_1col$Rating.Change>=0,'positive','negative')
+#Now we graph, making the 4 different metrics on 4 different graphs but in the same plot
+chng_rat_plot<-ggplot(diff1,aes(x=Film.Number,y=Rating.Change,fill=sign))+geom_col()+facet_grid(Metric ~ .)
+coloring<-scale_fill_manual(values=c("positive"="BLUE","negative"="RED"))
+labels<-xlab("Film in Series")+ylab("Change in Rating/100 from Previous")+ggtitle("James Bond Film Change in Rating From Previous",subtitle="Sorted by Metric")
+linebreaks<-scale_x_continuous(breaks=c(0,2,4,6,8,10,12,14,16,18,20,22,24))
+```
+![chng_rat_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/chng_rat_plot.png?raw=TRUE)
 
 
 
@@ -214,3 +219,14 @@ colouring<-scale_fill_manual(values=c("positive"="BLUE","negative"="RED"))
 labels<-xlab("Film Number in Series")+ylab("Difference in Points for Rating/100")+ggtitle("Difference Between LetterBoxd Score and Max of the Other 3*")+labs(caption="*Other 3: RT critic, RT User, IMDb")
 ```
 ![lb_diff_plo](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/lb_diff_plot.png?raw=TRUE)
+
+## B
+
+We verify that we have computed the correct number of positive, negative and nil changes in movie ratings between movies using basic algebra and knowledge of how means of subsets relate to mean of the set. We multiply the mean of the different signs by the number of entries of that sign, and that should sum up to the total mean multiplied by the total number of entries. 
+
+(avg of positives)\*(# of positives)+(avg of zeroes)\*(# of zeroes)+(avg of negatives)\*(# negatives)=(avg of set)\*(# in set)
+
+Left Hand Side: 14\*40+0\*4-12.04\*52=560-626.08=-66.08 \n
+Right Hand Side: -0.687\*96=-65.9
+
+Which agrees within signficant figures.
