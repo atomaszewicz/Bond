@@ -137,12 +137,28 @@ Even though the general trend is a -0.7 point change, the average increase is ab
 ```R
 pos_chng=0
 neg_chng=0
-no_chang=0
+no_chng=0
 #The loop is out of 100 because there are 4 ratings, and each rating has 24 changes between the 25 films
 for(i in 1:96){
-   
+     if(diff_1col$Rating.Change[i]>0){
+         pos_chng<-pos_chng+1
+     }
+     else if(diff_1col$Rating.Change[i]<0){
+         neg_chng<-neg_chng+1
+     }
+     else no_chng<-no_chng+1
 }
+print(c(pos_chng,neg_chng,no_chng))
+[1] 40 4 52
 ```
+As expected there are more negative entries than positive entries. Now we verify this has been done correclty with a little bit of algebra. We multiply the mean of the different signs by the number of entries of that sign, and that should sum up to the total mean multiplied by the total number of entries. 
+
+(avg of positives)\*(# of positives)+(avg of zeroes)\*(# of zeroes)+(avg of negatives)\*(# negatives)=(avg of set)\*(# in set)
+
+Left Hand Side: 14\*40+0\*4-12.04\*52=560-626.08=-66.08
+Right Hand Side: -0.687\*96=-65.9
+
+Which agrees 
 
 
 
