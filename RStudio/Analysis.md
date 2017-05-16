@@ -147,7 +147,7 @@ mean(subset(diff$RT.Crit,diff$RT.Crit>0))
 ```
 We summarize the results in a table
 
-|Metric|Max|Min|Mean|Mean>0||Mean<0|
+|Metric|Max|Min|Mean|Mean>0|Mean<0|
 |---|---|---|---|---|---|
 |RT.Crit|37|-32|-1.29|19.3|-18.7|
 |RT.User|48|-33|-0.83|18.2|-14.4|
