@@ -124,7 +124,15 @@ min(diff_1col$Rating.Change)
 mean(diff_1col$Rating.Change)
 [1] -0.6875
 ```
-The largest change was a 48 point boost between films, the smallest a -33 point drop, and on average, the films dropped about -0.7 points between films. So overall it appears the films have dropped in quality very slightly. Next let's look at these numbers for the individual metrics:
+The largest change was a 48 point boost between films, the smallest a -33 point drop, and on average, the films dropped about -0.7 points between films. So overall it appears the films have dropped in quality very slightly. As we saw earlier, the average change is -0.7 points, but how much is the average change by sign?
+
+```R
+mean(subset(diff1$Rating.Change,diff1$Rating.Change>0))
+[1] 14
+mean(subset(diff1$Rating.Change,diff1$Rating.Change<0))
+[1] -12.04
+```
+Even though the general trend is a -0.7 point change, the average increase is about 2 points larger in absolute value than the average decrease. Thus we there must be are more negative entries than positive ones. Next let's look at these numbers for the individual metrics:
 
 ```R
 max(diff$RT.Crit)
@@ -133,27 +141,23 @@ min(diff$RT.Crit)
 [1] -32
 mean(diff$RT.Crit)
 [1] -1.29
+mean(subset(diff$RT.Crit,diff$RT.Crit>0))
+[1] 19.3
 #etc...
 ```
 We summarize the results in a table
 
-|Metric|Max|Min|Mean|
-|---|---|---|---|
-|RT.Crit|37|-32|-1.29|
-|RT.User|48|-33|-0.83|
-|LetterBoxd|40|-27.5|-0.42|
-|IMDB|19|-13|-0.21|
+|Metric|Max|Min|Mean|Mean>0||Mean<0|
+|---|---|---|---|---|---|
+|RT.Crit|37|-32|-1.29|19.3|-18.7|
+|RT.User|48|-33|-0.83|18.2|-14.4|
+|LetterBoxd|40|-27.5|-0.42|13|-10.7|
+|IMDB|19|-13|-0.21|5.5|-4.6|
+|Avg|35.5|-26.4|-0.69|14|-12|
+
+The main thing we notice is that although 
 
 
-As we saw earlier, the average change is -0.7 points, but how much is the average change by sign?
-
-```R
-mean(subset(diff1$Rating.Change,diff1$Rating.Change>0))
-[1] 14
-mean(subset(diff1$Rating.Change,diff1$Rating.Change<0))
-[1] -12.04
-```
-Even though the general trend is a -0.7 point change, the average increase is about 2 points larger in absolute value than the average decrease. Thus we there must be are more negative entries than positive ones. 
 
 ```R
 pos_chng=0
