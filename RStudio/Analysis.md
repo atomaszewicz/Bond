@@ -200,11 +200,22 @@ sum(diff$sign)
 ```
 So 15 out of 24 times, or 62% of the time, all 4 metrics agreed on the change in quality of the movie. We note that due to the nature of the 'sign()' function zero has it's own sign. If we count the 3 occurances of zeroes in one field, and all the same sign in the other 3, this ratio rises to 18/24 or 75%! Thus around three quarters of the time our 4 metrics agree on whether a movie got better or worse.
 
-Now we want to examine how different Bond Actors were scored.
+Now we want to examine how different Bond Actors were scored on average
 
 ```R
-#First we must add a 'bond' column to our ratings data frame
-rate$bond<-bom$Bond
+#First we create a vector of the names and a blank data frame to store our average by bond and by metric
+names<-c("Sean Connery","George Lazen","Roger Moore","Timothy Dalton","Pierce Brosnan","Daniel Craig")
+bond_rate<-data.frame()
+#Fill up the data frame with the names and averages with a loop and fix the column names
+for(i in 1:6){
+     bond_rate[i,1]=names[i]
+     bond_rate[i,2]=mean(subset(rate$RT.Crit,rate$bond==names[i]))
+     bond_rate[i,3]=mean(subset(rate$RT.User,rate$bond==names[i]))
+     bond_rate[i,4]=mean(subset(rate$LetterBoxd,rate$bond==names[i]))
+     bond_rate[i,5]=mean(subset(rate$IMDB,rate$bond==names[i]))
+     bond[i,6]=mean(subset(rate$Avg.All,rate$bond==names[i]))
+}
+colnames(bond_rate)[c(1,2,3,4,5)]<-c("Bond","RT.Crit","RT.User","LetterBoxd","IMDB","Avg.All")
 
 
 ```
