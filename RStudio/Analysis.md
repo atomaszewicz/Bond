@@ -83,16 +83,17 @@ rate[which.min(rate$Avg.All),]
 ```
 An unsuprising result, the films with the highest and lowest average scores are also the ones with the highest and lowest individual ratings. Since it's only an average over 4 the high/low rating will drag up/down the rating significantly, not to mention that each individual rating is presumed a trustworthy metric on the quality of the film. 
 
-Let's visualize how our 4 metrics change over time. First we must add a 'date' column to our 'rate' data frame.
+Let's visualize how our 4 metrics change over time. 
 
 ```R
-date<-c(bom$Release)
-rate$Date<-date
+First we must add a 'date' and 'bond' column to our data
+rate$Date<-bom$Release
+rate$bond<-bom$Bond
 #Note that by doing this we are taking our average of 4 out of the column with all the ratings.
-rate_1col<-melt(rate,id=("Title","Date","Avg.All"))
+rate_1col<-melt(rate,id=("Title","Date","Avg.All","Bond"))
 colnames(rate_1col)[c(4,5)]<-c("Metric","Rating")
 #Not that we add colour and linetype to amplify the distinction between lines
-rate_bymetric<- ggplot(rate1,aes(x=Date,y=value,col=variable))+geom_line(aes(linetype=variable))
+rate_bymetric<- ggplot(rate1,aes(x=Date,y=value))+geom_line(aes(col=Metric))+geom_point(aes(shape=bond))
 labels<-ylab("Rating/100")+ggtitle("James Bond Film Ratings by Metric")+labs(col="Metric",linetype="Metric")
 ```
  ![rate_bymetric](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/rate_bymetric.png?raw=TRUE)
