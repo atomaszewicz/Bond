@@ -155,7 +155,7 @@ We summarize the results in a table
 |IMDB|19|-13|-0.21|5.5|-4.6|
 |Avg|35.5|-26.4|-0.69|14|-12|
 
-We notice a few things from this, the max is always larger than the min (in absolute value), the mean>0 is always greater than the mean<0 and yet the mean is still always negative! This clearly means that there are more negative changes than positive ones, but the positive changes are much larger. Interpreting this, we see that generally people think the movies are worse than the last one, but when there is a positive change, people are very satisfied with the result.
+The max is always larger than the min (in absolute value), the mean>0 is always greater than the mean<0 and yet the overall mean is always negative! This means that there are more negative changes than positive ones, but the positive changes are generally larger. Interpreting this, we see that generally people think the movies are worse than the last one, but when there is a positive change, people are very satisfied with the result.
 
 
 ```R
@@ -190,7 +190,23 @@ linebreaks<-scale_x_continuous(breaks=c(0,2,4,6,8,10,12,14,16,18,20,22,24))
 ```
 ![chng_rat_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/chng_rat_plot.png?raw=TRUE)
 
+It looks like most of the entires are all of the same sign, so we examine this:
 
+```R
+diff$sign<-ifelse(sign(diff$RT.Crit)==sign(diff$RT.User)&sign(diff$RT.User)==sign(diff$LetterBoxd)&sign(diff$LetterBoxd)==sign(diff$IMDB),1,0)
+sum(diff$sign)
+[1] 15
+```
+So 15 out of 24 times, or 62% of the time, all 4 metrics agreed on the change in quality of the movie. We note that due to the nature of the 'sign()' function zero has it's own sign. If we count the 3 occurances of zeroes in one field, and all the same sign in the other 3, this ratio rises to 18/24 or 75%! Thus around three quarters of the time our 4 metrics agree on whether a movie got better or worse.
+
+Now we want to examine how different Bond Actors were scored.
+
+```R
+#First we must add a 'bond' column to our ratings data frame
+rate$bond<-bom$Bond
+
+
+```
 
 # Footnotes
 <sup>[1]</sup> : In the FiveThirtyEight [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) I referenced, the point of interest is this paragraph: "The ratings from IMDb, Metacritic and Rotten Tomatoes were typically in the same ballpark, which makes this finding unsurprising: Fandango’s star rating was higher than the IMDb rating 79 percent of the time, the Metacritic aggregate critic score 77 percent of the time, the Metacritic user score 86 percent of the time, the Rotten Tomatoes critic score 62 percent of the time, and the Rotten Tomatoes user score 74 percent of the time." Therefore to see how much higher user scores are than the critics scores, we simply divide the two averages to eliminate the Fandango term: RT.Crit / RT. User =1.19 which gives us our quoted 19%. 
