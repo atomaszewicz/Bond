@@ -94,7 +94,7 @@ rate_1col<-melt(rate,id=("Title","Date","Avg.All","Bond"))
 colnames(rate_1col)[c(4,5)]<-c("Metric","Rating")
 #Not that we add colour and linetype to amplify the distinction between lines
 rate_bymetric<- ggplot(rate1,aes(x=Date,y=value))+geom_line(aes(col=Metric))+geom_point(aes(shape=bond))
-labels<-ylab("Rating/100")+ggtitle("James Bond Film Ratings by Metric")+labs(shape="Bond")
+labels<-ylab("Rating/100")+ggtitle("James Bond Film Ratings by Metric")+labs(shape="Bond",col="Metric")
 ```
 ![rate_metricbond](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/rate_metricbond_plot.png?raw=TRUE)
  
