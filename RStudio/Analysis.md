@@ -94,9 +94,9 @@ rate_1col<-melt(rate,id=("Title","Date","Avg.All","Bond"))
 colnames(rate_1col)[c(4,5)]<-c("Metric","Rating")
 #Not that we add colour and linetype to amplify the distinction between lines
 rate_bymetric<- ggplot(rate1,aes(x=Date,y=value))+geom_line(aes(col=Metric))+geom_point(aes(shape=bond))
-labels<-ylab("Rating/100")+ggtitle("James Bond Film Ratings by Metric")+labs(col="Metric",linetype="Metric")
+labels<-ylab("Rating/100")+ggtitle("James Bond Film Ratings by Metric")+labs(shape="Bond")
 ```
- ![rate_bymetric](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/rate_bymetric.png?raw=TRUE)
+![rate_metricbond](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/rate_metricbond_plot.png?raw=TRUE)
  
 We note the LetterBoxd ratings are almost always above all the others. We also notice that the IMDb ratings don't change that much while the RT critic and user ratings are very sporadic. We also notice that the LetterBoxd scores are almost always above the others;this is investigated in part A of the Appendix.
 
