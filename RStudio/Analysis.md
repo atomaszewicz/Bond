@@ -104,7 +104,7 @@ We note the LetterBoxd ratings are almost always above all the others. We also n
 
 ### Score Changes
 
-So let's study how much each rating changes between titles:
+Now let's study how much each rating changes between titles:
 
 ```R
 #Create a blank data frame and fill it up with the differences
