@@ -52,7 +52,7 @@ labels<-xlab("Rating Metric")+ylab("Average Score/100")+ggtitle("Bond Film Avera
 ```
 ![avg_rating_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/avg_rating.png?raw=TRUE)
 
-The average for all the Bond films, based on the 4 metrics of choice is 71% which translates to a 3.5/5 star rating or in American Colleges, a C- or 1.67/4.00 GPA. 
+The average for all the Bond films, based on the 4 metrics of choice is 71% which translates to a 3.5/5 star rating or in American Colleges, a C- or 1.67/4.00 GPA. This is not a great score, but then again the Bond films aren't necessarily great 'films'. They're B-movies at heart, not high art. What they're going for is a compelling cinematic adventure with an invincible super spy at the helm, and at this they excel. Anyways, back to those ratings.
 
 It seems that Rotten Tomatoe users think lower of these films than users do critics, with the average user rating being 9% less than the critic ratings. This is an interesting result because in an intuitive sense I expected critics to be more ... critical of movies than your average Joe Rotten Tomatoes. This theory is reinforced by a FiveThirtyEight [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) where they compare online movie ratings for ~200 titles. In this article Rotten Tomatoes user ratings were on average 19% higher <sup>[1]</sup> than Rotten Tomatoes critic scores. On the other hand, critics probably better understand the place of the James Bond movies while our average theater-goer is keeping their score of Citizen Kane or Lawrence of Arabia in mind when they pencil in their rating for the 007 films.
 
@@ -71,7 +71,7 @@ rate1_col[which.min(rate_1col$Rating),]
 [1]               Title  Metric Rating
 [1] 15 A View to a Kill RT.Crit     36
 ```
-So the minimum score of all 4 metrics is 36/100 from Rotten Tomatoes critics for the Bond film "A View to a Kill" and the maxium score is 97.5 from LetterBoxd for "Casino Royale". It is not surprising that LetterBoxd has the highest rated film since it has the highest average rating of 79.1/100 (12% higher than the average of our 4 metrics). RT critic score was actually the second highest average rating among our 4 metrics,  of 70.76, but evidently "A View to a Kill" was a weak entry in the series according to critics. 
+So the minimum score of all 4 metrics is 36/100 from Rotten Tomatoes critics for the Bond film "A View to a Kill", which marks Roger Moore's last outing as Agent 007, and the maximum score is 97.5 from LetterBoxd for "Casino Royale" Daniel Craig's first film in the series. It is not surprising that LetterBoxd claims the highest rated film since it has the highest average rating of 79.1/100 (12% higher than the average of our 4 metrics). RT critic score was on average the second highest rating (70.8/100) among our 4 metrics but according to critics "A View to a Kill" was the weakest entry in the series.
 
 We now check what is the highest/lowest rated films on average:
 ```R
@@ -83,7 +83,7 @@ rate[which.min(rate$Avg.All),]
 [1]     RT.Crit RT.User LetterBoxd IMDB Avg.All            Title
 [1] 15      36      41       67.5   63   51.875 A View to a Kill
 ```
-An unsuprising result, the films with the highest and lowest average scores are also the ones with the highest and lowest individual ratings. Since it's only an average over 4 the high/low rating will drag up/down the rating significantly, not to mention that each individual rating is presumed a trustworthy metric on the quality of the film. 
+An unsuprising result, the films with the highest and lowest average scores are also the ones with the highest and lowest individual ratings. Since it's only an average over 4 the high/low rating will drag up/down the rating significantly, not to mention that each individual rating is presumably a trustworthy metric on the quality of the film. 
 
 Let's visualize how our 4 metrics change over time. 
 
@@ -100,11 +100,11 @@ labels<-ylab("Rating/100")+ggtitle("James Bond Film Ratings by Metric")+labs(sha
 ```
 ![rate_metricbond](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/rate_metricbond.png?raw=TRUE)
  
-We note the LetterBoxd ratings are almost always above all the others. We also notice that the IMDb ratings don't change that much while the RT critic and user ratings are very sporadic. We also notice that the LetterBoxd scores are almost always above the others;this is investigated in part A of the Appendix.
+The first thing I noticed was that e that the IMDb ratings don't change that much while others are quite sporadic. We also notice that the LetterBoxd scores are almost always above the others;this is investigated in part A of the Appendix.
 
 ### Score Changes
 
-Now let's study how much each rating changes between titles:
+Let's look into how much each rating changes between titles.
 
 ```R
 #Create a blank data frame and fill it up with the differences
