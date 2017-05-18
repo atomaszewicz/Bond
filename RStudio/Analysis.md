@@ -28,6 +28,8 @@ rate<-read.xlsx("jb_clean.xlsx",3)
 ```
 
 ## Ratings
+
+### Metrics
 First let's look at how the different sites average ratings relate.
 
 ```R
@@ -99,6 +101,8 @@ labels<-ylab("Rating/100")+ggtitle("James Bond Film Ratings by Metric")+labs(sha
 ![rate_metricbond](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/rate_metricbond.png?raw=TRUE)
  
 We note the LetterBoxd ratings are almost always above all the others. We also notice that the IMDb ratings don't change that much while the RT critic and user ratings are very sporadic. We also notice that the LetterBoxd scores are almost always above the others;this is investigated in part A of the Appendix.
+
+### Score Changes
 
 So let's study how much each rating changes between titles:
 
@@ -200,6 +204,8 @@ sum(diff$sign)
 ```
 So 15 out of 24 times, or 62% of the time, all 4 metrics agreed on the change in quality of the movie. We note that due to the nature of the 'sign()' function zero has it's own sign. If we count the 3 occurances of zeroes in one field, and all the same sign in the other 3, this ratio rises to 18/24 or 75%! Thus around three quarters of the time our 4 metrics agree on whether a movie got better or worse.
 
+### Bond Actor
+
 Now we want to examine how different Bond Actors were scored on average
 
 ```R
@@ -222,9 +228,11 @@ bond_rate1<-melt(bond_rate,id=c("Bond","Avg.All"))
 actor_avg_metric<-ggplot(bond_rate1,aes(x=Bond,y=value))+geom_bar(aes(fill=variable),stat="identity",position="dodge")
 labels<-ggtitle("Average Bond Ratings by Metric")+xlab("Bond Actor")+ylab("Rating")+labs(fill="Metric",caption="Black Bar = Avg. of 4)
 coord_avg<-coord_cartesian(ylim=c(55,90))+geom_errorbar(aes(ymax=Avg.All,ymin=Avg.All))
-#Where this last element is our custom y-axis limits and the errorbars are a 'hack' to get the horizontal bars
+#Where this last element is our custom y-axis limits and errorbars, a 'hack' to get horizontal bars for the averages
 ```
 ![actor_avg_metric](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/actor_avg_metric.png?raw=TRUE)
+
+As before LetterBoxd scores are always the highest, 
 
 # Footnotes
 <sup>[1]</sup> : In the FiveThirtyEight [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) I referenced, the point of interest is this paragraph: "The ratings from IMDb, Metacritic and Rotten Tomatoes were typically in the same ballpark, which makes this finding unsurprising: Fandango’s star rating was higher than the IMDb rating 79 percent of the time, the Metacritic aggregate critic score 77 percent of the time, the Metacritic user score 86 percent of the time, the Rotten Tomatoes critic score 62 percent of the time, and the Rotten Tomatoes user score 74 percent of the time." Therefore to see how much higher user scores are than the critics scores, we simply divide the two averages to eliminate the Fandango term: RT.Crit / RT. User =1.19 which gives us our quoted 19%. 
