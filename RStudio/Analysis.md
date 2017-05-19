@@ -47,8 +47,6 @@ Now we wish to visualize this:
 ```R
 #Since our 'avgs' data frame is in table form, we create a new, transposed, dataframe using 'melt()' from the reshape2 library
 avgs_t<-melt(avgs)
-avg_rating_plot<-ggplot(avgs_t,aes(x=variable,y=value))+geom_col()+coord_cartesian(ylim=c(60,80))
-labels<-xlab("Rating Metric")+ylab("Average Score/100")+ggtitle("Bond Film Average Rating by Metric")
 ```
 ![avg_rating_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/avg_rating.png?raw=TRUE)
 
@@ -94,13 +92,10 @@ rate$bond<-bom$Bond
 #Note that by doing this we are taking our average of 4 out of the column with all the ratings.
 rate_1col<-melt(rate,id=("Title","Date","Avg.All","Bond"))
 colnames(rate_1col)[c(4,5)]<-c("Metric","Rating")
-#Not that we add colour and linetype to amplify the distinction between lines
-rate_bymetric<- ggplot(rate1,aes(x=Date,y=value))+geom_line(aes(col=Metric))+geom_point(aes(shape=bond))
-labels<-ylab("Rating/100")+ggtitle("James Bond Film Ratings by Metric")+labs(shape="Bond",col="Metric")
 ```
 ![rate_metricbond](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/rate_metricbond.png?raw=TRUE)
  
-The first thing I noticed was that e that the IMDb ratings don't change that much while others are quite sporadic. We also notice that the LetterBoxd scores are almost always above the others;this is investigated in part A of the Appendix.
+The first thing I noticed was that e that the IMDb ratings don't change that much while others are quite sporadic. We also notice that the LetterBoxd scores are almost always above the others;this is investigated in part A of the Appendix. 
 
 ### Score Changes
 
@@ -184,15 +179,6 @@ As expected there are more negative entries than positive entries. We can verify
 
 Lastly, let's graph these changes:
 
-```R
-#First we add a column to diff_1col to indicate the sign
-diff_1col$sign<-ifelse(diff_1col$Rating.Change>=0,'positive','negative')
-#Now we graph, making the 4 different metrics on 4 different graphs but in the same plot
-chng_rat_plot<-ggplot(diff1,aes(x=Change.Number,y=Rating.Change,fill=sign))+geom_col()+facet_grid(Metric ~ .)
-coloring<-scale_fill_manual(values=c("positive"="BLUE","negative"="RED"))
-labels<-xlab("Change Between Films")+ylab("Change in Rating/100 from Previous")+ggtitle("James Bond Film Change in Rating From Previous",subtitle="Sorted by Metric")
-linebreaks<-scale_x_continuous(breaks=c(0,2,4,6,8,10,12,14,16,18,20,22,24))
-```
 ![chng_rat_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/chng_rat_plot.png?raw=TRUE)
 
 It looks like most of the entires are all of the same sign, so we examine this:
@@ -226,6 +212,7 @@ colnames(bond_rate)[c(1,2,3,4,5)]<-c("Bond","RT.Crit","RT.User","LetterBoxd","IM
 bond_rate1<-melt(bond_rate,id=c("Bond","Avg.All"))
 ```
 Before we look at a graph, we briefly make up a table to examine the best Bond actor as the average of our 4 metrics.
+
 |Bond|Avg.All|
 |---|---|
 |Sean Connery|76|
@@ -235,18 +222,13 @@ Before we look at a graph, we briefly make up a table to examine the best Bond a
 |Pierce Brosnan|63|
 |Daniel Craig|78|
 
-So the newest actor to adorn the Agent 007 Tux and recieve his license to kill is also the highest rated.
+So the newest actor to adorn the well-worn 007 tuxedo, Daniel Craig, is the most highly rated, and Sean Connery, who broke it in, the second. Suprisingly, with only 1 film in the franchise, George Lazen takes the third spot. Now let's plot this to see what else we can find out.
 
-```R
-#Now we plot
-actor_avg_metric<-ggplot(bond_rate1,aes(x=Bond,y=value))+geom_bar(aes(fill=variable),stat="identity",position="dodge")
-labels<-ggtitle("Average Bond Ratings by Metric")+xlab("Bond Actor")+ylab("Rating")+labs(fill="Metric",caption="Black Bar = Avg. of 4)
-coord_avg<-coord_cartesian(ylim=c(55,90))+geom_errorbar(aes(ymax=Avg.All,ymin=Avg.All))
-#Where this last element is our custom y-axis limits and errorbars, a 'hack' to get horizontal bars for the averages
-```
 ![actor_avg_metric](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/actor_avg_metric.png?raw=TRUE)
 
-As before LetterBoxd scores are always the highest, 
+As before LetterBoxd scores are always the highest, Rotten Tomatoes users are very critical of the Bond films, and IMDb scores are all around the same.
+
+In fact, the range of averages of IMDb scores for the different actors is only 7.8 points <sup> [2] </sup>, whereas these ranges for RT Critic, RT User, and LetterBoxd are 24.8, 17.6 and 16.25 respectively. Thus IMDb has less than half the range of the next lowest, and less than a third of the range of the rating with the biggest spread across Bond actors.
 
 # Footnotes
 <sup>[1]</sup> : In the FiveThirtyEight [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) I referenced, the point of interest is this paragraph: "The ratings from IMDb, Metacritic and Rotten Tomatoes were typically in the same ballpark, which makes this finding unsurprising: Fandango’s star rating was higher than the IMDb rating 79 percent of the time, the Metacritic aggregate critic score 77 percent of the time, the Metacritic user score 86 percent of the time, the Rotten Tomatoes critic score 62 percent of the time, and the Rotten Tomatoes user score 74 percent of the time." Therefore to see how much higher user scores are than the critics scores, we simply divide the two averages to eliminate the Fandango term: RT.Crit / RT. User =1.19 which gives us our quoted 19%. 
@@ -256,6 +238,56 @@ If we wish to continue this analysis:
 IMDb vs. RT.Crit: Our metric suggests RT critics rate Bond films 3% higher than IMDb while FiveThirtyEight says that RT critcs scores are 21% lower.
 
 IMDb vs. RT.User: Our metric says RT Users scores are 7% lower than IMDb and FiveThirtyEight puts this number at 6%.
+
+<sup> [2] </sup>
+To find the range of averages for a metric across bond actors you simply subtract the max from the min. For example, with IMDb
+
+```R
+max(bond_rate$IMDB)-min(bond_rate$IMDB)
+[1] 7.75
+```
+
+# Plot Code
+
+## avg_rating_plot
+A bar plot that shows the average rating by metric 
+```R
+#Since our 'avgs' data frame is in table form, we create a new, transposed, dataframe using 'melt()' from the reshape2 library
+avgs_t<-melt(avgs)
+avg_rating_plot<-ggplot(avgs_t,aes(x=variable,y=value))+geom_col()+coord_cartesian(ylim=c(60,80))
+labels<-xlab("Rating Metric")+ylab("Average Score/100")+ggtitle("Bond Film Average Rating by Metric")
+```
+## rate_metricbond
+A line and point graph that shows how our 4 metrics change over time
+```R
+#Note that by doing this we are taking our average of 4 out of the column with all the ratings.
+rate_1col<-melt(rate,id=("Title","Date","Avg.All","Bond"))
+colnames(rate_1col)[c(4,5)]<-c("Metric","Rating")
+#Not that we add colour and linetype to amplify the distinction between lines
+rate_bymetric<- ggplot(rate1,aes(x=Date,y=value))+geom_line(aes(col=Metric))+geom_point(aes(shape=bond))
+labels<-ylab("Rating/100")+ggtitle("James Bond Film Ratings by Metric")+labs(shape="Bond",col="Metric")
+```
+
+## chng_rat_plot:
+A bar plot that shows the change in score between movies, separated by metric 
+```R
+#Now we graph, making the 4 different metrics on 4 different graphs but in the same plot
+chng_rat_plot<-ggplot(diff1,aes(x=Change.Number,y=Rating.Change,fill=sign))+geom_col()+facet_grid(Metric ~ .)
+coloring<-scale_fill_manual(values=c("positive"="BLUE","negative"="RED"))
+labels<-xlab("Change Between Films")+ylab("Change in Rating/100 from Previous")+ggtitle("James Bond Film Change in Rating From Previous",subtitle="Sorted by Metric")
+linebreaks<-scale_x_continuous(breaks=c(0,2,4,6,8,10,12,14,16,18,20,22,24))
+```
+
+## actor_avg_metric
+A grouped bar plot that shows how different bonds were rated by our 4 metrics (and the average of the 4)
+```R
+actor_avg_metric<-ggplot(bond_rate1,aes(x=Bond,y=value))+geom_bar(aes(fill=variable),stat="identity",position="dodge")
+labels<-ggtitle("Average Bond Ratings by Metric")+xlab("Bond Actor")+ylab("Rating")+labs(fill="Metric",caption="Black Bar = Avg. of 4)
+coord_avg<-coord_cartesian(ylim=c(55,90))+geom_errorbar(aes(ymax=Avg.All,ymin=Avg.All))
+#Where this last element is our custom y-axis limits and errorbars, a 'hack' to get horizontal bars for the averages
+```
+
+
 
 # Appendix
 
