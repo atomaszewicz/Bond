@@ -227,7 +227,7 @@ bond_rate1<-melt(bond_rate,id=c("Bond","Avg.All"))
 ```
 Before we look at a graph, we briefly make up a table to examine the best Bond actor as the average of our 4 metrics.
 |Bond|Avg.All|
-|---|----|
+|---|---|
 |Sean Connery|76|
 |George Lazen|75|
 |Roger Moore|64|
