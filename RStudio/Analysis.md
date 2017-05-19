@@ -224,6 +224,20 @@ for(i in 1:6){
 colnames(bond_rate)[c(1,2,3,4,5)]<-c("Bond","RT.Crit","RT.User","LetterBoxd","IMDB","Avg.All")
 #Then we transform our data frame
 bond_rate1<-melt(bond_rate,id=c("Bond","Avg.All"))
+```
+Before we look at a graph, we briefly make up a table to examine the best Bond actor as the average of our 4 metrics.
+|Bond|Avg.All|
+|---|----|
+|Sean Connery|76|
+|George Lazen|75|
+|Roger Moore|64|
+|Timothy Dalton|71|
+|Pierce Brosnan|63|
+|Daniel Craig|78|
+
+So the newest actor to adorn the Agent 007 Tux and recieve his license to kill is also the highest rated.
+
+```R
 #Now we plot
 actor_avg_metric<-ggplot(bond_rate1,aes(x=Bond,y=value))+geom_bar(aes(fill=variable),stat="identity",position="dodge")
 labels<-ggtitle("Average Bond Ratings by Metric")+xlab("Bond Actor")+ylab("Rating")+labs(fill="Metric",caption="Black Bar = Avg. of 4)
