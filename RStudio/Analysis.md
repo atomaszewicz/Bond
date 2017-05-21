@@ -150,11 +150,15 @@ for(i in 1:23){
     diff[i,3]<-(rate$LetterBoxd[i+1]-rate$LetterBoxd[i])
     diff[i,4]<-(rate$IMDB[i+1]-rate$IMDB[i])
     diff[i,5]<-i
+    diff[i,6]<-rate$bond[i+1]
 }
 #Fix the column names
-colnames(diff)[c(1,2,3,4,5)]<-c("RT.Crit","RT.User","LetterBoxd","IMDB","Change.Number")
-#I want to clarify that 'Change Number' refers to the transition number. 
+colnames(diff)[c(1,2,3,4,5,6)]<-c("RT.Crit","RT.User","LetterBoxd","IMDB","Change.Number","New.Bond")
+#I want to clarify that 'Change Number' refers to the transition number
 #For example, the change in rating from film 2 to film 3 is referred to by the change number 2.
+#Also 'New Bond' refers to the bond in the second movie in the transition
+#We quicly re-order this so it shows up correctly later
+diff$New.Bond<-factor(diff$New.Bond,levels=c("Sean Connery","George Lazen","Roger Moore","Timothy Dalton","Pierce Brosnan","Daniel Craig"))
 ```
 Now we can analyze these numbers how are diferent ratings change between entries in the franchise.
 ```R
@@ -185,8 +189,8 @@ This means that there must be more negative changes than positive ones, but that
 
 ```R
 #We transform to put all the ratings in one column to plot and analyze
-diff_1col<-melt(diff,id="Change.Number")
-colnames(diff_1col)[c(2,3)]<-c("Metric","Rating.Change")
+diff_1col<-melt(diff,id=c("Change.Number","New.Bond"))
+colnames(diff_1col)[c(2,3,4)]<-c("Bond","Metric","Rating.Change")
 
 pos_chng=0
 neg_chng=0
@@ -222,24 +226,9 @@ sum(diff$sign_chng)
 ```
 So 15 out of 24 times, or 62% of the time, all 4 metrics agreed on the change in quality of the movie. We note that due to the nature of the 'sign()' function zero has it's own sign. If we count the 3 occurances of zeroes in one field, and all the same sign in the other 3, this ratio rises to 18/24 or 75%! Thus around three quarters of the time our 4 metrics agree on whether a movie got better or worse.
 
-Now we look at the changes across Bond actors. Analyzing individual metric changes for each Bond actor proved difficult to visualize in a very muddled and uninformative. However, looking at the averages was much more clear and interesting.
-
-We quickly repeat the process as above, but with the average of the 4 metrics for each Bond actor. 
-
 ```R
-diff_bond<-data.frame()
-> for(i in 1:23){
-     diff_bond[i,1]<-(rate$Avg.Dumb[i+1]-rate$Avg.Dumb[i])
-     diff_bond[i,2]<-i
-     diff_bond[i,3]<-rate$bond[i+1]
-}
-#Where the new bond is the Bond in the 2nd film 
-colnames(diff_bond)[c(1,2,3)]<-c("Rating.Change","Counter","New.Bond")
-diff_bond$sign<-ifelse(diff_bond$Rating.Change>=0,'positive','negative')
-#Then we force an order on the 'bond' column so it will display correctly
-diff_bond$New.Bond<-factor(diff_bond$New.Bond,levels=c("Sean Connery","George Lazen","Roger Moore","Timothy Dalton","Pierce Brosnan","Daniel Craig"))
+
 ```
-![bond_rate_chng](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/bond_rate_chng.png?raw=TRUE)
 
 
 
@@ -304,12 +293,21 @@ linebreaks<-scale_x_continuous(breaks=c(0,2,4,6,8,10,12,14,16,18,20,22,24))
 ## bond_rate_chng
 A bar plot that shows the change in score between movies, separated by Bond actor
 ```R
-bond_rate_chng<-ggplot(diff_bond,aes(x=Counter,y=Rating.Change,fill=sign))+geom_col()+facet_grid(New.Bond ~ .)
+bond_rate_chng<-ggplot(diff_bond,aes(x=Change.Number,y=Rating.Change,fill=sign))+geom_col()+facet_grid(New.Bond ~ .)
 labels<-ggtitle("James Bond Film Change in Rating From Previous",subtitle="Sorted by the New Bond Actor")+xlab("Film in Series")+ylab("Chang in Rating/100 from Previous")
 coloring<-scale_fill_manual(values=c("positive"="BLUE","negative"="RED"))
 facet_text_rotate<-theme(strip.text.y = element_text(angle = 0))
-```
 
+```
+## bond_rat_chng
+A bar plot that shows the change in scores between movies, separated by Bond actor and with metric shown in differenc colours
+```R
+bondchng<-ggplot(diffbond1,aes(x=Change.Number,y=value,fill=variable))+geom_col()
+facet<-facet_grid(Bond ~ .,scales="free")+theme(strip.text.y = element_text(angle = 0))
+xaxis_line<-geom_hline(aes(yintercept=0))
+labels1<-ggtitle("James Bond Film Change in Rating From Previous",subtitle="Sorted by the New Bond Actor")
+labels2<-xlab("Film in Series")+ylab("Chang in Rating/100 from Previous")+labs(fill="Metric")
+ ```
 
 # Appendix
 
