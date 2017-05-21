@@ -226,11 +226,6 @@ sum(diff$sign_chng)
 ```
 So 15 out of 24 times, or 62% of the time, all 4 metrics agreed on the change in quality of the movie. We note that due to the nature of the 'sign()' function zero has it's own sign. If we count the 3 occurances of zeroes in one field, and all the same sign in the other 3, this ratio rises to 18/24 or 75%! Thus around three quarters of the time our 4 metrics agree on whether a movie got better or worse.
 
-```R
-
-```
-
-
 
 
 # Footnotes
@@ -297,7 +292,7 @@ linebreaks<-scale_x_continuous(breaks=c(0,2,4,6,8,10,12,14,16,18,20,22,24))
 A bar plot that shows the change in scores between movies, separated by Bond actor and with metric shown in differenc colours
 ```R
 bondchng<-ggplot(diff_1col,aes(x=Change.Number,y=Rating.Change,fill=Metric))+geom_col()
-#The second term is where we rotate the text for the facet labels 
+#The 'scales' term is to make each plot have it's own scale and the second term is where we rotate the text for the facet labels
 facet<-facet_grid(Bond ~ .,scales="free")+theme(strip.text.y = element_text(angle = 0))
 #Create a black line to better visualize the +/- change
 xaxis_line<-geom_hline(aes(yintercept=0))
