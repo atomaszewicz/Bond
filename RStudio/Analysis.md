@@ -252,6 +252,8 @@ max(bond_rate$IMDB)-min(bond_rate$IMDB)
 
 # Plot Code
 
+I break the plot info into multiple elements so that it is easier to edit if I change something and because then you don't have to scroll in GitHub to see it all.
+
 ## avg_rating_plot
 A bar plot that shows the average rating by metric 
 ```R
@@ -286,27 +288,21 @@ A bar plot that shows the change in score between movies, separated by metric
 #Now we graph, making the 4 different metrics on 4 different graphs but in the same plot
 chng_rat_plot<-ggplot(diff1,aes(x=Change.Number,y=Rating.Change,fill=sign))+geom_col()+facet_grid(Metric ~ .)
 coloring<-scale_fill_manual(values=c("positive"="BLUE","negative"="RED"))
-labels<-xlab("Change Between Films")+ylab("Change in Rating/100 from Previous")+ggtitle("James Bond Film Change in Rating From Previous",subtitle="Sorted by Metric")
+labels1<-xlab("Change Between Films")+ylab("Change in Rating/100 from Previous")
+labels2<-ggtitle("James Bond Film Change in Rating From Previous",subtitle="Sorted by Metric")
 linebreaks<-scale_x_continuous(breaks=c(0,2,4,6,8,10,12,14,16,18,20,22,24))
 ```
 
-## bond_rate_chng
-A bar plot that shows the change in score between movies, separated by Bond actor
-```R
-bond_rate_chng<-ggplot(diff_bond,aes(x=Change.Number,y=Rating.Change,fill=sign))+geom_col()+facet_grid(New.Bond ~ .)
-labels<-ggtitle("James Bond Film Change in Rating From Previous",subtitle="Sorted by the New Bond Actor")+xlab("Film in Series")+ylab("Chang in Rating/100 from Previous")
-coloring<-scale_fill_manual(values=c("positive"="BLUE","negative"="RED"))
-facet_text_rotate<-theme(strip.text.y = element_text(angle = 0))
-
-```
 ## bond_rat_chng
 A bar plot that shows the change in scores between movies, separated by Bond actor and with metric shown in differenc colours
 ```R
-bondchng<-ggplot(diffbond1,aes(x=Change.Number,y=value,fill=variable))+geom_col()
+bondchng<-ggplot(diff_1col,aes(x=Change.Number,y=Rating.Change,fill=Metric))+geom_col()
+#The second term is where we rotate the text for the facet labels 
 facet<-facet_grid(Bond ~ .,scales="free")+theme(strip.text.y = element_text(angle = 0))
+#Create a black line to better visualize the +/- change
 xaxis_line<-geom_hline(aes(yintercept=0))
 labels1<-ggtitle("James Bond Film Change in Rating From Previous",subtitle="Sorted by the New Bond Actor")
-labels2<-xlab("Film in Series")+ylab("Chang in Rating/100 from Previous")+labs(fill="Metric")
+labels2<-xlab("Film in Series")+ylab("Chang in Rating/100 from Previous")
  ```
 
 # Appendix
