@@ -95,11 +95,51 @@ colnames(rate_1col)[c(4,5)]<-c("Metric","Rating")
 ```
 ![rate_metricbond](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/rate_metricbond.png?raw=TRUE)
  
-The first thing I noticed was that e that the IMDb ratings don't change that much while others are quite sporadic. We also notice that the LetterBoxd scores are almost always above the others;this is investigated in part A of the Appendix. 
+It is clear that different bonds were scored much differently. We will explore this in the next section. Another point of note is that the LetterBoxd scores are almost always above the others; this is investigated in part A of the Appendix.
+
+### Bond Actor
+
+Now we want to examine how each Bond Actor was scored on average.
+
+```R
+#First we create a vector of the names and a blank data frame to store our average by bond and by metric
+names<-c("Sean Connery","George Lazen","Roger Moore","Timothy Dalton","Pierce Brosnan","Daniel Craig")
+bond_rate<-data.frame()
+#Fill up the data frame with the names and averages with a loop and fix the column names
+for(i in 1:6){
+     bond_rate[i,1]=names[i]
+     bond_rate[i,2]=mean(subset(rate$RT.Crit,rate$bond==names[i]))
+     bond_rate[i,3]=mean(subset(rate$RT.User,rate$bond==names[i]))
+     bond_rate[i,4]=mean(subset(rate$LetterBoxd,rate$bond==names[i]))
+     bond_rate[i,5]=mean(subset(rate$IMDB,rate$bond==names[i]))
+     bond[i,6]=mean(subset(rate$Avg.All,rate$bond==names[i]))
+}
+colnames(bond_rate)[c(1,2,3,4,5)]<-c("Bond","RT.Crit","RT.User","LetterBoxd","IMDB","Avg.All")
+#Then we transform our data frame
+bond_rate1<-melt(bond_rate,id=c("Bond","Avg.All"))
+```
+Before we look at a graph, we briefly make up a table to examine the average scores of Bond actor (based on our 4 metrics).
+
+|Bond|Avg.All|
+|---|---|
+|Sean Connery|76|
+|George Lazen|75|
+|Roger Moore|64|
+|Timothy Dalton|71|
+|Pierce Brosnan|63|
+|Daniel Craig|78|
+
+So the newest actor to adorn the well-worn 007 tuxedo, Daniel Craig, is the most highly rated, and Sean Connery, who first broke it in, the second highest. Suprisingly, with only 1 film in the franchise, George Lazen takes the third spot. Now let's plot all the metrics to see how they compare across actors.
+
+![actor_avg_metric](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/actor_avg_metric.png?raw=TRUE)
+
+As before LetterBoxd scores are always the highest, and Rotten Tomatoes users are very critical of the Bond films.
+
+In fact, the range of averages in IMDb scores for the different actors is only 7.8 points <sup> [2] </sup>, whereas for RT Critic, RT User, and LetterBoxd are 24.8, 17.6 and 16.25 respectively. In other words, IMDb has less than half the range of the next lowest, and less than a third the range of the rating with the biggest spread across Bond actors. This is a very intriguing result, and warrants further investigation.
 
 ### Score Changes
 
-Let's look into how much each rating changes between titles.
+To start let's look into how much each rating changes between titles.
 
 ```R
 #Create a blank data frame and fill it up with the differences
@@ -113,26 +153,7 @@ for(i in 1:23){
 }
 #Fix the column names
 colnames(diff)[c(1,2,3,4,5)]<-c("RT.Crit","RT.User","LetterBoxd","IMDB","Change.Number")
-#We transform to put all the ratings in one column to plot and analyze
-diff_1col<-melt(diff,id="Change.Number")
-colnames(diff_1col)[c(2,3)]<-c("Metric","Rating.Change")
-#Now let's find the max/min of the set
-max(diff_1col$Rating.Change)
-[1] 48
-min(diff_1col$Rating.Change)
-[1] -33
-mean(diff_1col$Rating.Change)
-[1] -0.6875
 ```
-The largest change was a 48 point boost between films, the smallest a -33 point drop, and on average, the films dropped about -0.7 points between films. So overall it appears the films have dropped in quality very slightly. As we saw earlier, the average change is -0.7 points, but how much is the average change by sign?
-
-```R
-mean(subset(diff1$Rating.Change,diff1$Rating.Change>0))
-[1] 14
-mean(subset(diff1$Rating.Change,diff1$Rating.Change<0))
-[1] -12.04
-```
-Even though the general trend is a -0.7 point change, the average increase is about 2 points larger in absolute value than the average decrease. Thus we there must be are more negative entries than positive ones. Next let's look at these numbers for the individual metrics:
 
 ```R
 max(diff$RT.Crit)
@@ -155,10 +176,14 @@ We summarize the results in a table
 |IMDB|19|-13|-0.21|5.5|-4.6|
 |Avg|35.5|-26.4|-0.69|14|-12|
 
-The max is always larger than the min (in absolute value), the mean>0 is always greater than the mean<0 and yet the overall mean is always negative! This means that there are more negative changes than positive ones, but the positive changes are generally larger. Interpreting this, we see that generally people think the movies are worse than the last one, but when there is a positive change, people are very satisfied with the result.
+The largest change was a 48 point boost between films, the smallest a -33 point drop, and on average, the films dropped about -0.7 points between films. So overall it appears the films have dropped in quality very slightly. Furhtermore, the max is always larger than the min (in absolute value), the mean>0 is always greater than the mean<0 and yet the overall mean is always negative! This means that there are more negative changes than positive ones, but the positive changes are generally larger. Interpreting this, we see that generally people think the movies are worse than the last one, but when there is a positive change, people are very satisfied with the result.
 
 
 ```R
+#We transform to put all the ratings in one column to plot and analyze
+diff_1col<-melt(diff,id="Change.Number")
+colnames(diff_1col)[c(2,3)]<-c("Metric","Rating.Change")
+
 pos_chng=0
 neg_chng=0
 no_chng=0
@@ -181,7 +206,7 @@ Lastly, let's graph these changes:
 
 ![chng_rat_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/chng_rat_plot.png?raw=TRUE)
 
-It looks like most of the entires are all of the same sign, so we examine this:
+It looks like most of the entires are all of the same sign, so we verify this:
 
 ```R
 diff$sign<-ifelse(sign(diff$RT.Crit)==sign(diff$RT.User)&sign(diff$RT.User)==sign(diff$LetterBoxd)&sign(diff$LetterBoxd)==sign(diff$IMDB),1,0)
@@ -190,45 +215,11 @@ sum(diff$sign)
 ```
 So 15 out of 24 times, or 62% of the time, all 4 metrics agreed on the change in quality of the movie. We note that due to the nature of the 'sign()' function zero has it's own sign. If we count the 3 occurances of zeroes in one field, and all the same sign in the other 3, this ratio rises to 18/24 or 75%! Thus around three quarters of the time our 4 metrics agree on whether a movie got better or worse.
 
-### Bond Actor
+Now we look at the changes across Bond actors.
 
-Now we want to examine how different Bond Actors were scored on average
 
-```R
-#First we create a vector of the names and a blank data frame to store our average by bond and by metric
-names<-c("Sean Connery","George Lazen","Roger Moore","Timothy Dalton","Pierce Brosnan","Daniel Craig")
-bond_rate<-data.frame()
-#Fill up the data frame with the names and averages with a loop and fix the column names
-for(i in 1:6){
-     bond_rate[i,1]=names[i]
-     bond_rate[i,2]=mean(subset(rate$RT.Crit,rate$bond==names[i]))
-     bond_rate[i,3]=mean(subset(rate$RT.User,rate$bond==names[i]))
-     bond_rate[i,4]=mean(subset(rate$LetterBoxd,rate$bond==names[i]))
-     bond_rate[i,5]=mean(subset(rate$IMDB,rate$bond==names[i]))
-     bond[i,6]=mean(subset(rate$Avg.All,rate$bond==names[i]))
-}
-colnames(bond_rate)[c(1,2,3,4,5)]<-c("Bond","RT.Crit","RT.User","LetterBoxd","IMDB","Avg.All")
-#Then we transform our data frame
-bond_rate1<-melt(bond_rate,id=c("Bond","Avg.All"))
-```
-Before we look at a graph, we briefly make up a table to examine the best Bond actor as the average of our 4 metrics.
 
-|Bond|Avg.All|
-|---|---|
-|Sean Connery|76|
-|George Lazen|75|
-|Roger Moore|64|
-|Timothy Dalton|71|
-|Pierce Brosnan|63|
-|Daniel Craig|78|
 
-So the newest actor to adorn the well-worn 007 tuxedo, Daniel Craig, is the most highly rated, and Sean Connery, who broke it in, the second. Suprisingly, with only 1 film in the franchise, George Lazen takes the third spot. Now let's plot this to see what else we can find out.
-
-![actor_avg_metric](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/actor_avg_metric.png?raw=TRUE)
-
-As before LetterBoxd scores are always the highest, Rotten Tomatoes users are very critical of the Bond films, and IMDb scores are all around the same.
-
-In fact, the range of averages of IMDb scores for the different actors is only 7.8 points <sup> [2] </sup>, whereas these ranges for RT Critic, RT User, and LetterBoxd are 24.8, 17.6 and 16.25 respectively. Thus IMDb has less than half the range of the next lowest, and less than a third of the range of the rating with the biggest spread across Bond actors.
 
 # Footnotes
 <sup>[1]</sup> : In the FiveThirtyEight [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) I referenced, the point of interest is this paragraph: "The ratings from IMDb, Metacritic and Rotten Tomatoes were typically in the same ballpark, which makes this finding unsurprising: Fandango’s star rating was higher than the IMDb rating 79 percent of the time, the Metacritic aggregate critic score 77 percent of the time, the Metacritic user score 86 percent of the time, the Rotten Tomatoes critic score 62 percent of the time, and the Rotten Tomatoes user score 74 percent of the time." Therefore to see how much higher user scores are than the critics scores, we simply divide the two averages to eliminate the Fandango term: RT.Crit / RT. User =1.19 which gives us our quoted 19%. 
@@ -268,6 +259,15 @@ rate_bymetric<- ggplot(rate1,aes(x=Date,y=value))+geom_line(aes(col=Metric))+geo
 labels<-ylab("Rating/100")+ggtitle("James Bond Film Ratings by Metric")+labs(shape="Bond",col="Metric")
 ```
 
+## actor_avg_metric
+A grouped bar plot that shows how different bonds were rated by our 4 metrics (and the average of the 4)
+```R
+actor_avg_metric<-ggplot(bond_rate1,aes(x=Bond,y=value))+geom_bar(aes(fill=variable),stat="identity",position="dodge")
+labels<-ggtitle("Average Bond Ratings by Metric")+xlab("Bond Actor")+ylab("Rating")+labs(fill="Metric",caption="Black Bar = Avg. of 4)
+coord_avg<-coord_cartesian(ylim=c(55,90))+geom_errorbar(aes(ymax=Avg.All,ymin=Avg.All))
+#Where this last element is our custom y-axis limits and errorbars, a 'hack' to get horizontal bars for the averages
+```
+
 ## chng_rat_plot:
 A bar plot that shows the change in score between movies, separated by metric 
 ```R
@@ -278,14 +278,6 @@ labels<-xlab("Change Between Films")+ylab("Change in Rating/100 from Previous")+
 linebreaks<-scale_x_continuous(breaks=c(0,2,4,6,8,10,12,14,16,18,20,22,24))
 ```
 
-## actor_avg_metric
-A grouped bar plot that shows how different bonds were rated by our 4 metrics (and the average of the 4)
-```R
-actor_avg_metric<-ggplot(bond_rate1,aes(x=Bond,y=value))+geom_bar(aes(fill=variable),stat="identity",position="dodge")
-labels<-ggtitle("Average Bond Ratings by Metric")+xlab("Bond Actor")+ylab("Rating")+labs(fill="Metric",caption="Black Bar = Avg. of 4)
-coord_avg<-coord_cartesian(ylim=c(55,90))+geom_errorbar(aes(ymax=Avg.All,ymin=Avg.All))
-#Where this last element is our custom y-axis limits and errorbars, a 'hack' to get horizontal bars for the averages
-```
 
 
 
