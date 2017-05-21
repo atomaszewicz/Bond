@@ -153,8 +153,10 @@ for(i in 1:23){
 }
 #Fix the column names
 colnames(diff)[c(1,2,3,4,5)]<-c("RT.Crit","RT.User","LetterBoxd","IMDB","Change.Number")
+#I want to clarify that 'Change Number' refers to the transition number. 
+#For example, the change in rating from film 2 to film 3 is referred to by the change number 2.
 ```
-
+Now we can analyze these numbers how are diferent ratings change between entries in the franchise.
 ```R
 max(diff$RT.Crit)
 [1] 37
@@ -176,7 +178,9 @@ We summarize the results in a table
 |IMDB|19|-13|-0.21|5.5|-4.6|
 |Avg|35.5|-26.4|-0.69|14|-12|
 
-The largest change was a 48 point boost between films, the smallest a -33 point drop, and on average, the films dropped about -0.7 points between films. So overall it appears the films have dropped in quality very slightly. Furhtermore, the max is always larger than the min (in absolute value), the mean>0 is always greater than the mean<0 and yet the overall mean is always negative! This means that there are more negative changes than positive ones, but the positive changes are generally larger. Interpreting this, we see that generally people think the movies are worse than the last one, but when there is a positive change, people are very satisfied with the result.
+The largest change was a 48 point boost between films, the smallest a -33 point drop, and on average, the films dropped about -0.7 points between films. So overall it appears the films have dropped in quality very slightly. Furhtermore, the max is always larger than the min (in absolute value), the mean>0 is always greater than the mean<0 and yet the overall mean is always negative! 
+
+This means that there must be more negative changes than positive ones, but that the positive changes are generally larger. Interpreting this, we see that generally people think the movies are worse than the last one, but when they think it has improved, they are very enthusiastic about it, giving the new film very high ratings.
 
 
 ```R
@@ -202,21 +206,40 @@ print(c(pos_chng,neg_chng,no_chng))
 ```
 As expected there are more negative entries than positive entries. We can verify these numbers with a little algebra, see Appendix B for this treatment. 
 
-Lastly, let's graph these changes:
+Before we graph these results, we add a column of the sign of the change to help visualization the positive/negatrive gain/loss in score
+```R
+diff_1col$sign<-ifelse(diff_1col$Rating.Change>=0,'positive','negative')
+```
 
 ![chng_rat_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/chng_rat_plot.png?raw=TRUE)
 
 It looks like most of the entires are all of the same sign, so we verify this:
 
 ```R
-diff$sign<-ifelse(sign(diff$RT.Crit)==sign(diff$RT.User)&sign(diff$RT.User)==sign(diff$LetterBoxd)&sign(diff$LetterBoxd)==sign(diff$IMDB),1,0)
-sum(diff$sign)
+diff$sign_chng<-ifelse(sign(diff$RT.Crit)==sign(diff$RT.User)&sign(diff$RT.User)==sign(diff$LetterBoxd)&sign(diff$LetterBoxd)==sign(diff$IMDB),1,0)
+sum(diff$sign_chng)
 [1] 15
 ```
 So 15 out of 24 times, or 62% of the time, all 4 metrics agreed on the change in quality of the movie. We note that due to the nature of the 'sign()' function zero has it's own sign. If we count the 3 occurances of zeroes in one field, and all the same sign in the other 3, this ratio rises to 18/24 or 75%! Thus around three quarters of the time our 4 metrics agree on whether a movie got better or worse.
 
-Now we look at the changes across Bond actors.
+Now we look at the changes across Bond actors. Analyzing individual metric changes for each Bond actor proved difficult to visualize in a very muddled and uninformative. However, looking at the averages was much more clear and interesting.
 
+We quickly repeat the process as above, but with the average of the 4 metrics for each Bond actor. 
+
+```R
+diff_bond<-data.frame()
+> for(i in 1:23){
+     diff_bond[i,1]<-(rate$Avg.Dumb[i+1]-rate$Avg.Dumb[i])
+     diff_bond[i,2]<-i
+     diff_bond[i,3]<-rate$bond[i+1]
+}
+#Where the new bond is the Bond in the 2nd film 
+colnames(diff_bond)[c(1,2,3)]<-c("Rating.Change","Counter","New.Bond")
+diff_bond$sign<-ifelse(diff_bond$Rating.Change>=0,'positive','negative')
+#Then we force an order on the 'bond' column so it will display correctly
+diff_bond$New.Bond<-factor(diff_bond$New.Bond,levels=c("Sean Connery","George Lazen","Roger Moore","Timothy Dalton","Pierce Brosnan","Daniel Craig"))
+```
+![bond_rate_chng](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/bond_rate_chng.png?raw=TRUE)
 
 
 
@@ -278,7 +301,14 @@ labels<-xlab("Change Between Films")+ylab("Change in Rating/100 from Previous")+
 linebreaks<-scale_x_continuous(breaks=c(0,2,4,6,8,10,12,14,16,18,20,22,24))
 ```
 
-
+## bond_rate_chng
+A bar plot that shows the change in score between movies, separated by Bond actor
+```R
+bond_rate_chng<-ggplot(diff_bond,aes(x=Counter,y=Rating.Change,fill=sign))+geom_col()+facet_grid(New.Bond ~ .)
+labels<-ggtitle("James Bond Film Change in Rating From Previous",subtitle="Sorted by the New Bond Actor")+xlab("Film in Series")+ylab("Chang in Rating/100 from Previous")
+coloring<-scale_fill_manual(values=c("positive"="BLUE","negative"="RED"))
+facet_text_rotate<-theme(strip.text.y = element_text(angle = 0))
+```
 
 
 # Appendix
