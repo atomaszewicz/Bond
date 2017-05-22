@@ -35,17 +35,12 @@ First let's look at how the different sites average ratings relate.
 ```R
 #We make variables for each rating type, as well as the average of the 4, then make a table of the values
 #Note that all the ratings have been set to be out of 100
-avg_rtc<-mean(rate$RT.Crit)
-avg_rtu<-mean(rate$RT.User)
-avg_Ltbx<-mean(rate$LetterBoxd)
-avg_imdb<-mean(rate$IMDB)
-avg_all<-mean(c(avg_imdb,avg_Ltbx,avg_rtc,avg_rtu))
-avgs<-data.frame(RT.Crit=(avg_rtc),RT.User=(avg_rtu),LetterBoxd=(avg_Ltbx),IMDB=(avg_imdb),Avg.All=(avg_all))
+avg_all<-mean(mean(rate$RT.Crit),mean(rate$RT.User),mean(rate$LetterBoxd),mean(rate$IMDB))
+avgs<-data.frame(RT.Crit=(mean(rate$RT.Crit)),RT.User=(mean(rate$RT.User)),LetterBoxd=(mean(rate$LetterBoxd)),IMDB=(mean(rate$IMDB)),Avg.All=(avg_all))
 ```
-Now we wish to visualize this:
+We wish to visualize this, but first we must transform our data frame using the 'melt()' function from the reshape 2 library
 
 ```R
-#Since our 'avgs' data frame is in table form, we create a new, transposed, dataframe using 'melt()' from the reshape2 library
 avgs_t<-melt(avgs)
 ```
 ![avg_rating_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/avg_rating.png?raw=TRUE)
