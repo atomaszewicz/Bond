@@ -230,8 +230,12 @@ Now we can look at how much it changes between Bond actors! We already have the 
 
 ![bond_rat_chng](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/bond_rat_chng.png?raw=TRUE)
 
+Before we look at this graph there are a few points I would like to make. First, the scales are different for each Bond. The second point is that the ratings stack; originally I made this graph with only the average scores, but I felt that this left out information about whether the metrics agree with one another from the previous section.
 
+Every time a new Bond actor premieres a film, the rating change is positive (with the exception of George Lazen, but Sean Connery is hard to live up to!). This is likely due to a double effect of the previous Bond actor growing bored with the character, with this affecting their performance, and the studio putting a lot of effort and care into the new film so that the audience doesn't sour to the new Bond. 
 
+We also notice that every Bond actor -less Daniel Craig- has one (and only one) entry where the sign of the change in score doesn't agree across metrics and it is always their last film. Then again, Daniel Craig hasn't finished his tenure as Bond, so this may still hold for him. This result is difficult to interpret due to a lack of information about whether the past Bonds were fired or quit. If they were fired, we could say that the muddled response told the studios to move on, but it well could have been that the actors grew tired of the role. Nevertheless, it is interesting that all the Bond actors have gone out on mixed reviews.
+ 
 # Footnotes
 <sup>[1]</sup> : In the FiveThirtyEight [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) I referenced, the point of interest is this paragraph: "The ratings from IMDb, Metacritic and Rotten Tomatoes were typically in the same ballpark, which makes this finding unsurprising: Fandango’s star rating was higher than the IMDb rating 79 percent of the time, the Metacritic aggregate critic score 77 percent of the time, the Metacritic user score 86 percent of the time, the Rotten Tomatoes critic score 62 percent of the time, and the Rotten Tomatoes user score 74 percent of the time." Therefore to see how much higher user scores are than the critics scores, we simply divide the two averages to eliminate the Fandango term: RT.Crit / RT. User =1.19 which gives us our quoted 19%. 
 
@@ -241,7 +245,8 @@ IMDb vs. RT.Crit: Our metric suggests RT critics rate Bond films 3% higher than 
 
 IMDb vs. RT.User: Our metric says RT Users scores are 7% lower than IMDb and FiveThirtyEight puts this number at 6%.
 
-<sup> [2] </sup>
+
+<sup> [2] </sup>:
 To find the range of averages for a metric across bond actors you simply subtract the max from the min. For example, with IMDb
 
 ```R
