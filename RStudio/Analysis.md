@@ -217,7 +217,7 @@ diff_1col$sign<-ifelse(diff_1col$Rating.Change>=0,'positive','negative')
 
 ![chng_rat_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/chng_rat_plot.png?raw=TRUE)
 
-It looks like most of the entires are all of the same sign, so we verify this:
+It seems that most of the time, the metrics agree on the sign of the change, i.e. they agree whether the newest film is better/worse than the last one. Let's see how often this is true. We simply check that all four metrics have the same sign.
 
 ```R
 diff$sign_chng<-ifelse(sign(diff$RT.Crit)==sign(diff$RT.User)&sign(diff$RT.User)==sign(diff$LetterBoxd)&sign(diff$LetterBoxd)==sign(diff$IMDB),1,0)
@@ -225,6 +225,10 @@ sum(diff$sign_chng)
 [1] 15
 ```
 So 15 out of 24 times, or 62% of the time, all 4 metrics agreed on the change in quality of the movie. We note that due to the nature of the 'sign()' function zero has it's own sign. If we count the 3 occurances of zeroes in one field, and all the same sign in the other 3, this ratio rises to 18/24 or 75%! Thus around three quarters of the time our 4 metrics agree on whether a movie got better or worse.
+
+Now we can look at how much it changes between Bond actors! We already have the infrastructure set up to plot this, so we do:
+
+![bond_rat_chng](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/bond_rat_chng.png?raw=TRUE)
 
 
 
@@ -284,7 +288,7 @@ A bar plot that shows the change in score between movies, separated by metric
 chng_rat_plot<-ggplot(diff1,aes(x=Change.Number,y=Rating.Change,fill=sign))+geom_col()+facet_grid(Metric ~ .)
 coloring<-scale_fill_manual(values=c("positive"="BLUE","negative"="RED"))
 labels1<-xlab("Change Between Films")+ylab("Change in Rating/100 from Previous")
-labels2<-ggtitle("James Bond Film Change in Rating From Previous",subtitle="Sorted by Metric")
+labels2<-ggtitle("James Bond Film Change in Rating from Previous",subtitle="Sorted by Metric")
 linebreaks<-scale_x_continuous(breaks=c(0,2,4,6,8,10,12,14,16,18,20,22,24))
 ```
 
@@ -295,9 +299,9 @@ bondchng<-ggplot(diff_1col,aes(x=Change.Number,y=Rating.Change,fill=Metric))+geo
 #The 'scales' term is to make each plot have it's own scale and the second term is where we rotate the text for the facet labels
 facet<-facet_grid(Bond ~ .,scales="free")+theme(strip.text.y = element_text(angle = 0))
 #Create a black line to better visualize the +/- change
-xaxis_line<-geom_hline(aes(yintercept=0))
-labels1<-ggtitle("James Bond Film Change in Rating From Previous",subtitle="Sorted by the New Bond Actor")
-labels2<-xlab("Film in Series")+ylab("Chang in Rating/100 from Previous")
+xaxis<-geom_hline(aes(yintercept=0))+scale_x_continuous(breaks=c(0,4,8,12,16,24))
+labels1<-ggtitle("James Bond Film Change in Rating from Previous",subtitle="Sorted by the New Bond Actor")
+labels2<-xlab("Film in Series")+ylab("Change in Rating/100 from Previous")
  ```
 
 # Appendix
