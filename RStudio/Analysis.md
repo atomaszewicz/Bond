@@ -110,6 +110,8 @@ for(i in 1:6){
      bond[i,6]=mean(subset(rate$Avg.All,rate$bond==names[i]))
 }
 colnames(bond_rate)[c(1,2,3,4,5)]<-c("Bond","RT.Crit","RT.User","LetterBoxd","IMDB","Avg.All")
+#We bolt down the order for the names as ggplot2 is untrustworthy with plotting strings in the correct order
+bond_rate$Bond<-factor(bond_rate$Bond,levels=c("Sean Connery","George Lazen","Roger Moore","Timothy Dalton","Pierce Brosnan","Daniel Craig"))
 #Then we transform our data frame
 bond_rate1<-melt(bond_rate,id=c("Bond","Avg.All"))
 ```
