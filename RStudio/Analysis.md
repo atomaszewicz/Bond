@@ -245,7 +245,7 @@ Throughout the Rating section, we have seen how our four metrics (Rotten Tomatoe
 
 First we state that all numbers in this section are in $USD and adjusted for inflation as of May 2017, and 'domestic' refers to the US performance. Next must do discuss domestic/global box office as well as adjusting these numbers for inflation. Our two sources for this section are the websites Box Office Mojo (BOM) and The Numbers. BOM gives box office figures both adjusted and unadjusted for inflation, but only domestically. The Numbers on the other hand, gives domestic and global box office, as well as estimated budgets, all in unadjusted terms. Our first order of business is to get the global box office figures adjusted for inflation.
 
-### Box Office
+### Global and Domestic Gross
 To adjust our global box office data for inflation, I will create a vector that catalogues the ratio of unadjusted domestic to unadjusted global then multiply the adjusted domestic by this vector.
 
 ```R
@@ -268,7 +268,7 @@ Let's look at the sums and means in table form:
 |Domestic Adj.|$5,628,582,200|$225,143,288|
 |Budget Adj.|$2,723,922,708|$108,956,908|
 
-Over two thirds of the global box office gross is non-domestic, which is not entirely surprising since our secret agent works for Britian, not America. I have a future project planned to study how domestic (US) and global gross compares for your typical wide-release film, so eventually I will be able to give more insight into where this ratio falls. We also notice that the films have grossed over six times their combined budget, which helps explain why it one of the longest-running film franchises (1962-2017 puts it at 55 years at the time of writing this). With a net global box office gross, adjusted for inflation, of $17.5 billion, James Bond is *the* most financially successful film franchise, adjusting for inflation, in history, behind Star Wars, Harry Potter and The Marvel Cinematic Universe (in that orde)r.
+Over two thirds of the global box office gross is non-domestic, which is not entirely surprising since our secret agent works for Britian, not America <sup> 4 </sup>. We also notice that the films have grossed over six times their combined budget, which helps explain why it one of the longest-running film franchises (1962-2017 puts it at 55 years at the time of writing this). Lastly, with a net global box office gross, adjusted for inflation, of $17.5 billion, James Bond is *the* most financially successful film franchise, adjusting for inflation, in history, behind Star Wars, The Marvel Cinematic Universe and Harry Potter (in that order) <sup> 5 </sup>.
 
 # Footnotes
 <sup>[1]</sup> : In the FiveThirtyEight [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) I referenced, the point of interest is this paragraph: "The ratings from IMDb, Metacritic and Rotten Tomatoes were typically in the same ballpark, which makes this finding unsurprising: Fandango’s star rating was higher than the IMDb rating 79 percent of the time, the Metacritic aggregate critic score 77 percent of the time, the Metacritic user score 86 percent of the time, the Rotten Tomatoes critic score 62 percent of the time, and the Rotten Tomatoes user score 74 percent of the time." Therefore to see how much higher user scores are than the critics scores, we simply divide the two averages to eliminate the Fandango term: RT.Crit / RT. User =1.19 which gives us our quoted 19%. 
@@ -290,6 +290,13 @@ max(bond_rate$IMDB)-min(bond_rate$IMDB)
 
 <sup> 3 </sup>:
 I say this partly in jest, but Timiothy Dalton, originally offered the role in "Oh Her Majesty's Secret Service" in 1968, turned it down because "Originally I did not want to take over from Sean Connery. He was far too good, he was wonderful. [...] When you've seen Bond from the beginning, you don't take over from Sean Connery." Source (https://www.youtube.com/watch?v=amuodiP-8z4)
+
+<sup> 5 </sup>:
+I have a future project planned to study how domestic (US) and global gross compares for your typical wide-release film, so eventually I will be able to give more insight into where this ratio falls
+
+<sup> 5 </sup>: 
+This can be found ![here](http://www.boxofficemojo.com/franchises/?view=Franchise&sort=sumgross&order=DESC&p=.htm) but requires the same process of finding the global gross adjusted for inflation from the domestic adjusted and global unadjusted. It is a tiresome exercise, and I don't wish to repeat it here.
+
 
 # Plot Code
 
