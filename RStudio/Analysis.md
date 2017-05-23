@@ -1,5 +1,7 @@
 # Analyzing the James Bond Film Franchise
 
+## Set up
+
 We open RStudio, and begin by changing our directory to that which contains the James Bond data.
 
 ```R
@@ -237,9 +239,11 @@ We also notice that every Bond actor -less Daniel Craig- has one (and only one) 
  
  
 ### Conclusion
-Throughout the Rating section, we have seen how our four metrics (Rotten Tomatoes Users, Rotten Tomatoes Critics, LetterBoxd and IMDb ratings/100) ratings differ between films and actors in the Bond series. We saw that the series' average rating, based on our four metrics, was 71/100. LetterBoxd was the most generous rating, with an average score of 79, and Rotten Tomatoe Users the harshest with 64.  We found that on average Daniel Craig was the highest rated and Pierce Brosnan the lowest, scoring 78 and 63 respectively. We then studied how the ratings changed between films, and between actors.
+Throughout the Rating section, we have seen how our four metrics (Rotten Tomatoes Users, Rotten Tomatoes Critics, LetterBoxd and IMDb ratings/100) ratings differ between films and actors in the Bond series. We saw that the series' average rating, based on our four metrics, was 71/100. LetterBoxd was the most generous rating, with an average score of 79, and Rotten Tomatoe Users the harshest scoring only 64.  We found that on average Daniel Craig was the highest rated and Pierce Brosnan the lowest, with scores of 78 and 63 respectively. We then studied how the ratings changed between films, and between actors, and saw that when a new Bond actor premiers, the ratings usually (all but George Lazenby) make a positive jump, and on an actor's last film, the metrics' disagree on the change in quality. In the next section we will analyze the box office performance of the films and actors.
 
 ## Box Office
+
+The first thing we must do is discuss domestic/global box office as well as inflation adjusting for inflation. Our two sources for this section are the websites Box Office Mojo (BOM) and The Numbers. BOM gives box office figures both adjusted and un-adjusted for inflation, but only domestically. The Numbers on the other hand, gives domestic and global box office, as well as estimated budgets, all in un-adjusted terms. 
 
 # Footnotes
 <sup>[1]</sup> : In the FiveThirtyEight [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) I referenced, the point of interest is this paragraph: "The ratings from IMDb, Metacritic and Rotten Tomatoes were typically in the same ballpark, which makes this finding unsurprising: Fandango’s star rating was higher than the IMDb rating 79 percent of the time, the Metacritic aggregate critic score 77 percent of the time, the Metacritic user score 86 percent of the time, the Rotten Tomatoes critic score 62 percent of the time, and the Rotten Tomatoes user score 74 percent of the time." Therefore to see how much higher user scores are than the critics scores, we simply divide the two averages to eliminate the Fandango term: RT.Crit / RT. User =1.19 which gives us our quoted 19%. 
