@@ -243,14 +243,32 @@ Throughout the Rating section, we have seen how our four metrics (Rotten Tomatoe
 
 ## Box Office
 
-First must do discuss domestic/global box office as well as inflation adjusting for inflation. Our two sources for this section are the websites Box Office Mojo (BOM) and The Numbers. BOM gives box office figures both adjusted and unadjusted for inflation, but only domestically. The Numbers on the other hand, gives domestic and global box office, as well as estimated budgets, all in unadjusted terms. Our first order of business is to get the global box office figures adjusted for inflation.
+First we state that all numbers in this section are in $USD and adjusted for inflation as of May 2017. Next must do discuss domestic/global box office as well as adjusting these numbers for inflation. Our two sources for this section are the websites Box Office Mojo (BOM) and The Numbers. BOM gives box office figures both adjusted and unadjusted for inflation, but only domestically. The Numbers on the other hand, gives domestic and global box office, as well as estimated budgets, all in unadjusted terms. Our first order of business is to get the global box office figures adjusted for inflation.
 
 ### Box office Tweaks
 To adjust our global box office data for inflation, I will create a vector that catalogues the ratio of unadjusted domestic to unadjusted global then multiply the adjusted domestic by this vector.
 
 ```R
-
+#We create a vector with the ratio
+glb.dom<-data.frame(with(numb,World.BxOf/Dom.BxOf))
+#Then create a new column in our Box Office Mojo data frame with the adjusted domestic cross times these ratios
+bom$Glb.Adj<-(bom$Adjusted.Gross*glb.dom)
+#We do similarly with budgets, adjusting for inflation
+bud.dom<-data.frame(with(numb,Production..Budget/Dom.BxOf))
+bom$Bdj.Adj<-(bom$Adjusted.Gross*bud.dom)
+#Lastly we change the adjusted domestic gross column name for consistancy
+colnames(bom)[6]<-"Dom.Adj"
 ```
+
+Let's look at the sums and means in table form:
+
+|Figure|Sum|Mean|
+|---|---|---|
+|Global Adj.|$17,540,101,114|$701,604,045|
+|Domestic Adj.|$5,628,582,200|$225,143,288|
+|Budget Adj.|$2,723,922,708|$108,956,908|
+
+
 
 # Footnotes
 <sup>[1]</sup> : In the FiveThirtyEight [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) I referenced, the point of interest is this paragraph: "The ratings from IMDb, Metacritic and Rotten Tomatoes were typically in the same ballpark, which makes this finding unsurprising: Fandango’s star rating was higher than the IMDb rating 79 percent of the time, the Metacritic aggregate critic score 77 percent of the time, the Metacritic user score 86 percent of the time, the Rotten Tomatoes critic score 62 percent of the time, and the Rotten Tomatoes user score 74 percent of the time." Therefore to see how much higher user scores are than the critics scores, we simply divide the two averages to eliminate the Fandango term: RT.Crit / RT. User =1.19 which gives us our quoted 19%. 
