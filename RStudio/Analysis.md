@@ -285,7 +285,7 @@ for(i in 1:6){
 boxoffice$Glb.Dom.Ratio<-with(boxoffice,Glb.Mean/Dom.Mean)
 ```
 
-|Bond|Global Mean Gross|Domestic Mean|Global:Domestic Ratio|Global Profit Mean|
+|Bond|Global Mean Gross|Domestic Mean|Glb:Dom Ratio|Global Profit Mean|
 |---|---|---|---|---|
 |Sean Connery|$857,381,211|$328,071,243|2.6|$806,338,430|
 |George Lazenby|$496,640,912|$138,090,400|3.6|$448,188,140|
