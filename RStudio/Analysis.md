@@ -256,8 +256,10 @@ bom$Glb.Adj<-(bom$Adjusted.Gross*glb.dom)
 #We do similarly with budgets, adjusting for inflation
 bud.dom<-data.frame(with(numb,Production..Budget/Dom.BxOf))
 bom$Bdj.Adj<-(bom$Adjusted.Gross*bud.dom)
-#Lastly we change the adjusted domestic gross column name for consistancy
+#We change the adjusted domestic gross column name for consistancy
 colnames(bom)[c(6,7,8)]<-c("Dom.Adj","Glb.Adj","Bdg.Adj")
+#Then add a 'Profit' column for later
+bom$Glb.Profit<-with(bom,Glb.Adj-Bdg.Adj)
 ```
 
 Let's look at the sums and means in table form:
@@ -270,10 +272,27 @@ Let's look at the sums and means in table form:
 
 First we note that over two thirds of the global box office gross is non-domestic. This is not entirely surprising since our secret agent works for Britian, not America <sup> 4 </sup>. Next, the films gross over 6 times their budget on average, which helps explain why it one of films longest-running franchises. Lastly, with a net global box office gross of $17.5 billion,, adjusted for inflation, James Bond is *the* most financially successful film franchise in history, trailed by Star Wars, The Marvel Cinematic Universe and Harry Potter (in that order) <sup> 5 </sup>.
 
+So it's a very successful series overall, but how do the various actors compare? We want to study various things, so we create a new dataframe:
 
+```R
+#Where names is the vector of the actors names, in order, that was used earlier
+boxoffice<-data.frame(Bond<-names)
+for(i in 1:6){
+     boxoffice$Glb.Mean[i]<-colMeans(subset(bom$Glb.Adj,bom$Bond==names[i]))
+     boxoffice$Dom.Mean[i]<-colMeans(subset(bom$Dom.Adj,bom$Bond==names[i]))
+     boxoffice$Prft.Glb[i]<-colMeans(subset(bom$Prft.Glb,bom$Bond==names[i]))
+}
+boxoffice$Glb.Dom.Ratio<-with(boxoffice,Glb.Mean/Dom.Mean)
+```
 
-
-
+|Bond|Global Mean Gross|Domestic Mean|Global:Domestic Ratio|Global Profit Mean|
+|---|---|---|---|---|
+|Sean Connery|$857,381,211|$328,071,243|2.6|$806,338,430|
+|George Lazenby|$496,640,912|$138,090,400|3.6|$448,188,140|
+|Roger Moore|$594,410,522|$166,867,700|3.6|$528,506,844|
+|Timothy Dalton|$379,864,046|$93,949,150|4.0|$290,278,294|
+|Pierce Brosnan|$644,678,449|$223,328,250|2.9|$454,928,173|
+|Daniel Craig|$885,619,047|$236,176,975|3.7|$655,951,017|
 
 # Footnotes
 <sup>[1]</sup> : In the FiveThirtyEight [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) I referenced, the point of interest is this paragraph: "The ratings from IMDb, Metacritic and Rotten Tomatoes were typically in the same ballpark, which makes this finding unsurprising: Fandango’s star rating was higher than the IMDb rating 79 percent of the time, the Metacritic aggregate critic score 77 percent of the time, the Metacritic user score 86 percent of the time, the Rotten Tomatoes critic score 62 percent of the time, and the Rotten Tomatoes user score 74 percent of the time." Therefore to see how much higher user scores are than the critics scores, we simply divide the two averages to eliminate the Fandango term: RT.Crit / RT. User =1.19 which gives us our quoted 19%. 
@@ -319,7 +338,7 @@ labels<-xlab("Rating Metric")+ylab("Average Score/100")+ggtitle("Bond Film Avera
 A line and point graph that shows how our 4 metrics change over time
 ```R
 #Note that by doing this we are taking our average of 4 out of the column with all the ratings.
-rate_1col<-melt(rate,id=("Title","Date","Avg.All","Bond"))
+rate_1col<-melt(rate,id=c("Title","Date","Avg.All","Bond"))
 colnames(rate_1col)[c(4,5)]<-c("Metric","Rating")
 #Not that we add colour and linetype to amplify the distinction between lines
 rate_bymetric<- ggplot(rate1,aes(x=Date,y=value))+geom_line(aes(col=Metric))+geom_point(aes(shape=bond))
