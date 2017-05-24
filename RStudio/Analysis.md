@@ -2,7 +2,7 @@
 
 ## Set up
 
-We open RStudio, and begin by changing our directory to that which contains the James Bond data.
+To begin we open RStudio, and change our directory to that which contains the James Bond data.
 
 ```R
 setwd("C:/Users/Alex/Documents/Data/Movies/Franchise/Bond")
@@ -257,7 +257,7 @@ bom$Glb.Adj<-(bom$Adjusted.Gross*glb.dom)
 bud.dom<-data.frame(with(numb,Production..Budget/Dom.BxOf))
 bom$Bdj.Adj<-(bom$Adjusted.Gross*bud.dom)
 #Lastly we change the adjusted domestic gross column name for consistancy
-colnames(bom)[6]<-"Dom.Adj"
+colnames(bom)[c(6,7,8)]<-c("Dom.Adj","Glb.Adj","Bdg.Adj")
 ```
 
 Let's look at the sums and means in table form:
@@ -268,7 +268,12 @@ Let's look at the sums and means in table form:
 |Domestic Adj.|$5,628,582,200|$225,143,288|
 |Budget Adj.|$2,723,922,708|$108,956,908|
 
-First we note that over two thirds of the global box office gross is non-domestic, which is not entirely surprising since our secret agent works for Britian, not America <sup> 4 </sup>. Next, the films gross on average over 6 times their budget, which helps explain why it one of films longest-running franchises. Lastly, with a net global box office gross, adjusted for inflation, of $17.5 billion, James Bond is *the* most financially successful film franchise in history, trailed by Star Wars, The Marvel Cinematic Universe and Harry Potter (in that order) <sup> 5 </sup>.
+First we note that over two thirds of the global box office gross is non-domestic. This is not entirely surprising since our secret agent works for Britian, not America <sup> 4 </sup>. Next, the films gross over 6 times their budget on average, which helps explain why it one of films longest-running franchises. Lastly, with a net global box office gross of $17.5 billion,, adjusted for inflation, James Bond is *the* most financially successful film franchise in history, trailed by Star Wars, The Marvel Cinematic Universe and Harry Potter (in that order) <sup> 5 </sup>.
+
+
+
+
+
 
 # Footnotes
 <sup>[1]</sup> : In the FiveThirtyEight [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) I referenced, the point of interest is this paragraph: "The ratings from IMDb, Metacritic and Rotten Tomatoes were typically in the same ballpark, which makes this finding unsurprising: Fandango’s star rating was higher than the IMDb rating 79 percent of the time, the Metacritic aggregate critic score 77 percent of the time, the Metacritic user score 86 percent of the time, the Rotten Tomatoes critic score 62 percent of the time, and the Rotten Tomatoes user score 74 percent of the time." Therefore to see how much higher user scores are than the critics scores, we simply divide the two averages to eliminate the Fandango term: RT.Crit / RT. User =1.19 which gives us our quoted 19%. 
