@@ -261,7 +261,7 @@ colnames(bom)[c(6,7,8)]<-c("Dom.Adj","Glb.Adj","Bdg.Adj")
 #Then add a 'Profit' column for later
 bom$Glb.Profit<-with(bom,Glb.Adj-Bdg.Adj)
 ```
-From here on out, everything will be in values adjusted for inflation to May 2017, unless stated otherwise. Let's look at the sums and means in table form:
+We use Glb. for global gross, Dom for domestic gross, Prft for profit (i.e. gross - budget) and Bdgt for Budget. From here on out, everything will be in values adjusted for inflation to May 2017, unless stated otherwise. Let's look at the sums and means in table form:
 
 |Figure|Sum|Mean|
 |---|---|---|
@@ -285,7 +285,8 @@ for(i in 1:6){
 boxoffice$Glb.Dom.Ratio<-with(boxoffice,Glb.Mean/Dom.Mean)
 ```
 
-|Bond|Global Mean Gross|Domestic Mean|Glb:Dom Ratio|Global Profit Mean|Global Gross:Budget Ratio|
+
+|Bond|Global Mean Gross|Domestic Mean|Glb:Dom Ratio|Global Profit Mean|Glb:Bdg Ratio|
 |---|---|---|---|---|---|
 |Sean Connery|$857,381,211|$328,071,243|2.6|$806,338,430|16.8|
 |George Lazenby|$496,640,912|$138,090,400|3.6|$448,188,140|10.2|
@@ -293,6 +294,8 @@ boxoffice$Glb.Dom.Ratio<-with(boxoffice,Glb.Mean/Dom.Mean)
 |Timothy Dalton|$379,864,046|$93,949,150|4.0|$290,278,294|4.2|
 |Pierce Brosnan|$644,678,449|$223,328,250|2.9|$454,928,173|3.4|
 |Daniel Craig|$885,619,047|$236,176,975|3.7|$655,951,017|3.8|
+
+Where Glb, Dom and Glb
 
 # Footnotes
 <sup>[1]</sup> : In the FiveThirtyEight [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) I referenced, the point of interest is this paragraph: "The ratings from IMDb, Metacritic and Rotten Tomatoes were typically in the same ballpark, which makes this finding unsurprising: Fandango’s star rating was higher than the IMDb rating 79 percent of the time, the Metacritic aggregate critic score 77 percent of the time, the Metacritic user score 86 percent of the time, the Rotten Tomatoes critic score 62 percent of the time, and the Rotten Tomatoes user score 74 percent of the time." Therefore to see how much higher user scores are than the critics scores, we simply divide the two averages to eliminate the Fandango term: RT.Crit / RT. User =1.19 which gives us our quoted 19%. 
