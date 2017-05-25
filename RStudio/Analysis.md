@@ -342,13 +342,13 @@ I say this partly in jest, but Timiothy Dalton, originally offered the role in "
 I have a future project planned to study how domestic (US) and global gross compares for your typical wide-release film, so eventually I will be able to give more insight into where this ratio falls
 
 <sup>[5]</sup>: 
-This can be found ![here](http://www.boxofficemojo.com/franchises/?view=Franchise&sort=sumgross&order=DESC&p=.htm) but requires the same process of finding the global gross adjusted for inflation from the domestic adjusted and global unadjusted. It is a tiresome exercise, and I don't wish to repeat it here.
+This can be found [here](http://www.boxofficemojo.com/franchises/?view=Franchise&sort=sumgross&order=DESC&p=.htm) but requires the same process of finding the global gross adjusted for inflation from the domestic adjusted and global unadjusted. It is a tiresome exercise, and I don't wish to repeat it here.
 
 <sup>[6]</sup>
-![Source](http://www.bbfc.co.uk/releases/licence-kill)
+[Source](http://www.bbfc.co.uk/releases/licence-kill)
 
 <sup>[7]</sup>
-![Secondary souce](https://www.theguardian.com/film/2008/aug/21/1)
+[Secondary souce](https://www.theguardian.com/film/2008/aug/21/1)
 
 <sup>[8]</sup>
 Source: Rubin, Steven Jay (1995). The Complete James Bond Movie Encyclopedia (Revised ed.). McGraw-Hill/Contemporary Books. ISBN 0-8092-3268-5.
