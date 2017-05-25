@@ -233,7 +233,7 @@ Now we can look at how much it changes between Bond actors! We already have the 
 
 Before we look at this graph there are a few points I would like to make. First, the scales are different for each Bond. The second point is that the ratings stack; originally I made this graph with only the average scores, but I felt that this left out information about whether the metrics agree with one another from the previous section.
 
-Every time a new Bond actor premieres a film, the rating change is positive, with the exception of George Lazen (but Sean Connery is hard to live up to! <sup> 3 </sup>). This is likely due to a double effect of the previous Bond actor growing bored with the character, with this affecting their performance, and the studio putting a lot of effort and care into the new film so that the audience doesn't sour to the new Bond. 
+Every time a new Bond actor premieres a film, the rating change is positive, with the exception of George Lazen (but Sean Connery is hard to live up to! <sup> [3] </sup>). This is likely due to a double effect of the previous Bond actor growing bored with the character, with this affecting their performance, and the studio putting a lot of effort and care into the new film so that the audience doesn't sour to the new Bond. 
 
 We also notice that every Bond actor -less Daniel Craig- has one (and only one) entry where the sign of the change in score doesn't agree across metrics and it is always their last film. Then again, Daniel Craig hasn't finished his tenure as Bond, so this may still hold for him. Most of the actors grew tired of the role and eventually quit, with the exceptions of Lazenby who quit due to overly-contorlling producers and Dalton who quit after the franchise went through a long legal battle. One might jump to conclude that the mixed reviews caused the actors to quit, but some made up their minds to leave the series before their last film even premiered.  So due to the variety of situations surrounding 007 actors quitting the series, it is difficult to analyze why their last films all have positive and negative responses. Nevertheless, it is interesting that all the Bond actors have gone out on mixed reviews.
  
@@ -269,7 +269,7 @@ We use Glb. for global gross, Dom for domestic gross, Prft for profit (i.e. gros
 |Domestic Adj.|$5,628,582,200|$225,143,288|
 |Budget Adj.|$2,723,922,708|$108,956,908|
 
-First we note that over two thirds of the global box office gross is non-domestic. This is not entirely surprising since our secret agent works for Britian, not America <sup> 4 </sup>. Next, the films gross over 6 times their budget on average, which helps explain why it one of films longest-running franchises. Lastly, with a net global box office gross of $17.5 billion,, adjusted for inflation, James Bond is *the* most financially successful film franchise in history, trailed by Star Wars, The Marvel Cinematic Universe and Harry Potter (in that order) <sup> 5 </sup>.
+First we note that over two thirds of the global box office gross is non-domestic. This is not entirely surprising since our secret agent works for Britian, not America <sup> [4]</sup>. Next, the films gross over 6 times their budget on average, which helps explain why it one of films longest-running franchises. Lastly, with a net global box office gross of $17.5 billion,, adjusted for inflation, James Bond is *the* most financially successful film franchise in history, trailed by Star Wars, The Marvel Cinematic Universe and Harry Potter (in that order) <sup> [5] </sup>.
 
 So it's a very successful series overall, but how do the various actors compare? We want to study various things, so we create a new dataframe:
 
@@ -303,7 +303,9 @@ for(i in 2:6){
 
 There's a lot to unpack here, so let's go slowly. First we see that while on average Craig grossed the most globally, Connery claims the box office-crown domestically. If you'll allow me to stray from the numbers for a moment, I will try to interpret this result: although Daniel Craig's interpretation of the character is very good, he approaches Bond with more of a debonair touch (read as: British) than most. On the other hand, Sean Connery's performances as Bond has more of a maverick rawness. In my mind thus Connery's 007 films are more attractive to Americans what with their "Don't Tread on Me" mentality and fascination with the cowboy archetype. 
 
-On the other end of the spectrum, at box offices in America as well as those around the world, Dalton's films grossed the least, on average. His second film "License to Kill" ranks as the lowest grossing domestically and globally, while his first, "The Living Daylights", is third lowest in these categories. 
+On the other end of the spectrum, at domestic and global box offices, Dalton's films grossed the least, on average. Dalton's second film "License to Kill" ranks as the lowest grossing domestically and globally, while his first, "The Living Daylights", is third lowest in these categories. "License to Kill" suffered from a 
+
+After Roger Moore's playful, light-hearted Bond, the grit and realism of Dalton's performance must have been quite jarring for audiences. Dalton wanted the Bond from the novels a darker and more broooding Bond (I feel obliged to disclose that I have never read any Bond novels, so I can only parrot what others have said on the topic). In an interview between his first and second outing as agent 007, Dalton summarized his approach: "I think Roger was fine as Bond, but the films had become too much techno-pop and had lost track of their sense of story. I mean, every film seemed to have a villain who had to rule or destroy the world. If you want to believe in the fantasy on screen, then you have to believe in the characters and use them as a stepping-stone to lead you into this fantasy world. That's a demand I made [...]." Dalton stated in a 1989 interview <sup> [6] </sup>. After a conversation with my parents (my Dad has read almost all the original Ian Fleming novels, and Mom has read none) it seems as though, at the time, those who were familiar with the literary charcter were very pleased with the more grounded approach whereas those who only knew the movies didn't enjoy Dalton's performance. This is likely because they were used to the Moore's (and Connery's, to a lesser extent) wink wink nudge nudge style, and grew to understand that as what Bond was. 
 
  
 # Footnotes
@@ -324,14 +326,17 @@ max(bond_rate$IMDB)-min(bond_rate$IMDB)
 [1] 7.75
 ```
 
-<sup> 3 </sup>:
+<sup>[3]</sup>:
 I say this partly in jest, but Timiothy Dalton, originally offered the role in "Oh Her Majesty's Secret Service" in 1968, turned it down because "Originally I did not want to take over from Sean Connery. He was far too good, he was wonderful. [...] When you've seen Bond from the beginning, you don't take over from Sean Connery." Source (https://www.youtube.com/watch?v=amuodiP-8z4)
 
-<sup> 5 </sup>:
+<sup>[4]</sup>:
 I have a future project planned to study how domestic (US) and global gross compares for your typical wide-release film, so eventually I will be able to give more insight into where this ratio falls
 
-<sup> 5 </sup>: 
+<sup>[5]</sup>: 
 This can be found ![here](http://www.boxofficemojo.com/franchises/?view=Franchise&sort=sumgross&order=DESC&p=.htm) but requires the same process of finding the global gross adjusted for inflation from the domestic adjusted and global unadjusted. It is a tiresome exercise, and I don't wish to repeat it here.
+
+<sup>[6]</sup>
+Rubin, Steven Jay (1995). The Complete James Bond Movie Encyclopedia (Revised ed.). McGraw-Hill/Contemporary Books. ISBN 0-8092-3268-5.
 
 
 # Plot Code
