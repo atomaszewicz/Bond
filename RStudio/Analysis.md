@@ -96,11 +96,11 @@ colnames(rate_1col)[c(4,5)]<-c("Metric","Rating")
 ```
 ![rate_metricbond](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/rate_metricbond.png?raw=TRUE)
  
-It is clear that different bonds were scored much differently. We will explore this in the next section. Another point of note is that the LetterBoxd scores are almost always above the others; this is investigated in part A of the Appendix.
+The ratings jump up and down to various degrees, but as we saw with the average of each metric LetterBoxd scores are generally higher and RT User are generally lower. In the next section we will look at how the different actors potrayal of agent 007 stack up, then after that we will investigate the change between movies (i.e. how big the jumps up and down are). In Appendix A we briefly study how LetterBoxd scores are almost always above the others.
 
 ### Bond Actor
 
-Now we want to examine how each Bond Actor was scored on average.
+We wish to examine how each Bond Actor was scored on average.
 
 ```R
 #First we create a vector of the names and a blank data frame to store our average by bond and by metric
@@ -305,12 +305,9 @@ for(i in 2:6){
 |Average|$643,099,031|$206,247,286|3.2|$530,698,483|7.9|
 
 
-There's a lot to unpack here, so let's go slowly. First we see that while on average Craig grossed the most globally, Connery claims the box office-crown domestically. If you'll allow me to stray from the numbers for a moment, I will try to interpret this result: although Daniel Craig's interpretation of the character is very good, he approaches Bond with more of a debonair touch (read as: British) than most. On the other hand, Sean Connery's performances as Bond has more of a maverick rawness. In my mind thus Connery's 007 films are more attractive to Americans what with their "Don't Tread on Me" mentality and fascination with the cowboy archetype. 
+There's a lot to unpack here, so let's go slowly. First we see that while on average Craig grossed the most globally, Connery claims the box office-crown domestically. If you'll allow me to stray from the numbers for a moment, I will try to interpret this result: although Daniel Craig's interpretation of the character , he approaches Bond with more of a debonair touch (read as: British) than most. On the other hand, Sean Connery's performances as Bond has more of a maverick rawness. In my mind thus Connery's 007 films are more attractive to Americans what with their "Don't Tread on Me" mentality and fascination with the cowboy archetype. 
 
-On the other end of the spectrum, at domestic and global box offices, Dalton's films grossed the least, on average. Dalton's second film "License to Kill" ranks as the lowest grossing domestically and globally, while his first, "The Living Daylights", is third lowest in these categories. "License to Kill" suffered from a 
-
-After Roger Moore's playful, light-hearted Bond, the grit and realism of Dalton's performance must have been quite jarring for audiences. Dalton wanted the Bond from the novels a darker and more broooding Bond (I feel obliged to disclose that I have never read any Bond novels, so I can only parrot what others have said on the topic). In an interview between his first and second outing as agent 007, Dalton summarized his approach: "I think Roger was fine as Bond, but the films had become too much techno-pop and had lost track of their sense of story. I mean, every film seemed to have a villain who had to rule or destroy the world. If you want to believe in the fantasy on screen, then you have to believe in the characters and use them as a stepping-stone to lead you into this fantasy world. That's a demand I made [...]." Dalton stated in a 1989 interview <sup> [6] </sup>. After a conversation with my parents (my Dad has read almost all the original Ian Fleming novels, and Mom has read none) it seems as though, at the time, those who were familiar with the literary charcter were very pleased with the more grounded approach whereas those who only knew the movies didn't enjoy Dalton's performance. This is likely because they were used to the Moore's (and Connery's, to a lesser extent) wink wink nudge nudge style, and grew to understand that as what Bond was. 
-
+On the other end of the spectrum, at domestic and global box offices, Dalton's films grossed the least, on average. Dalton's second film "License to Kill" ranks as the lowest grossing domestically and globally, while his first, "The Living Daylights", is third lowest in both of these categories. "License to Kill" suffered from both a higher-than-usual age classification in Britain <sup>[6]</sup> and a last-minute title change <sup> [7] </sup>, that surely dampened it's box office performance. What about his first movie? Why was it so poorly recieved? Well, after Roger Moore's playful, light-hearted Bond, the grit and realism of Dalton's performance must have been quite jarring for audiences. Dalton wanted the Bond from the novels a darker and more broooding Bond (I feel obliged to disclose that I have never read any Bond novels, so I can only parrot what others have said on the topic). In an interview between his first and second outing as agent 007, Dalton summarized his approach thus: "I think Roger was fine as Bond, but the films had become too much techno-pop and had lost track of their sense of story. I mean, every film seemed to have a villain who had to rule or destroy the world. If you want to believe in the fantasy on screen, then you have to believe in the characters and use them as a stepping-stone to lead you into this fantasy world. That's a demand I made [...]." <sup> [8] </sup>. After a conversation with my parents (my Dad has read almost all the original Ian Fleming novels, and Mom has read none) it seems as though, at the time, those who were familiar with the literary charcter were very pleased with the more grounded approach whereas those who only knew the movies didn't enjoy Dalton's performance. This is likely because this second group were used to the Moore's (and Connery's, to a lesser extent) wink wink nudge nudge style, and grew to understand that as what Bond was. In contrast with this, Daniel Craig's Bond was extremelly well recieved, even though it is darker than Dalton's, and followed Brosnan's more light-hearted Moore-esque Bond. This might mean that either Dalton took the unsatisfying middleground between fun and serious, or he helped paved the way for the appreciation of a darker Bond, which Craig reaped.
  
 # Footnotes
 <sup>[1]</sup> : In the FiveThirtyEight [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) I referenced, the point of interest is this paragraph: "The ratings from IMDb, Metacritic and Rotten Tomatoes were typically in the same ballpark, which makes this finding unsurprising: Fandango’s star rating was higher than the IMDb rating 79 percent of the time, the Metacritic aggregate critic score 77 percent of the time, the Metacritic user score 86 percent of the time, the Rotten Tomatoes critic score 62 percent of the time, and the Rotten Tomatoes user score 74 percent of the time." Therefore to see how much higher user scores are than the critics scores, we simply divide the two averages to eliminate the Fandango term: RT.Crit / RT. User =1.19 which gives us our quoted 19%. 
@@ -340,7 +337,13 @@ I have a future project planned to study how domestic (US) and global gross comp
 This can be found ![here](http://www.boxofficemojo.com/franchises/?view=Franchise&sort=sumgross&order=DESC&p=.htm) but requires the same process of finding the global gross adjusted for inflation from the domestic adjusted and global unadjusted. It is a tiresome exercise, and I don't wish to repeat it here.
 
 <sup>[6]</sup>
-Rubin, Steven Jay (1995). The Complete James Bond Movie Encyclopedia (Revised ed.). McGraw-Hill/Contemporary Books. ISBN 0-8092-3268-5.
+![Source](http://www.bbfc.co.uk/releases/licence-kill)
+
+<sup>[7]</sup>
+![Secondary souce](https://www.theguardian.com/film/2008/aug/21/1)
+
+<sup>[8]</sup>
+Source: Rubin, Steven Jay (1995). The Complete James Bond Movie Encyclopedia (Revised ed.). McGraw-Hill/Contemporary Books. ISBN 0-8092-3268-5.
 
 
 # Plot Code
