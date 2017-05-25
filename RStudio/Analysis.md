@@ -68,7 +68,9 @@ rate1_col[which.min(rate_1col$Rating),]
 [1]               Title  Metric Rating
 [1] 15 A View to a Kill RT.Crit     36
 ```
-So the minimum score of all 4 metrics is 36/100 from Rotten Tomatoes critics for the Bond film "A View to a Kill", which marks Roger Moore's last outing as Agent 007, and the maximum score is 97.5 from LetterBoxd for "Casino Royale" Daniel Craig's first film in the series. It is not surprising that LetterBoxd claims the highest rated film since it has the highest average rating of 79.1/100 (12% higher than the average of our 4 metrics). RT critic score was on average the second highest rating (70.8/100) among our 4 metrics but according to critics "A View to a Kill" was the weakest entry in the series.
+So the minimum score of all 4 metrics is 36/100 from Rotten Tomatoes critics for the Bond film "A View to a Kill", which marks Roger Moore's last outing as Agent 007, and the maximum score is 97.5 from LetterBoxd for "Casino Royale" Daniel Craig's first film in the series. We will see later how an actor's last and first film are generally rated, but for now we can take this as Moore being bored with the role and Craig being very excited, giving it his all.
+
+It is not surprising that LetterBoxd claims the highest rated film since it has the highest average rating of 79.1/100 (12% higher than the average of our 4 metrics). RT critic score was on average the second highest rating (70.8/100) among our 4 metrics but according to critics "A View to a Kill" was the weakest entry in the series.
 
 We now check what is the highest/lowest rated films on average:
 ```R
@@ -243,7 +245,9 @@ Throughout the Rating section, we have seen how our four metrics (Rotten Tomatoe
 
 ## Box Office
 
-First we state that all numbers in this section are in $USD and adjusted for inflation as of May 2017, and 'domestic' refers to the US performance. Next must do discuss domestic/global box office as well as adjusting these numbers for inflation. Our two sources for this section are the websites Box Office Mojo (BOM) and The Numbers. BOM gives box office figures both adjusted and unadjusted for inflation, but only domestically. The Numbers on the other hand, gives domestic and global box office, as well as estimated budgets, all in unadjusted terms. Our first order of business is to get the global box office figures adjusted for inflation.
+First we state that all numbers in this section are in $USD and adjusted for inflation as of May 2017, and 'domestic' refers to the US performance. Next must do discuss domestic/global box office as well as adjusting these numbers for inflation. Our two sources for this section are the websites Box Office Mojo (BOM) and The Numbers. BOM gives box office figures both adjusted and unadjusted for inflation, but only domestically. The Numbers on the other hand, gives domestic and global box office, as well as estimated budgets, all in unadjusted terms. I feel we must mention that while online ratings concern mostly modern opinions of these movies, box office figures are without hindsight. Box Office grosses suffer from societal changes around the world including taste in movies, general interest in attending movies, modifications of global/domestic marketing strategies and of course, and presumptions about actors, directors,producers, etc. With this in mind, in this section I will spend a little more time attempting to explain the background of films and actors to try and give context to the box office figures we will see.
+
+Our first order of business is to get the global box office figures adjusted for inflation.
 
 ### Global and Domestic Gross
 To adjust our global box office data for inflation, I will create a vector that catalogues the ratio of unadjusted domestic to unadjusted global then multiply the adjusted domestic by this vector.
