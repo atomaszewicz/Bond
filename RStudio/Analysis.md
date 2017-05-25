@@ -275,14 +275,18 @@ So it's a very successful series overall, but how do the various actors compare?
 
 ```R
 #Where names is the vector of the actors names, in order, that was used earlier
-boxoffice<-data.frame(Bond<-names)
+boxoffice<-data.frame(Bond<-c(names,"Average"))
 for(i in 1:6){
      boxoffice$Glb.Mean[i]<-colMeans(subset(bom$Glb.Adj,bom$Bond==names[i]))
      boxoffice$Dom.Mean[i]<-colMeans(subset(bom$Dom.Adj,bom$Bond==names[i]))
      boxoffice$Prft.Glb[i]<-colMeans(subset(bom$Prft.Glb,bom$Bond==names[i]))
      boxoffice$Glb.Bdg.Ratio[i]<-with(bom,sum(subset(bom$Glb.Adj,bom$Bond==names[i]))/sum(subset(bom$Bdg.Adj,bom$Bond==names[i])))
 }
+# Add a term that takes the ratio of global and domestic average grosses and fill in all the averages
 boxoffice$Glb.Dom.Ratio<-with(boxoffice,Glb.Mean/Dom.Mean)
+for(i in 2:6){
+     boxoffice[7,i]<-mean(boxoffice[,i])
+}
 ```
 
 
@@ -294,8 +298,11 @@ boxoffice$Glb.Dom.Ratio<-with(boxoffice,Glb.Mean/Dom.Mean)
 |Timothy Dalton|$379,864,046|$93,949,150|4.0|$290,278,294|4.2|
 |Pierce Brosnan|$644,678,449|$223,328,250|2.9|$454,928,173|3.4|
 |Daniel Craig|$885,619,047|$236,176,975|3.7|$655,951,017|3.8|
+|Average|$643,099,031|$206,247,286|3.2|$530,698,483|7.9|
 
-There's a lot to unpack here, so let's go slowly. First we see that Dalton did the worst at the box office globally and domestically, and although globally Craig grosses the most on average, Connery claims the crown domestically. This surprised me somewhat since I imagined that the film industry is much more globalised nowadays, maybe this is something I could study in a future project... Despite his otherwise poor performance, Timothy Dalton had the largest appeal outside of the United States, with a 4:1 ratio of Global to Domestic gross. 
+
+There's a lot to unpack here, so let's go slowly. First we see that Dalton did the worst at the box office globally and domestically. On the other end of these measures, on average Craig grosses the most globally while Connery claims the crown domestically. This surprised me somewhat since I imagined that the film industry is much more globalised nowadays (maybe this is something I could study in a future project). 
+
 
 # Footnotes
 <sup>[1]</sup> : In the FiveThirtyEight [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) I referenced, the point of interest is this paragraph: "The ratings from IMDb, Metacritic and Rotten Tomatoes were typically in the same ballpark, which makes this finding unsurprising: Fandango’s star rating was higher than the IMDb rating 79 percent of the time, the Metacritic aggregate critic score 77 percent of the time, the Metacritic user score 86 percent of the time, the Rotten Tomatoes critic score 62 percent of the time, and the Rotten Tomatoes user score 74 percent of the time." Therefore to see how much higher user scores are than the critics scores, we simply divide the two averages to eliminate the Fandango term: RT.Crit / RT. User =1.19 which gives us our quoted 19%. 
