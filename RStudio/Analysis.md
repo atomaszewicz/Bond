@@ -301,10 +301,11 @@ for(i in 2:6){
 |Average|$643,099,031|$206,247,286|3.2|$530,698,483|7.9|
 
 
-There's a lot to unpack here, so let's go slowly. First we see that both globally and domestically Dalton's films grossed the least at box offices on average. As we saw earlier Dalton's second and last outing as agent 007, was the worst rated film, but   
+There's a lot to unpack here, so let's go slowly. First we see that while on average Craig grossed the most globally, Connery claims the box office-crown domestically. If you'll allow me to stray from the numbers for a moment, I will try to interpret this result: although Daniel Craig's interpretation of the character is very good, he approaches Bond with more of a debonair touch (read as: British) than most. On the other hand, Sean Connery's performances as Bond has more of a maverick rawness. In my mind thus Connery's 007 films are more attractive to Americans what with their "Don't Tread on Me" mentality and fascination with the cowboy archetype. 
 
-On the other end of the ruler, while on average Craig grossed the most globally, Connery claims the box office-crown domestically. If you'll allow me to stray from the numbers for a moment, I will try to interpret this result: although Daniel Craig's interpretation of the character is very good, he approaches Bond with more of a debonair touch (read as: British) than most. On the other hand, Sean Connery's performances as Bond has more of a maverick rawness. In my mind thus Connery's 007 films are more attractive to Americans what with their "Don't Tread on Me" mentality and fascination with the cowboy archetype. 
+On the other end of the spectrum, at box offices in America as well as those around the world, Dalton's films grossed the least, on average. His second film "License to Kill" ranks as the lowest grossing domestically and globally, while his first, "The Living Daylights", is third lowest in these categories. 
 
+ 
 # Footnotes
 <sup>[1]</sup> : In the FiveThirtyEight [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) I referenced, the point of interest is this paragraph: "The ratings from IMDb, Metacritic and Rotten Tomatoes were typically in the same ballpark, which makes this finding unsurprising: Fandango’s star rating was higher than the IMDb rating 79 percent of the time, the Metacritic aggregate critic score 77 percent of the time, the Metacritic user score 86 percent of the time, the Rotten Tomatoes critic score 62 percent of the time, and the Rotten Tomatoes user score 74 percent of the time." Therefore to see how much higher user scores are than the critics scores, we simply divide the two averages to eliminate the Fandango term: RT.Crit / RT. User =1.19 which gives us our quoted 19%. 
 
