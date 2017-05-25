@@ -161,7 +161,7 @@ colnames(diff)[c(1,2,3,4,5,6)]<-c("RT.Crit","RT.User","LetterBoxd","IMDB","Chang
 #We quicly re-order this so it shows up correctly later
 diff$New.Bond<-factor(diff$New.Bond,levels=c("Sean Connery","George Lazen","Roger Moore","Timothy Dalton","Pierce Brosnan","Daniel Craig"))
 ```
-Now we can analyze these numbers how are diferent ratings change between entries in the franchise.
+Now we can analyze these numbers how are different ratings change between entries in the franchise.
 ```R
 max(diff$RT.Crit)
 [1] 37
@@ -301,8 +301,9 @@ for(i in 2:6){
 |Average|$643,099,031|$206,247,286|3.2|$530,698,483|7.9|
 
 
-There's a lot to unpack here, so let's go slowly. First we see that Dalton did the worst at the box office globally and domestically. On the other end of these measures, on average Craig grosses the most globally while Connery claims the crown domestically. This surprised me somewhat since I imagined that the film industry is much more globalised nowadays (maybe this is something I could study in a future project). 
+There's a lot to unpack here, so let's go slowly. First we see that both globally and domestically Dalton's films grossed the least at box offices on average. As we saw earlier Dalton's second and last outing as agent 007, was the worst rated film, but   
 
+On the other end of the ruler, while on average Craig grossed the most globally, Connery claims the box office-crown domestically. If you'll allow me to stray from the numbers for a moment, I will try to interpret this result: although Daniel Craig's interpretation of the character is very good, he approaches Bond with more of a debonair touch (read as: British) than most. On the other hand, Sean Connery's performances as Bond has more of a maverick rawness. In my mind thus Connery's 007 films are more attractive to Americans what with their "Don't Tread on Me" mentality and fascination with the cowboy archetype. 
 
 # Footnotes
 <sup>[1]</sup> : In the FiveThirtyEight [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) I referenced, the point of interest is this paragraph: "The ratings from IMDb, Metacritic and Rotten Tomatoes were typically in the same ballpark, which makes this finding unsurprising: Fandango’s star rating was higher than the IMDb rating 79 percent of the time, the Metacritic aggregate critic score 77 percent of the time, the Metacritic user score 86 percent of the time, the Rotten Tomatoes critic score 62 percent of the time, and the Rotten Tomatoes user score 74 percent of the time." Therefore to see how much higher user scores are than the critics scores, we simply divide the two averages to eliminate the Fandango term: RT.Crit / RT. User =1.19 which gives us our quoted 19%. 
