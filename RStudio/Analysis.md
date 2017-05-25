@@ -295,7 +295,7 @@ boxoffice$Glb.Dom.Ratio<-with(boxoffice,Glb.Mean/Dom.Mean)
 |Pierce Brosnan|$644,678,449|$223,328,250|2.9|$454,928,173|3.4|
 |Daniel Craig|$885,619,047|$236,176,975|3.7|$655,951,017|3.8|
 
-Where Glb, Dom and Glb
+There's a lot to unpack here, so let's go slowly. First we see that Dalton did the worst at the box office globally and domestically, and although globally Craig grosses the most on average, Connery claims the crown domestically. This surprised me somewhat since I imagined that the film industry is much more globalised nowadays, maybe this is something I could study in a future project... Despite his otherwise poor performance, Timothy Dalton had the largest appeal outside of the United States, with a 4:1 ratio of Global to Domestic gross. 
 
 # Footnotes
 <sup>[1]</sup> : In the FiveThirtyEight [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) I referenced, the point of interest is this paragraph: "The ratings from IMDb, Metacritic and Rotten Tomatoes were typically in the same ballpark, which makes this finding unsurprising: Fandango’s star rating was higher than the IMDb rating 79 percent of the time, the Metacritic aggregate critic score 77 percent of the time, the Metacritic user score 86 percent of the time, the Rotten Tomatoes critic score 62 percent of the time, and the Rotten Tomatoes user score 74 percent of the time." Therefore to see how much higher user scores are than the critics scores, we simply divide the two averages to eliminate the Fandango term: RT.Crit / RT. User =1.19 which gives us our quoted 19%. 
