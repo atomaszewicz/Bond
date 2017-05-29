@@ -333,6 +333,10 @@ Based on our table, it seems that profit to budget has decreased with time, let'
 
 We added a LOESS-method trendline to show the decrease-to-plateau nature of the data. Whether on purpose or by some unintentional/external force the franchise seems to have nestled itself in a 5:2 profit:budget ratio ever since Dalton's last film in 1989. 
 
+Now we look at the films budgets to see if our presumption that they have increased is supported by data.
+
+![budg_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/budg_plot.png?raw=TRUE)
+
 # Footnotes
 <sup>[1]</sup> : In the FiveThirtyEight [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) I referenced, the point of interest is this paragraph: "The ratings from IMDb, Metacritic and Rotten Tomatoes were typically in the same ballpark, which makes this finding unsurprising: Fandango’s star rating was higher than the IMDb rating 79 percent of the time, the Metacritic aggregate critic score 77 percent of the time, the Metacritic user score 86 percent of the time, the Rotten Tomatoes critic score 62 percent of the time, and the Rotten Tomatoes user score 74 percent of the time." Therefore to see how much higher user scores are than the critics scores, we simply divide the two averages to eliminate the Fandango term: RT.Crit / RT. User =1.19 which gives us our quoted 19%. 
 
@@ -441,6 +445,14 @@ trendline<-geom_smooth(method='loess',se=FALSE)
 #horizontal line to help visualize trend, plus label
 line<-geom_hline(yintercept=2.5,linetype="dashed",colour="RED")+annotate("text",x=as.Date("1963-01-01"),y=4.5,label="x=2.5",col="RED")
 labels<-ggtitle("James Bond Film Profit to Budget Ratio")+ylab("Profit to Budget Ratio")
+```
+
+## budg_plot
+A line plot of budgets over time with a linear regression line superimposed
+```R
+budg_plot<-ggplot(bom,aes(x=Release,y=Bdg.Adj))+geom_line()+geom_point(aes(shape=Bond)) trendline<-geom_smooth(method='lm',se=FALSE)
+y_axis<-scale_y_continuous(breaks=c(1e+07,1e+08,2e+08,3e+08),labels=c("$10 mill","$100 mill","$200 mill","$300 mill"))
+labels<-ggtitle("James Bond Film Budgets",subtitle="Adjusted for Inflation to May 2017")+ylab("Budget")
 ```
  
  
