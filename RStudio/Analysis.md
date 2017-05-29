@@ -329,9 +329,9 @@ Even at the bottom of this spectrum, Dalton's films profited $290 mill on averag
 
 Based on our table, it seems that profit to budget has decreased with time, let's graph to study this.
 
-![profit_budget_ratio](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/profit.budget.plot.png?raw=TRUE)
+![profit_budget_ratio](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/profit_budget_ratio.png?raw=TRUE)
 
-We added a LOESS-method trendline to show the decrease-to-plateau nature of the data. Whether on purpose or by some unintentional or extranl force the franchise seems to have nestled itself in a 5:2 profit to budget ratio since Dalton's last film in 1989. 
+We added a LOESS-method trendline to show the decrease-to-plateau nature of the data. Whether on purpose or by some unintentional/external force the franchise seems to have nestled itself in a 5:2 profit:budget ratio ever since Dalton's last film in 1989. 
 
 # Footnotes
 <sup>[1]</sup> : In the FiveThirtyEight [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) I referenced, the point of interest is this paragraph: "The ratings from IMDb, Metacritic and Rotten Tomatoes were typically in the same ballpark, which makes this finding unsurprising: Fandango’s star rating was higher than the IMDb rating 79 percent of the time, the Metacritic aggregate critic score 77 percent of the time, the Metacritic user score 86 percent of the time, the Rotten Tomatoes critic score 62 percent of the time, and the Rotten Tomatoes user score 74 percent of the time." Therefore to see how much higher user scores are than the critics scores, we simply divide the two averages to eliminate the Fandango term: RT.Crit / RT. User =1.19 which gives us our quoted 19%. 
@@ -436,9 +436,12 @@ labels2<-xlab("Film in Series")+ylab("Change in Rating/100 from Previous")
  A line plot with a LOESS trendline looking at profit to budget ratios over time
  ```R
 profit_budget_plot<-ggplot(bom,aes(x=Release,y=Prft.Bdg.Ratio))+geom_line()+geom_point(aes(shape=Bond))
+#use LOESS method for trendline, set se (error visualisation) to zero for readibilty
 trendline<-geom_smooth(method='loess',se=FALSE)
+#horizontal line to help visualize trend, plus label
+line<-geom_hline(yintercept=2.5,linetype="dashed",colour="RED")+annotate("text",x=as.Date("1963-01-01"),y=4.5,label="x=2.5",col="RED")
 labels<-ggtitle("James Bond Film Profit to Budget Ratio")+ylab("Profit to Budget Ratio")
- ```
+```
  
  
 
