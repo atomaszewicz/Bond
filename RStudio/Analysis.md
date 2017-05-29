@@ -315,9 +315,23 @@ After Roger Moore's playful, light-hearted Bond, the grit and realism of Dalton'
 
 Next we note that Connery had the lowest ratio of global to domestic gross, while Dalton had the most. As we discussed earlier, Connery's approach is quite American. As we saw earlier, Connery's "Thunderball" and "Goldfiner", and Craig's "Skyfall" are the three highest grossing films domestically and globally, and while all have comparable gross globally, "Thunderball" grossed twice as much as "Skyfall" in the domestica market. So although Connery's ratio is low, it appears that his domestic gross was just much higher than average. Dividng the average gross for connery by average gross for all bonds we find that Connery earned 33% more than average globally and 52% more domestically. 
 
-The movie industry has changed a lot over it's ~100 year lifetime. Directors and producers continually push the medium, to create a more engaging and visercal cinematic experience. More extravagent sets and costumes, more cameras, more makeup, more lights and more believable special effects, have caused budgets to continue to pass new milestones every few years <sup> [9] </sup>. With this in mind, it is a little unfair to compare budgets of the films in the James Bond series over it's 55 year run. Keeping it in mind, we will now do exaclty that. 
+The movie industry has changed a lot over it's ~100 year lifetime. Directors and producers continually push the medium, to create a more engaging and visercal cinematic experience. More extravagent sets and costumes, more cameras, more makeup, more lights and more believable special effects, have caused budgets to continue to pass new milestones every few years <sup> [9] </sup>. With this in mind, it is a little unfair to compare budgets of the films in the James Bond series over it's 55 year run. First we will look at the raw numbers, then we'll try to look at how the budgets have changed over time and see how this affects the profits over time.
 
+We quickly create columns to compare the ratio of Profit to Budget and global gross to budget for each film.
 
+```R
+bom$Prft.Bdg.Ratio<-bom$Prft.Glb/bom$Bdg.Adj
+bom$Glb.Bdg.Ratio<-bom$Glb.Adj/bom$Bdg.Adj
+```
+
+As expected due to his tenure early in the franchise, Connery has  the largest average return on investment, with a whopping $800 average profit (and a total global profit of $2.6 bn from his 6 films).  Connery's first film "Dr. No" grossed almost 60 times it's budget, his second and third around 40 times, and his average gross was 17 times his average budget. (60 times would surely please any producer, but it's nowhere near "Paranormal Activity" with a profit nearly 1300 times it's budget <sup>[10]</sup>)
+Even at the bottom of this spectrum, Dalton's films profited $290 mill on average, and Pierce Brosnan's films grossed 3.4 times their budget globally. So if you've ever wondered why this franchise has lasted so long, thats why: they're very profitable. 
+
+Based on our table, it seems that profit to budget has decreased with time, let's graph to study this.
+
+![profit_budget_ratio](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/profit.budget.plot.png?raw=TRUE)
+
+We added a LOESS-method trendline to show the decrease-to-plateau nature of the data. Whether on purpose or by some unintentional or extranl force the franchise seems to have nestled itself in a 5:2 profit to budget ratio since Dalton's last film in 1989. 
 
 # Footnotes
 <sup>[1]</sup> : In the FiveThirtyEight [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) I referenced, the point of interest is this paragraph: "The ratings from IMDb, Metacritic and Rotten Tomatoes were typically in the same ballpark, which makes this finding unsurprising: Fandango’s star rating was higher than the IMDb rating 79 percent of the time, the Metacritic aggregate critic score 77 percent of the time, the Metacritic user score 86 percent of the time, the Rotten Tomatoes critic score 62 percent of the time, and the Rotten Tomatoes user score 74 percent of the time." Therefore to see how much higher user scores are than the critics scores, we simply divide the two averages to eliminate the Fandango term: RT.Crit / RT. User =1.19 which gives us our quoted 19%. 
@@ -357,6 +371,10 @@ Source: Rubin, Steven Jay (1995). The Complete James Bond Movie Encyclopedia (Re
 
 <sup>[9]</sup>
 [Source](https://en.wikipedia.org/wiki/List_of_most_expensive_films#Record-holders) is a wikipedia table of record holders over time in the film industry. Please note that this is not adjusted for inflation.
+
+<sup>[10]</sup>
+[Source](http://www.pajiba.com/seriously_random_lists/percentagewise-the-20-most-profitable-movies-of-all-time.php). This page shows top 20 most profitable movies.
+
 
 
 # Plot Code
@@ -413,6 +431,16 @@ xaxis<-geom_hline(aes(yintercept=0))+scale_x_continuous(breaks=c(0,4,8,12,16,24)
 labels1<-ggtitle("James Bond Film Change in Rating from Previous",subtitle="Sorted by the New Bond Actor")
 labels2<-xlab("Film in Series")+ylab("Change in Rating/100 from Previous")
  ```
+ 
+ ## profit_budget_ratio
+ A line plot with a LOESS trendline looking at profit to budget ratios over time
+ ```R
+profit_budget_plot<-ggplot(bom,aes(x=Release,y=Prft.Bdg.Ratio))+geom_line()+geom_point(aes(shape=Bond))
+trendline<-geom_smooth(method='loess',se=FALSE)
+labels<-ggtitle("James Bond Film Profit to Budget Ratio")+ylab("Profit to Budget Ratio")
+ ```
+ 
+ 
 
 # Appendix
 
