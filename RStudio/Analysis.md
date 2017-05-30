@@ -185,33 +185,7 @@ We summarize the results in a table
 |IMDB|19|-13|-0.21|5.5|-4.6|
 |Avg|35.5|-26.4|-0.69|14|-12|
 
-The largest change was a 48 point boost between films, the smallest a -33 point drop, and on average, the films dropped about -0.7 points between films. So overall it appears the films have dropped in quality very slightly. Furhtermore, the max is always larger than the min (in absolute value), the mean>0 is always greater than the mean<0 and yet the overall mean is always negative! 
-
-This means that there must be more negative changes than positive ones, but that the positive changes are generally larger. Interpreting this, we see that generally people think the movies are worse than the last one, but when they think it has improved, they are very enthusiastic about it, giving the new film very high ratings.
-
-
-```R
-#We transform to put all the ratings in one column to plot and analyze
-diff_1col<-melt(diff,id=c("Change.Number","New.Bond"))
-colnames(diff_1col)[c(2,3,4)]<-c("Bond","Metric","Rating.Change")
-
-pos_chng=0
-neg_chng=0
-no_chng=0
-#The loop is out of 100 because there are 4 ratings, and each rating has 24 changes between the 25 films
-for(i in 1:96){
-     if(diff_1col$Rating.Change[i]>0){
-         pos_chng<-pos_chng+1
-     }
-     else if(diff_1col$Rating.Change[i]<0){
-         neg_chng<-neg_chng+1
-     }
-     else no_chng<-no_chng+1
-}
-print(c(pos_chng,neg_chng,no_chng))
-[1] 40 4 52
-```
-As expected there are more negative entries than positive entries. We can verify these numbers with a little algebra, see Appendix B for this treatment. 
+The largest change was a 48 point boost between films, the smallest a -33 point drop, and on average, the films dropped about -0.7 points between films. So overall it appears the films have dropped in quality very slightly. Furhtermore, the max is always larger than the min (in absolute value), the mean>0 is always greater than the mean<0 and yet the overall mean is always negative! This means that there must be more negative changes than positive ones, but that the positive changes are generally larger. We verify this in Appendix B. Interpreting this, we see that generally people think the movies are worse than the last one, but when they think it has improved, they are very enthusiastic about it, giving the new film very high ratings.
 
 Before we graph these results, we add a column of the sign of the change to help visualization the positive/negatrive gain/loss in score
 ```R
@@ -337,8 +311,21 @@ Now we look at the films budgets to see if our presumption that they have increa
 
 ![budg_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/budg_plot.png?raw=TRUE)
 
-From it's 'humble' $10 million beginning to "Spectre"'s recent $300 million budget, the Bond films have seen their budgets increase signficantly. It is difficult to say how typical this is without doing a whole project on film budgets over time. What we can do is look at how the films compare to the record holders at the time. Instead of spending a bunch of time on this , let's look at the first, the last and one in the middle. In 1963 "Dr No" was released, having been filmed on a $1 million and in that same year the Elizabeth Taylor and Richard Burton epic "[Cleopatra](https://en.wikipedia.org/wiki/Cleopatra_(1963_film))" broke a new record with an estimated $31 million (unadjusted) budget. In 1989 Dalton's last Bond movie cost $31 million unadjusted, and a year later "Die Hard 2" broke another budget record with $62 million in real terms. 2015's "Spectre" had an unadjusted budget of $300 million while the record for a single film remains the 4th Johnny Depp "Pirates of the Caribbean" from 2011 with a $400 million adjusted for inflation to 2015 <sup> [9] </sup>. So not only have the Bond films budgets increased, they've  approached the biggest budgest
+From $10 million to $300 million, the Bond films budgets have skyrocketd over time. It is difficult to say how typical this is without doing a whole project on film budgets over time, but what we can do is look at how the films compare to the record holders at the time. Instead of spending a bunch of time on this, let's look at the first Bond film, the last and one in the middle. In 1963 "Dr. No" cost  $1 million to make and in that same year the Elizabeth Taylor and Richard Burton epic "[Cleopatra](https://en.wikipedia.org/wiki/Cleopatra_(1963_film))" broke a new record with an $31 million budget (neither figure adjusted for inflation). In 1989 Dalton's last Bond movie cost $42 million unadjusted, and a year later "Die Hard 2" broke another budget record with $62 million in 1990 terms. 2015's "Spectre" had an unadjusted budget of $300 million while the record for a single film remains the 4th Johnny Depp "Pirates of the Caribbean" film from 2011, with a $400 million adjusted to 2015 <sup> [9] </sup>. This isn't exactly scientific, early on in the film industry they would produce a lot of low budget movies and a few expensive movies, but now adays they produce a lot of films of similar budgets. What this treatment does is give you an idea of how the James Bond franchise has turned from just another film series to one of the industry's heavy-hitters.
 
+Let's look at changes. Create a data frame of the changes in various quantities
+
+```R
+for(i in 1:23){
+    bo.diff[i,1]<-(bom$Glb.Adj[i+1]-bom$Glb.Adj[i])
+    bo.diff[i,2]<-(bom$Dom.Adj[i+1]-bom$Dom.Adj[i])
+    bo.diff[i,3]<-(bom$Bdg.Adj[i+1]-bom$Bdg.Adj[i])
+    bo.diff[i,4]<-(bom$Prft.Glb[i+1]-bom$Prft.Glb[i])
+    bo.diff[i,5]<-i
+    bo.diff[i,6]<-bom$Bond[i+1]
+}
+colnames(bo.diff)[c(1:6)]<-c("Glb.Chng","Dom.Chng","Bdg.Chng","Prft.Chng","Counter","New.Bond")
+```
 
 
 
@@ -507,6 +494,30 @@ labels<-xlab("Film Number in Series")+ylab("Difference in Points for Rating/100"
 ![lb_diff_plo](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/lb_diff_plot.png?raw=TRUE)
 
 ## B
+
+We verify our result that there must be more negative changes than positive ones, due to the mean change being negative, but the mean positive change being larger than the mean negative change.
+
+```R
+#We transform to put all the ratings in one column to plot and analyze
+diff_1col<-melt(diff,id=c("Change.Number","New.Bond"))
+colnames(diff_1col)[c(2,3,4)]<-c("Bond","Metric","Rating.Change")
+
+pos_chng=0
+neg_chng=0
+no_chng=0
+#The loop is out of 100 because there are 4 ratings, and each rating has 24 changes between the 25 films
+for(i in 1:96){
+     if(diff_1col$Rating.Change[i]>0){
+         pos_chng<-pos_chng+1
+     }
+     else if(diff_1col$Rating.Change[i]<0){
+         neg_chng<-neg_chng+1
+     }
+     else no_chng<-no_chng+1
+}
+print(c(pos_chng,neg_chng,no_chng))
+[1] 40 4 52
+```
 
 We verify that we have computed the correct number of positive, negative and nil changes in movie ratings between movies using basic algebra and knowledge of how means of subsets relate to mean of the set. We multiply the mean of the different signs by the number of entries of that sign, and that should sum up to the total mean multiplied by the total number of entries. 
 
