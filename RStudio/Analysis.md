@@ -332,8 +332,9 @@ bo.diff$dom.sgn<-ifelse(bo.diff$Dom.Chng>=0,'positive','negative')
 bo.diff$Glb.Chng1<-with(bo.diff,Glb.Chng/1000000)
 bo.diff$Dom.Chng1<-with(bo.diff,Dom.Chng/1000000)
 ```
-
-![dom_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/dom_chng_plot.png) ![glb_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/glb_chng_plot.png)
+Solarized dark             |  Solarized Ocean
+:-------------------------:|:-------------------------:
+![dom_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/111.png) | ![glb_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/1112.png)
 
 
 # Footnotes
