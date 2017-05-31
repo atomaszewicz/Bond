@@ -147,7 +147,7 @@ To start let's look into how much each rating changes between titles.
 ```R
 #Create a blank data frame and fill it up with the differences
 diff<-data.frame()
-for(i in 1:23){
+for(i in 1:24){
     diff[i,1]<-(rate$RT.Crit[i+1]-rate$RT.Crit[i])
     diff[i,2]<-(rate$RT.User[i+1]-rate$RT.User[i])
     diff[i,3]<-(rate$LetterBoxd[i+1]-rate$LetterBoxd[i])
@@ -189,6 +189,9 @@ The largest change was a 48 point boost between films, the smallest a -33 point 
 
 Before we graph these results, we add a column of the sign of the change to help visualization the positive/negatrive gain/loss in score
 ```R
+#We transform to put all the ratings in one column to plot and analyze
+diff_1col<-melt(diff,id=c("Change.Number","New.Bond"))
+colnames(diff_1col)[c(2,3,4)]<-c("Bond","Metric","Rating.Change")
 diff_1col$sign<-ifelse(diff_1col$Rating.Change>=0,'positive','negative')
 ```
 
@@ -316,28 +319,29 @@ From $10 million to $300 million, the Bond films budgets have skyrocketd over ti
 Now that we've seen how each actor performed relative to eachother, let's see how the domestic and global gross evolved from film to film. First we create a data frame of the changes in various quantities.
 
 ```R
-for(i in 1:23){
+for(i in 1:24){
     bo.diff[i,1]<-(bom$Glb.Adj[i+1]-bom$Glb.Adj[i])
     bo.diff[i,2]<-(bom$Dom.Adj[i+1]-bom$Dom.Adj[i])
-    bo.diff[i,3]<-(bom$Bdg.Adj[i+1]-bom$Bdg.Adj[i])
-    bo.diff[i,4]<-(bom$Prft.Glb[i+1]-bom$Prft.Glb[i])
-    bo.diff[i,5]<-i
-    bo.diff[i,6]<-bom$Bond[i+1]
+    bo.diff[i,3]<-i
+    bo.diff[i,4]<-bom$Bond[i+1]
 }
-colnames(bo.diff)[c(1:6)]<-c("Glb.Chng","Dom.Chng","Bdg.Chng","Prft.Chng","Counter","New.Bond")
+colnames(bo.diff)[c(1:4)]<-c("Glb.Chng","Dom.Chng","Counter","New.Bond")
 #Then make a column of the sign of the entries for coloring our plots
 bo.diff$glb.sgn<-ifelse(bo.diff$Glb.Chng>=0,'positive','negative')
 bo.diff$dom.sgn<-ifelse(bo.diff$Dom.Chng>=0,'positive','negative')
 #Now we divide our change columns by 1,000,000 to make the graph more legible
 bo.diff$Glb.Chng1<-with(bo.diff,Glb.Chng/1000000)
 bo.diff$Dom.Chng1<-with(bo.diff,Dom.Chng/1000000)
+#Lastly we solidfy the order of the names as before
+bo.diff$New.Bond<-factor(bo.diff$New.Bond,levels=c("Sean Connery","George Lazenby","Roger Moore","Timothy Dalton","Pierce Brosnan","Daniel Craig"))
 ```
 Now we plot the change in gross between film for domestic and global figures
 
 Domestic Change            |  Global Change
 :-------------------------:|:-------------------------:
-![dom_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/111.png) | ![glb_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/1112.png)
+![dom_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/dom_chng_plot.png) | ![glb_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/glb_chng_plot.png)
 
+For the most part they agree on positive/negative changes (18/23 times) 
 
 # Footnotes
 <sup>[1]</sup> : In the FiveThirtyEight [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) I referenced, the point of interest is this paragraph: "The ratings from IMDb, Metacritic and Rotten Tomatoes were typically in the same ballpark, which makes this finding unsurprising: Fandango’s star rating was higher than the IMDb rating 79 percent of the time, the Metacritic aggregate critic score 77 percent of the time, the Metacritic user score 86 percent of the time, the Rotten Tomatoes critic score 62 percent of the time, and the Rotten Tomatoes user score 74 percent of the time." Therefore to see how much higher user scores are than the critics scores, we simply divide the two averages to eliminate the Fandango term: (RT.Crit)/(RT.User)=1.19 which gives us our quoted 19%. 
@@ -419,7 +423,7 @@ coord_avg<-coord_cartesian(ylim=c(55,90))+geom_errorbar(aes(ymax=Avg.All,ymin=Av
 A bar plot that shows the change in score between movies, separated by metric 
 ```R
 #Now we graph, making the 4 different metrics on 4 different graphs but in the same plot
-chng_rat_plot<-ggplot(diff1,aes(x=Change.Number,y=Rating.Change,fill=sign))+geom_col()+facet_grid(Metric ~ .)
+chng_rat_plot<-ggplot(diff_1col,aes(x=Change.Number,y=Rating.Change,fill=sign))+geom_col()+facet_grid(Metric ~ .)
 coloring<-scale_fill_manual(values=c("positive"="BLUE","negative"="RED"))
 labels1<-xlab("Change Between Films")+ylab("Change in Rating/100 from Previous")
 labels2<-ggtitle("James Bond Film Change in Rating from Previous",subtitle="Sorted by Metric")
@@ -507,10 +511,6 @@ labels<-xlab("Film Number in Series")+ylab("Difference in Points for Rating/100"
 We verify our result that there must be more negative changes than positive ones, due to the mean change being negative, but the mean positive change being larger than the mean negative change.
 
 ```R
-#We transform to put all the ratings in one column to plot and analyze
-diff_1col<-melt(diff,id=c("Change.Number","New.Bond"))
-colnames(diff_1col)[c(2,3,4)]<-c("Bond","Metric","Rating.Change")
-
 pos_chng=0
 neg_chng=0
 no_chng=0
