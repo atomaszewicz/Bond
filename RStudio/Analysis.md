@@ -333,9 +333,7 @@ bo.diff$Glb.Chng1<-with(bo.diff,Glb.Chng/1000000)
 bo.diff$Dom.Chng1<-with(bo.diff,Dom.Chng/1000000)
 ```
 
-Domestic Gross Change            |  Global Gross Change
-:-------------------------:|:-------------------------:
-![dom_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/dom_chng_plot.png)  |  ![glb_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/glb_chng_plot.png)
+![dom_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/dom_chng_plot.png) ![glb_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/glb_chng_plot.png)
 
 
 # Footnotes
