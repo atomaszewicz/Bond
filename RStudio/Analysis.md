@@ -313,7 +313,7 @@ Now we look at the films budgets to see if our presumption that they have increa
 
 From $10 million to $300 million, the Bond films budgets have skyrocketd over time. It is difficult to say how typical this is without doing a whole project on film budgets over time, but what we can do is look at how the films compare to the record holders at the time. Instead of spending a bunch of time on this, let's look at the first Bond film, the last and one in the middle. In 1963 "Dr. No" cost  $1 million to make and in that same year the Elizabeth Taylor and Richard Burton epic "[Cleopatra](https://en.wikipedia.org/wiki/Cleopatra_(1963_film))" broke a new record with an $31 million budget (neither figure adjusted for inflation). In 1989 Dalton's last Bond movie cost $42 million unadjusted, and a year later "Die Hard 2" broke another budget record with $62 million in 1990 terms. 2015's "Spectre" had an unadjusted budget of $300 million while the record for a single film remains the 4th Johnny Depp "Pirates of the Caribbean" film from 2011, with a $400 million adjusted to 2015 <sup> [9] </sup>. This isn't exactly scientific, early on in the film industry they would produce a lot of low budget movies and a few expensive movies, but nowadays they produce a lot of films of similar budgets. What this treatment does is give you an idea of how the James Bond franchise has turned from just another film series to one of the industry's heavy-hitters.
 
-Now that we've learned about how the budgets have grown, let's go back and finish looking at the global and domestic gross, but this time we look at the changes based on Bond actor. First we create a data frame of the changes in various quantities
+Now that we've seen how each actor performed relative to eachother, let's see how the domestic and global gross evolved from film to film. First we create a data frame of the changes in various quantities.
 
 ```R
 for(i in 1:23){
@@ -332,7 +332,8 @@ bo.diff$dom.sgn<-ifelse(bo.diff$Dom.Chng>=0,'positive','negative')
 bo.diff$Glb.Chng1<-with(bo.diff,Glb.Chng/1000000)
 bo.diff$Dom.Chng1<-with(bo.diff,Dom.Chng/1000000)
 ```
-Solarized dark             |  Solarized Ocean
+Now we plot the change in gross between film for domestic and global figures
+
 :-------------------------:|:-------------------------:
 ![dom_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/111.png) | ![glb_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/1112.png)
 
