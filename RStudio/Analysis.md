@@ -334,6 +334,7 @@ bo.diff$Dom.Chng1<-with(bo.diff,Dom.Chng/1000000)
 ```
 Now we plot the change in gross between film for domestic and global figures
 
+                           |  
 :-------------------------:|:-------------------------:
 ![dom_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/111.png) | ![glb_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/1112.png)
 
