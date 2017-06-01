@@ -96,7 +96,7 @@ colnames(rate_1col)[c(4,5)]<-c("Metric","Rating")
 ```
 ![rate_metricbond](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/rate_metricbond.png?raw=TRUE)
  
-The ratings jump up and down to various degrees, but as we saw with the average of each metric LetterBoxd scores are generally highest and RT User are generally lowest. We also note that between different eras of Bond (read as: Actors) the ratings change significantly, but also from film to film they jump up and down to varying degrees. These two topics will be the focus of our next two sections. In Appendix A we briefly study how the LetterBoxd scores are almost always the highest.
+The ratings jump up and down to various degrees, but as we saw with the average of each metric LetterBoxd scores are generally highest and RT User are generally lowest. We also note that between different eras of Bond (read as: Actors) the ratings change significantly, but also from film to film the scores fluctuate. These two topics will be the focus of our next two sections, and in Appendix A we briefly study how the LetterBoxd scores are almost always the highest.
 
 ### Bond Actor
 
@@ -125,9 +125,9 @@ Let's jump right into a plot of this.
 
 ![actor_avg_metric](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/actor_avg_metric.png?raw=TRUE)
 
-So the newest actor to adorn the well-worn 007 tuxedo, Daniel Craig, is the most highly rated, and Sean Connery, who first broke it in, the second highest. Suprisingly, with only 1 film in the franchise, George Lazen takes the third spot.
+So the newest actor to adorn the 007 tuxedo, Daniel Craig, is on average the most highly rated, and Sean Connery, he who first broke in the tux, is the second highest. Suprisingly, with only 1 film in the franchise, George Lazen takes the third spot. Brosnan edges out Moore by a third of a point to get last place, while Dalton hovers almost exaclty in the middle.
 
-As before LetterBoxd scores are always the highest, and Rotten Tomatoes users are very critical of the Bond films. In fact, the range of averages in IMDb scores for the different actors is only 7.8 points <sup> [2] </sup>, whereas for RT Critic, RT User, and LetterBoxd are 24.8, 17.6 and 16.25 respectively. In other words, IMDb has less than half the range of the next lowest, and less than a third the range of the rating with the biggest spread across Bond actors. This is a very intriguing result, and warrants further investigation.
+As before LetterBoxd scores are always the highest, and Rotten Tomatoes users are very critical of the Bond films. We also see that again some metric's averages are drasticaly different between Bonds, while some barely change at all (at the two extremes, the range of RT critic's range of averages across Bonds is 25 points, and IMDb's is 8 <sup> [2] </sup>). In the next section we study how the metrics change from film to film, to get a better grasp on how the series has evolved over the years.
 
 ### Score Changes
 
