@@ -272,7 +272,6 @@ for(i in 2:6){
 }
 ```
 
-
 |Bond|Avg. Global Gross|Avg. Domestic Gross|Glb:Dom Ratio|Avg. Global Profit|Glb:Bdg Ratio|
 |---|---|---|---|---|---|
 |Sean Connery|$857,381,211|$328,071,243|2.6|$806,338,430|16.8|
@@ -341,7 +340,9 @@ Domestic Change            |  Global Change
 :-------------------------:|:-------------------------:
 ![dom_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/dom_chng_plot.png) | ![glb_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/glb_chng_plot.png)
 
-For the most part they agree on positive/negative changes (18/23 times) 
+For the most part they agree on positive/negative changes (19/24 times), where most of the differences is the change in gross with the premier of a new actor: For domestic gross, all but once, the change was negative, and for global the change was, all but once, positive. 
+
+In America it seems that theatre-goers are cold to new interpretations of Agent 007, with the acception of Pierce Brosnan. This exception is understandbly so as the previous film was *the* lowest grossing, and the 6 year hiatus in the series must have helped build up the excitement. Globally audiences seem to get excited with a reinvigoration of the series with a new Bond at the helm. The exception for this trend in the global market is George Lazenby, which as we've discussed, had a hard job of living up to Sean Connery.
 
 # Footnotes
 <sup>[1]</sup> : In the FiveThirtyEight [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) I referenced, the point of interest is this paragraph: "The ratings from IMDb, Metacritic and Rotten Tomatoes were typically in the same ballpark, which makes this finding unsurprising: Fandango’s star rating was higher than the IMDb rating 79 percent of the time, the Metacritic aggregate critic score 77 percent of the time, the Metacritic user score 86 percent of the time, the Rotten Tomatoes critic score 62 percent of the time, and the Rotten Tomatoes user score 74 percent of the time." Therefore to see how much higher user scores are than the critics scores, we simply divide the two averages to eliminate the Fandango term: (RT.Crit)/(RT.User)=1.19 which gives us our quoted 19%. 
