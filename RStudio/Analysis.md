@@ -121,16 +121,16 @@ bond_rate$Bond<-factor(bond_rate$Bond,levels=c("Sean Connery","George Lazen","Ro
 #Then we transform our data frame
 bond_rate1<-melt(bond_rate,id=c("Bond","Avg.All"))
 ```
-Before we look at a graph, we briefly make up a table to examine the average scores of Bond actor (based on our 4 metrics).
+Before we look at a graph, we briefly make up a table to examine the average scores of Bond actor 
 
-|Bond|Avg.All|
-|---|---|
-|Sean Connery|76|
-|George Lazen|75|
-|Roger Moore|64|
-|Timothy Dalton|71|
-|Pierce Brosnan|63|
-|Daniel Craig|78|
+|Bond|RT.Crit.|RT.User|LetterBoxd|IMDb|Avg.All|
+|---|---|---|---|---|---|
+|Sean Connery|82|70|82|70|76|
+|George Lazen|82|64|88|68|75|
+|Roger Moore|57|56|75|67|64|
+|Timothy Dalton|74|63|81|66|71|
+|Pierce Brosnan|61|56|71|66|63|
+|Daniel Craig|80|74|85|73|78|
 
 So the newest actor to adorn the well-worn 007 tuxedo, Daniel Craig, is the most highly rated, and Sean Connery, who first broke it in, the second highest. Suprisingly, with only 1 film in the franchise, George Lazen takes the third spot. Now let's plot all the metrics to see how they compare across actors.
 
@@ -334,13 +334,15 @@ bo.diff$Dom.Chng1<-with(bo.diff,Dom.Chng/1000000)
 #Lastly we solidfy the order of the names as before
 bo.diff$New.Bond<-factor(bo.diff$New.Bond,levels=c("Sean Connery","George Lazenby","Roger Moore","Timothy Dalton","Pierce Brosnan","Daniel Craig"))
 ```
+
+Let's check out this figures quickly. The mean global change is +$10 million and domestic +$1.5 mill
 Now we plot the change in gross between film for domestic and global figures
 
 Domestic Change            |  Global Change
 :-------------------------:|:-------------------------:
 ![dom_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/dom_chng_plot.png) | ![glb_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/glb_chng_plot.png)
 
-For the most part they agree on positive/negative changes (19/24 times), where most of the differences is the change in gross with the premier of a new actor: For domestic gross, all but once, the change was negative, and for global the change was, all but once, positive. 
+For the most part they agree on the sign of the change (19/24 times), where most of the differences is the change in gross with the premier of a new actor: For domestic gross, all but once, the change was negative, and for global the change was, all but once, positive. 
 
 In America it seems that theatre-goers are cold to new interpretations of Agent 007, with the acception of Pierce Brosnan. This exception is understandbly so as the previous film was *the* lowest grossing, and the 6 year hiatus in the series must have helped build up the excitement. Globally audiences seem to get excited with a reinvigoration of the series with a new Bond at the helm. The exception for this trend in the global market is George Lazenby, which as we've discussed, had a hard job of living up to Sean Connery.
 
