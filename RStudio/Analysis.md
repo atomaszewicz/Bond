@@ -47,7 +47,7 @@ We wish to visualize this, but first we must transform our data frame using the 
 ```R
 avgs_t<-melt(avgs)
 ```
-![avg_rating_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/avg_rating.png?raw=TRUE)
+![avg_rating_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/avg_rating_plot.png?raw=TRUE)
 
 The average for all the Bond films, based on the 4 metrics of choice is 71% which translates to a 3.5/5 star rating. This is not a great score, but then again the Bond films aren't necessarily great 'films'. They're B-movies at heart, not high art. What they're going for is a compelling cinematic adventure with an invincible super spy at the helm, and at this they excel. Anyways, back to those ratings.
 
@@ -386,9 +386,10 @@ I break the plot info into multiple elements so that it is easier to edit if I c
 ## avg_rating_plot
 A bar plot that shows the average rating by metric 
 ```R
-#Since our 'avgs' data frame is in table form, we create a new, transposed, dataframe using 'melt()' from the reshape2 library
+#We create a new, transposed, dataframe using 'melt()' from the reshape2 library for the plot
 avgs_t<-melt(avgs)
-avg_rating_plot<-ggplot(avgs_t[1:4,],aes(x=variable,y=value,fill=variable))+geom_col()+coord_cartesian(ylim=c(60,80))+
+#We plot only the first 4, as we will visualize the average of the 4 in another form
+avg_rating_plot<-ggplot(avgs_t[1:4,],aes(x=variable,y=value,fill=variable))+geom_col()+coord_cartesian(ylim=c(60,80))
 labels1<-xlab("Rating Metric")+ylab("Average Score/100")+ggtitle("Bond Film Average Rating by Metric")
 labels2<-annotate("text",x="IMDB",y=72,label="Average of \n4 Metrics",fontface='italic')+labs(fill="Metric")
 avg_line<-geom_hline(aes(yintercept=avgs_t[5,2]),linetype="dashed")
