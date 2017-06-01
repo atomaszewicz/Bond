@@ -388,8 +388,10 @@ A bar plot that shows the average rating by metric
 ```R
 #Since our 'avgs' data frame is in table form, we create a new, transposed, dataframe using 'melt()' from the reshape2 library
 avgs_t<-melt(avgs)
-avg_rating_plot<-ggplot(avgs_t,aes(x=variable,y=value))+geom_col()+coord_cartesian(ylim=c(60,80))
-labels<-xlab("Rating Metric")+ylab("Average Score/100")+ggtitle("Bond Film Average Rating by Metric")
+avg_rating_plot<-ggplot(avgs_t[1:4,],aes(x=variable,y=value,fill=variable))+geom_col()+coord_cartesian(ylim=c(60,80))+
+labels1<-xlab("Rating Metric")+ylab("Average Score/100")+ggtitle("Bond Film Average Rating by Metric")
+labels2<-annotate("text",x="IMDB",y=72,label="Average of \n4 Metrics",fontface='italic')+labs(fill="Metric")
+avg_line<-geom_hline(aes(yintercept=avgs_t[5,2]),linetype="dashed")
 ```
 ## rate_metricbond
 A line and point graph that shows how our 4 metrics change over time
@@ -406,7 +408,7 @@ labels<-ylab("Rating/100")+ggtitle("James Bond Film Ratings by Metric")+labs(sha
 A grouped bar plot that shows how different bonds were rated by our 4 metrics (and the average of the 4)
 ```R
 actor_avg_metric<-ggplot(bond_rate1,aes(x=Bond,y=value))+geom_bar(aes(fill=variable),stat="identity",position="dodge")
-labels<-ggtitle("Average Bond Ratings by Metric")+xlab("Bond Actor")+ylab("Rating")+labs(fill="Metric",caption="Black Bar = Avg. of 4)
+labels<-ggtitle("Average Bond Ratings by Metric")+xlab("Bond Actor")+ylab("Rating")+labs(fill="Metric")
 coord_avg<-coord_cartesian(ylim=c(55,90))+geom_errorbar(aes(ymax=Avg.All,ymin=Avg.All))
 #Where this last element is our custom y-axis limits and errorbars, a 'hack' to get horizontal bars for the averages
 ```
