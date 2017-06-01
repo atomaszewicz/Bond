@@ -29,7 +29,7 @@ numb<-read.xlsx("jb_clean.xlsx",2)
 rate<-read.xlsx("jb_clean.xlsx",3)
 ```
 
-*Note*: Before we begin I must acknowledge a typo that was found at about the halway point in the project, at the end of the Rating section (thanks for spotting it Brad). The actor of the film "On Her Majesty's Secret Service" is named "George Lazenby", not "George Lazen" as I erronously typed it. This error remains in the Rating section, but has been fixed for the Box Office sections and beyond. I apologize for any confusion.
+*Note: Before we begin I must acknowledge a typo that was found at about the halway point in the project, at the end of the Rating section (thanks for spotting it Brad). The actor of the film "On Her Majesty's Secret Service" is named "George Lazenby", not "George Lazen" as I erronously typed it. This error remains in the Rating section, but has been fixed for the Box Office sections and beyond. I apologize for any confusion.*
 
 ## Ratings
 
@@ -49,9 +49,9 @@ avgs_t<-melt(avgs)
 ```
 ![avg_rating_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/avg_rating.png?raw=TRUE)
 
-The average for all the Bond films, based on the 4 metrics of choice is 71% which translates to a 3.5/5 star rating or in American Colleges, a C- or 1.67/4.00 GPA. This is not a great score, but then again the Bond films aren't necessarily great 'films'. They're B-movies at heart, not high art. What they're going for is a compelling cinematic adventure with an invincible super spy at the helm, and at this they excel. Anyways, back to those ratings.
+The average for all the Bond films, based on the 4 metrics of choice is 71% which translates to a 3.5/5 star rating. This is not a great score, but then again the Bond films aren't necessarily great 'films'. They're B-movies at heart, not high art. What they're going for is a compelling cinematic adventure with an invincible super spy at the helm, and at this they excel. Anyways, back to those ratings.
 
-It seems that Rotten Tomatoe users think lower of these films than users do critics, with the average user rating being 9% less than the critic ratings. This is an interesting result because in an intuitive sense I expected critics to be more ... critical of movies than your average Joe Rotten Tomatoes. This theory is reinforced by a FiveThirtyEight [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) where they compare online movie ratings for ~200 titles. In this article Rotten Tomatoes user ratings were on average 19% higher <sup>[1]</sup> than Rotten Tomatoes critic scores. On the other hand, critics probably better understand the place of the James Bond movies while our average theater-goer is keeping their score of Citizen Kane or Lawrence of Arabia in mind when they pencil in their rating for the 007 films.
+It seems that Rotten Tomatoe users think lower of these films than users do critics, with the average user rating being 10% less (7 percentage-points less) than the critic ratings. This is an interesting result because in an intuitive sense I expected critics to be more, well, critical of movies than your average Joe Rotten Tomatoe. This theory is reinforced by a FiveThirtyEight [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) where they compare online movie ratings for ~200 titles. In this article Rotten Tomatoes user ratings were on average 19% higher <sup>[1]</sup> than Rotten Tomatoes critic scores. On the other hand, critics probably better understand the place of the James Bond movies while our average theater-goer is keeping their score of Citizen Kane or Lawrence of Arabia in mind when they pencil in their rating for the 007 films.
 
 Now let's see how individual films were rated. First let's look at the max and min scores.
 
@@ -68,9 +68,9 @@ rate1_col[which.min(rate_1col$Rating),]
 [1]               Title  Metric Rating
 [1] 15 A View to a Kill RT.Crit     36
 ```
-So the minimum score of all 4 metrics is 36/100 from Rotten Tomatoes critics for the Bond film "A View to a Kill", which marks Roger Moore's last outing as Agent 007, and the maximum score is 97.5 from LetterBoxd for "Casino Royale" Daniel Craig's first film in the series. We will see later how an actor's last and first film are generally rated, but for now we can take this as Moore being bored with the role and Craig being very excited, giving it his all.
+So the minimum score of all 4 metrics is 36/100 from Rotten Tomatoes critics for the Bond film "A View to a Kill", which marks Roger Moore's last outing as Agent 007 (at the ripe old age of 57), and the maximum score is 97.5 from LetterBoxd for "Casino Royale" Daniel Craig's first film in the series. We will see later how an actor's last and first film are generally rated, but for now we can imagine that Moore's age and boredness with the role while Craig was still young, presumably very excited about his new role and thus gave it his all.
 
-It is not surprising that LetterBoxd claims the highest rated film since it has the highest average rating of 79.1/100 (12% higher than the average of our 4 metrics). RT critic score was on average the second highest rating (70.8/100) among our 4 metrics but according to critics "A View to a Kill" was the weakest entry in the series.
+It is not surprising that LetterBoxd claims the highest rated film since it has the highest average rating of 79/100 (almost 12 percentage-points higher than the average of our 4 metrics). While RT critic score was on average the second highest rating (71) among our 4 metrics, we saw that it still gave out the lowest rating, a mere 36 to "A View to a Kill".
 
 We now check what is the highest/lowest rated films on average:
 ```R
@@ -96,7 +96,7 @@ colnames(rate_1col)[c(4,5)]<-c("Metric","Rating")
 ```
 ![rate_metricbond](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/rate_metricbond.png?raw=TRUE)
  
-The ratings jump up and down to various degrees, but as we saw with the average of each metric LetterBoxd scores are generally higher and RT User are generally lower. In the next section we will look at how the different actors potrayal of agent 007 stack up, then after that we will investigate the change between movies (i.e. how big the jumps up and down are). In Appendix A we briefly study how LetterBoxd scores are almost always above the others.
+The ratings jump up and down to various degrees, but as we saw with the average of each metric LetterBoxd scores are generally highest and RT User are generally lowest. We also note that between different eras of Bond (read as: Actors) the ratings change significantly, but also from film to film they jump up and down to varying degrees. These two topics will be the focus of our next two sections. In Appendix A we briefly study how the LetterBoxd scores are almost always the highest.
 
 ### Bond Actor
 
@@ -121,24 +121,13 @@ bond_rate$Bond<-factor(bond_rate$Bond,levels=c("Sean Connery","George Lazen","Ro
 #Then we transform our data frame
 bond_rate1<-melt(bond_rate,id=c("Bond","Avg.All"))
 ```
-Before we look at a graph, we briefly make up a table to examine the average scores of Bond actor 
-
-|Bond|RT.Crit.|RT.User|LetterBoxd|IMDb|Avg.All|
-|---|---|---|---|---|---|
-|Sean Connery|82|70|82|70|76|
-|George Lazen|82|64|88|68|75|
-|Roger Moore|57|56|75|67|64|
-|Timothy Dalton|74|63|81|66|71|
-|Pierce Brosnan|61|56|71|66|63|
-|Daniel Craig|80|74|85|73|78|
-
-So the newest actor to adorn the well-worn 007 tuxedo, Daniel Craig, is the most highly rated, and Sean Connery, who first broke it in, the second highest. Suprisingly, with only 1 film in the franchise, George Lazen takes the third spot. Now let's plot all the metrics to see how they compare across actors.
+Let's jump right into a plot of this.
 
 ![actor_avg_metric](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/actor_avg_metric.png?raw=TRUE)
 
-As before LetterBoxd scores are always the highest, and Rotten Tomatoes users are very critical of the Bond films.
+So the newest actor to adorn the well-worn 007 tuxedo, Daniel Craig, is the most highly rated, and Sean Connery, who first broke it in, the second highest. Suprisingly, with only 1 film in the franchise, George Lazen takes the third spot.
 
-In fact, the range of averages in IMDb scores for the different actors is only 7.8 points <sup> [2] </sup>, whereas for RT Critic, RT User, and LetterBoxd are 24.8, 17.6 and 16.25 respectively. In other words, IMDb has less than half the range of the next lowest, and less than a third the range of the rating with the biggest spread across Bond actors. This is a very intriguing result, and warrants further investigation.
+As before LetterBoxd scores are always the highest, and Rotten Tomatoes users are very critical of the Bond films. In fact, the range of averages in IMDb scores for the different actors is only 7.8 points <sup> [2] </sup>, whereas for RT Critic, RT User, and LetterBoxd are 24.8, 17.6 and 16.25 respectively. In other words, IMDb has less than half the range of the next lowest, and less than a third the range of the rating with the biggest spread across Bond actors. This is a very intriguing result, and warrants further investigation.
 
 ### Score Changes
 
@@ -175,7 +164,7 @@ mean(subset(diff$RT.Crit,diff$RT.Crit>0))
 [1] 19.3
 #etc...
 ```
-We summarize the results in a table
+We summarize the results in a table:
 
 |Metric|Max|Min|Mean|Mean>0|Mean<0|
 |---|---|---|---|---|---|
@@ -287,7 +276,7 @@ There's a lot to unpack here, so let's go slowly. First we see that while on ave
 
 On the other end of the spectrum, at domestic and global box offices, Dalton's films grossed on average the least. Dalton's second film "License to Kill" ranks as the lowest grossing Bond film domestically (one of only two that grossed <$100mill) and globally, while his first, "The Living Daylights", is third from last in both categories. Though "License to Kill" suffered from both a higher-than-usual age classification in Britain <sup>[6]</sup> and a last-minute title change <sup> [7] </sup>, it doesn't explain why the first one was so poorly recieved. Well, what makes Dalton's Bond different from the rest?
 
-After Roger Moore's playful, light-hearted Bond, the grit and realism of Dalton's performances must have been quite jarring for audiences. Dalton wanted the Bond from the novels a darker and more broooding Bond (I must disclose that I have never read any Bond novels). In an interview, Dalton summarized his approach thus: "I think Roger was fine as Bond, but the films had become too much techno-pop and had lost track of their sense of story.  Every film seemed to have a villain who had to rule or destroy the world. If you want to believe in the fantasy on screen, then you have to believe in the characters and use them as a stepping-stone to lead you into this fantasy world. That's a demand I made." <sup> [8] </sup> According to my parents (my Dad has read all the original Ian Fleming novels, and Mom has read none) it seems as though at the time those who were familiar with the literary charcter were mostly pleased with Dalton's more grounded approach whereas those who only knew the movies didn't enjoy how serious it was. In contrast with this, Daniel Craig's Bond, darker than Dalton's in many ways, was extremelly well recieved and it even followed Brosnan's more light-hearted Moore-esque Bond. This might mean that either Dalton took the unsatisfying middleground between fun and serious, or he helped paved the way for the appreciation of a darker Bond, which Craig reaped.
+After Roger Moore's playful, light-hearted Bond, the grit and realism of Dalton's performances must have been quite jarring for audiences. Dalton wanted the Bond from the novels a darker and more broooding Bond (I must disclose that I have never read any Bond novels). In an interview, Dalton summarized his approach thus: "I think Roger was fine as Bond, but the films had become too much techno-pop and had lost track of their sense of story.  Every film seemed to have a villain who had to rule or destroy the world. If you want to believe in the fantasy on screen, then you have to believe in the characters and use them as a stepping-stone to lead you into this fantasy world. That's a demand I made." <sup> [8] </sup> According to my parents (Dad has read all the original Fleming novels, and Mom has read none) it seems that those who were familiar with the literary charcter were mostly pleased with Dalton's more grounded approach whereas those who only knew the movies didn't enjoy how serious it was. In contrast with this, Daniel Craig's Bond, darker than Dalton's in many ways, was extremelly well recieved and it even followed Brosnan's more light-hearted Moore-esque Bond. This might mean that either Dalton took the unsatisfying middleground between fun and serious, or he helped paved the way for the appreciation of a darker Bond, which Craig reaped.
 
 Next we note that Connery had the lowest ratio of global to domestic gross, while Dalton had the most. As we discussed earlier, Connery's approach is quite American. As we saw earlier, Connery's "Thunderball" and "Goldfiner", and Craig's "Skyfall" are the three highest grossing films domestically and globally, and while all have comparable gross globally, "Thunderball" grossed twice as much as "Skyfall" in the domestica market. So although Connery's ratio is low, it appears that his domestic gross was just much higher than average. Dividng the average gross for connery by average gross for all bonds we find that Connery earned 33% more than average globally and 52% more domestically. 
 
