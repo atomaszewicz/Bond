@@ -56,10 +56,7 @@ So how do the Bond film's scores stack up to your average movie rating? Thankful
 |Bond|96|36|71|89|37|64|80|61|69|68|
 |'538'|100|5|61|94|20|64|86|40|67|64|
 
-From this table we see that the max scores are higher for the '538' analysis, while the mean and min scores are higher for the Bond films. So based on this, the Bond movies are slightly above average, but have never thoroughly rocked nor stunk-up the theatre (or home theatre). These results are fairly straightforward in my mind: being a long-running, blockbuster franchise, there is a lot of time, effort, care and **money** put into making a Bond film above average, since they're formulaic it is harder to 'Wow' the audince into a 100% score, and being such a well known series, those uninterested in it will watch something else, which keeps the scores from rock bottom.
-
-Since the Bond films are a well-established blockbuster franchise there is a lot of time and effort put into the movies to make them good, and because it is so well known, people uninterested in the series will watch something else. Yet at the same time, since it is a somewhat formulaic franchise, it is harder to 'WOW' the audience into a 100% rating. 
-
+From this table we see that the max scores are higher for the '538' analysis, while the mean and min scores are higher for the Bond films. So based on this, the Bond movies are slightly above average, but have never thoroughly rocked nor stunk-up the theatre (or home theatre). These results are fairly straightforward in my mind: being a long-running, blockbuster franchise, there is a lot of time, effort, care and **money** put into making a Bond film above average, then since they're formulaic it is harder to 'Wow' the audince into a 100% score, and lastly being such a well known series, those uninterested in it will watch something else, which keeps the scores from rock bottom. In contrast, new movies (i.e. those looked at in the '538' data) can be anywhere from underground sleeper hits, to tremendous big-budget flops.
 
 One thing that buged me about the results from the Bond series it that I expected critics to be more, well, critical of movies than your average Joe Rotten Tomatoe, while in reality the average user rating was 10% (7 percentage-points) less than the critic ratings. However, as expected, in the '538' article Rotten Tomatoes user ratings were on average 19% (3 percentage-points) higher than Rotten Tomatoes critic scores <sup>[1]</sup>. It could be that critics are harsher on movies in general but they understand the place of the James Bond movies. So while the average theater-goer is keeping their score of Citizen Kane or Casablanca in mind when they pencil in their rating for the 007 films, critics understand that the Bond franchise should be judged for what it is going for.
 
@@ -78,11 +75,12 @@ rate1_col[which.min(rate_1col$Rating),]
 [1]               Title  Metric Rating
 [1] 15 A View to a Kill RT.Crit     36
 ```
-So the minimum score of all 4 metrics is 36/100 from Rotten Tomatoes critics for the Bond film "A View to a Kill", which marks Roger Moore's last outing as Agent 007 (at the ripe old age of 57), and the maximum score is 97.5 from LetterBoxd for "Casino Royale" Daniel Craig's first film in the series. We will see later how an actor's last and first film are generally rated, but for now we can imagine that Moore's age and boredness with the role while Craig was still young, presumably very excited about his new role and thus gave it his all.
+The minimum score of all 4 metrics is 36/100 from Rotten Tomatoes critics for the Bond film "A View to a Kill", which marks Roger Moore's last outing as Agent 007 (at the ripe old age of 57), and the maximum score is 97.5 from LetterBoxd for "Casino Royale" Daniel Craig's first film in the series. We will see later how an actor's last and first film are generally rated, but for now we can imagine Moore's and Craig's performance were due to their age and exictment with the role.
 
-It is not surprising that LetterBoxd claims the highest rated film since it has the highest average rating of 79/100 (almost 12 percentage-points higher than the average of our 4 metrics). While RT critic score was on average the second highest rating (71) among our 4 metrics, we saw that it still gave out the lowest rating, a mere 36 to "A View to a Kill".
+It is not surprising that LetterBoxd claims the highest rated film since it has the highest average rating of 79/100, almost 12 percentage-points higher than the average of our 4 metrics. Yet, While on average RT critic score was the second highest rating (71) among our 4 metrics, we see that it claims the lowest score: a mere 36.
 
-We now check what is the highest/lowest rated films on average:
+Ok so these two films had extreme ratings in these two metrics, but do the other metrics agree? 
+
 ```R
 rate[which.max(rate$Avg.All),]
 [1]    RT.Crit RT.User LetterBoxd IMDB Avg.All         Title
@@ -92,6 +90,7 @@ rate[which.min(rate$Avg.All),]
 [1]     RT.Crit RT.User LetterBoxd IMDB Avg.All            Title
 [1] 15      36      41       67.5   63   51.875 A View to a Kill
 ```
+
 An unsuprising result, the films with the highest and lowest average scores are also the ones with the highest and lowest individual ratings. Since it's only an average over 4 the high/low rating will drag up/down the rating significantly, not to mention that each individual rating is presumably a trustworthy metric on the quality of the film. 
 
 Let's visualize how our 4 metrics change over time. 
