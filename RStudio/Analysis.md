@@ -52,8 +52,8 @@ The average for all the Bond films, based on the 4 metrics of choice is 71% whic
 Then again, even if 71% doesn't seem that amazing, on Rotten Tomatoes, a 70% critic score is all that's needed to get a 'Cerified Fresh' seal for your movie. So how do the Bond film's scores stack up to your average movie rating? Thankfully the superstars over at [FiveThirtyEight](https://fivethirtyeight.com)(538) did an [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) wherein they compared online movie ratings from various sites for 209 titles. I jumped on [GitHub](https://github.com/) to downloaded the [data](https://github.com/fivethirtyeight/data/tree/master/fandango) used in this article so that we could have a look at how the scores of the films 538 analyzed (recently-released titles as of October, 2015) compare with the scores of the Bond Franchise.
 
 ||RT Crit Max|RT Crit Min|RT Crit Mean|RT User Max|RT User Mean|IMDB Max|IMDB Min| IMDB Mean|Mean|
-|---|---|---|---|---|---|---|---|---|---|
-|Bond|96|36|71|89|37|64|80|61|69||96|36|68|
+|---|---|---|---|---|---|---|---|---|---|---|
+|Bond|96|36|71|89|37|64|80|61|69|68|
 |538|100|5|61|94|20|64|86|40|67|64|
 
 So for the 200 titles RT critics gave an average score of 61%, RT users 64% and IMDB 67%, compared to the Bond's average scores of 71%, 64% and 69%, for the respective metrics  (unfortunately  their fourth metric was [Metacritic](http://www.metacritic.com/) instead of our choice, LetterBoxd). Re-calculating the average for the 007 franchise, with only these 3 metrics, we get an average francise score of 68%, compared with the average score of 64% for these 200 titles. So our films 
