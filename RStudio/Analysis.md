@@ -49,11 +49,23 @@ avgs_t<-melt(avgs)
 ```
 ![avg_rating_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/avg_rating_plot.png?raw=TRUE)
 
-The average for all the Bond films, based on the 4 metrics of choice is 71% which translates to a 3.5/5 star rating. This is not a great score, but then again the Bond films aren't necessarily great 'films'. They're B-movies at heart, not high art. What they're going for is a compelling cinematic adventure with an invincible super spy at the helm, and at this they excel. Anyways, back to those ratings.
+The average for all the Bond films, based on the 4 metrics of choice is 71% which translates to a 3.5/5 star rating, or if you prefer to think about this in a scholarly sense (American College scheme), they would recieve a C-, or a 1.67/4.00 GPA. This would *hopefully* not be a great score for an exam but then again, the Bond films aren't necessarily great 'films'. The 007 films are B-movies at heart, comparing them to high-art films is pointless because that's not what they're going for. What they *are* attempting is a compelling cinematic adventure with an invincible super spy at the helm, and at this they excel. 
 
-It seems that Rotten Tomatoe users think lower of these films than users do critics, with the average user rating being 10% less (7 percentage-points less) than the critic ratings. This is an interesting result because in an intuitive sense I expected critics to be more, well, critical of movies than your average Joe Rotten Tomatoe. This theory is reinforced by a FiveThirtyEight [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) where they compare online movie ratings for ~200 titles. In this article Rotten Tomatoes user ratings were on average 19% higher <sup>[1]</sup> than Rotten Tomatoes critic scores. On the other hand, critics probably better understand the place of the James Bond movies while our average theater-goer is keeping their score of Citizen Kane or Lawrence of Arabia in mind when they pencil in their rating for the 007 films.
+Comparing online ratings, which seem to have [inherent problems](http://sloanreview.mit.edu/article/the-problem-with-online-ratings-2/), with university grades is kind of silly, but I think it's worth addressing because as a score/100 it doesn't seem very good to someone  unfarmiliar with online rating systems. For example, on Rotten Tomatoes, a 70% critic scoreis all that's needed to get a 'Certified Fresh' seal on your movie. Going a little further with this using [data](https://github.com/fivethirtyeight/data/tree/master/fandango) from a [FiveThirtyEight article](https://fivethirtyeight.com/features/fandango-movies-ratings/) where they compare online movie ratings for 209 recent titles, we can see our Bond films stack up.
 
-Now let's see how individual films were rated. First let's look at the max and min scores.
+```R
+#I won't bother showing the loading of this data, but the means are taken as follows
+mean(538_film_rate$RottenTomatoes)
+[1] 60.84932
+mean(538_film_rate$RottenTomatoes_User)
+[1] 63.87671
+mean(538_film_rate$IMDB)
+[1] 6.736986
+```
+
+So for the 200 titles RT critics gave an average score of 61%, RT users 64% and IMDB 67%, compared to the Bond's scores of 71%, 64% and 69%, for the respective metrics. Unfortunately  their fourth metric was [Metacritic](http://www.metacritic.com/) instead of our choice, LetterBoxd.Re-calculating the average for the 007 franchise, with only these 3 metrics, we get an average francise score of 68%, compared with the average score of 64% for these 200 titles. We also note that the order of most to least generous metric from 538's analysis is different than ours. One thing that bugs me about the results from the Bond series it that I expected critics to be more, well, critical of movies than your average Joe Rotten Tomatoe, while in reality the average user rating was 10% (7 percentage-points) less than the critic ratings. However, as expected, in the 538 article Rotten Tomatoes user ratings were on average 19% (3 percentage-points) higher than Rotten Tomatoes critic scores <sup>[1]</sup>. It could be that in general critics are more harsh on movies, but they also better understand the place of the James Bond movies, while our average theater-goer is keeping their score of Citizen Kane or Casablanca in mind when they pencil in their rating for the 007 films. 
+
+So now that we've exhausted analyzing the metrics based on their averages, let's look at how they stack up for individual films.
 
 ```R
 #We reshape the 'rate' dataframe to have all the numerical ratings in one column
@@ -174,7 +186,7 @@ We summarize the results in a table:
 |IMDB|19|-13|-0.21|5.5|-4.6|
 |Avg|35.5|-26.4|-0.69|14|-12|
 
-The largest change was a 48 point boost between films, the smallest a -33 point drop, and on average, the films dropped about -0.7 points between films. So overall it appears the films have dropped in quality very slightly. Furhtermore, the max is always larger than the min (in absolute value), the mean>0 is always greater than the mean<0 and yet the overall mean is always negative! This means that there must be more negative changes than positive ones, but that the positive changes are generally larger. We verify this in Appendix B. Interpreting this, we see that generally people think the movies are worse than the last one, but when they think it has improved, they are very enthusiastic about it, giving the new film very high ratings.
+The largest change was a 48 point boost between films, the smallest a -33 point drop, and on average, the films dropped about -0.7 points between films. So overall it appears the films have dropped in quality very slightly. Furthermore, the max is always larger than the min (in absolute value), the mean>0 is always greater than the mean<0 and yet the overall mean is always negative! This means that there must be more negative changes than positive ones, but that the positive changes are generally larger (this is verified in Appendix B). Interpreting this result, we say that generally people think the movies are worse than the last one, but when they think it has improved, they are very enthusiastic about it, giving the new film very high ratings.
 
 Before we graph these results, we add a column of the sign of the change to help visualization the positive/negatrive gain/loss in score
 ```R
@@ -186,7 +198,7 @@ diff_1col$sign<-ifelse(diff_1col$Rating.Change>=0,'positive','negative')
 
 ![chng_rat_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/chng_rat_plot.png?raw=TRUE)
 
-It seems that most of the time, the metrics agree on the sign of the change, i.e. they agree whether the newest film is better/worse than the last one. Let's see how often this is true. We simply check that all four metrics have the same sign.
+We can now see that IMDb truly does fluctuate signficantly less than the other and RT critic changes are mostly very large. Another point of interest is that when the metrics with large variations have big/small changes, the other metrics also have big/small changes relative to their average rating change. This reinforces my presumption that these online rating metrics are all roughly capturing the same sentiment towards movies, just with slightly different audiences and  it seems that the other metrics agree that the difference in quality was small. It seems that most of the time, the metrics agree on the sign of the change, i.e. they agree whether the newest film is better/worse than the last one. Let's see how often this is true. We simply check that all four metrics have the same sign.
 
 ```R
 diff$sign_chng<-ifelse(sign(diff$RT.Crit)==sign(diff$RT.User)&sign(diff$RT.User)==sign(diff$LetterBoxd)&sign(diff$LetterBoxd)==sign(diff$IMDB),1,0)
