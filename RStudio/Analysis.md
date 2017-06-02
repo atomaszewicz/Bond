@@ -2,13 +2,7 @@
 
 ## Set up
 
-To begin we open RStudio, and change our directory to that which contains the James Bond data.
-
-```R
-setwd("C:/Users/Alex/Documents/Data/Movies/Franchise/Bond")
-```
-
-Then we load a package to handle Excel files (since I saved my cleaned-up Exif CSV as an Excel ".xlsx" file), our favorite graph creating package and a tool to reshape our data.
+We begin by loading a package to handle Excel files (since I saved my cleaned-up Exif CSV as an Excel ".xlsx" file), our favorite graph creating package and a tool to reshape our data.
 ```R
 install.packages("xlsx") 
 install.packages("ggplot2")
@@ -18,7 +12,7 @@ require("ggplot2")
 require("reshape2")
 ```
 
-At this point, I have already scraped the data from the individual pages into an [excel spreadsheet](https://github.com/atomaszewicz/Bond/blob/master/Data/jb_raw.xlsx). You can read more about the sources of this data, you can look at the [Data folder](https://github.com/atomaszewicz/Bond/tree/master/Data) or the [README](https://github.com/atomaszewicz/Bond/blob/master/Data/README.md) in the Data folder.
+At this point, I have already scraped the data from the individual pages into an [excel spreadsheet](https://github.com/atomaszewicz/Bond/blob/master/Data/jb_raw.xlsx). To read more about the sources of this data, you can look at the [Data folder](https://github.com/atomaszewicz/Bond/tree/master/Data) or the [README](https://github.com/atomaszewicz/Bond/blob/master/Data/README.md) in the Data folder.
 
 We now bring this data into RStudio, creating seperate variables for the seperate pages of the excel spreadsheet:
 
@@ -29,12 +23,16 @@ numb<-read.xlsx("jb_clean.xlsx",2)
 rate<-read.xlsx("jb_clean.xlsx",3)
 ```
 
-*Note: Before we begin I must acknowledge a typo that was found at about the halway point in the project, at the end of the Rating section (thanks for spotting it Brad). The actor of the film "On Her Majesty's Secret Service" is named "George Lazenby", not "George Lazen" as I erronously typed it. This error remains in the Rating section, but has been fixed for the Box Office sections and beyond. I apologize for any confusion.*
+*Note: Before we begin I must acknowledge a typo that was found at the end of the Rating section (thanks for spotting it Brad). The actor of the film "On Her Majesty's Secret Service" is named "George Lazenby", not "George Lazen" as I erronously typed it. This typo remains in the Rating section, but has been fixed for the Box Office sections and beyond. I apologize for any confusion.*
 
 ## Ratings
 
+Let's take a look at the online ratings first. The 4 metrics we used are Rotten Tomatoes (RT) critic scores, RT user scores, LetterBoxd user scores and IMDb user scores. These were chosen because they had ratings for all of the films in the franchise and because of their popularity (all the user-based ones have ~>10,000 votes per Bond film). Each user-rating site has their own method to aggregate the users scores into a single number, which help fight bots and spammers, but they also tend to rate different types movies differently. With that in mind, let's take a look at how the different metrics score the Bond films differently.
+
+
 ### Metrics
-First let's look at how the different sites average ratings relate.
+
+First let's look at how the different metrics rated the Bond franchise on average.
 
 ```R
 #We make variables for each rating type, as well as the average of the 4, then make a table of the values
@@ -42,7 +40,7 @@ First let's look at how the different sites average ratings relate.
 avg_all<-mean(mean(rate$RT.Crit),mean(rate$RT.User),mean(rate$LetterBoxd),mean(rate$IMDB))
 avgs<-data.frame(RT.Crit=(mean(rate$RT.Crit)),RT.User=(mean(rate$RT.User)),LetterBoxd=(mean(rate$LetterBoxd)),IMDB=(mean(rate$IMDB)),Avg.All=(avg_all))
 ```
-We wish to visualize this, but first we must transform our data frame using the 'melt()' function from the reshape 2 library
+Tables are boring, let's visualize this. To do this we must transform our data frame using the 'melt()' function from the reshape 2 library.
 
 ```R
 avgs_t<-melt(avgs)
