@@ -55,11 +55,11 @@ Comparing online ratings, which seem to have [inherent problems](http://sloanrev
 
 ```R
 #I won't bother showing the loading of this data, but the means are taken as follows
-mean(538_film_rate$RottenTomatoes)
+mean(fivethirty_film_rate$RottenTomatoes)
 [1] 60.84932
-mean(538_film_rate$RottenTomatoes_User)
+mean(fivethirty_film_rate$RottenTomatoes_User)
 [1] 63.87671
-mean(538_film_rate$IMDB)
+mean(fivethirty_film_rate$IMDB)
 [1] 6.736986
 ```
 
