@@ -47,21 +47,18 @@ avgs_t<-melt(avgs)
 ```
 ![avg_rating_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/avg_rating_plot.png?raw=TRUE)
 
-The average for all the Bond films, based on the 4 metrics of choice is 71% which translates to a 3.5/5 star rating, or if you prefer to think about this in a scholarly sense (American College scheme), they would recieve a C-, or a 1.67/4.00 GPA. This would *hopefully* not be a great score for an exam but then again, the Bond films aren't necessarily great 'films'. The 007 films are B-movies at heart, comparing them to high-art films is pointless because that's not what they're going for. What they *are* attempting is a compelling cinematic adventure with an invincible super spy at the helm, and at this they excel. 
+The average for all the Bond films, based on the 4 metrics of choice is 71% which translates to a 3.5/5 star rating. This isn't an impressive score, but the Bond franchise aren't really *great* films. They are B-movies at heart, so comparing them to high-art films is pointless since that's not what they're going for. What they *are* attempting is a compelling cinematic adventure with an invincible, globe-trotting, babe-charming super spy at the helm, and at this I believe they excel. 
 
-Comparing online ratings, which seem to have [inherent problems](http://sloanreview.mit.edu/article/the-problem-with-online-ratings-2/), with university grades is kind of silly, but I think it's worth addressing because as a score/100 it doesn't seem very good to someone  unfarmiliar with online rating systems. For example, on Rotten Tomatoes, a 70% critic scoreis all that's needed to get a 'Certified Fresh' seal on your movie. Going a little further with this using [data](https://github.com/fivethirtyeight/data/tree/master/fandango) from a [FiveThirtyEight article](https://fivethirtyeight.com/features/fandango-movies-ratings/) where they compare online movie ratings for 209 recent titles, we can see our Bond films stack up.
+Then again, even if 71% doesn't seem that amazing, on Rotten Tomatoes, a 70% critic score is all that's needed to get a 'Cerified Fresh' seal for your movie. So how do the Bond film's scores stack up to your average movie rating? Thankfully the superstars over at [FiveThirtyEight](https://fivethirtyeight.com) did an [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) wherein they compared online movie ratings from various sites for 209 titles. I jumped on [GitHub](https://github.com/) to downloaded their [data](https://github.com/fivethirtyeight/data/tree/master/fandango), so that we could have a look at how the scores of the films they analyzed (recently-released titles in October, 2015) compare with the scores of the Bond Franchise.
 
-```R
-#I won't bother showing the loading of this data, but the means are taken as follows
-mean(fivethirty_film_rate$RottenTomatoes)
-[1] 60.84932
-mean(fivethirty_film_rate$RottenTomatoes_User)
-[1] 63.87671
-mean(fivethirty_film_rate$IMDB)
-[1] 6.736986
-```
+||RT Crit Max|RT Crit Min|RT Crit Mean|RT User Max|RT User Mean|IMDB Max|IMDB Min| IMDB Mean|
+|---|---|---|---|---|---|---|---|---|
+|Bond|96|36|71|89|37|64|80|61|69|
+|538|100|5|61|94|20|64|86|40|67|
 
-So for the 200 titles RT critics gave an average score of 61%, RT users 64% and IMDB 67%, compared to the Bond's scores of 71%, 64% and 69%, for the respective metrics. Unfortunately  their fourth metric was [Metacritic](http://www.metacritic.com/) instead of our choice, LetterBoxd.Re-calculating the average for the 007 franchise, with only these 3 metrics, we get an average francise score of 68%, compared with the average score of 64% for these 200 titles. We also note that the order of most to least generous metric from 538's analysis is different than ours. One thing that bugs me about the results from the Bond series it that I expected critics to be more, well, critical of movies than your average Joe Rotten Tomatoe, while in reality the average user rating was 10% (7 percentage-points) less than the critic ratings. However, as expected, in the 538 article Rotten Tomatoes user ratings were on average 19% (3 percentage-points) higher than Rotten Tomatoes critic scores <sup>[1]</sup>. It could be that in general critics are more harsh on movies, but they also better understand the place of the James Bond movies, while our average theater-goer is keeping their score of Citizen Kane or Casablanca in mind when they pencil in their rating for the 007 films. 
+So for the 200 titles RT critics gave an average score of 61%, RT users 64% and IMDB 67%, compared to the Bond's average scores of 71%, 64% and 69%, for the respective metrics  (unfortunately  their fourth metric was [Metacritic](http://www.metacritic.com/) instead of our choice, LetterBoxd). Re-calculating the average for the 007 franchise, with only these 3 metrics, we get an average francise score of 68%, compared with the average score of 64% for these 200 titles. So our films 
+
+We also note that the order of most to least generous metric from 538's analysis is different than ours. One thing that bugs me about the results from the Bond series it that I expected critics to be more, well, critical of movies than your average Joe Rotten Tomatoe, while in reality the average user rating was 10% (7 percentage-points) less than the critic ratings. However, as expected, in the 538 article Rotten Tomatoes user ratings were on average 19% (3 percentage-points) higher than Rotten Tomatoes critic scores <sup>[1]</sup>. It could be that in general critics are more harsh on movies, but they also better understand the place of the James Bond movies, while our average theater-goer is keeping their score of Citizen Kane or Casablanca in mind when they pencil in their rating for the 007 films. 
 
 So now that we've exhausted analyzing the metrics based on their averages, let's look at how they stack up for individual films.
 
