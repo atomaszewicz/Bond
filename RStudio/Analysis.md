@@ -47,16 +47,16 @@ avgs_t<-melt(avgs)
 ```
 ![avg_rating_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/avg_rating_plot.png?raw=TRUE)
 
-The average for all the Bond films, based on the 4 metrics of choice is 71% which translates to a 3.5/5 star rating. This isn't an impressive score, but the Bond franchise aren't really *great* films. They are B-movies at heart, so comparing them to high-art films is pointless since that's not what they're going for. What they *are* attempting is a compelling cinematic adventure with an invincible, globe-trotting, babe-charming super spy at the helm, and at this I believe they excel. 
+The average for all the Bond films, based on the 4 metrics of choice is 71% which translates to a 3.5/5 star rating. This isn't an impressive score, but the Bond franchise aren't really *great* films. They are B-movies at heart, so comparing them to high-art films is pointless since that's not what they're going for. What they *are* attempting is a compelling cinematic adventure with an invincible, globe-trotting, babe-charming super spy at the helm, and at this I believe they excel. Then again, even if 71% doesn't seem that amazing, on Rotten Tomatoes, a 70% critic score is all that's needed to get a 'Cerified Fresh' seal for your movie. 
 
-Then again, even if 71% doesn't seem that amazing, on Rotten Tomatoes, a 70% critic score is all that's needed to get a 'Cerified Fresh' seal for your movie. So how do the Bond film's scores stack up to your average movie rating? Thankfully the superstars over at [FiveThirtyEight](https://fivethirtyeight.com) (538) did an [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) wherein they compared online movie ratings from various sites for 209 titles. I jumped on [GitHub](https://github.com/) to downloaded the [data](https://github.com/fivethirtyeight/data/tree/master/fandango) used in this article so that we could have a look at how the scores of the films 538 analyzed (recently-released titles as of October, 2015) compare with the scores of the Bond Franchise. Let's make a table of the max/min/mean of the metrics (unfortunately their fourth metric was [Metacritic](http://www.metacritic.com/) instead of our choice, LetterBoxd).
+So how do the Bond film's scores stack up to your average movie rating? Thankfully the superstars over at [FiveThirtyEight](https://fivethirtyeight.com) (538) did an [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) wherein they compared online movie ratings from various sites for 209 titles. I jumped on [GitHub](https://github.com/) to downloaded the [data](https://github.com/fivethirtyeight/data/tree/master/fandango) used in this article to study how the scores of the films 538 analyzed (recently-released titles as of October, 2015) compare with the scores of the Bond Franchise. Let's make a table of the max/min/mean of the overlapping metrics (unfortunately their fourth metric was [Metacritic](http://www.metacritic.com/) instead of our choice, LetterBoxd <sup>[11]</sup>).
 
 ||RT Crit Max|RT Crit Min|RT Crit Mean|RT User Max|RT User Min|RT User Mean|IMDB Max|IMDB Min| IMDB Mean|Mean|
 |---|---|---|---|---|---|---|---|---|---|---|
 |Bond|96|36|71|89|37|64|80|61|69|68|
 |538|100|5|61|94|20|64|86|40|67|64|
 
-The first thing I noticed was that the maxes and means are mostly comparable, while the mins are much lower for the 538 analysis of average releases. So it seems that no Bond movies bombed, critically, as hard as the worst movies of 2015. This is not that significant a result, Bond films are a well-established blockbuster franchise (read as: people know what to expect) with a large appeal so it should be no surprise that they never get rock-bottom ratings.
+The max scores are higher for the 538 analysis, while the mean and min scores are higher for the Bond films. So it seems that the Bond movies are slightly better than average, but never rocked nor stunk-up the theatre. This is not a surprising result, since the Bond films are a well-established blockbuster franchise there's a lot of time and effort put into the movies to make them good, and since it is so well known, people uninterested in the series will watch something else.
 
 One thing that buged me about the results from the Bond series it that I expected critics to be more, well, critical of movies than your average Joe Rotten Tomatoe, while in reality the average user rating was 10% (7 percentage-points) less than the critic ratings. However, as expected, in the 538 article Rotten Tomatoes user ratings were on average 19% (3 percentage-points) higher than Rotten Tomatoes critic scores <sup>[1]</sup>. It could be that critics are harsher on movies in general but they understand the place of the James Bond movies. So while the average theater-goer is keeping their score of Citizen Kane or Casablanca in mind when they pencil in their rating for the 007 films, critics understand that the Bond franchise should be judged for what it is going for.
 
@@ -361,7 +361,7 @@ max(bond_rate$IMDB)-min(bond_rate$IMDB)
 ```
 
 <sup>[3]</sup>:
-I say this partly in jest, but Timiothy Dalton, originally offered the role in "Oh Her Majesty's Secret Service" in 1968, turned it down because "Originally I did not want to take over from Sean Connery. He was far too good, he was wonderful. [...] When you've seen Bond from the beginning, you don't take over from Sean Connery." Source (https://www.youtube.com/watch?v=amuodiP-8z4)
+I say this partly in jest, but Timiothy Dalton, originally offered the role in "Oh Her Majesty's Secret Service" in 1968, turned it down because "Originally I did not want to take over from Sean Connery. He was far too good, he was wonderful. [...] When you've seen Bond from the beginning, you don't take over from Sean Connery." Source (https://www.youtube.com/watch?v=amuodiP-8z4) *This link has been taken down since I posted it. Sadly I cannot find a working version*
 
 <sup>[4]</sup>:
 I have a future project planned to study how domestic (US) and global gross compares for your typical wide-release film, so eventually I will be able to give more insight into where this ratio falls
@@ -369,21 +369,28 @@ I have a future project planned to study how domestic (US) and global gross comp
 <sup>[5]</sup>: 
 This can be found [here](http://www.boxofficemojo.com/franchises/?view=Franchise&sort=sumgross&order=DESC&p=.htm) but requires the same process of finding the global gross adjusted for inflation from the domestic adjusted and global unadjusted. It is a tiresome exercise, and I don't wish to repeat it here.
 
-<sup>[6]</sup>
+<sup>[6]</sup>:
 [Source](http://www.bbfc.co.uk/releases/licence-kill)
 
-<sup>[7]</sup>
+<sup>[7]</sup>:
 [Secondary souce](https://www.theguardian.com/film/2008/aug/21/1)
 
-<sup>[8]</sup>
+<sup>[8]</sup>:
 Source: Rubin, Steven Jay (1995). The Complete James Bond Movie Encyclopedia (Revised ed.). McGraw-Hill/Contemporary Books. ISBN 0-8092-3268-5.
 
-<sup>[9]</sup>
+<sup>[9]</sup>:
 [Source](https://en.wikipedia.org/wiki/List_of_most_expensive_films#Record-holders) is a wikipedia table of record holders over time in the film industry. Please note that this is not adjusted for inflation.
 
-<sup>[10]</sup>
+<sup>[10]</sup>:
 [Source](http://www.pajiba.com/seriously_random_lists/percentagewise-the-20-most-profitable-movies-of-all-time.php). This page shows top 20 most profitable movies.
 
+<sup>[11]</sup>:
+I briefly looked at the LetterBoxd and Metacritic for the Bond and 538 analysis, respectively, but they were so different I thought it was best to simply ignore them for that analysis. Here is the max/min/mean for the two
+
+||Mean|Max|Min|
+|---|---|---|---|
+|LetterBoxd|79.1|97.5|57.5|
+|Metacritic|59|94|13|
 
 
 # Plot Code
