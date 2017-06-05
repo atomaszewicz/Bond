@@ -108,7 +108,7 @@ colnames(rate_1col)[c(4,5)]<-c("Metric","Rating")
 ```
 ![rate_metricbond](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/rate_metricbond.png?raw=TRUE)
  
-The ratings jump up and down to various degrees, but as we saw with the average of each metric, LetterBoxd scores are generally highest and RT User the lowest. The ratings obviously fluctuate from film to film, but they also seem to be affected by the Bond actor. These two topics will be the focus of our next two sections, and in Appendix A we briefly study how the LetterBoxd scores are almost always the highest.
+The ratings jump up and down to various degrees, but as we saw with the average of each metric, LetterBoxd scores are generally highest and RT User the lowest. Studying how the ratings fluctuate between bond actors and how the different metrics change from film to film could unlock a lot about the evolution of the Bond series as well as inform about differences and similarities between our metrics. These two topics will be the focus of our next two sections, and in Appendix A we briefly study how much higher the LetterBoxd scores are than the others. 
 
 ### Bond Actor
 
