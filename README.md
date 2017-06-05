@@ -23,6 +23,12 @@ Intuitively I expected Rotten Tomatoes Users to rate the films more highly, but 
 
 
 
+
+
+This isn't an impressive score, but the Bond franchise aren't really *great* films. They're not attempting to high-art cinema, they are B-movies at heart. They strive for a compelling cinematic adventure with an invincible, globe-trotting, babe-charming super spy at the helm, not high-art cinema. and at this I believe they excel, not really . Then again, even if 71% doesn't seem that amazing, on Rotten Tomatoes a 70% critic score is all that's needed to get a 'Cerified Fresh' seal for your movie. 
+
+
+
 # Improvements
 One thing missing from this analysis is the amount paid to an actor for a given film. That is because this info is missing for many films and when it is there, it is rather complicated as some actors recieved just a paycheck while some recieved a percentage of net merch or film gross. 
 
