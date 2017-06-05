@@ -60,11 +60,9 @@ I jumped on [GitHub](https://github.com/) and downloaded the [data](https://gith
 
 From this table we see that the max scores are higher for the '538' analysis, while the mean and min scores are higher for the Bond films. Based on this, the Bond movies are above average, but have never thoroughly rocked nor stunk-up the theatre (or home theatre). Being such a long running blockbuster franchise, there is a lot of time, effort, care and **money** put into making a Bond film above average but since they're fairly formulaic, it is harder to 'WOW' the audience into a 100% score or dissapoint them into a 5% rating. In contrast to this, expectations for 'new' movies (i.e. those in the '538' data) can cause them to be anywhere from underground sleeper hits, to tremendous big-budget flops.
 
-One thing that bugged me about the results from the Bond series it that I expected critics to be more, well, critical of movies than your average Joe Rotten Tomatoe, while in reality the average user rating was 10% (7 percentage-points) less than the critic ratings. However, as expected, in the '538' article Rotten Tomatoes user ratings were on average 19% (3 percentage-points) higher than Rotten Tomatoes critic scores <sup>[1]</sup>. It could be that critics are harsher on movies in general but they understand the place of the James Bond movies. So while the average theater-goer is keeping their score of Citizen Kane or Casablanca in mind when they pencil in their rating for the 007 films, critics understand that the Bond franchise should be judged for what it is going for.
+One thing that bugged me about the results from the Bond series it that I expected critics's scores to be more, well, critical of movies than that of your average Joe Rotten Tomatoe. The average RT user rating for the Bond films was 10% (7 percentage-points) less than the critic ratings, while the results from the '538' article pegged user ratings 19% (3 percentage-points) higher than critic scores <sup>[1]</sup>. It could be that critics are more harsh on movies in general but they understand the place of the James Bond movies. So while the average theater-goer is keeping their score of Citizen Kane or Casablanca in mind when they pencil in their rating for the 007 films, critics understand that the Bond franchise should be judged for what it is: B-movies about a globe-trotting, babe-charming super spy, not exaclty high-art.
 
-
-
-So now that we've exhausted analyzing the metrics based on their averages, let's look at how they stack up for individual films.
+So now that we've looked at how the franchise ranks on average, and how that average compares to other films, let's look at the ratings of specific films in the series.
 
 ```R
 #We reshape the 'rate' dataframe to have all the numerical ratings in one column
@@ -79,11 +77,12 @@ rate1_col[which.min(rate_1col$Rating),]
 [1]               Title  Metric Rating
 [1] 15 A View to a Kill RT.Crit     36
 ```
-The minimum score of all 4 metrics is 36/100 from Rotten Tomatoes critics for the Bond film "A View to a Kill", which marks Roger Moore's last outing as Agent 007 (at the ripe old age of 57), and the maximum score is 97.5 from LetterBoxd for "Casino Royale" Daniel Craig's first film in the series. We will see later how an actor's last and first film are generally rated, but for now we can imagine Moore's and Craig's performance were due to their age and exictment with the role.
 
-It is not surprising that LetterBoxd claims the highest rated film since it has the highest average rating of 79/100, almost 12 percentage-points higher than the average of our 4 metrics. Yet, While on average RT critic score was the second highest rating (71) among our 4 metrics, we see that it claims the lowest score: a mere 36.
+The lowest score given out to a Bond film is 36/100 from Rotten Tomatoes critics for the film "A View to a Kill", which marks Roger Moore's last outing as Agent 007 (at the ripe old age of 57). The maximum score is 97.5 from LetterBoxd for "Casino Royale", Daniel Craig's first film in the series. We will investigate later how an actor's last and first film are generally rated, but for now we can imagine Moore's and Craig's performance were due to their age and exictment with the role.
 
-Ok so these two films had extreme ratings in these two metrics, but do the other metrics agree? 
+It is not surprising that LetterBoxd claims the highest rated film since it has the highest average rating of 79/100, which is almost 12 percentage-points higher than the average of our 4 metrics. Yet while RT critic score was the second highest average rating among our 4 metrics, 71/100, we see that it claims the lowest score: a mere 36.
+
+So these two films had very extreme ratings in one metric, but how do the other metrics rate the movies?
 
 ```R
 rate[which.max(rate$Avg.All),]
@@ -95,9 +94,9 @@ rate[which.min(rate$Avg.All),]
 [1] 15      36      41       67.5   63   51.875 A View to a Kill
 ```
 
-An unsuprising result, the films with the highest and lowest average scores are also the ones with the highest and lowest individual ratings. Since it's only an average over 4 the high/low rating will drag up/down the rating significantly, not to mention that each individual rating is presumably a trustworthy metric on the quality of the film. 
+An unsuprising result, the films with the highest and lowest individual ratings are also the ones with the highest and lowest average scores. Since it's only an average over 4, the extreme scores will drag up/down the average significantly, not to mention that each metric is presumably a trustworthy gauge of the quality in and of itself.
 
-Let's visualize how our 4 metrics change over time. 
+The extremes obviously don't tell the whole story, so next let's look at all the scores from the 4 metrics. To help visuzalie we'll add make the points different shapes for each Bond.
 
 ```R
 First we must add a 'date' and 'bond' column to our data
@@ -109,7 +108,7 @@ colnames(rate_1col)[c(4,5)]<-c("Metric","Rating")
 ```
 ![rate_metricbond](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/rate_metricbond.png?raw=TRUE)
  
-The ratings jump up and down to various degrees, but as we saw with the average of each metric LetterBoxd scores are generally highest and RT User are generally lowest. We also note that between different eras of Bond (read as: Actors) the ratings change significantly, but also from film to film the scores fluctuate. These two topics will be the focus of our next two sections, and in Appendix A we briefly study how the LetterBoxd scores are almost always the highest.
+The ratings jump up and down to various degrees, but as we saw with the average of each metric, LetterBoxd scores are generally highest and RT User the lowest. The ratings obviously fluctuate from film to film, but they also seem to be affected by the Bond actor. These two topics will be the focus of our next two sections, and in Appendix A we briefly study how the LetterBoxd scores are almost always the highest.
 
 ### Bond Actor
 
