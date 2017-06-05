@@ -51,7 +51,7 @@ avgs_t<-melt(avgs)
 
 The average for all the Bond films, based on the 4 metrics of choice is 71%, this translates to a 3.5/5 star rating. Is this a good score? A 70% critic score on Rotten Tomatoes is all that's needed to get a 'Certified Fresh' seal for your movie. How about the other metrics? Thankfully the superstars over at [FiveThirtyEight](https://fivethirtyeight.com) ('538') did an [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) wherein they compared online movie ratings from various sites for 209 titles <sup> [12] </sup>. 
 
-I jumped on [GitHub](https://github.com/) and downloaded the [data](https://github.com/fivethirtyeight/data/tree/master/fandango) used in this article. We now study how the scores of the films analyzed by '538' compare with the scores of the Bond Franchise, to get a grasp on how Bond films stack up. Let's make a table of the max/min/mean of the overlapping metrics (unfortunately their fourth metric was [Metacritic](http://www.metacritic.com/) instead of our choice LetterBoxd <sup>[11]</sup>).
+I jumped on [GitHub](https://github.com/) and downloaded the [data](https://github.com/fivethirtyeight/data/tree/master/fandango) used in this article. We now study how the scores of the films analyzed by '538' compare with the scores of the Bond Franchise, to get a grasp on how Bond films stack up. Let's make a table of maxes, mins and means for the overlapping metrics (unfortunately their fourth metric was [Metacritic](http://www.metacritic.com/) instead of our choice LetterBoxd <sup>[11]</sup>).
 
 ||RT Crit Max|RT Crit Min|RT Crit Mean|RT User Max|RT User Min|RT User Mean|IMDB Max|IMDB Min|IMDB Mean|Net Mean|
 |---|---|---|---|---|---|---|---|---|---|---|
