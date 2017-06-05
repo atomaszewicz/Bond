@@ -2,7 +2,9 @@
 
 ## Set up
 
-We begin by loading a package to handle Excel files (since I saved my cleaned-up Exif CSV as an Excel ".xlsx" file), our favorite graph creating package and a tool to reshape our data.
+Since I saved my cleaned-up Exif CSV as an Excel ".xlsx" file we load a package to bring Excel files into RStudio, another packgage to reshape data and , our favorite plotting package.
+
+
 ```R
 install.packages("xlsx") 
 install.packages("ggplot2")
@@ -12,9 +14,9 @@ require("ggplot2")
 require("reshape2")
 ```
 
-At this point, I have already scraped the data from the individual pages into an [excel spreadsheet](https://github.com/atomaszewicz/Bond/blob/master/Data/jb_raw.xlsx). To read more about the sources of this data, you can look at the [Data folder](https://github.com/atomaszewicz/Bond/tree/master/Data) or the [README](https://github.com/atomaszewicz/Bond/blob/master/Data/README.md) in the Data folder.
+The data from our online rating sites, and our two box office figure websites all have their own page in our[excel spreadsheet](https://github.com/atomaszewicz/Bond/blob/master/Data/jb_raw.xlsx). To read more about the sources of this data, you can look at the [Data folder](https://github.com/atomaszewicz/Bond/tree/master/Data) or the [README](https://github.com/atomaszewicz/Bond/blob/master/Data/README.md) in the Data folder.
 
-We now bring this data into RStudio, creating seperate variables for the seperate pages of the excel spreadsheet:
+We now bring this data into RStudio, creating seperate data frames for the seperate pages of the excel spreadsheet:
 
 ```R
 #We make data frames with the data from: Box Office Mojo (bom), The Numbers (numb), and the rating websites (rate)
@@ -27,7 +29,7 @@ rate<-read.xlsx("jb_clean.xlsx",3)
 
 ## Ratings
 
-Let's take a look at the online ratings first. The 4 metrics we used are Rotten Tomatoes (RT) critic scores, RT user scores, LetterBoxd user scores and IMDb user scores. These were chosen because they had ratings for all of the films in the franchise and because of their popularity (all the user-based ones have ~>10,000 votes per Bond film). Each user-rating site has their own method to aggregate the users scores into a single number, which help fight bots and spammers, but they also tend to rate different types movies differently. With that in mind, let's take a look at how the different metrics score the Bond films differently.
+Let's take a look at the online ratings first. The 4 metrics we used are Rotten Tomatoes (RT) critic scores, RT user scores, LetterBoxd user scores and IMDb user scores. These were chosen because they had ratings for all of the films in the franchise and because of their popularity (all the user-based ones have ⪆10,000 votes per Bond film). Each user-rating site has their own method to aggregate the users scores into a single number, which help fight bots and spammers, but they also tend to rate different types movies differently. With that in mind, let's take a look at how the different metrics score the Bond films differently.
 
 
 ### Metrics
@@ -47,18 +49,20 @@ avgs_t<-melt(avgs)
 ```
 ![avg_rating_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/avg_rating_plot.png?raw=TRUE)
 
-The average for all the Bond films, based on the 4 metrics of choice is 71% which translates to a 3.5/5 star rating. This isn't an impressive score, but the Bond franchise aren't really *great* films. They are B-movies at heart, so comparing them to high-art films is pointless since that's not what they're going for. What they *are* attempting is a compelling cinematic adventure with an invincible, globe-trotting, babe-charming super spy at the helm, and at this I believe they excel. Then again, even if 71% doesn't seem that amazing on Rotten Tomatoes a 70% critic score is all that's needed to get a 'Cerified Fresh' seal for your movie. 
+The average for all the Bond films, based on the 4 metrics of choice is 71%, this translates to a 3.5/5 star rating. Is this a good score? A 70% critic score on Rotten Tomatoes is all that's needed to get a 'Certified Fresh' seal for your movie. How about the other metrics? Thankfully the superstars over at [FiveThirtyEight](https://fivethirtyeight.com) ('538') did an [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) wherein they compared online movie ratings from various sites for 209 titles <sup> [12] </sup>. 
 
-So how do the Bond film's scores stack up to your average movie rating? Thankfully the superstars over at [FiveThirtyEight](https://fivethirtyeight.com) ('538') did an [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) wherein they compared online movie ratings from various sites for 209 titles <sup> [12] </sup>. I jumped on [GitHub](https://github.com/) to downloaded the [data](https://github.com/fivethirtyeight/data/tree/master/fandango) used in this article to study how the scores of the films analyzed by '538' compare with the scores of the Bond Franchise. Let's make a table of the max/min/mean of the overlapping metrics (unfortunately their fourth metric was [Metacritic](http://www.metacritic.com/) instead of our choice, LetterBoxd <sup>[11]</sup>).
+I jumped on [GitHub](https://github.com/) and downloaded the [data](https://github.com/fivethirtyeight/data/tree/master/fandango) used in this article. We will now study how the scores of the films analyzed by '538' compare with the scores of the Bond Franchise, to get a grasp on how Bond films stack up. Let's make a table of the max/min/mean of the overlapping metrics (unfortunately their fourth metric was [Metacritic](http://www.metacritic.com/) instead of our choice, LetterBoxd <sup>[11]</sup>).
 
 ||RT Crit Max|RT Crit Min|RT Crit Mean|RT User Max|RT User Min|RT User Mean|IMDB Max|IMDB Min| IMDB Mean|Mean|
 |---|---|---|---|---|---|---|---|---|---|---|
 |Bond|96|36|71|89|37|64|80|61|69|68|
 |'538'|100|5|61|94|20|64|86|40|67|64|
 
-From this table we see that the max scores are higher for the '538' analysis, while the mean and min scores are higher for the Bond films. So based on this, the Bond movies are slightly above average, but have never thoroughly rocked nor stunk-up the theatre (or home theatre). These results are fairly straightforward in my mind: being a long-running, blockbuster franchise, there is a lot of time, effort, care and **money** put into making a Bond film above average, then since they're formulaic it is harder to 'Wow' the audince into a 100% score, and lastly being such a well known series, those uninterested in it will watch something else, which keeps the scores from rock bottom. In contrast, new movies (i.e. those looked at in the '538' data) can be anywhere from underground sleeper hits, to tremendous big-budget flops.
+From this table we see that the max scores are higher for the '538' analysis, while the mean and min scores are higher for the Bond films. So based on this, the Bond movies are slightly above average, but have never thoroughly rocked nor stunk-up the theatre (or home theatre). These results are fairly straightforward in my mind: being a long-running, blockbuster franchise, there is a lot of time, effort, care and **money** put into making a Bond film above average. This result could also be amplified by two other effects: since they're formulaic it is harder to 'Wow' the audince into a 100% score, and lastly being such a well known series, those uninterested in it will watch something else, which keeps the scores from rock bottom. In contrast to these latger points, new movies (i.e. those in the '538' data) can be anywhere from underground sleeper hits, to tremendous big-budget flops.
 
 One thing that buged me about the results from the Bond series it that I expected critics to be more, well, critical of movies than your average Joe Rotten Tomatoe, while in reality the average user rating was 10% (7 percentage-points) less than the critic ratings. However, as expected, in the '538' article Rotten Tomatoes user ratings were on average 19% (3 percentage-points) higher than Rotten Tomatoes critic scores <sup>[1]</sup>. It could be that critics are harsher on movies in general but they understand the place of the James Bond movies. So while the average theater-goer is keeping their score of Citizen Kane or Casablanca in mind when they pencil in their rating for the 007 films, critics understand that the Bond franchise should be judged for what it is going for.
+
+This isn't an impressive score, but the Bond franchise aren't really *great* films. They're not attempting to high-art cinema, they are B-movies at heart. They strive for a compelling cinematic adventure with an invincible, globe-trotting, babe-charming super spy at the helm, not high-art cinema. and at this I believe they excel, not really . Then again, even if 71% doesn't seem that amazing, on Rotten Tomatoes a 70% critic score is all that's needed to get a 'Cerified Fresh' seal for your movie. 
 
 So now that we've exhausted analyzing the metrics based on their averages, let's look at how they stack up for individual films.
 
