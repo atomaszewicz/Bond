@@ -96,7 +96,7 @@ rate[which.min(rate$Avg.All),]
 
 An unsuprising result, the films with the highest and lowest individual ratings are also the ones with the highest and lowest average scores. Since it's only an average over 4, the extreme scores will drag up/down the average significantly, not to mention that each metric is presumably a trustworthy gauge of the quality in and of itself.
 
-The extremes obviously don't tell the whole story, so next let's look at all the scores from the 4 metrics. To help visuzalie we'll add make the points different shapes for each Bond.
+The extremes obviously don't tell the whole story, so let's look at all the scores in between. Let's make a point-and-line plot to see how the metrics changed over time.
 
 ```R
 First we must add a 'date' and 'bond' column to our data
@@ -112,11 +112,12 @@ The ratings jump up and down to various degrees, but as we saw with the average 
 
 ### Bond Actor
 
-We wish to examine how each Bond Actor was scored on average.
+First order of business is to compare Bond actors in the most straightforward way possible: by comparing their average scores. 
 
 ```R
-#First we create a vector of the names and a blank data frame to store our average by bond and by metric
+#First we create a vector of the names
 names<-c("Sean Connery","George Lazen","Roger Moore","Timothy Dalton","Pierce Brosnan","Daniel Craig")
+#Now we create a blank data frame to fill up with the averages of the metrics based on Bond actor
 bond_rate<-data.frame()
 #Fill up the data frame with the names and averages with a loop and fix the column names
 for(i in 1:6){
@@ -133,17 +134,17 @@ bond_rate$Bond<-factor(bond_rate$Bond,levels=c("Sean Connery","George Lazen","Ro
 #Then we transform our data frame
 bond_rate1<-melt(bond_rate,id=c("Bond","Avg.All"))
 ```
-Let's jump right into a plot of this.
+
 
 ![actor_avg_metric](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/actor_avg_metric.png?raw=TRUE)
 
-So the newest actor to adorn the 007 tuxedo, Daniel Craig, is on average the most highly rated, and Sean Connery, he who first broke in the tux, is the second highest. Suprisingly, with only 1 film in the franchise, George Lazen takes the third spot. Brosnan edges out Moore by a third of a point to get last place, while Dalton hovers almost exaclty in the middle.
+So the most recent actor to wear the 007 tux, Daniel Craig, is the most highly rated with an average score of 78/100, and Sean Connery, the Bond that broke in the penguin suit, is the second highest at 76. With only 1 film in the franchise, it was surprising that George Lazen takes the third spot with 75. As we briefly saw earlier and will see again soon fatigue with the character seems to affect the ratings, which might have worked in George Lazen's favour. Brosnan (63.6) just edges out Moore (63.8) to get last place, and Dalton hovers near the franchise average with a 71 rating.
 
-As before LetterBoxd scores are always the highest, and Rotten Tomatoes users are very critical of the Bond films. We also see that again some metric's averages are drasticaly different between Bonds, while some barely change at all (at the two extremes, the range of RT critic's range of averages across Bonds is 25 points, and IMDb's is 8 <sup> [2] </sup>). In the next section we study how the metrics change from film to film, to get a better grasp on how the series has evolved over the years.
+As before, LetterBoxd scores are the highest, and Rotten Tomatoes users are almost always the most critical. Some metrics vary drasticaly across Bonds, while some are all similar: the range of RT critic averages across Bonds is 25 points, and IMDb's is 8 <sup> [2] </sup>. So the averages have a small range, but how much do the ratings change from film to film? This is the focus of the next section.
 
 ### Score Changes
 
-To start let's look into how much each rating changes between titles.
+In order to study how the ratings change between titles, and ultimately between Bonds, we must create a data frame that has the changes in rating from film to film by metric.
 
 ```R
 #Create a blank data frame and fill it up with the differences
