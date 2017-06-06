@@ -112,7 +112,7 @@ The ratings jump up and down to various degrees, but as we saw with the average 
 
 ### Bond Actor
 
-First order of business is to compare Bond actors in the most straightforward way possible: by comparing their average scores. 
+First order of business is to compare Bond actors in the most straightforward way possible: comparing their average scores. 
 
 ```R
 #First we create a vector of the names
@@ -144,7 +144,7 @@ As before, LetterBoxd scores are the highest, and Rotten Tomatoes users are almo
 
 ### Score Changes
 
-In order to study how the ratings change between titles, and ultimately between Bonds, we must create a data frame that has the changes in rating from film to film by metric.
+In order to study how the ratings change between titles, and ultimately between Bonds, we must create a data frame that contains the difference in rating from film to film for each metric. In our data frame we will have a variable "Change.Number" to indicate which transition is being discussed. For example, Change.Number=1 will indicate the difference in ratings between film 1 and film 2. Change.Number will range from 1-24 since there are 25 titles in the franchise.
 
 ```R
 #Create a blank data frame and fill it up with the differences
@@ -159,13 +159,11 @@ for(i in 1:24){
 }
 #Fix the column names
 colnames(diff)[c(1,2,3,4,5,6)]<-c("RT.Crit","RT.User","LetterBoxd","IMDB","Change.Number","New.Bond")
-#I want to clarify that 'Change Number' refers to the transition number
-#For example, the change in rating from film 2 to film 3 is referred to by the change number 2.
-#Also 'New Bond' refers to the bond in the second movie in the transition
+#'New Bond' refers to the bond in the second movie in the transition
 #We quicly re-order this so it shows up correctly later
 diff$New.Bond<-factor(diff$New.Bond,levels=c("Sean Connery","George Lazen","Roger Moore","Timothy Dalton","Pierce Brosnan","Daniel Craig"))
 ```
-Now we can analyze these numbers how are different ratings change between entries in the franchise.
+We can now look at various properties of the changes between films.
 ```R
 max(diff$RT.Crit)
 [1] 37
@@ -177,7 +175,7 @@ mean(subset(diff$RT.Crit,diff$RT.Crit>0))
 [1] 19.3
 #etc...
 ```
-We summarize the results in a table:
+There is a lot of information here, so let's look at it in a table to see what we can discover.
 
 |Metric|Max|Min|Mean|Mean>0|Mean<0|
 |---|---|---|---|---|---|
@@ -187,7 +185,9 @@ We summarize the results in a table:
 |IMDB|19|-13|-0.21|5.5|-4.6|
 |Avg|35.5|-26.4|-0.69|14|-12|
 
-The largest change was a 48 point boost between films, the smallest a -33 point drop, and on average, the films dropped about -0.7 points between films. So overall it appears the films have dropped in quality very slightly. Furthermore, the max is always larger than the min (in absolute value), the mean>0 is always greater than the mean<0 and yet the overall mean is always negative! This means that there must be more negative changes than positive ones, but that the positive changes are generally larger (this is verified in Appendix B). Interpreting this result, we say that generally people think the movies are worse than the last one, but when they think it has improved, they are very enthusiastic about it, giving the new film very high ratings.
+The average change between films is -0.7 despite the fact that the mean>0 is always greater than the mean<0 (in absolute value) and that the biggest jump is always larger than the biggest drop (in absolute value). That means that audiences find most films worse than the last one, but when a film is better, they are very enthusiastic about the improvment (see Appendix B for a numerical study of this).
+
+In terms of specific metrics, we once again see that IMDb's ratings are quite muffled, 
 
 Before we graph these results, we add a column of the sign of the change to help visualization the positive/negatrive gain/loss in score
 ```R
