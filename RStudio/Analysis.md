@@ -212,11 +212,11 @@ So 15/24 occurances of total agreement on the sign of the change for all of our 
 
 ![bond_rat_chng](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/bond_rat_chng.png?raw=TRUE)
 
-Before we look at this graph there are a few points I would like to make. First, the scales are different for each Bond. The second point is that the ratings stack; originally I made this graph with only the average scores, but I felt that this left out information about whether the metrics agree with one another from the previous section.
+Before we look at this graph there are a few points I would like to make. First, the scales are different for each Bond. The second point is that the ratings stack; originally I made this graph with only the average scores and then the sumof the changes, but I felt that these left out information about whether the metrics agree with one another from the previous section.
 
-Every time a new Bond actor premieres a film, the rating change is positive, with the exception of George Lazen (but Sean Connery is hard to live up to! <sup> [3] </sup>). This is likely due to a double effect of the previous Bond actor growing bored with the character, with this affecting their performance, and the studio putting a lot of effort and care into the new film so that the audience doesn't sour to the new Bond. 
+Every time a new Bond actor premieres a film, the rating change is positive, with the exception of George Lazen and Roger Moore (but Sean Connery is hard to live up to! <sup> [3] </sup>). This is likely due to a double effect of the actor growing tired of the character, which affects his performance, and the studio putting a lot of effort and care into the new film so that the audience doesn't sour to the new Bond. In both of our exceptions, the actors recieved increased and decreased ratings, depending on the metric.
 
-We also notice that every Bond actor -less Daniel Craig- has one (all have exaclty one besides Connery) entry where the sign of the change in score doesn't agree across metrics and it is always their last film (Connery's is his 2 last films). Then again, Daniel Craig hasn't finished his tenure as Bond, so this may still hold for him. Most of the actors grew tired of the role and eventually quit, with the exceptions of Lazenby who quit due to overly-contorlling producers and Dalton who quit after the franchise went through a long legal battle. One might jump to conclude that the mixed reviews caused the actors to quit, but some made up their minds to leave the series before their last film even premiered.  So due to the variety of situations surrounding 007 actors quitting the series, it is difficult to analyze why their last films all have positive and negative responses. Nevertheless, it is interesting that all the Bond actors have gone out on mixed reviews.
+As we noticed from the previous graph, there are six times where the sign of the change disagrees between metrics (this ignores no change). The above graph reveals that these seem to occur on the last film in a Bond's tenure. The only actor for which this isn't true is Daniel Craig, though he isn't finihsed his tenure as Bond yet, and the only exception to the one-time nature of these mixed reviews is Roger Moore, whose first and last films are as such. One might wish to conclude that the mixed reviews caused the actors to quit, but some made up their minds to leave the series before their last film even premiered <sup> [14] </sup>. So due to the variety of situations surrounding 007 actors quitting the series, it is difficult to analyze why their last films all have positive and negative responses. Nevertheless, it is interesting that all the Bond actors have gone out on mixed reviews.
  
  
 ### Conclusion
@@ -400,6 +400,9 @@ I briefly looked at the LetterBoxd and Metacritic for the Bond and 538 analysis,
 
 <sup> [12] </sup>:
 The 209 titles are 'recent' as of October 2015, when the article was written.
+
+<sup> [14]</sup>:
+[For example](https://en.wikipedia.org/wiki/George_Lazenby#Leaving_Bond) is George Lazenby who quit said: "prior to the release of the film, Lazenby announced that he no longer wished to play the role of James Bond, saying, '[The Producers] made me feel like I was mindless. They disregarded everything I suggested simply because I hadn't been in the film business like them for about a thousand years.' " 
 
 
 # Plot Code
