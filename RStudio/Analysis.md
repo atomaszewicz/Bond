@@ -164,6 +164,7 @@ colnames(diff)[c(1,2,3,4,5,6)]<-c("RT.Crit","RT.User","LetterBoxd","IMDB","Chang
 diff$New.Bond<-factor(diff$New.Bond,levels=c("Sean Connery","George Lazen","Roger Moore","Timothy Dalton","Pierce Brosnan","Daniel Craig"))
 ```
 We can now look at various properties of the changes between films.
+
 ```R
 max(diff$RT.Crit)
 [1] 37
@@ -187,9 +188,10 @@ There is a lot of information here, so let's look at it in a table to see what w
 
 The average change between films is -0.7 despite the fact that the mean>0 is always greater than the mean<0 (in absolute value) and that the biggest jump is always larger than the biggest drop (in absolute value). That means that audiences find most films worse than the last one, but when a film is better, they are very enthusiastic about the improvment (see Appendix B for a numerical study of this).
 
-In terms of specific metrics, we once again see that IMDb's ratings are quite muffled, 
+Although RT users have the biggest one-time increase and decrease (48 and -33), RT critic scores take the cake as the most sporadic with an overall average of -1.3 and mean positive & negative changes of 19 & -19 respectively. Once again we see that IMDb's ratings are quite muffled, it's largest increase & decrease changes are around half the magnitude as those of the other metrics, and it's mean positive and negative changes are less than a third the size of these figures for RT users & critics.
 
-Before we graph these results, we add a column of the sign of the change to help visualization the positive/negatrive gain/loss in score
+The above table only tells us about the net properties of the changes, so let's make a plot to look at the individual changes between films. We quickly reshape using 'melt()' and add a column for the sign of the change to help visualization the positive/negative fluctuations in score.
+
 ```R
 #We transform to put all the ratings in one column to plot and analyze
 diff_1col<-melt(diff,id=c("Change.Number","New.Bond"))
@@ -199,16 +201,14 @@ diff_1col$sign<-ifelse(diff_1col$Rating.Change>=0,'positive','negative')
 
 ![chng_rat_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/chng_rat_plot.png?raw=TRUE)
 
-We can now see that IMDb truly does fluctuate signficantly less than the other and RT critic changes are mostly very large. Another point of interest is that when the metrics with large variations have big/small changes, the other metrics also have big/small changes relative to their average rating change. This reinforces my presumption that these online rating metrics are all roughly capturing the same sentiment towards movies, just with slightly different audiences and  it seems that the other metrics agree that the difference in quality was small. It seems that most of the time, the metrics agree on the sign of the change, i.e. they agree whether the newest film is better/worse than the last one. Let's see how often this is true. We simply check that all four metrics have the same sign.
+It seems that each metric generally agrees on the magnitude of the change. In other words, when a metric has a big/small change (relative to it's mean) then the others have similarly big/small changes. This reinforces my presumption that these online rating metrics are all roughly capturing the same sentiment towards movies, just with different audiences and aggregation methods. Another point of aggrement between metrics is seems to be the sign of the change i.e. they agree whether the newest film is better/worse than the last one. Let's see how often this is true by creating a column that gives a binary result to whether they all have the same sign, then suming this column.
 
 ```R
 diff$sign_chng<-ifelse(sign(diff$RT.Crit)==sign(diff$RT.User)&sign(diff$RT.User)==sign(diff$LetterBoxd)&sign(diff$LetterBoxd)==sign(diff$IMDB),1,0)
 sum(diff$sign_chng)
 [1] 15
 ```
-We note that due to the nature of the 'sign()' function zero has it's own sign. If we count the 3 occurances of a zero change this ratio rises to 18/24 or 75%! Thus around three quarters of the time our 4 metrics agree on whether a movie got better or worse.
-
-Now we can look at how much it changes between Bond actors! We already have the infrastructure set up to plot this, so we do:
+So 15/24 occurances of total agreement on the sign of the change for all of our metrics. We note that due to the nature of the 'sign()' function, zero has it's own sign, but if we count the 3 occurances of no change in one metric while the other three agree on sign, this ratio rises to 18/24. This makes only 6/24 (25%) times where the metrics disagree on whether the change in rating was positive or negative. When do these disagreements occur? And how do the changes in Bonds affect this? In order to study these questions we cook up a plot similar to above, with a specific focus on Bond actors.
 
 ![bond_rat_chng](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/bond_rat_chng.png?raw=TRUE)
 
@@ -216,7 +216,7 @@ Before we look at this graph there are a few points I would like to make. First,
 
 Every time a new Bond actor premieres a film, the rating change is positive, with the exception of George Lazen (but Sean Connery is hard to live up to! <sup> [3] </sup>). This is likely due to a double effect of the previous Bond actor growing bored with the character, with this affecting their performance, and the studio putting a lot of effort and care into the new film so that the audience doesn't sour to the new Bond. 
 
-We also notice that every Bond actor -less Daniel Craig- has one (and only one) entry where the sign of the change in score doesn't agree across metrics and it is always their last film. Then again, Daniel Craig hasn't finished his tenure as Bond, so this may still hold for him. Most of the actors grew tired of the role and eventually quit, with the exceptions of Lazenby who quit due to overly-contorlling producers and Dalton who quit after the franchise went through a long legal battle. One might jump to conclude that the mixed reviews caused the actors to quit, but some made up their minds to leave the series before their last film even premiered.  So due to the variety of situations surrounding 007 actors quitting the series, it is difficult to analyze why their last films all have positive and negative responses. Nevertheless, it is interesting that all the Bond actors have gone out on mixed reviews.
+We also notice that every Bond actor -less Daniel Craig- has one (all have exaclty one besides Connery) entry where the sign of the change in score doesn't agree across metrics and it is always their last film (Connery's is his 2 last films). Then again, Daniel Craig hasn't finished his tenure as Bond, so this may still hold for him. Most of the actors grew tired of the role and eventually quit, with the exceptions of Lazenby who quit due to overly-contorlling producers and Dalton who quit after the franchise went through a long legal battle. One might jump to conclude that the mixed reviews caused the actors to quit, but some made up their minds to leave the series before their last film even premiered.  So due to the variety of situations surrounding 007 actors quitting the series, it is difficult to analyze why their last films all have positive and negative responses. Nevertheless, it is interesting that all the Bond actors have gone out on mixed reviews.
  
  
 ### Conclusion
