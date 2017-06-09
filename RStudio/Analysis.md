@@ -218,12 +218,13 @@ As we noticed from the previous graph, the metrics agree on the change in sign m
 
 Every time a new Bond actor premieres a film, the rating all improve, with the exception of George Lazen and Roger Moore who had mixed reviews for their first films. I believe it is worth noting that both exceptions followed Sean Connery, who has the second highest ratings, and as Dalton put it "When you've seen Bond from the beginning, you don't take over from Sean Connery" <sup>[3]</sup>, presumably because he embodied the character so well. This first-film boost is likely due to the previous actor tiring of the role, affecting their peformance, and the extra effort and care that the studio theoretically puts into the first film so that the audiences don't sour to the actor they just signed to a multi-film contract. 
 
+Studying the (dis)agreements among metrics for the sign of the change between ratings between films is quite a long way from taking the average. Let's briefly look at how we got here, and summarize the results along the way.
+
+
 ### Conclusion 
 Throughout the Rating section, we have seen how our four metrics (Rotten Tomatoes Users, Rotten Tomatoes Critics, LetterBoxd and IMDb ratings/100) ratings differ between the 25 films and 6 actors in the Bond series. We saw that the series' average rating, based on our four metrics, was 71/100. LetterBoxd was the most generous rating, with a mean score of 79, and Rotten Tomatoe Users the harshest, scoring only 64 on average.  We found that on average Daniel Craig was the highest rated and Pierce Brosnan the lowest, with the mean score across all films and metrics of 78 and 63 respectively. We then studied how the ratings changed between films, and between actors, and saw that when a new Bond actor premiers, the metrics usually agree that it was a positive change, and on an actor's last film, the metrics' mostly disagree on the change in quality. 
 
-This is only ~~half~~ some of the story; as much as I like to think that the quality of movies, and by extension online ratings, is what matters, the movie industry is a business and the almighty dollar rules. 
-
-In the next section we will analyze the box office performance of the films and actors.
+This is only ~~half~~ some of the story; as much as I like to think that the quality of movies, and by extension online ratings, is what matters, the movie industry is a business and the bottom line rules. In the next section we will look at 
 
 ## Box Office
 
