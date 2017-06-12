@@ -62,7 +62,7 @@ From this table we see that the max scores are higher for the '538' analysis, wh
 
 One thing that bugged me about the results from the Bond series it that I expected critics's scores to be more, well, critical of movies than that of your average Joe Rotten Tomatoe. The average RT user rating for the Bond films was 10% (7 percentage-points) less than the critic ratings, while the results from the '538' article pegged user ratings 19% (3 percentage-points) higher than critic scores <sup>[1]</sup>. It could be that critics are more harsh on movies in general but they understand the place of the James Bond movies. So while the average theater-goer is keeping their score of Citizen Kane or Casablanca in mind when they pencil in their rating for the 007 films, critics understand that the Bond franchise should be judged for what it is: B-movies about a globe-trotting, babe-charming super spy, not exaclty high-art.
 
-So now that we've looked at how the franchise ranks on average, and how that average compares to other films, let's look at the ratings of specific films in the series.
+Now that we've looked at how the franchise ranks on average, and how that average compares to other films, let's look at the ratings of specific films in the series.
 
 ```R
 #We reshape the 'rate' dataframe to have all the numerical ratings in one column
@@ -236,9 +236,9 @@ Before we get started let's briefly discuss the specifics of the box office data
 
 ### Global and Domestic Gross
 
-We recall that we already loaded our BOM and The Numbers data into data frames named 'bom' and 'numb', respecitvely
+We recall that we already loaded our BOM and The Numbers data into data frames named 'bom' and 'numb', respecitvely. 
 
-As we discussed above BOM doesn't have global figures, but it does have inflation-adjusted figures, whereas The Numbers has global and domestic but both unadjusted. So to achieve our goal of getting global numbers adjusted for inflation, what I will do is find the ratio of global:domestic figures from The Numbers, then multiply the inflation-adjusted domestic figures in BOM. Due to this method, the 'bom' dataframe will be our main data frame for this section.
+As we discussed above BOM doesn't have global figures, but it does have domestic gross adjusted for inflation, whereas The Numbers has global and domestic but both unadjusted. So to achieve our goal of getting global numbers adjusted for inflation, what I will do is find the ratio of global:domestic figures from The Numbers, then multiply the inflation-adjusted domestic figures in BOM. Due to this method, the 'bom' dataframe will be our main data frame for this section.
 
 ```R
 #We create a vector with the ratio of global to domestic box office gross
@@ -250,18 +250,28 @@ bud.dom<-data.frame(with(numb,Production.Budget/Dom.BxOf))
 bom$Bdj.Adj<-(bom$Adjusted.Gross*bud.dom)
 #We change the adjusted domestic gross column name for consistency
 colnames(bom)[6]<-("Dom.Adj")
-#Then add a 'Profit' column for later
+#Then add a 'Profit' column, which is strictly global profit
 bom$Glb.Profit<-with(bom,Glb.Adj-Bdg.Adj)
 ```
-We use Glb. for global gross, Dom for domestic gross, Prft for profit (i.e. gross - budget) and Bdgt for Budget. From here on out, unless stated otherwise, everything will be in values adjusted for inflation to May 2017. Let's look at the sums and means in table form:
+We note that from here on out, unless stated otherwise, all values will be adjusted for inflation to May 2017. Let's take a quick peak and the most basic factors, 
 
 |Figure|Sum|Mean|
 |---|---|---|
-|Global Adj.|$17,540,101,114|$701,604,045|
-|Domestic Adj.|$5,628,582,200|$225,143,288|
-|Budget Adj.|$2,723,922,708|$108,956,908|
+|Global|$17,540,101,114|$701,604,045|
+|Domestic|$5,628,582,200|$225,143,288|
+|Budget|$2,723,922,708|$108,956,908|
+|Profit|$14,816,178,405|$592,647,136|
 
-First we note that over two thirds of the global box office gross is non-domestic. This is not entirely surprising since our secret agent works for Britian, not America <sup> [4]</sup>. Next, the films gross over 6 times their budget on average, which helps explain why it one of films longest-running franchises. Lastly, with a net global box office gross of $17.5 billion,, adjusted for inflation, James Bond is *the* most financially successful film franchise in history, trailed by Star Wars, The Marvel Cinematic Universe and Harry Potter (in that order) <sup> [5] </sup>.
+First we note that over two thirds of the global box office gross is non-domestic. This is not entirely surprising since our secret agent works for Britian, not America/Canada <sup> [4]</sup>. We also gain some insight into why it is one of films longest-running franchises when we see that the entries gross on average over six times their budget, and profit around $600 mill on average. Lastly, with a net global box office gross of $17.5 billion James Bond is *the* most financially successful film franchise in history, trailed by Star Wars, The Marvel Cinematic Universe and Harry Potter (in that order) <sup> [5] </sup>. 
+
+To give a little better idea of how the individual films performed in our gilded franchise,  let's take a quick look at individual films. 
+
+|Figure|Max|Median|Min|
+|---|---|---|
+|Global|Thunderball $1390|Die Another Day $640|License to Kill $340|
+|Domestic|Thunderball $648|Quantum of Solace $200|License to Kill $80|
+|Budget|Spectre $270|Dr. No $10|Living Daylights $90|
+|Profit|Thunderball $1360|Diamonds are Forever $570|License to Kill $250|
 
 So it's a very successful series overall, but how do the various actors compare? We want to study various things, so we create a new dataframe:
 
@@ -377,10 +387,10 @@ max(bond_rate$IMDB)-min(bond_rate$IMDB)
 18 years before he finally accepted the role, Timothy Dalton said the following about turning down an offer in 1968 to play Bond in "Oh Her Majesty's Secret Service": "Originally I did not want to take over from Sean Connery. He was far too good, he was wonderful. [...] When you've seen Bond from the beginning, you don't take over from Sean Connery." Source (https://www.youtube.com/watch?v=amuodiP-8z4) *This link has been taken down since I posted it. Sadly I cannot find a working version*
 
 <sup>[4]</sup>:
-I have a future project planned to study how domestic (US) and global gross compares for your typical wide-release film, so eventually I will be able to give more insight into where this ratio falls
+I have a future project planned to study how domestic (US) and global gross compares for your typical wide-release film, so eventually I will be able to give more insight into how this ratio stacks up to similar films.
 
 <sup>[5]</sup>: 
-This can be found [here](http://www.boxofficemojo.com/franchises/?view=Franchise&sort=sumgross&order=DESC&p=.htm) but requires the same process of finding the global gross adjusted for inflation from the domestic adjusted and global unadjusted. It is a tiresome exercise, and I don't wish to repeat it here.
+This can be calculated from figures [here](http://www.boxofficemojo.com/franchises/?view=Franchise&sort=sumgross&order=DESC&p=.htm), with the same process of finding the global gross adjusted for inflation from the domestic adjusted and global unadjusted.
 
 <sup>[6]</sup>:
 [Source](http://www.bbfc.co.uk/releases/licence-kill)
