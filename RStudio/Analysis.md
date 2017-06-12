@@ -228,27 +228,28 @@ This is only ~~half~~ some of the story; as much as I like to think that the qua
 
 ## Finances 
 
-Financing movies is [very](http://www.npr.org/sections/money/2010/05/the_friday_podcast_angelina_sh.html) [complicated](https://www.theatlantic.com/business/archive/2011/09/how-hollywood-accounting-can-make-a-450-million-movie-unprofitable/245134/). It is no small task to raise hundreds of millions of dollars, often requiring [many parties with various investment models](https://www.youtube.com/watch?v=kgj0Z7zE0HM). When it comes to making the money back, there are box office sales, Blu-Ray/DVD sales, selling the film to streaming services, cereal campaign tie-ins etc. which the various funders get percentages/chunks from depending on how much invested. This is all kept under wraps . Even box office numberrs, which are quoted regularly in the news and on social media, aren't (*really*)[http://www.slate.com/articles/arts/culturebox/2006/01/ticket_tweaking.html] publically released. Further, the studios (don't even receieve all of the money from box office sales)[http://www.themovieblog.com/2007/10/economics-of-the-movie-theater-where-the-money-goes-and-why-it-costs-us-so-much/]. However, seeing as box office figures are the only consistent film finance data you can get your hands on and that how many people go to the theatre is 
+Financing movies is [very](http://www.npr.org/sections/money/2010/05/the_friday_podcast_angelina_sh.html) [complicated](https://www.theatlantic.com/business/archive/2011/09/how-hollywood-accounting-can-make-a-450-million-movie-unprofitable/245134/). It is no small task to raise hundreds of millions of dollars, often requiring [many parties with various investment models](https://www.youtube.com/watch?v=kgj0Z7zE0HM). When it comes to making the money back, there are box office sales, Blu-Ray/DVD sales, selling the film to streaming services, cereal campaign tie-ins etc. which the various funders get percentages/chunks from depending on how much invested. This is all kept under wraps . Even box office numberrs, which are quoted regularly in the news and on social media, aren't (*really*)[http://www.slate.com/articles/arts/culturebox/2006/01/ticket_tweaking.html] publically released. Further, the studios (don't even receieve all of the money from box office sales)[http://www.themovieblog.com/2007/10/economics-of-the-movie-theater-where-the-money-goes-and-why-it-costs-us-so-much/]. However, since box office figures are the only consistently released film finance data, and that how much they gross at theatres is good measure of how popular a film is, we will use these numbers.
 
-First we state that all numbers in this section are in $USD, inflation calculations were made to May 2017, and 'domestic' refers to the US & Canada box office figures. Our two sources for this section are the websites Box Office Mojo (BOM) and The Numbers. BOM gives box office figures both adjusted and unadjusted for inflation, but only domestically. The Numbers on the other hand, gives domestic and global box office, as well as estimated budgets, all in unadjusted terms. 
+While online ratings concern mostly modern opinions of these movies, box office figures are without hindsight. These numbers suffer from societal changes around the world including taste in movies, modifications of global/domestic marketing strategies, general interest in attending movies, and people's willingness to attend a movie based on personnel (say that they really like the actor Robert Downey Junior or the director James Cameron). With that in mind I will spend a little more time giving context in this section. 
 
-While online ratings concern mostly modern opinions of these movies, box office figures are without hindsight. These numbers suffer from societal changes around the world including taste in movies, modifications of global/domestic marketing strategies, general interest in attending movies, and people's willingness to attend a movie based on actors, directors, producers etc. With that in mind, this section will have a lot more explinations of the background of films and actors with the goal of giving context to the box office nubers.
-
-Our first order of business is to get the global box office figures adjusted for inflation.
+Before we get started let's briefly discuss the specifics of the box office data. All numbers in this section are in $USD, inflation calculations were made to May 2017, and 'domestic' refers to the US & Canada box office figures. Our two sources for this section are the websites (Box Office Mojo (BOM))[http://www.boxofficemojo.com/] and (The Numbers)[http://www.the-numbers.com/]. BOM gives both box office figures adjusted and unadjusted for inflation, but only domestically. The Numbers on the other hand, gives domestic and global box office, as well as estimated budgets, all in unadjusted terms. Our first order of business is to get the global box office figures adjusted for inflation.
 
 ### Global and Domestic Gross
-To adjust our global box office data for inflation, I will create a vector that catalogues the ratio of unadjusted domestic to unadjusted global then multiply the adjusted domestic by this vector.
+
+We recall that we already loaded our BOM and The Numbers data into data frames named 'bom' and 'numb', respecitvely
+
+As we discussed above BOM doesn't have global figures, but it does have inflation-adjusted figures, whereas The Numbers has global and domestic but both unadjusted. So to achieve our goal of getting global numbers adjusted for inflation, what I will do is find the ratio of global:domestic figures from The Numbers, then multiply the inflation-adjusted domestic figures in BOM. Due to this method, the 'bom' dataframe will be our main data frame for this section.
 
 ```R
-#We create a vector with the ratio
+#We create a vector with the ratio of global to domestic box office gross
 glb.dom<-data.frame(with(numb,World.BxOf/Dom.BxOf))
-#Then create a new column in our Box Office Mojo data frame with the adjusted domestic cross times these ratios
+#Then create a new column in our BOM data frame with the adjusted domestic cross multiplied by these ratios
 bom$Glb.Adj<-(bom$Adjusted.Gross*glb.dom)
 #We do similarly with budgets, adjusting for inflation
-bud.dom<-data.frame(with(numb,Production..Budget/Dom.BxOf))
+bud.dom<-data.frame(with(numb,Production.Budget/Dom.BxOf))
 bom$Bdj.Adj<-(bom$Adjusted.Gross*bud.dom)
-#We change the adjusted domestic gross column name for consistancy
-colnames(bom)[c(6,7,8)]<-c("Dom.Adj","Glb.Adj","Bdg.Adj")
+#We change the adjusted domestic gross column name for consistency
+colnames(bom)[6]<-("Dom.Adj")
 #Then add a 'Profit' column for later
 bom$Glb.Profit<-with(bom,Glb.Adj-Bdg.Adj)
 ```
