@@ -253,7 +253,7 @@ colnames(bom)[6]<-("Dom.Adj")
 #Then add a 'Profit' column for later
 bom$Glb.Profit<-with(bom,Glb.Adj-Bdg.Adj)
 ```
-We use Glb. for global gross, Dom for domestic gross, Prft for profit (i.e. gross - budget) and Bdgt for Budget. From here on out, everything will be in values adjusted for inflation to May 2017, unless stated otherwise. Let's look at the sums and means in table form:
+We use Glb. for global gross, Dom for domestic gross, Prft for profit (i.e. gross - budget) and Bdgt for Budget. From here on out, unless stated otherwise, everything will be in values adjusted for inflation to May 2017. Let's look at the sums and means in table form:
 
 |Figure|Sum|Mean|
 |---|---|---|
