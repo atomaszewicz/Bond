@@ -78,7 +78,7 @@ rate1_col[which.min(rate_1col$Rating),]
 [1] 15 A View to a Kill RT.Crit     36
 ```
 
-The lowest score given out to a Bond film is 36/100 from Rotten Tomatoes critics for the film "A View to a Kill", which marks Roger Moore's last outing as Agent 007 (at the ripe old age of 57). The maximum score is 97.5 from LetterBoxd for "Casino Royale", Daniel Craig's first film in the series. We will investigate later how an actor's last and first film are generally rated, but for now we can imagine Moore's and Craig's performance were due to their age and exictment with the role.
+The lowest score given out to a Bond film is 36/100 from Rotten Tomatoes critics for the film "A View to a Kill", which marks Roger Moore's last outing as Agent 007 (at the ripe old age of 57). The maximum score is 97.5 from LetterBoxd for "Casino Royale", Daniel Craig's first film in the series. We will investigate later how an actor's last and first film are generally rated, but for now we can imagine Moore's and Craig's performance were due to their age and exictment with the role. We also note that although Craig takes first place for highest rating, Sean Connery's three first films ("Dr. No", "From Russia, with Love" & "Goldfinger") all tie for second with a 96 from RT critics.
 
 It is not surprising that LetterBoxd claims the highest rated film since it has the highest average rating of 79/100, which is almost 12 percentage-points higher than the average of our 4 metrics. Yet while RT critic score was the second highest average rating among our 4 metrics, 71/100, we see that it claims the lowest score: a mere 36.
 
@@ -264,19 +264,23 @@ We note that from here on out, unless stated otherwise, all values will be adjus
 
 First we note that over two thirds of the global box office gross is non-domestic. This is not entirely surprising since our secret agent works for Britian, not America/Canada <sup> [4]</sup>. We also gain some insight into why it is one of films longest-running franchises when we see that the entries gross on average over six times their budget, and profit around $600 mill on average. Lastly, with a net global box office gross of $17.5 billion James Bond is *the* most financially successful film franchise in history, trailed by Star Wars, The Marvel Cinematic Universe and Harry Potter (in that order) <sup> [5] </sup>. 
 
-To give a little better idea of how the individual films performed in our gilded franchise,  let's take a quick look at individual films. 
+To give a little better idea of the finances of individual films in our gilded franchise, let's take a quick look at the top, middle and bottom of each category. 
+
+All figures are in millions of dollars.
 
 |Figure|Max|Median|Min|
-|---|---|---|
-|Global|Thunderball $1390|Die Another Day $640|License to Kill $340|
-|Domestic|Thunderball $648|Quantum of Solace $200|License to Kill $80|
-|Budget|Spectre $270|Dr. No $10|Living Daylights $90|
-|Profit|Thunderball $1360|Diamonds are Forever $570|License to Kill $250|
+|---|---|---|----|
+|Global|Thunderball ($1390)|Die Another Day ($640)|License to Kill ($340)|
+|Domestic|Thunderball ($648)|Quantum of Solace ($200)|License to Kill ($80)|
+|Budget|Spectre ($270)|Dr. No ($10)|Living Daylights ($90)|
+|Profit|Thunderball ($1360)|Diamonds are Forever ($570)|License to Kill ($250)|
 
-So it's a very successful series overall, but how do the various actors compare? We want to study various things, so we create a new dataframe:
+Sean Connery's "Thunderball" is all around the most successful Bond film, while Timothy Dalton's "License to Kill" is the least. Even though we saw in the rating section that Daniel Craig claims the highest individual rating with a 97.5 from Letterboxd for "Casino Royale", Connery takes the top spot for financial metrics. In fact, Connery also claims second for global & domestic gross and profit with "Goldfinger", but Craig's "Skyfall" wins third for all three categories.
+
+But which of the two was the successful actor on average? Who had the most/least global or domestic appeal? Let's take the average over each actor to find out.
 
 ```R
-#Where names is the vector of the actors names, in order, that was used earlier
+#We use 'names', the vector of the actors names that was used earlier
 boxoffice<-data.frame(Bond<-c(names,"Average"))
 for(i in 1:6){
      boxoffice$Glb.Mean[i]<-colMeans(subset(bom$Glb.Adj,bom$Bond==names[i]))
