@@ -277,7 +277,9 @@ All figures are in millions of dollars.
 
 Sean Connery's "Thunderball" is all around the most successful Bond film, while Timothy Dalton's "License to Kill" is the least. Even though we saw in the rating section that Daniel Craig claims the highest individual rating with a 97.5 from Letterboxd for "Casino Royale", Connery takes the top spot for financial metrics. In fact, Connery also claims second for global & domestic gross and profit with "Goldfinger", but Craig's "Skyfall" wins third for all three categories. 
 
-That the newest film in the franchise also has the highest budget, and the oldest film has the smallest is not entirely surprsing. I'm sure most are aware that with more CGI, bigger explosions and more emphasis on believability/immersion, movie budgets have increased over time. However, a near-30 fold increase over ~50 years, with an average of one film every two years means, that   in budgets is quite surprising. It is also  . I realize that movie budgets have grown over the years but this is quite an extreme result. Before we take a dive into analyzing the budgets, let's continue the Connery/Craig duel by looking at the average grosses and profits for each Bond actor. 
+That the newest film in the franchise also has the highest budget, and the oldest film has the smallest is not entirely surprsing. However, a near-30 fold increase over 50 years, means every new Bond film is on average $17 mill more than the last one, which is quite surprising. 
+
+Before dive too deep into analyzing the budgets, let's continue in the way we did with the ratings, by looking at the averages by Bond to give us an idea of who was the biggest box office draw.
 
 ```R
 #We use 'names', the vector of the actors names that was used earlier
