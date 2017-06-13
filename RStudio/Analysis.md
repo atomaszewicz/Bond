@@ -228,21 +228,15 @@ This is only ~~half~~ some of the story; as much as I like to think that the qua
 
 ## Finances 
 
-Financing movies is [very](http://www.npr.org/sections/money/2010/05/the_friday_podcast_angelina_sh.html) [complicated](https://www.theatlantic.com/business/archive/2011/09/how-hollywood-accounting-can-make-a-450-million-movie-unprofitable/245134/). It is no small task to raise hundreds of millions of dollars, often requiring [many parties with various investment models](https://www.youtube.com/watch?v=kgj0Z7zE0HM). When it comes to making the money back, there are box office sales, Blu-Ray/DVD sales, selling the title to streaming services, [product tie-ins](http://www.allday.com/10-completely-pointless-star-wars-product-tie-ins-that-make-no-sense-2180810453.html) etc.. These figures, as with most corporate finances, are not publically released. Even box office numbers, which are quoted regularly in the news and on social media, go through some (tweaks)[http://www.slate.com/articles/arts/culturebox/2006/01/ticket_tweaking.html] before being released to media outlets. Further, the studios (don't receieve all of the money from box office sales)[http://www.themovieblog.com/2007/10/economics-of-the-movie-theater-where-the-money-goes-and-why-it-costs-us-so-much/]. The purpose of this discussion is to clarify that box office gross minus budget does not equate to the studio profits for a film. 
+Financing movies is [very](http://www.npr.org/sections/money/2010/05/the_friday_podcast_angelina_sh.html) [complicated](https://www.theatlantic.com/business/archive/2011/09/how-hollywood-accounting-can-make-a-450-million-movie-unprofitable/245134/). It is no small task to raise hundreds of millions of dollars, often requiring [many parties with various investment models](https://www.youtube.com/watch?v=kgj0Z7zE0HM). When it comes to making the money back, there are box office sales, Blu-Ray/DVD sales, selling the title to streaming services, [product tie-ins](http://www.allday.com/10-completely-pointless-star-wars-product-tie-ins-that-make-no-sense-2180810453.html) etc.. These figures, as with most corporate finances, are not publically released. Even box office numbers, which go through some (tweaks)[http://www.slate.com/articles/arts/culturebox/2006/01/ticket_tweaking.html] before being released to media outlets, (aren't pure profit for studios)[http://www.themovieblog.com/2007/10/economics-of-the-movie-theater-where-the-money-goes-and-why-it-costs-us-so-much/]. That being said, box office figures are the only consistently released film finance data, so we will use them. Lastly I'd like to note that I think it is a positive to have one metric that is a product of it's time (box office) as well as one that uses the power of hindsight (online ratings).
 
-However, box office figures are the only consistently released film finance data and how much a film grosses at theatres is good measure of how popular a film is. Further, while online ratings concern modern opinions of these movies, box office numbers capture how the film struck society at the time. From marketing strategies, to popularity of certain actors/directors, to societies taste in genres, films are a product of their time. It is helpful to have both a metric to study films in the context of their era and one with the powers of hindsight. Therefore we will use box office numbers and refer to 'profit' as the difference between the gross and the budget.
-
-Before we get started let's briefly discuss the specifics of the box office data. All numbers in this section are in $USD, inflation calculations were made to May 2017, and 'domestic' refers to the US & Canada box office figures. Our two sources for this section are the websites (Box Office Mojo (BOM))[http://www.boxofficemojo.com/] and (The Numbers)[http://www.the-numbers.com/]. BOM gives both box office figures adjusted and unadjusted for inflation, but only domestically. The Numbers on the other hand, gives domestic and global box office, as well as estimated budgets, all in unadjusted terms. Our first order of business is to get the global box office figures adjusted for inflation.
-
-
-
-
+Before we get started let's briefly discuss the specifics of the box office data. All numbers in this section are in $USD, inflation calculations are made to May 2017, and 'domestic' refers to the combined US & Canada box office figures. Our two sources for this section are the websites (Box Office Mojo (BOM))[http://www.boxofficemojo.com/] and (The Numbers)[http://www.the-numbers.com/]. BOM gives domestic box office figures both adjusted and unadjusted for inflation. The Numbers has domestic and global box office, as well as estimated budgets, all in unadjusted terms. Our first order of business is to get everything adjusted for inflation.
 
 ### Global and Domestic Gross
 
 We recall that we already loaded our BOM and The Numbers data into data frames named 'bom' and 'numb', respecitvely. 
 
-As we discussed above BOM doesn't have global figures, but it does have domestic gross adjusted for inflation, whereas The Numbers has global and domestic but both unadjusted. So to achieve our goal of getting global numbers adjusted for inflation, what I will do is find the ratio of global:domestic figures from The Numbers, then multiply the inflation-adjusted domestic figures in BOM. Due to this method, the 'bom' dataframe will be our main data frame for this section.
+So to achieve our goal of getting all our values adjusted for inflation what I will do is as follows, with the example of global gross: Find the ratio of unadjusted global gross to unadjusted domestic gross, then multiply the adjusted domestic gross by this factor, giving us the adjusted global gross. Due to this method, the 'bom' dataframe will be our main data frame for this section.
 
 ```R
 #We create a vector with the ratio of global to domestic box office gross
@@ -257,7 +251,7 @@ colnames(bom)[6]<-("Dom.Adj")
 #Then add a 'Profit' column, which is strictly global profit
 bom$Glb.Profit<-with(bom,Glb.Adj-Bdg.Adj)
 ```
-We note that from here on out, unless stated otherwise, all values will be adjusted for inflation to May 2017. Let's take a quick peak and the most basic factors, 
+We note that from here on out, unless stated otherwise, all values will be adjusted for inflation to May 2017. Let's look at the sums and means now that we have all of our information adjusted for inflation.
 
 |Figure|Sum|Mean|
 |---|---|---|
@@ -266,9 +260,9 @@ We note that from here on out, unless stated otherwise, all values will be adjus
 |Budget|$2,723,922,708|$108,956,908|
 |Profit|$14,816,178,405|$592,647,136|
 
-First we note that over two thirds of the global box office gross is non-domestic. This is not entirely surprising since our secret agent works for Britian, not America/Canada <sup> [4]</sup>. We also gain some insight into why it is one of films longest-running franchises when we see that the entries gross on average over six times their budget, and profit around $600 mill on average. Lastly, with a net global box office gross of $17.5 billion James Bond is *the* most financially successful film franchise in history, trailed by Star Wars, The Marvel Cinematic Universe and Harry Potter (in that order) <sup> [5] </sup>. 
+With a net global box office gross of $17.5 billion James Bond is *the* most financially successful film franchise in history, trailed by Star Wars, The Marvel Cinematic Universe and Harry Potter (in that order) <sup> [5] </sup>. Over two thirds of this gross is non-domestic, which is not entirely surprising since our secret agent works for Britian, not America/Canada <sup> [4]</sup>. This success, along with the gross averaging over six times their budget, and the films profit around $600 mill on average give us insight into how it has become (one of films longest running franchises)[https://en.wikipedia.org/wiki/List_of_film_series_with_more_than_twenty_entries].
 
-To give a little better idea of the finances of individual films in our gilded franchise, let's take a quick look at the top, middle and bottom of each category. 
+To give a better idea of the finances of individual films in our gilded franchise, let's take a quick look at the top, middle and bottom entries of each category. 
 
 All figures are in millions of dollars.
 
