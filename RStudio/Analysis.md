@@ -272,12 +272,12 @@ All figures are in millions of dollars.
 |---|---|---|----|
 |Global|Thunderball ($1390)|Die Another Day ($640)|License to Kill ($340)|
 |Domestic|Thunderball ($648)|Quantum of Solace ($200)|License to Kill ($80)|
-|Budget|Spectre ($270)|Dr. No ($10)|Living Daylights ($90)|
 |Profit|Thunderball ($1360)|Diamonds are Forever ($570)|License to Kill ($250)|
+|Budget|Spectre ($270)|Living Daylights ($90)|Dr. No ($10)|
 
-Sean Connery's "Thunderball" is all around the most successful Bond film, while Timothy Dalton's "License to Kill" is the least. Even though we saw in the rating section that Daniel Craig claims the highest individual rating with a 97.5 from Letterboxd for "Casino Royale", Connery takes the top spot for financial metrics. In fact, Connery also claims second for global & domestic gross and profit with "Goldfinger", but Craig's "Skyfall" wins third for all three categories.
+Sean Connery's "Thunderball" is all around the most successful Bond film, while Timothy Dalton's "License to Kill" is the least. Even though we saw in the rating section that Daniel Craig claims the highest individual rating with a 97.5 from Letterboxd for "Casino Royale", Connery takes the top spot for financial metrics. In fact, Connery also claims second for global & domestic gross and profit with "Goldfinger", but Craig's "Skyfall" wins third for all three categories. 
 
-But which of the two was the successful actor on average? Who had the most/least global or domestic appeal? Let's take the average over each actor to find out.
+That the newest film in the franchise also has the highest budget, and the oldest film has the smallest is not entirely surprsing. I'm sure most are aware that with more CGI, bigger explosions and more emphasis on believability/immersion, movie budgets have increased over time. However, a near-30 fold increase over ~50 years, with an average of one film every two years means, that   in budgets is quite surprising. It is also  . I realize that movie budgets have grown over the years but this is quite an extreme result. Before we take a dive into analyzing the budgets, let's continue the Connery/Craig duel by looking at the average grosses and profits for each Bond actor. 
 
 ```R
 #We use 'names', the vector of the actors names that was used earlier
