@@ -271,9 +271,9 @@ To give a better idea of the finances of individual films in our gilded franchis
 |Profit|Goldfinger ($1360)|Diamonds are Forever ($570)|License to Kill ($250)|
 |Budget|Spectre ($270)|Living Daylights ($90)|Dr. No ($10)|
 
-Sean Connery's *Thunderball* is the highest grossing film globally and domestically, while his film *Goldfinger* was the most profitable with a budget in the 16th percentile. We also notice that *Thunderball*'s domestic gross is greater than half the Bond film's global gross, quite a feat for only the fourth film in the series. Timothy Dalton's *License to Kill* is the least successful in all financial respects even though in the rating section it's average of 4 rating takes the median spot. The newest entry in the series, *Spectre*, cost more to make than *License to Kill*, which gives you an idea of how big the series is today. In fact, on average, each Bond film's budget increased by $10 mill <sup> [13] </sup>
+Sean Connery's *Thunderball* is the highest grossing film globally and domestically, while his film *Goldfinger* was the most profitable with a budget in the 16th percentile. We also notice that *Thunderball*'s domestic gross is greater than half the Bond film's global gross, quite a feat for only the fourth film in the series. Timothy Dalton's *License to Kill* is the least successful in all financial respects even though in the rating section it's average of 4 rating takes the median spot. The newest entry in the series, *Spectre*, cost more to make than *License to Kill*, which gives you an idea of how big the series is today. In fact, on average, each Bond film's budget increased by $10 mill <sup> [13] </sup>. 
 
-It's hard to quantify if a near 30 fold increase in the budget over ~50 years is irregularly high, but . On average each new film costing $10 mill more than the previous. That the newest film in the franchise also has the highest budget, and the oldest film has the smallest is not entirely surprsing. Before we dive too deep into analyzing the budgets, let's look at the averages by Bond to give us an idea of who was the biggest box office draw.
+Before we dive too deep into analyzing budgets, let's look at the averages by Bond to give us an idea of what actor was the biggest box office draw.
 
 ```R
 #We use 'names', the vector of the actors names that was used earlier
@@ -302,7 +302,7 @@ for(i in 2:6){
 |Average|$643,099,031|$206,247,286|3.2|$530,698,483|7.9|
 
 
-There's a lot to unpack here, so let's go slowly. First we see that while on average Craig grossed the most globally, Connery claims the box office crown domestically. Although Daniel Craig's interpretation of the character is easily the most raw and serious, he comes off a lot more stylish and debonair (read as: British) than Connery. On the other hand, Connery's 007 performance have more of a maverick feeling to them. In my mind, Connery's 007 films are thus more attractive to Americans what with their 'Don't Tread on Me' mentality and fascination with the cowboy archetype. Although not in this table we note here that Connery's *Thunderball* and *Goldfinger* take first and second place, followed by Craig's *Skyfall*, for highest grossing films both stateside and around the world. Globally, each of these films grossed over $1bn. Domestically *Thunderball* grossed over $600mill, almost twice as much as *Skyfall*.
+There's a lot to unpack here, so let's go slowly. First we see that while on average Craig grossed the most globally, Connery claims the box office crown domestically. Although Daniel Craig's interpretation of the character is easily the most raw and serious, he comes off a lot more stylish and debonair (read as: British) than Connery. Connery's 007 performance have more of a maverick feeling to them which  makes them more attractive to Americans, what with their 'Don't Tread on Me' mentality and fascination with the cowboy archetype. 
 
 On the other end of the spectrum, at domestic and global box offices, Dalton's films grossed on average the least. Dalton's second film *License to Kill* ranks as the lowest grossing Bond film domestically (one of only two that grossed <$100mill) and globally, while his first, *The Living Daylights*, is third from last in both categories. Though *License to Kill* suffered from both a higher-than-usual age classification in Britain <sup>[6]</sup> and a last-minute title change <sup> [7] </sup>, it doesn't explain why the first one was so poorly recieved. Well, what makes Dalton's Bond different from the rest?
 
@@ -419,7 +419,8 @@ I briefly looked at the LetterBoxd and Metacritic for the Bond and 538 analysis,
 The 209 titles are 'recent' as of October 2015, when the article was written.
 
 <sup>[13]</sup>:
-The increase in budget is
+The newest film has the highest budget and the oldest film has the lowest. So we find the increase as follows:
+
 ($270-$10)mill/(54years)=$4.8 mill/year
 
 With 25 films in 54 years that gives us an average of 2.2 years/film. This means that there is a $4.8x2.2 = 10 mill/film increase.
