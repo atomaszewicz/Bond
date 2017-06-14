@@ -260,24 +260,20 @@ We note that from here on out, unless stated otherwise, all values will be adjus
 |Budget|$2,723,922,708|$108,956,908|
 |Profit|$14,816,178,405|$592,647,136|
 
-With a net global box office gross of $17.5 billion James Bond is *the* most financially successful film franchise in history, trailed by Star Wars, The Marvel Cinematic Universe and Harry Potter (in that order) <sup> [5] </sup>. Over two thirds of this gross is non-domestic, which is not entirely surprising since our secret agent works for Britian, not America/Canada <sup> [4]</sup>. This success, along with the gross averaging over six times their budget, and the films profit around $600 mill on average give us insight into how it has become (one of films longest running franchises)[https://en.wikipedia.org/wiki/List_of_film_series_with_more_than_twenty_entries].
+With a net global box office gross of $17.5 billion James Bond is *the* most financially successful film franchise in history, trailed by *Star Wars*, *The Marvel Cinematic Universe* and *Harry Potter* (in that order) <sup> [5] </sup>. Over two thirds of this gross is non-domestic, which is not entirely surprising since our secret agent works for Britian, not America/Canada <sup> [4]</sup>. This success, along with the gross averaging over six times their budget, and the films profit around $600 mill on average give us insight into how it has become (one of films longest running franchises)[https://en.wikipedia.org/wiki/List_of_film_series_with_more_than_twenty_entries].
 
-To give a better idea of the finances of individual films in our gilded franchise, let's take a quick look at the top, middle and bottom entries of each category. 
-
-All figures are in millions of dollars.
+To give a better idea of the finances of individual films in our gilded franchise, let's take a quick look at the top, middle and bottom entries of each category. All figures are in millions of dollars.
 
 |Figure|Max|Median|Min|
 |---|---|---|----|
 |Global|Thunderball ($1390)|Die Another Day ($640)|License to Kill ($340)|
 |Domestic|Thunderball ($650)|Quantum of Solace ($200)|License to Kill ($80)|
-|Profit|Thunderball ($1360)|Diamonds are Forever ($570)|License to Kill ($250)|
+|Profit|Goldfinger ($1360)|Diamonds are Forever ($570)|License to Kill ($250)|
 |Budget|Spectre ($270)|Living Daylights ($90)|Dr. No ($10)|
 
-Sean Connery's *Thunderball* is the most successful Bond film globally, domestically and by profit, while Timothy Dalton's *License to Kill* is the least successful. Thunder
+Sean Connery's *Thunderball* is the highest grossing film globally and domestically, while his film *Goldfinger* was the most profitable with a budget in the 16th percentile. We also notice that *Thunderball*'s domestic gross is greater than half the Bond film's global gross, quite a feat for only the fourth film in the series. Timothy Dalton's *License to Kill* is the least successful in all financial respects even though in the rating section it's average of 4 rating takes the median spot. The newest entry in the series, *Spectre*, cost more to make than *License to Kill*, which gives you an idea of how big the series is today. In fact, on average, each Bond film's budget increased by $10 mill <sup> [13] </sup>
 
-That the newest film in the franchise also has the highest budget, and the oldest film has the smallest is not entirely surprsing. However, a near-30 fold increase over 50 years, means every new Bond film is on average $17 mill more than the last one, which is quite surprising. 
-
-Before dive too deep into analyzing the budgets, let's continue in the way we did with the ratings, by looking at the averages by Bond to give us an idea of who was the biggest box office draw.
+It's hard to quantify if a near 30 fold increase in the budget over ~50 years is irregularly high, but . On average each new film costing $10 mill more than the previous. That the newest film in the franchise also has the highest budget, and the oldest film has the smallest is not entirely surprsing. Before we dive too deep into analyzing the budgets, let's look at the averages by Bond to give us an idea of who was the biggest box office draw.
 
 ```R
 #We use 'names', the vector of the actors names that was used earlier
@@ -421,6 +417,12 @@ I briefly looked at the LetterBoxd and Metacritic for the Bond and 538 analysis,
 
 <sup> [12] </sup>:
 The 209 titles are 'recent' as of October 2015, when the article was written.
+
+<sup>[13]</sup>:
+The increase in budget is
+($270-$10)mill/(54years)=$4.8 mill/year
+
+With 25 films in 54 years that gives us an average of 2.2 years/film. This means that there is a $4.8x2.2 = 10 mill/film increase.
 
 <sup> [14]</sup>:
 [For example](https://en.wikipedia.org/wiki/George_Lazenby#Leaving_Bond) is George Lazenby who quit said: "prior to the release of the film, Lazenby announced that he no longer wished to play the role of James Bond, saying, '[The Producers] made me feel like I was mindless. They disregarded everything I suggested simply because I hadn't been in the film business like them for about a thousand years.' "  
