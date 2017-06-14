@@ -271,25 +271,30 @@ To give a better idea of the finances of individual films in our gilded franchis
 |Profit|Goldfinger ($1360)|Diamonds are Forever ($570)|License to Kill ($250)|
 |Budget|Spectre ($270)|Living Daylights ($90)|Dr. No ($10)|
 
-Sean Connery's *Thunderball* is the highest grossing film globally and domestically, while his film *Goldfinger* was the most profitable with a budget in the 16th percentile. We also notice that *Thunderball*'s domestic gross is greater than half the Bond film's global gross, quite a feat for only the fourth film in the series. Timothy Dalton's *License to Kill* is the least successful in all financial respects even though in the rating section it's average of 4 rating takes the median spot. The newest entry in the series, *Spectre*, cost more to make than *License to Kill*, which gives you an idea of how big the series is today. In fact, on average, each Bond film's budget increased by $10 mill <sup> [13] </sup>. 
+Sean Connery's *Thunderball* is the highest grossing film globally and domestically, while his film *Goldfinger* was the most profitable with a budget in the 16th percentile. We also notice that *Thunderball*'s domestic gross is greater than half the Bond film's global gross, quite a feat for only the fourth film in the series. Timothy Dalton's *License to Kill* is the least successful in all financial respects even though in the rating section it's average of 4 rating is the median with 71/100. The profit of *License to Kill* was less than the newest entry in the franchise (*Spectre*) cost more to make.  Speaking of budgets, we see that not only is the newest film the most expensive, but the oldest (*Dr. No*) is the least, and on average, each Bond film's budget increases by $10 mill compared to the last <sup> [13] </sup>. These budget numbers are intriguing, but let's first look at how the different Bond actors performed.
 
-Before we dive too deep into analyzing budgets, let's look at the averages by Bond to give us an idea of what actor was the biggest box office draw.
+### Bond Actor
+
+We start by making a data frame that contains the various actor's mean values for the financial data.
 
 ```R
-#We use 'names', the vector of the actors names that was used earlier
+#we fill up the 'Bond' column with the 'names' vector from earlier and 'Average' which will be for averages over all actors
 boxoffice<-data.frame(Bond<-c(names,"Average"))
+#The loop is over 6 since we won't fill up the 'Average' entry in this way
 for(i in 1:6){
      boxoffice$Glb.Mean[i]<-colMeans(subset(bom$Glb.Adj,bom$Bond==names[i]))
      boxoffice$Dom.Mean[i]<-colMeans(subset(bom$Dom.Adj,bom$Bond==names[i]))
      boxoffice$Prft.Glb[i]<-colMeans(subset(bom$Prft.Glb,bom$Bond==names[i]))
      boxoffice$Glb.Bdg.Ratio[i]<-with(bom,sum(subset(bom$Glb.Adj,bom$Bond==names[i]))/sum(subset(bom$Bdg.Adj,bom$Bond==names[i])))
 }
-# Add a term that takes the ratio of global and domestic average grosses and fill in all the averages
+# Add a term that takes the ratio of global and domestic average grosses 
 boxoffice$Glb.Dom.Ratio<-with(boxoffice,Glb.Mean/Dom.Mean)
+#Now fill in the 'Average' row with the average over all columns less the actor column
 for(i in 2:6){
      boxoffice[7,i]<-mean(boxoffice[,i])
 }
 ```
+Here is what the data frame looks like as a table:
 
 |Bond|Avg. Global Gross|Avg. Domestic Gross|Glb:Dom Ratio|Avg. Global Profit|Glb:Bdg Ratio|
 |---|---|---|---|---|---|
@@ -299,12 +304,13 @@ for(i in 2:6){
 |Timothy Dalton|$379,864,046|$93,949,150|4.0|$290,278,294|4.2|
 |Pierce Brosnan|$644,678,449|$223,328,250|2.9|$454,928,173|3.4|
 |Daniel Craig|$885,619,047|$236,176,975|3.7|$655,951,017|3.8|
+|---|---|---|---|---|---|
 |Average|$643,099,031|$206,247,286|3.2|$530,698,483|7.9|
 
 
 There's a lot to unpack here, so let's go slowly. First we see that while on average Craig grossed the most globally, Connery claims the box office crown domestically. Although Daniel Craig's interpretation of the character is easily the most raw and serious, he comes off a lot more stylish and debonair (read as: British) than Connery. Connery's 007 performance have more of a maverick feeling to them which  makes them more attractive to Americans, what with their 'Don't Tread on Me' mentality and fascination with the cowboy archetype. 
 
-On the other end of the spectrum, at domestic and global box offices, Dalton's films grossed on average the least. Dalton's second film *License to Kill* ranks as the lowest grossing Bond film domestically (one of only two that grossed <$100mill) and globally, while his first, *The Living Daylights*, is third from last in both categories. Though *License to Kill* suffered from both a higher-than-usual age classification in Britain <sup>[6]</sup> and a last-minute title change <sup> [7] </sup>, it doesn't explain why the first one was so poorly recieved. Well, what makes Dalton's Bond different from the rest?
+On the other end of the spectrum, at domestic and global box offices, Dalton's films grossed on average the least. Dalton's second film *License to Kill* ranks as the lowest grossing Bond film both domestically (one of only two that grossed <$100mill) and globally, while his first, *The Living Daylights*, is third from last in both categories. Though *License to Kill* suffered from both a higher-than-usual age classification in Britain <sup>[6]</sup> and a last-minute title change <sup> [7] </sup>, it doesn't explain why the first one was so poorly recieved. Well, what makes Dalton's Bond different from the rest?
 
 After Roger Moore's playful, light-hearted Bond, the grit and realism of Dalton's performances must have been quite jarring for audiences. Dalton wanted the Bond from the novels a darker and more broooding Bond (I must disclose that I have never read any Bond novels). In an interview, Dalton summarized his approach thus: "I think Roger was fine as Bond, but the films had become too much techno-pop and had lost track of their sense of story.  Every film seemed to have a villain who had to rule or destroy the world. If you want to believe in the fantasy on screen, then you have to believe in the characters and use them as a stepping-stone to lead you into this fantasy world. That's a demand I made." <sup> [8] </sup> According to my parents (Dad has read all the original Fleming novels, and Mom has read none) it seems that those who were familiar with the literary charcter were mostly pleased with Dalton's more grounded approach whereas those who only knew the movies didn't enjoy how serious it was. In contrast with this, Daniel Craig's Bond, darker than Dalton's in many ways, was extremelly well recieved and it even followed Brosnan's more light-hearted Moore-esque Bond. This might mean that either Dalton took the unsatisfying middleground between fun and serious, or he helped paved the way for the appreciation of a darker Bond, which Craig reaped.
 
