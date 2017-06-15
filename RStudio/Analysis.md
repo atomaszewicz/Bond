@@ -310,19 +310,21 @@ Let's put the key information from this dataframe into a table.
 
 Both the domestic and global mean change in gross are positive, with global and domestic gross increasing on average by $11 mill and $1.5 mill between films, respecitvely. The $11 mill change in global gross is weirdly close to our rough calculation of a $10 mill increase in budget between films. Not entirely surprising, the biggest jump domestically and globally are for the transition, from Connery's second film to his third, and the biggest drops likewise for his fourth to fifth films. 
 
-Something that bugs me about the various means is that there the mean global is a factor of 7.5 times larger tha nthe mean domestic, whereas the mean positive & negative global change are only twice that of the mean positive & negative domestic change. This may be due to there being 12/24 positive global changes while there is 11/24 positive domestic changes <sup> [9] </sup>. 
+We notice that although the overall global change mean is 7.5 times larger than the domestic, the positive & negative global change means are about twice that of the domestic changes, and on average the global gross is 60% larger than the domestic gross change <sup> [5] </sup>. The unexpectedly high nature of the overall mean ratio might be due to there being 12/24 positive global changes and only 11/24 positive domestic changes <sup> [9] </sup>.
 
-Even though we saw that the largest increases and decreases in domestic and global markets are for the same film, how often are the two markets react similarly? The best way to look at this is visually.
-
-Now we plot the change in gross between film for domestic and global figures
+Even though we saw that the largest increases and decreases in domestic and global markets are for the same film, how often do the two markets react similarly? We plot the domestic and global changes side by side to investigate.
 
 Domestic Change            |  Global Change
 :-------------------------:|:-------------------------:
 ![dom_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/dom_chng_plot.png) | ![glb_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/glb_chng_plot.png)
 
-For the most part they agree on the sign of the change (19/24 times), where most of the differences is the change in gross with the premier of a new actor: For domestic gross, all but once, the change was negative, and for global the change was, all but once, positive. 
+For the most part the two markets agree on the sign, disagreeing on only 5/24 transitions, or 20% of the time. Most of the disagreements are when new actor premieres; for domestic gross, all but once, the change was negative, and for global the change was, all but once, positive. It seems that North Americans are cold to new interpretations of Agent 007, with the exception of Pierce Brosnan, (possibly correlated with the six year hiatus in the series and the lowest grossing film being what he had to live up to). In opposition to this, global audiences seem to liken a new actor to a reinvigoration of the series. The exception in the global case is George Lazenby, which as we've discussed, had a hard job of living up to Sean Connery. 
 
-In America it seems that theatre-goers are cold to new interpretations of Agent 007, with the acception of Pierce Brosnan. This exception is understandbly so as the previous film was *the* lowest grossing, and the 6 year hiatus in the series must have helped build up the excitement. Globally audiences seem to get excited with a reinvigoration of the series with a new Bond at the helm. The exception for this trend in the global market is George Lazenby, which as we've discussed, had a hard job of living up to Sean Connery. Let's look at how the Bond actor's did on average.
+The two markets generally agree on the sign of the change in gross (80% of the time), but what about the magnitude of the change? In a qualitative look at the two graphs, the magnitudes are generally comparable. To push this to a quantitative sense we have to decide how to compare two data sets. 
+
+The first idea I had was to normalize each change by dividing through by the mean change for that market, then find the ratio of the normalized global change: normalized domestic change. Likely due to the 7.5 time difference between the means, this normalized ratio came out at a whopping 12. This is not very good support for theory that the magnitudes are similar.
+
+The next idea I had was to noramlize, say, the positive global changes by the positive global change mean.
 
 ### Bond Actor
 
@@ -433,6 +435,11 @@ I have a future project planned to study how domestic (US) and global gross comp
 
 <sup>[5]</sup>: 
 This can be calculated from figures [here](http://www.boxofficemojo.com/franchises/?view=Franchise&sort=sumgross&order=DESC&p=.htm), with the same process of finding the global gross adjusted for inflation from the domestic adjusted and global unadjusted.
+
+<sup> [5] </sup>:
+bo.diff$glb.dom.raw.ratio<-with(bo.diff,bo.diff$Glb.Chng/bo.diff$Dom.Chng)
+mean(bo.diff$glb.dom.raw.ratio)
+[1] 0.6324663
 
 <sup>[6]</sup>:
 [Source](http://www.bbfc.co.uk/releases/licence-kill)
@@ -547,7 +554,13 @@ budg_plot<-ggplot(bom,aes(x=Release,y=Bdg.Adj))+geom_line()+geom_point(aes(shape
 y_axis<-scale_y_continuous(breaks=c(1e+07,1e+08,2e+08,3e+08),labels=c("$10 mill","$100 mill","$200 mill","$300 mill"))
 labels<-ggtitle("James Bond Film Budgets",subtitle="Adjusted for Inflation to May 2017")+ylab("Budget")
 ```
- 
+
+## glb_chng_plot
+ glb.chng<-ggplot(bo.diff,aes(x=Counter,y=Glb.Chng1,fill=glb.sgn))+geom_bar(stat='identity')+facet_grid(New.Bond ~ .,scales="free")+theme(strip.text.y = element_text(angle = 0))+scale_fill_manual("sign",values=c("positive"="BLUE","negative"="RED"))+geom_hline(aes(yintercept=0))+ylab("Change in Global Gross")+xlab("Film in Series")+ggtitle("Global Gross Change, Bond Franchise",subtitle="Adjusted for Inflation to May 2017, $mill")
+
+## dom_chng_plot
+dom.chng<-ggplot(bo.diff,aes(x=Counter,y=Dom.Chng1,fill=dom.sgn))+geom_bar(stat='identity')+facet_grid(New.Bond ~ .,scales="free")+theme(strip.text.y = element_text(angle = 0))+scale_fill_manual("sign",values=c("positive"="BLUE","negative"="RED"))+geom_hline(aes(yintercept=0))+ylab("Change in Domestic Gross")+xlab("Film in Series")+ggtitle("Domestic Gross Change, Bond Franchise",subtitle="Adjusted for Inflation to May 2017, $mill")
+
  
 
 # Appendix
