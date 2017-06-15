@@ -275,7 +275,7 @@ Sean Connery's *Thunderball* is the highest grossing film globally and domestica
 
 ### Changes in Domestic & Global Gross
 
-To study the evolution of the gross we make a dataframe with the changes, as we did with ratings.
+To study the evolution of the gross we make a dataframe with the changes in gross between films, similarly to what we did for ratings.
 
 
 ```R
@@ -301,14 +301,18 @@ bo.diff$Dom.Chng1<-with(bo.diff,Dom.Chng/1000000)
 bo.diff$New.Bond<-factor(bo.diff$New.Bond,levels=c("Sean Connery","George Lazenby","Roger Moore","Timothy Dalton","Pierce Brosnan","Daniel Craig"))
 ```
 
-As per usual, we'll look at a table of some of the basic numbers from this table before we continue.
+Let's put the key information from this dataframe into a table. 
 
 |Market|Max|Min|Mean|Mean>0|Mean<0|
 |---|---|---|---|---|---|
 |Global|$664,904,030|-$629,375,924|$11,138,529|$204,679,528|-$182,402,471|
 |Domestic|$341,273,000|-$334,894,700|$1,470,679|$94,201,991|-$76,994,277|
 
-Both the domestic and global mean change in gross are positive, with global gross increasing by $11 mill and domestic gross by $1.5 mill between films, on average. There is a 7.5x difference between the mean global and mean domestic change, whereas the mean positive & negative global change are only twice that of the mean positive & negative domestic change. This may be due to there being 12/24 positive global changes while there is 11/24 positive domestic changes <sup> [9] </sup>. To further investigate, let's take a look
+Both the domestic and global mean change in gross are positive, with global and domestic gross increasing on average by $11 mill and $1.5 mill between films, respecitvely. The $11 mill change in global gross is weirdly close to our rough calculation of a $10 mill increase in budget between films. Not entirely surprising, the biggest jump domestically and globally are for the transition, from Connery's second film to his third, and the biggest drops likewise for his fourth to fifth films. 
+
+Something that bugs me about the various means is that there the mean global is a factor of 7.5 times larger tha nthe mean domestic, whereas the mean positive & negative global change are only twice that of the mean positive & negative domestic change. This may be due to there being 12/24 positive global changes while there is 11/24 positive domestic changes <sup> [9] </sup>. 
+
+Even though we saw that the largest increases and decreases in domestic and global markets are for the same film, how often are the two markets react similarly? The best way to look at this is visually.
 
 Now we plot the change in gross between film for domestic and global figures
 
