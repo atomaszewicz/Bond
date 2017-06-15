@@ -16,10 +16,10 @@ require("reshape2")
 
 The data from our online rating sites, and our two box office figure websites all have their own page in our[excel spreadsheet](https://github.com/atomaszewicz/Bond/blob/master/Data/jb_raw.xlsx). To read more about the sources of this data, you can look at the [Data folder](https://github.com/atomaszewicz/Bond/tree/master/Data) or the [README](https://github.com/atomaszewicz/Bond/blob/master/Data/README.md) in the Data folder.
 
-We now bring this data into RStudio, creating seperate data frames for the seperate pages of the excel spreadsheet:
+We now bring this data into RStudio, creating seperate dataframes for the seperate pages of the excel spreadsheet:
 
 ```R
-#We make data frames with the data from: Box Office Mojo (bom), The Numbers (numb), and the rating websites (rate)
+#We make dataframes with the data from: Box Office Mojo (bom), The Numbers (numb), and the rating websites (rate)
 bom<-read.xlsx("jb_clean.xlsx",1)
 numb<-read.xlsx("jb_clean.xlsx",2)
 rate<-read.xlsx("jb_clean.xlsx",3)
@@ -42,7 +42,7 @@ First let's look at how the different metrics rated the Bond franchise on averag
 avg_all<-mean(mean(rate$RT.Crit),mean(rate$RT.User),mean(rate$LetterBoxd),mean(rate$IMDB))
 avgs<-data.frame(RT.Crit=(mean(rate$RT.Crit)),RT.User=(mean(rate$RT.User)),LetterBoxd=(mean(rate$LetterBoxd)),IMDB=(mean(rate$IMDB)),Avg.All=(avg_all))
 ```
-Tables are boring, let's visualize this. To do this we must transform our data frame using the 'melt()' function from the reshape 2 library.
+Tables are boring, let's visualize this. To do this we must transform our dataframe using the 'melt()' function from the reshape 2 library.
 
 ```R
 avgs_t<-melt(avgs)
@@ -117,9 +117,9 @@ First order of business is to compare Bond actors in the most straightforward wa
 ```R
 #First we create a vector of the names
 names<-c("Sean Connery","George Lazen","Roger Moore","Timothy Dalton","Pierce Brosnan","Daniel Craig")
-#Now we create a blank data frame to fill up with the averages of the metrics based on Bond actor
+#Now we create a blank dataframe to fill up with the averages of the metrics based on Bond actor
 bond_rate<-data.frame()
-#Fill up the data frame with the names and averages with a loop and fix the column names
+#Fill up the dataframe with the names and averages with a loop and fix the column names
 for(i in 1:6){
      bond_rate[i,1]=names[i]
      bond_rate[i,2]=mean(subset(rate$RT.Crit,rate$bond==names[i]))
@@ -131,7 +131,7 @@ for(i in 1:6){
 colnames(bond_rate)[c(1,2,3,4,5)]<-c("Bond","RT.Crit","RT.User","LetterBoxd","IMDB","Avg.All")
 #We bolt down the order for the names as ggplot2 is untrustworthy with plotting strings in the correct order
 bond_rate$Bond<-factor(bond_rate$Bond,levels=c("Sean Connery","George Lazen","Roger Moore","Timothy Dalton","Pierce Brosnan","Daniel Craig"))
-#Then we transform our data frame
+#Then we transform our dataframe
 bond_rate1<-melt(bond_rate,id=c("Bond","Avg.All"))
 ```
 
@@ -144,10 +144,10 @@ As before, LetterBoxd scores are the highest, and Rotten Tomatoes users are almo
 
 ### Score Changes
 
-In order to study how the ratings change between titles, and ultimately between Bonds, we must create a data frame that contains the difference in rating from film to film for each metric. In our data frame we will have a variable "Change.Number" to indicate which transition is being discussed. For example, Change.Number=1 will indicate the difference in ratings between film 1 and film 2. Change.Number will range from 1-24 since there are 25 titles in the franchise.
+In order to study how the ratings change between titles, and ultimately between Bonds, we must create a dataframe that contains the difference in rating from film to film for each metric. In our dataframe we will have a variable "Change.Number" to indicate which transition is being discussed. For example, Change.Number=1 will indicate the difference in ratings between film 1 and film 2. Change.Number will range from 1-24 since there are 25 titles in the franchise.
 
 ```R
-#Create a blank data frame and fill it up with the differences
+#Create a blank dataframe and fill it up with the differences
 diff<-data.frame()
 for(i in 1:24){
     diff[i,1]<-(rate$RT.Crit[i+1]-rate$RT.Crit[i])
@@ -234,14 +234,14 @@ Before we get started let's briefly discuss the specifics of the box office data
 
 ### Global and Domestic Gross
 
-We recall that we already loaded our BOM and The Numbers data into data frames named 'bom' and 'numb', respecitvely. 
+We recall that we already loaded our BOM and The Numbers data into dataframes named 'bom' and 'numb', respecitvely. 
 
-So to achieve our goal of getting all our values adjusted for inflation what I will do is as follows, with the example of global gross: Find the ratio of unadjusted global gross to unadjusted domestic gross, then multiply the adjusted domestic gross by this factor, giving us the adjusted global gross. Due to this method, the 'bom' dataframe will be our main data frame for this section.
+So to achieve our goal of getting all our values adjusted for inflation what I will do is as follows, with the example of global gross: Find the ratio of unadjusted global gross to unadjusted domestic gross, then multiply the adjusted domestic gross by this factor, giving us the adjusted global gross. Due to this method, the 'bom' dataframe will be our main dataframe for this section.
 
 ```R
 #We create a vector with the ratio of global to domestic box office gross
 glb.dom<-data.frame(with(numb,World.BxOf/Dom.BxOf))
-#Then create a new column in our BOM data frame with the adjusted domestic cross multiplied by these ratios
+#Then create a new column in our BOM dataframe with the adjusted domestic cross multiplied by these ratios
 bom$Glb.Adj<-(bom$Adjusted.Gross*glb.dom)
 #We do similarly with budgets, adjusting for inflation
 bud.dom<-data.frame(with(numb,Production.Budget/Dom.BxOf))
@@ -271,31 +271,44 @@ To give a better idea of the finances of individual films in our gilded franchis
 |Profit|Goldfinger ($1360)|Diamonds are Forever ($570)|License to Kill ($250)|
 |Budget|Spectre ($270)|Living Daylights ($90)|Dr. No ($10)|
 
-Sean Connery's *Thunderball* is the highest grossing film globally and domestically, while his film *Goldfinger* was the most profitable with a budget in the 16th percentile. We also notice that *Thunderball*'s domestic gross is greater than half the Bond film's global gross, quite a feat for only the fourth film in the series. Timothy Dalton's *License to Kill* is the least successful in all financial respects even though in the rating section it's average of 4 rating is the median with 71/100. It turns out that the newest Bond film (*Spectre*) cost more to make than *License to Kill* profited.  Speaking of budgets, we see that not only is the newest film the most expensive, but the oldest (*Dr. No*) is the least. Assuming a linear increase between these two extremes, this gives that the budget increases by $10 mill every film<sup> [13] </sup>. These budget numbers are intriguing, but we will come back to them later, we will first look at how the gross evolved over time.
+Sean Connery's *Thunderball* is the highest grossing film globally and domestically, while his film *Goldfinger* was the most profitable with a budget in the 16th percentile. We also notice that *Thunderball*'s domestic gross is greater than half the Bond film's global gross, quite a feat for only the fourth film in the series. Timothy Dalton's *License to Kill* is the least successful in all financial respects even though in the rating section it's average of 4 rating is the median with 71/100. It turns out that the newest Bond film (*Spectre*) cost more to make than *License to Kill* profited.  Speaking of budgets, we see that not only is the newest film the most expensive, but the oldest (*Dr. No*) is the least. Assuming a linear increase between these two extremes, this gives that the budget increases by $10 mill every film<sup> [13] </sup>. These budget numbers are intriguing, but we will come back to them later, we will first look at how the domestic and global grosses evolved over time.
 
 ### Changes in Domestic & Global Gross
 
-Now that we've seen how each actor performed relative to eachother, let's see how the domestic and global gross evolved from film to film. First we create a data frame of the changes in various quantities.
+To study the evolution of the gross we make a dataframe with the changes, as we did with ratings.
+
 
 ```R
+#Fill the dataframe up with change in global and domestic gross, as well as a counter variable and the names of Bond actors
 for(i in 1:24){
     bo.diff[i,1]<-(bom$Glb.Adj[i+1]-bom$Glb.Adj[i])
     bo.diff[i,2]<-(bom$Dom.Adj[i+1]-bom$Dom.Adj[i])
     bo.diff[i,3]<-i
     bo.diff[i,4]<-bom$Bond[i+1]
 }
+#Add column names
 colnames(bo.diff)[c(1:4)]<-c("Glb.Chng","Dom.Chng","Counter","New.Bond")
-#Then make a column of the sign of the entries for coloring our plots
+
+#Make a column of the sign of the entries for coloring our plots
 bo.diff$glb.sgn<-ifelse(bo.diff$Glb.Chng>=0,'positive','negative')
 bo.diff$dom.sgn<-ifelse(bo.diff$Dom.Chng>=0,'positive','negative')
-#Now we divide our change columns by 1,000,000 to make the graph more legible
+
+#To make our y-axis labels more legible we divide all values by 1,000,000
 bo.diff$Glb.Chng1<-with(bo.diff,Glb.Chng/1000000)
 bo.diff$Dom.Chng1<-with(bo.diff,Dom.Chng/1000000)
+
 #Lastly we solidfy the order of the names as before
 bo.diff$New.Bond<-factor(bo.diff$New.Bond,levels=c("Sean Connery","George Lazenby","Roger Moore","Timothy Dalton","Pierce Brosnan","Daniel Craig"))
 ```
 
-Let's check out this figures quickly. The mean global change is +$10 million and domestic +$1.5 mill
+Let's check out this figures quickly. 
+
+|Market|Max|Min|Mean|Mean>0|Mean<0|
+|---|---|---|---|---|---|
+|Global|$664,904,030|-$629,375,924|$11,138,529|$204,679,528|-$182,402,471|
+|Domestic|$664,904,030|-$629,375,924|$1,470,679|$94,201,991|-$76,994,277|
+
+
 Now we plot the change in gross between film for domestic and global figures
 
 Domestic Change            |  Global Change
@@ -308,7 +321,7 @@ In America it seems that theatre-goers are cold to new interpretations of Agent 
 
 ### Bond Actor
 
-We start by making a data frame that contains the various actor's mean values for the financial data.
+We start by making a dataframe that contains the various actor's mean values for the financial data.
 
 ```R
 #we fill up the 'Bond' column with the 'names' vector from earlier and 'Average' which will be for averages over all actors
@@ -327,7 +340,7 @@ for(i in 2:6){
      boxoffice[7,i]<-mean(boxoffice[,i])
 }
 ```
-Here is what the data frame looks like as a table:
+Here is what the dataframe looks like as a table:
 
 |Bond|Avg. Global Gross|Avg. Domestic Gross|Glb:Dom Ratio|Avg. Global Profit|Glb:Bdg Ratio|
 |---|---|---|---|---|---|
@@ -352,7 +365,7 @@ With grosses rivaled only by Craig but with the lowest budgets, not only does an
 
 ### Budgets
 
-Before we begin we create two new columns for the Profit:Budget and globa gross:Budget ratios in our 'bom' data frame so we can look at the budgets film-by-film. We note here that we treat 'Profit' as Global Gross less Budget since films are a global product.
+Before we begin we create two new columns for the Profit:Budget and globa gross:Budget ratios in our 'bom' dataframe so we can look at the budgets film-by-film. We note here that we treat 'Profit' as Global Gross less Budget since films are a global product.
 
 ```R
 bom$Prft.Bdg.Ratio<-bom$Prft.Glb/bom$Bdg.Adj
@@ -370,11 +383,11 @@ So our two extremes were not anomalies, the film's budgets have defienitly incre
 
 It is difficult to say how typical this is without doing a whole project on film budgets over time, but what we can do is look at how the films compare to the record holders at the time. Instead of spending a bunch of time on this, let's look at the first Bond film, the last and one in the middle. 
 
-First: In 1963 *Dr. No* cost  $1 million to make and in that same year the Elizabeth Taylor and Richard Burton epic [*Cleopatra*](https://en.wikipedia.org/wiki/Cleopatra_(1963_film)) broke a new record with an $31 million budget (neither figure adjusted for inflation since we simply want to compare). 
+**First**: In 1963 *Dr. No* cost  $1 million to make and in that same year the Elizabeth Taylor and Richard Burton epic [*Cleopatra*](https://en.wikipedia.org/wiki/Cleopatra_(1963_film)) broke a new record with an $31 million budget (neither figure adjusted for inflation since we simply want to compare). 
 
-Middle: Roger Moore's 1983 *Octopussy* was made on a $27.5 million budget, and the record holder at the time was the 1978 movie [*Superman*](https://en.wikipedia.org/wiki/Superman_(1978_film)) with a budget of $88 million (when adjusted to 1983).
+**Median**: Roger Moore's 1983 *Octopussy* was made on a $27.5 million budget, and the record holder at the time was the 1978 movie [*Superman*](https://en.wikipedia.org/wiki/Superman_(1978_film)) with a budget of $88 million (when adjusted to 1983).
 
-Last: 2015's *Spectre* had an unadjusted budget of $300 million while the record for a single film remains the [4th Johnny Depp *Pirates of the Caribbean*](https://en.wikipedia.org/wiki/Pirates_of_the_Caribbean:_On_Stranger_Tides) film from 2011, with a $400 million adjusted to 2015. 
+**Last**: 2015's *Spectre* had an unadjusted budget of $300 million while the record for a single film remains the [4th Johnny Depp *Pirates of the Caribbean*](https://en.wikipedia.org/wiki/Pirates_of_the_Caribbean:_On_Stranger_Tides) film from 2011, with a $400 million adjusted to 2015. 
 
 This isn't exactly scientific: early on in the film industry they would produce a lot of low budget movies and a few expensive movies, whereas nowadays they produce a lot of films of similar budgets. What this treatment does is give one an idea of how the James Bond franchise has turned from just another film series to one of the industry's heavy-hitters. 
 
@@ -531,9 +544,9 @@ labels<-ggtitle("James Bond Film Budgets",subtitle="Adjusted for Inflation to Ma
 We note in this [graph](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/rate_bymetric.png?raw=TRUE) that the LetterBoxd scores are almost always above the other 3. We will study this observation:
 
 ```R
-#Create the data frame to store the infor
+#Create the dataframe to store the infor
 lb_extra<-data.frame()
-#Input into our data frame the difference between the LB rating and the max of the other 3
+#Input into our dataframe the difference between the LB rating and the max of the other 3
 for(i in 1:25){
     lb_extra[i,1]<-(rate$LetterBoxd[i]-max(c(rate$RT.Crit[i],rate$RT.User[i],rate$IMDB[i])))
 }
