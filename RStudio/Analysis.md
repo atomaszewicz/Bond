@@ -306,7 +306,7 @@ Let's check out this figures quickly.
 |Market|Max|Min|Mean|Mean>0|Mean<0|
 |---|---|---|---|---|---|
 |Global|$664,904,030|-$629,375,924|$11,138,529|$204,679,528|-$182,402,471|
-|Domestic|$664,904,030|-$629,375,924|$1,470,679|$94,201,991|-$76,994,277|
+|Domestic|$341,273,000|-$334,894,700|$1,470,679|$94,201,991|-$76,994,277|
 
 
 Now we plot the change in gross between film for domestic and global figures
