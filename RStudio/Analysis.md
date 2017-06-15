@@ -301,13 +301,14 @@ bo.diff$Dom.Chng1<-with(bo.diff,Dom.Chng/1000000)
 bo.diff$New.Bond<-factor(bo.diff$New.Bond,levels=c("Sean Connery","George Lazenby","Roger Moore","Timothy Dalton","Pierce Brosnan","Daniel Craig"))
 ```
 
-Let's check out this figures quickly. 
+As per usual, we'll look at a table of some of the basic numbers from this table before we continue.
 
 |Market|Max|Min|Mean|Mean>0|Mean<0|
 |---|---|---|---|---|---|
 |Global|$664,904,030|-$629,375,924|$11,138,529|$204,679,528|-$182,402,471|
 |Domestic|$341,273,000|-$334,894,700|$1,470,679|$94,201,991|-$76,994,277|
 
+Both the domestic and global mean change in gross are positive, with global gross increasing by $11 mill and domestic gross by $1.5 mill between films, on average. There is a 7.5x difference between the mean global and mean domestic change, whereas the mean positive & negative global change are only twice that of the mean positive & negative domestic change. This may be due to there being 12/24 positive global changes while there is 11/24 positive domestic changes <sup> [9] </sup>. To further investigate, let's take a look
 
 Now we plot the change in gross between film for domestic and global figures
 
@@ -437,6 +438,13 @@ This can be calculated from figures [here](http://www.boxofficemojo.com/franchis
 
 <sup>[8]</sup>:
 Source: Rubin, Steven Jay (1995). The Complete James Bond Movie Encyclopedia (Revised ed.). McGraw-Hill/Contemporary Books. ISBN 0-8092-3268-5.
+
+<sup> [9] </sup>:
+To show why this could affect our values, let's replace this 13th negative domestic change with a positive one (the negative element and positive element are the respective signs medians): this would give us a mean of $5,818,575, which is almost exactly half of the $11 mill global change mean. 
+ 
+In order to 'neaturalize' a negative element, I added the negative of the median negative domestic change (which is then a positive number) and the median positive domestic change to the sum before dividing by the number of elements, which gives the mean. 
+
+NEW MEAN CHANGE=((REAL SUM OF DOMESTIC CHANGES)+(-MEDIAN NEGATIVE DOMESTIC CHANGE)+(MEDIAN POSITIVE DOMETIC CHANGE))/24
 
 <sup>[11]</sup>:
 I briefly looked at the LetterBoxd and Metacritic for the Bond and 538 analysis, respectively, but they were so different I thought it was best to simply ignore them for that analysis. Here is the max/min/mean for the two
