@@ -228,9 +228,9 @@ This is only ~~half~~ some of the story; as much as I like to think that the qua
 
 ## Finances 
 
-Financing movies is [very](http://www.npr.org/sections/money/2010/05/the_friday_podcast_angelina_sh.html) [complicated](https://www.theatlantic.com/business/archive/2011/09/how-hollywood-accounting-can-make-a-450-million-movie-unprofitable/245134/). It is no small task to raise hundreds of millions of dollars, often requiring [many parties with various investment models](https://www.youtube.com/watch?v=kgj0Z7zE0HM). When it comes to making the money back, there are box office sales, Blu-Ray/DVD sales, selling the title to streaming services, [product tie-ins](http://www.allday.com/10-completely-pointless-star-wars-product-tie-ins-that-make-no-sense-2180810453.html) etc.. These figures, as with most corporate finances, are not publically released. Even box office numbers, which go through some (tweaks)[http://www.slate.com/articles/arts/culturebox/2006/01/ticket_tweaking.html] before being released to media outlets, (aren't pure profit for studios)[http://www.themovieblog.com/2007/10/economics-of-the-movie-theater-where-the-money-goes-and-why-it-costs-us-so-much/]. That being said, box office figures are the only consistently released film finance data, so we will use them. Lastly I'd like to note that I think it is a positive to have one metric that is a product of it's time (box office) as well as one that uses the power of hindsight (online ratings).
+Financing movies is [very](http://www.npr.org/sections/money/2010/05/the_friday_podcast_angelina_sh.html) [complicated](https://www.theatlantic.com/business/archive/2011/09/how-hollywood-accounting-can-make-a-450-million-movie-unprofitable/245134/). It is no small task to raise hundreds of millions of dollars, often requiring [many parties with various investment models](https://www.youtube.com/watch?v=kgj0Z7zE0HM). When it comes to making the money back, there are box office sales, Blu-Ray/DVD sales, selling the title to streaming services, [product tie-ins](http://www.allday.com/10-completely-pointless-star-wars-product-tie-ins-that-make-no-sense-2180810453.html) etc.. These figures, as with most corporate finances, are not publically released. Even box office numbers, which go through some [tweaks](http://www.slate.com/articles/arts/culturebox/2006/01/ticket_tweaking.html) before being released to media outlets, [aren't pure profit for studios](http://www.themovieblog.com/2007/10/economics-of-the-movie-theater-where-the-money-goes-and-why-it-costs-us-so-much/). That being said, box office figures are the only consistently released film finance data, so we will use them. Lastly I'd like to note that I think it is a positive to have one metric that is a product of it's time (box office) as well as one that uses the power of hindsight (online ratings).
 
-Before we get started let's briefly discuss the specifics of the box office data. All numbers in this section are in $USD, inflation calculations are made to May 2017, and 'domestic' refers to the combined US & Canada box office figures. Our two sources for this section are the websites (Box Office Mojo (BOM))[http://www.boxofficemojo.com/] and (The Numbers)[http://www.the-numbers.com/]. BOM gives domestic box office figures both adjusted and unadjusted for inflation. The Numbers has domestic and global box office, as well as estimated budgets, all in unadjusted terms. Our first order of business is to get everything adjusted for inflation.
+Before we get started let's briefly discuss the specifics of the box office data. All numbers in this section are in $USD, inflation calculations are made to May 2017, and 'domestic' refers to the combined US & Canada box office figures. Our two sources for this section are the websites [Box Office Mojo (BOM)](http://www.boxofficemojo.com/) and [The Numbers](http://www.the-numbers.com/). BOM gives domestic box office figures both adjusted and unadjusted for inflation. The Numbers has domestic and global box office, as well as estimated budgets, all in unadjusted terms. Our first order of business is to get everything adjusted for inflation.
 
 ### Global and Domestic Gross
 
@@ -260,7 +260,7 @@ We note that from here on out, unless stated otherwise, all values will be adjus
 |Budget|$2,723,922,708|$108,956,908|
 |Profit|$14,816,178,405|$592,647,136|
 
-With a net global box office gross of $17.5 billion James Bond is *the* most financially successful film franchise in history, trailed by *Star Wars*, *The Marvel Cinematic Universe* and *Harry Potter* (in that order) <sup> [5] </sup>. Over two thirds of this gross is non-domestic, which is not entirely surprising since our secret agent works for Britian, not America/Canada <sup> [4]</sup>. This success, along with the gross averaging over six times their budget, and the films profit around $600 mill on average give us insight into how it has become (one of films longest running franchises)[https://en.wikipedia.org/wiki/List_of_film_series_with_more_than_twenty_entries].
+With a net global box office gross of $17.5 billion James Bond is *the* most financially successful film franchise in history, trailed by *Star Wars*, *The Marvel Cinematic Universe* and *Harry Potter* (in that order) <sup> [5] </sup>. Over two thirds of this gross is non-domestic, which is not entirely surprising since our secret agent works for Britian, not America/Canada <sup> [4]</sup>. This success, along with the gross averaging over six times their budget, and the films profit around $600 mill on average give us insight into how it has become [one of films longest running franchises](https://en.wikipedia.org/wiki/List_of_film_series_with_more_than_twenty_entries).
 
 To give a better idea of the finances of individual films in our gilded franchise, let's take a quick look at the top, middle and bottom entries of each category. All figures are in millions of dollars.
 
@@ -271,7 +271,40 @@ To give a better idea of the finances of individual films in our gilded franchis
 |Profit|Goldfinger ($1360)|Diamonds are Forever ($570)|License to Kill ($250)|
 |Budget|Spectre ($270)|Living Daylights ($90)|Dr. No ($10)|
 
-Sean Connery's *Thunderball* is the highest grossing film globally and domestically, while his film *Goldfinger* was the most profitable with a budget in the 16th percentile. We also notice that *Thunderball*'s domestic gross is greater than half the Bond film's global gross, quite a feat for only the fourth film in the series. Timothy Dalton's *License to Kill* is the least successful in all financial respects even though in the rating section it's average of 4 rating is the median with 71/100. The profit of *License to Kill* was less than the newest entry in the franchise (*Spectre*) cost more to make.  Speaking of budgets, we see that not only is the newest film the most expensive, but the oldest (*Dr. No*) is the least, and on average, each Bond film's budget increases by $10 mill compared to the last <sup> [13] </sup>. These budget numbers are intriguing, but let's first look at how the different Bond actors performed.
+Sean Connery's *Thunderball* is the highest grossing film globally and domestically, while his film *Goldfinger* was the most profitable with a budget in the 16th percentile. We also notice that *Thunderball*'s domestic gross is greater than half the Bond film's global gross, quite a feat for only the fourth film in the series. Timothy Dalton's *License to Kill* is the least successful in all financial respects even though in the rating section it's average of 4 rating is the median with 71/100. It turns out that the newest Bond film (*Spectre*) cost more to make than *License to Kill* profited.  Speaking of budgets, we see that not only is the newest film the most expensive, but the oldest (*Dr. No*) is the least. Assuming a linear increase between these two extremes, this gives that the budget increases by $10 mill every film<sup> [13] </sup>. These budget numbers are intriguing, but we will come back to them later, we will first look at how the gross evolved over time.
+
+### Changes in Domestic & Global Gross
+
+Now that we've seen how each actor performed relative to eachother, let's see how the domestic and global gross evolved from film to film. First we create a data frame of the changes in various quantities.
+
+```R
+for(i in 1:24){
+    bo.diff[i,1]<-(bom$Glb.Adj[i+1]-bom$Glb.Adj[i])
+    bo.diff[i,2]<-(bom$Dom.Adj[i+1]-bom$Dom.Adj[i])
+    bo.diff[i,3]<-i
+    bo.diff[i,4]<-bom$Bond[i+1]
+}
+colnames(bo.diff)[c(1:4)]<-c("Glb.Chng","Dom.Chng","Counter","New.Bond")
+#Then make a column of the sign of the entries for coloring our plots
+bo.diff$glb.sgn<-ifelse(bo.diff$Glb.Chng>=0,'positive','negative')
+bo.diff$dom.sgn<-ifelse(bo.diff$Dom.Chng>=0,'positive','negative')
+#Now we divide our change columns by 1,000,000 to make the graph more legible
+bo.diff$Glb.Chng1<-with(bo.diff,Glb.Chng/1000000)
+bo.diff$Dom.Chng1<-with(bo.diff,Dom.Chng/1000000)
+#Lastly we solidfy the order of the names as before
+bo.diff$New.Bond<-factor(bo.diff$New.Bond,levels=c("Sean Connery","George Lazenby","Roger Moore","Timothy Dalton","Pierce Brosnan","Daniel Craig"))
+```
+
+Let's check out this figures quickly. The mean global change is +$10 million and domestic +$1.5 mill
+Now we plot the change in gross between film for domestic and global figures
+
+Domestic Change            |  Global Change
+:-------------------------:|:-------------------------:
+![dom_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/dom_chng_plot.png) | ![glb_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/glb_chng_plot.png)
+
+For the most part they agree on the sign of the change (19/24 times), where most of the differences is the change in gross with the premier of a new actor: For domestic gross, all but once, the change was negative, and for global the change was, all but once, positive. 
+
+In America it seems that theatre-goers are cold to new interpretations of Agent 007, with the acception of Pierce Brosnan. This exception is understandbly so as the previous film was *the* lowest grossing, and the 6 year hiatus in the series must have helped build up the excitement. Globally audiences seem to get excited with a reinvigoration of the series with a new Bond at the helm. The exception for this trend in the global market is George Lazenby, which as we've discussed, had a hard job of living up to Sean Connery. Let's look at how the Bond actor's did on average.
 
 ### Bond Actor
 
@@ -317,7 +350,6 @@ Next we see that Connery had the lowest ratio of global to domestic gross, while
 
 With grosses rivaled only by Craig but with the lowest budgets, not only does an average Connery film profit over 50% more than the average Bond film, but his Profit:Budget ratio is over twice as high as the the average and this ratio is 60% higher than the next highest actor's ratio. It is hard to pretend that this is a completely fair analysis, the movie industry has changed a lot over the last 55 years. Directors and producers continually push the medium to create a more engaging and visercal cinematic experience. More extravagent sets and costumes, new cameras, and better special effects have caused budgets to [continue to pass new milestones every few years](https://en.wikipedia.org/wiki/List_of_most_expensive_films#Record-holders). It is hard to get around this since both the budgets and peoples willingness to go to the theatres (i.e. box office gross) are a product of their time, but it won't hurt to have a look at how the budgets have evolved over time.
 
-
 ### Budgets
 
 Before we begin we create two new columns for the Profit:Budget and globa gross:Budget ratios in our 'bom' data frame so we can look at the budgets film-by-film. We note here that we treat 'Profit' as Global Gross less Budget since films are a global product.
@@ -327,10 +359,26 @@ bom$Prft.Bdg.Ratio<-bom$Prft.Glb/bom$Bdg.Adj
 bom$Glb.Bdg.Ratio<-bom$Glb.Adj/bom$Bdg.Adj
 ```
 
-We have seen that Connery has the largest average return on investment with a whopping $800 mill average profit and a total profit of $2.6 bn from his 6 films.  Connery's first film *Dr. No* grossed almost 60 times it's budget, his second and third around 40 times, and his average gross was 17 times his average budget (A 600% return on investment would surely please everyone involved, but it's nowhere near *Paranormal Activity* which had a profit [nearly 1300 times it's budget](http://www.pajiba.com/seriously_random_lists/percentagewise-the-20-most-profitable-movies-of-all-time.php).).
-Even at the bottom of this spectrum, Dalton's films profited $290 mill on average, and Pierce Brosnan's films grossed 3.4 times their budget. So if you've ever wondered why this franchise has lasted so long, that's why: they're very profitable. 
+We have seen that Connery has the largest average return on investment with a whopping $800 mill average profit and a total profit of $2.6 bn from his 6 films. These new columns show us that Connery's first film *Dr. No* grossed almost 60 times it's budget, his second and third around 40 times, and his average gross was 17 times his average budget (A 600% return on investmentis fantastic, but it's nowhere near *Paranormal Activity* which had a profit [nearly 1300 times it's budget](http://www.pajiba.com/seriously_random_lists/percentagewise-the-20-most-profitable-movies-of-all-time.php).).
+Even at the bottom of this spectrum, Dalton's films profited $290 mill on average, and Pierce Brosnan's films grossed 3.4 times their budget. So if you've ever wondered why this franchise has lasted so long, here's why: they're very profitable movies. 
 
-Our previous analysis showed that on average it seems that Bond films budgets have increased by $10mill/movie. We graph the budgets over time to see how accurate this statement is.
+Our previous analysis showed that on average it seems that Bond films budgets have increased by $10mill/movie based on the highest and lowest grossing movies being the newest and oldest films in the franchise. We want to see if this is true, so we plot the budgets over time.
+
+![budg_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/budg_plot.png?raw=TRUE)
+
+So our two extremes were not anomalies, the film's budgets have defienitly increased, and quite dramatically. We add a linear regression to our plot to help visulize the upwards trend in budgets.  We note that our highest grossing film *Thunderball* had quite a large budget compared with the films around it (which might be partly due to it's [extensive underwater scenes](https://youtu.be/cuMM72G5k48?t=4m3s)). It cost three times as much to make as the proceeding film and twice as much as the average budget of the six succeeding films.  The $91 mill budget was not surpassed until Moore's $110 mill *Moonraker*, 15 years later.  
+
+It is difficult to say how typical this is without doing a whole project on film budgets over time, but what we can do is look at how the films compare to the record holders at the time. Instead of spending a bunch of time on this, let's look at the first Bond film, the last and one in the middle. 
+
+First: In 1963 *Dr. No* cost  $1 million to make and in that same year the Elizabeth Taylor and Richard Burton epic [*Cleopatra*](https://en.wikipedia.org/wiki/Cleopatra_(1963_film)) broke a new record with an $31 million budget (neither figure adjusted for inflation since we simply want to compare). 
+
+Middle: Roger Moore's 1983 *Octopussy* was made on a $27.5 million budget, and the record holder at the time was the 1978 movie [*Superman*](https://en.wikipedia.org/wiki/Superman_(1978_film)) with a budget of $88 million (when adjusted to 1983).
+
+Last: 2015's *Spectre* had an unadjusted budget of $300 million while the record for a single film remains the [4th Johnny Depp *Pirates of the Caribbean*](https://en.wikipedia.org/wiki/Pirates_of_the_Caribbean:_On_Stranger_Tides) film from 2011, with a $400 million adjusted to 2015. 
+
+This isn't exactly scientific: early on in the film industry they would produce a lot of low budget movies and a few expensive movies, whereas nowadays they produce a lot of films of similar budgets. What this treatment does is give one an idea of how the James Bond franchise has turned from just another film series to one of the industry's heavy-hitters. 
+
+We've now looked at both budgets and gross, but a better measure of the success of a product is return on investment. So let's plot the ratio of profit:budget to see how our series looks to accountants.
 
 ![profit_budget_ratio](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/profit_budget_ratio.png?raw=TRUE)
 
@@ -338,40 +386,8 @@ We added a LOESS-method trendline to show the decrease-to-plateau nature of the 
 
 Now we look at the films budgets to see if our presumption that they have increased is supported by data.
 
-![budg_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/budg_plot.png?raw=TRUE)
 
-From $10 to $300 million the Bond films budgets have skyrocketed over time, with an average yearly increase of $5 million. It is difficult to say how typical this is without doing a whole project on film budgets over time, but what we can do is look at how the films compare to the record holders at the time. Instead of spending a bunch of time on this, let's look at the first Bond film, the last and one in the middle. In 1963 *Dr. No* cost  $1 million to make and in that same year the Elizabeth Taylor and Richard Burton epic [*Cleopatra*](https://en.wikipedia.org/wiki/Cleopatra_(1963_film)) broke a new record with an $31 million budget (neither figure adjusted for inflation). In 1989 Dalton's last Bond movie cost $42 million unadjusted, and a year later *Die Hard 2 *broke another budget record with $62 million in 1990 terms. 2015's *Spectre* had an unadjusted budget of $300 million while the record for a single film remains the 4th Johnny Depp *Pirates of the Caribbean* film from 2011, with a $400 million adjusted to 2015 <sup> [9] </sup>. This isn't exactly scientific, early on in the film industry they would produce a lot of low budget movies and a few expensive movies, but nowadays they produce a lot of films of similar budgets. What this treatment does is give you an idea of how the James Bond franchise has turned from just another film series to one of the industry's heavy-hitters.
 
-Now that we've seen how each actor performed relative to eachother, let's see how the domestic and global gross evolved from film to film. First we create a data frame of the changes in various quantities.
-
-```R
-for(i in 1:24){
-    bo.diff[i,1]<-(bom$Glb.Adj[i+1]-bom$Glb.Adj[i])
-    bo.diff[i,2]<-(bom$Dom.Adj[i+1]-bom$Dom.Adj[i])
-    bo.diff[i,3]<-i
-    bo.diff[i,4]<-bom$Bond[i+1]
-}
-colnames(bo.diff)[c(1:4)]<-c("Glb.Chng","Dom.Chng","Counter","New.Bond")
-#Then make a column of the sign of the entries for coloring our plots
-bo.diff$glb.sgn<-ifelse(bo.diff$Glb.Chng>=0,'positive','negative')
-bo.diff$dom.sgn<-ifelse(bo.diff$Dom.Chng>=0,'positive','negative')
-#Now we divide our change columns by 1,000,000 to make the graph more legible
-bo.diff$Glb.Chng1<-with(bo.diff,Glb.Chng/1000000)
-bo.diff$Dom.Chng1<-with(bo.diff,Dom.Chng/1000000)
-#Lastly we solidfy the order of the names as before
-bo.diff$New.Bond<-factor(bo.diff$New.Bond,levels=c("Sean Connery","George Lazenby","Roger Moore","Timothy Dalton","Pierce Brosnan","Daniel Craig"))
-```
-
-Let's check out this figures quickly. The mean global change is +$10 million and domestic +$1.5 mill
-Now we plot the change in gross between film for domestic and global figures
-
-Domestic Change            |  Global Change
-:-------------------------:|:-------------------------:
-![dom_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/dom_chng_plot.png) | ![glb_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/glb_chng_plot.png)
-
-For the most part they agree on the sign of the change (19/24 times), where most of the differences is the change in gross with the premier of a new actor: For domestic gross, all but once, the change was negative, and for global the change was, all but once, positive. 
-
-In America it seems that theatre-goers are cold to new interpretations of Agent 007, with the acception of Pierce Brosnan. This exception is understandbly so as the previous film was *the* lowest grossing, and the 6 year hiatus in the series must have helped build up the excitement. Globally audiences seem to get excited with a reinvigoration of the series with a new Bond at the helm. The exception for this trend in the global market is George Lazenby, which as we've discussed, had a hard job of living up to Sean Connery.
 
 # Footnotes
 <sup>[1]</sup> : In the FiveThirtyEight [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) I referenced, the point of interest is this paragraph: "The ratings from IMDb, Metacritic and Rotten Tomatoes were typically in the same ballpark, which makes this finding unsurprising: Fandango’s star rating was higher than the IMDb rating 79 percent of the time, the Metacritic aggregate critic score 77 percent of the time, the Metacritic user score 86 percent of the time, the Rotten Tomatoes critic score 62 percent of the time, and the Rotten Tomatoes user score 74 percent of the time." Therefore to see how much higher user scores are than the critics scores, we simply divide the two averages to eliminate the Fandango term: (RT.Crit)/(RT.User)=1.19 which gives us our quoted 19%. 
