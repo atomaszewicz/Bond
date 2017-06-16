@@ -373,7 +373,7 @@ for(i in 2:6){
 Here is what the dataframe looks like as a table:
 
 |Bond|Avg. Global Gross|Avg. Domestic Gross|Avg. Non-Domestic Gross|Glb:Dom Ratio|Avg. Global Profit|Glb:Bdg Ratio|
-|---|---|---|---|---|---|
+|---|---|---|---|---|---|---|
 |Sean Connery|$857,381,211|$328,071,243|$5293,09,968|2.6|$806,338,430|16.8|
 |George Lazenby|$496,640,912|$138,090,400|$358,550,512|3.6|$448,188,140|10.2|
 |Roger Moore|$594,410,522|$166,867,700|$427,542,822|3.6|$528,506,844|9.0|
