@@ -285,19 +285,22 @@ To study the evolution of the gross we make a dataframe with the changes in gros
 for(i in 1:24){
     bo.diff[i,1]<-(bom$Glb.Adj[i+1]-bom$Glb.Adj[i])
     bo.diff[i,2]<-(bom$Dom.Adj[i+1]-bom$Dom.Adj[i])
-    bo.diff[i,3]<-i
-    bo.diff[i,4]<-bom$Bond[i+1]
+    bo.diff[i,3]<-(bom$Non.Dom.Adj[i+1]-bom$Non.Dom.Adj[i])
+    bo.diff[i,4]<-i
+    bo.diff[i,5]<-bom$Bond[i+1]
 }
 #Add column names
-colnames(bo.diff)[c(1:4)]<-c("Glb.Chng","Dom.Chng","Counter","New.Bond")
+colnames(bo.diff)[c(1:45]<-c("Glb.Chng","Dom.Chng","Non.Dom.Chng","Counter","New.Bond")
 
 #Make a column of the sign of the entries for coloring our plots
 bo.diff$glb.sgn<-ifelse(bo.diff$Glb.Chng>=0,'positive','negative')
 bo.diff$dom.sgn<-ifelse(bo.diff$Dom.Chng>=0,'positive','negative')
+bo.diff$non.dom.sgn<-ifelse(bo.diff$Non.Dom.Chng>=0,'positive','negative')
 
 #To make our y-axis labels more legible we divide all values by 1,000,000
 bo.diff$Glb.Chng1<-with(bo.diff,Glb.Chng/1000000)
 bo.diff$Dom.Chng1<-with(bo.diff,Dom.Chng/1000000)
+bo.diff$Non.Dom.Chng1<-with(bo.diff,Non.Dom.Chng/1000000)
 
 #Lastly we solidfy the order of the names as before
 bo.diff$New.Bond<-factor(bo.diff$New.Bond,levels=c("Sean Connery","George Lazenby","Roger Moore","Timothy Dalton","Pierce Brosnan","Daniel Craig"))
@@ -309,6 +312,7 @@ Let's put the key information from this dataframe into a table.
 |---|---|---|---|---|---|
 |Global|$664,904,030|-$629,375,924|$11,138,529|$204,679,528|-$182,402,471|
 |Domestic|$341,273,000|-$334,894,700|$1,470,679|$94,201,991|-$76,994,277|
+|Non-Domestic|
 
 Both the domestic and global mean change in gross are positive, with global and domestic gross increasing on average by $11 mill and $1.5 mill between films, respecitvely. The $11 mill change in global gross is weirdly close to our rough calculation of a $10 mill increase in budget between films. Not entirely surprising, the biggest jump domestically and globally are for the transition, from Connery's second film to his third, and the biggest drops likewise for his fourth to fifth films. 
 
