@@ -271,10 +271,11 @@ To give a better idea of the finances of individual films in our gilded franchis
 |---|---|---|----|
 |Global|Thunderball ($1390)|Die Another Day ($640)|License to Kill ($340)|
 |Domestic|Thunderball ($650)|Quantum of Solace ($200)|License to Kill ($80)|
+|Non-Domestic|Skyfall ($860)|Dr. No ($440)|A View to Kill ($250)|
 |Profit|Goldfinger ($1360)|Diamonds are Forever ($570)|License to Kill ($250)|
 |Budget|Spectre ($270)|Living Daylights ($90)|Dr. No ($10)|
 
-Sean Connery's *Thunderball* is the highest grossing film globally and domestically, while his film *Goldfinger* was the most profitable with a budget in the 16th percentile. We also notice that *Thunderball*'s domestic gross is greater than half the Bond film's global gross, quite a feat for only the fourth film in the series. Timothy Dalton's *License to Kill* is the least successful in all financial respects even though in the rating section it's average of 4 rating is the median with 71/100. It turns out that the newest Bond film (*Spectre*) cost more to make than *License to Kill* profited.  Speaking of budgets, we see that not only is the newest film the most expensive, but the oldest (*Dr. No*) is the least. Assuming a linear increase between these two extremes, this gives that the budget increases by $10 mill every film<sup> [13] </sup>. These budget numbers are intriguing, but we will come back to them later, we will first look at how the global and domestic grosses have evolved over time.
+Sean Connery's *Thunderball* is the highest grossing film globally and domestically, while *Skyfall* produced the most in the foreign markets. The most profitable film was *Goldfinger* with a budget in the bottom 20%. We also notice that *Thunderball* pulled in more gross domestically than half the Bond film's did globally, quite a feat for only the fourth film in the series. Timothy Dalton's *License to Kill* is the least successful in all financial respects even though in the rating section it's average of 4 rating is the median with 71/100. It turns out that the newest Bond film (*Spectre*) cost more to make than *License to Kill* profited.  Speaking of budgets, we see that not only is the newest film the most expensive, but the oldest (*Dr. No*) is the least. Assuming a linear increase between these two extremes, this gives that the budget increases by $10 mill every film<sup> [13] </sup>. These budget numbers are intriguing, but we will come back to them later, we will first look at how the global and domestic grosses have evolved over time.
 
 ### Domestic & Global Gross
 
@@ -290,7 +291,7 @@ for(i in 1:24){
     bo.diff[i,5]<-bom$Bond[i+1]
 }
 #Add column names
-colnames(bo.diff)[c(1:45]<-c("Glb.Chng","Dom.Chng","Non.Dom.Chng","Counter","New.Bond")
+colnames(bo.diff)[c(1:5]<-c("Glb.Chng","Dom.Chng","Non.Dom.Chng","Counter","New.Bond")
 
 #Make a column of the sign of the entries for coloring our plots
 bo.diff$glb.sgn<-ifelse(bo.diff$Glb.Chng>=0,'positive','negative')
@@ -312,17 +313,17 @@ Let's put the key information from this dataframe into a table.
 |---|---|---|---|---|---|
 |Global|$664,904,030|-$629,375,924|$11,138,529|$204,679,528|-$182,402,471|
 |Domestic|$341,273,000|-$334,894,700|$1,470,679|$94,201,991|-$76,994,277|
-|Non-Domestic|
+|Non-Domestic|$359,561,264|-$294,481,224|$9,667,850|$163,571,903|-$100,263,617|
 
-Both the domestic and global mean change in gross are positive, with global and domestic gross increasing on average by $11 mill and $1.5 mill between films, respecitvely. The $11 mill change in global gross is weirdly close to our rough calculation of a $10 mill increase in budget between films. Not entirely surprising, the biggest jump domestically and globally are for the transition, from Connery's second film to his third, and the biggest drops likewise for his fourth to fifth films. 
+Generally the gross increases in both domestic and foreign markets; the non-domestic (read as: foreign) market increases on average seven times more than the domestic market does. I note with a degree of skepticism  that the $11 mill change in global gross is weirdly close to our rough calculation of a $10 mill increase in budget between films. The biggest jump domestically and globally are for the transition from Connery's second film to his third, and all three markets agree that the biggest drop was from his fourth to fifth film.
 
-We notice that although the overall global change mean is 7.5 times larger than the domestic, the positive & negative global change means are about twice that of the domestic changes, and on average the global gross is 60% larger than the domestic gross change <sup> [5] </sup>. The unexpectedly high nature of the overall mean ratio might be due to there being 12/24 positive global changes and only 11/24 positive domestic changes <sup> [9] </sup>.
+Foriegn markets have only seen gross increase relative to the last film 9/24 time, domestic markets have had 11 such occasions, while globally this number is 12. The two markets  thus seem to work together to counter-act eachothers negative change in gross to bring the overall global increase in gross rate to 50%. 
 
-Even though we saw that the largest increases and decreases in domestic and global markets are for the same film, how often do the two markets react similarly? We plot the domestic and global changes side by side to investigate.
+Foreign and domestic markets agree on the sign of the change in gross 70% of the time (17/24), but when do they agree and disagree, and how do their magnitudes compare?
 
-Domestic Change            |  Global Change
+Domestic Change            |  Foreign
 :-------------------------:|:-------------------------:
-![dom_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/dom_chng_plot.png) | ![glb_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/glb_chng_plot.png)
+![dom_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/dom_chng_plot.png) | ![glb_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/non_dom_chng_plot.png)
 
 For the most part the two markets agree on the sign, disagreeing on only 5/24 transitions, or 20% of the time. Most of the disagreements are when new actor premieres; for domestic gross, all but once, the change was negative, and for global the change was, all but once, positive. It seems that North Americans are cold to new interpretations of Agent 007, with the exception of Pierce Brosnan, (possibly correlated with the six year hiatus in the series and the lowest grossing film being what he had to live up to). In opposition to this, global audiences seem to liken a new actor to a reinvigoration of the series. The exception in the global case is George Lazenby, which as we've discussed, had a hard job of living up to Sean Connery. 
 
