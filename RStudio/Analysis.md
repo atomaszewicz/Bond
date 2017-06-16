@@ -325,9 +325,11 @@ Domestic Change            |  Foreign
 :-------------------------:|:-------------------------:
 ![dom_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/dom_chng_plot.png) | ![glb_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/non_dom_chng_plot.png)
 
-Most of the disagreements (4/7) are when new actor premieres; for domestic gross, all but once, the change was negative, and in the foreign markets the change was, all but once, positive. It seems that North Americans are cold to new interpretations of Agent 007, with the exception of Pierce Brosnan, (possibly correlated with the six year hiatus in the series and the lowest grossing film being what he had to live up to). In opposition to this, foreigners audiences seem to like a reinvigoration of the series. The exception in the foreign case is George Lazenby, which as we've discussed, had a hard job of living up to Sean Connery. The three remaining disagreements occur around/just before the halfway point for the actors: Sean Connery's 3rd of 6, Moore's fourth of 7, Brosnan's 2nd of 4. In opposition to the previous result all three of these disagreements find the positive change in gross in the domestic market and the negative change being for foriegn markets.
+Most of the disagreements (4/7) are when new actor premieres; for domestic gross, all but once, the change was negative, and in the foreign markets the change was, all but once, positive. It seems that North Americans are cold to new interpretations of Agent 007, with the exception of Pierce Brosnan, (possibly correlated with the six year hiatus in the series and the lowest grossing film being what he had to live up to). In opposition to this, foreigners audiences seem to like a reinvigoration of the series. The exception in the foreign case is George Lazenby, which as we've discussed, had a hard job of living up to Sean Connery. The three remaining disagreements occur around the halfway point for the actors: Sean Connery's 3rd of 6, Moore's fourth of 7, Brosnan's 2nd of 4. In opposition to the previous result all three of these disagreements find the positive change in gross in the domestic market and the negative change being for foriegn markets.
 
-We've found rough patterns to how the two markets change in gross between films compares, but only in terms of the sign of this change. How do the magnitudes of these changes occur?
+We've found rough patterns to how the two markets change in gross between films compares, but only in terms of the signs of these changes. How do the magnitudes of these changes compare? The two markets have different sizes, so comparing them directly is unfair, we must find a sort of normalization factor for each market. Also how do we account for the seven cases where the sign of the change in gross disagrees between markets? Obviously since they disagree on the direction of the change, comparing the magnitudes of these cases is missing imporant information.
+
+
 
 
 
@@ -344,7 +346,7 @@ In order to patch these two groups together, we need a way to make the 'disagree
 you can think of it as a measure as how far away from how many times it would take the domestic bar to fit into the difference between the two bars. simply 
 
 
-
+Seeing how the global, domestic and foreign markets compare is important to our understanding of the evolution of the series, but wish so many different actors taking the role of 007, we must also study how these figures change with actor.
 
 ### Bond Actor
 
@@ -355,9 +357,10 @@ We start by making a dataframe that contains the various actor's mean values for
 boxoffice<-data.frame(Bond<-c(names,"Average"))
 #The loop is over 6 since we won't fill up the 'Average' entry in this way
 for(i in 1:6){
-     boxoffice$Glb.Mean[i]<-colMeans(subset(bom$Glb.Adj,bom$Bond==names[i]))
-     boxoffice$Dom.Mean[i]<-colMeans(subset(bom$Dom.Adj,bom$Bond==names[i]))
-     boxoffice$Prft.Glb[i]<-colMeans(subset(bom$Prft.Glb,bom$Bond==names[i]))
+     boxoffice$Glb.Mean[i]<-mean(subset(bom$Glb.Adj,bom$Bond==names[i]))
+     boxoffice$Dom.Mean[i]<-mean(subset(bom$Dom.Adj,bom$Bond==names[i]))
+     boxoffice$Non.Dom.Mean[i]<-mean(subset(bom$Non.Dom,bom$Bond==names[i]))
+     boxoffice$Prft.Glb[i]<-mean(subset(bom$Prft.Glb,bom$Bond==names[i]))
      boxoffice$Glb.Bdg.Ratio[i]<-with(bom,sum(subset(bom$Glb.Adj,bom$Bond==names[i]))/sum(subset(bom$Bdg.Adj,bom$Bond==names[i])))
 }
 # Add a term that takes the ratio of global and domestic average grosses 
@@ -369,18 +372,18 @@ for(i in 2:6){
 ```
 Here is what the dataframe looks like as a table:
 
-|Bond|Avg. Global Gross|Avg. Domestic Gross|Glb:Dom Ratio|Avg. Global Profit|Glb:Bdg Ratio|
+|Bond|Avg. Global Gross|Avg. Domestic Gross|Avg. Non-Domestic Gross|Glb:Dom Ratio|Avg. Global Profit|Glb:Bdg Ratio|
 |---|---|---|---|---|---|
-|Sean Connery|$857,381,211|$328,071,243|2.6|$806,338,430|16.8|
-|George Lazenby|$496,640,912|$138,090,400|3.6|$448,188,140|10.2|
-|Roger Moore|$594,410,522|$166,867,700|3.6|$528,506,844|9.0|
-|Timothy Dalton|$379,864,046|$93,949,150|4.0|$290,278,294|4.2|
-|Pierce Brosnan|$644,678,449|$223,328,250|2.9|$454,928,173|3.4|
-|Daniel Craig|$885,619,047|$236,176,975|3.7|$655,951,017|3.8|
-|Average|$643,099,031|$206,247,286|3.2|$530,698,483|7.9|
+|Sean Connery|$857,381,211|$328,071,243|$5293,09,968|2.6|$806,338,430|16.8|
+|George Lazenby|$496,640,912|$138,090,400|$358,550,512|3.6|$448,188,140|10.2|
+|Roger Moore|$594,410,522|$166,867,700|$427,542,822|3.6|$528,506,844|9.0|
+|Timothy Dalton|$379,864,046|$93,949,150|$285,914,896|4.0|$290,278,294|4.2|
+|Pierce Brosnan|$644,678,449|$223,328,250|$421,350,199|2.9|$454,928,173|3.4|
+|Daniel Craig|$885,619,047|$236,176,975|$649,442,072|3.7|$655,951,017|3.8|
+|Average|$643,099,031|$206,247,286|$529,309,968|3.2|$530,698,483|7.9|
 
-
-There's a lot to unpack here, so let's go slowly. First we see that while on average Craig grossed the most globally, Connery claims the box office crown domestically. Although Daniel Craig's interpretation of the character is easily the most raw and serious, he comes off a lot more stylish and debonair (read as: British) than Connery. Connery's 007 performances have more of a maverick feeling to them which could make them more attractive to Americans, with their 'Don't Tread on Me' mentality and fascination with the cowboy archetype. 
+     
+There's a lot to unpack here, so let's go slowly. First we see that while on average Craig grossed the most globally and and in foreign markets, Connery claims the box office crown domestically. Although Daniel Craig's interpretation of the character is easily the most raw and serious, he comes off a lot more stylish and debonair (read as: British) than Connery. Connery's 007 performances have more of a maverick feeling to them which could make them more attractive to Americans, with their 'Don't Tread on Me' mentality and fascination with the cowboy archetype. 
 
 On the other end of the spectrum, at domestic and global box offices, Dalton's films grossed on average the least. As we saw, Dalton's second film *License to Kill* ranks as the lowest grossing Bond film domestically & globally, while his first film (*The Living Daylights*) is the third lowest grossing in both categories. Though *License to Kill* suffered from a higher-than-usual age classification in Britain <sup>[6]</sup> and a last-minute title change <sup> [7] </sup>, it doesn't explain why the first one was so poorly recieved. Well, what makes Dalton's Bond different from the rest?
 
