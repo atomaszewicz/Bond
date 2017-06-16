@@ -322,9 +322,18 @@ For the most part the two markets agree on the sign, disagreeing on only 5/24 tr
 
 The two markets generally agree on the sign of the change in gross (80% of the time), but what about the magnitude of the change? In a qualitative look at the two graphs, the magnitudes are generally comparable. To push this to a quantitative sense we have to decide how to compare two data sets. 
 
-The first idea I had was to normalize each change by dividing through by the mean change for that market, then find the ratio of the normalized global change: normalized domestic change. Likely due to the 7.5 time difference between the means, this normalized ratio came out at a whopping 12. This is not very good support for theory that the magnitudes are similar.
+The first idea I had was to normalize each change by dividing through by the mean change for that market, then find the ratio of the normalized global change:normalized domestic change. Likely due to the 7.5 time difference between the means, this normalized ratio came out at a whopping 12. This is not very good support for theory that the magnitudes are similar.
 
-The next idea I had was to noramlize, say, the positive global changes by the positive global change mean.
+The next idea I had was to noramlize by the mean for that subset, for example: normalize the negative domestic changes by the mean of the domestic changes. The normalized ratio for this method turned out to be 1.2, which highly supports our theory that the magnitudes are 'comparable'. The problem with the method is that by dividing by the subsets mean, you are losing information about the sign of the change. So even if the magnitudes of the changes are similar, but have different sign, they are seen as 'close', which is like pretending that +100 & -100 are identical changes. 
+
+If we ignore the 5/24 occurances of differing signs, we get a normalized global change:normalized domestic change ratio of 0.9, and if we find the mean of just these cases of sign-disagreement, we get a 2.2 ratio. This indicates that when the global and domestic changes disagree on sign, the magnitudes are less similar than when they agree on sign (which pleases my gut since, if they can't even agree if the movie got better or worse, why would they agree on the magnitude of the change?). This isn't enough for me, I want to patch these together to get a final anwser number that reflects the ratio of global change to domestic change.
+
+In order to patch these two groups together, we need a way to make the 'disagreer' ratios reflect how they differ in sign. It's at times like this that one must reflect on what these basic operations we take for granted really signify. Thinking about it in bar plot terms, the ratio of global gross to domestic gross is (assuming they have the same sign) how many times the domestic gross could fit into the global gross, but you can also think about it as how the height of the domestic change bar compares to that of the global bar *or* how far away they extremes of the bar are from eachother. To measure how far away disagreers are from eachothercan be accomplished in a fairly straightforward way: find the total difference then divide by the absolute value of domestic change. For example: Say the normalized global change is 500, and the normalized domestic change is -300. The ratio we assign this pair is (500-(-300))/300=2.7
+
+you can think of it as a measure as how far away from how many times it would take the domestic bar to fit into the difference between the two bars. simply 
+
+
+
 
 ### Bond Actor
 
