@@ -363,33 +363,34 @@ for(i in 1:6){
      boxoffice$Prft.Glb[i]<-mean(subset(bom$Prft.Glb,bom$Bond==names[i]))
      boxoffice$Glb.Bdg.Ratio[i]<-with(bom,sum(subset(bom$Glb.Adj,bom$Bond==names[i]))/sum(subset(bom$Bdg.Adj,bom$Bond==names[i])))
 }
-# Add a term that takes the ratio of global and domestic average grosses 
-boxoffice$Glb.Dom.Ratio<-with(boxoffice,Glb.Mean/Dom.Mean)
+# Add a term that takes the ratio of non-domestic (foreign) and domestic average grosses 
+boxoffice$For.Dom.Ratio<-with(boxoffice,Non.Dom.Mean/Dom.Mean)
 #Now fill in the 'Average' row with the average over all columns less the actor column
-for(i in 2:6){
+for(i in 2:7){
      boxoffice[7,i]<-mean(boxoffice[,i])
 }
 ```
 Here is what the dataframe looks like as a table:
 
-|Bond|Avg. Global Gross|Avg. Domestic Gross|Avg. Non-Domestic Gross|Glb:Dom Ratio|Avg. Global Profit|Glb:Bdg Ratio|
+|Bond|Avg. Global Gross|Avg. Domestic Gross|Avg. Non-Domestic Gross|Non-Dom:Dom Ratio|Avg. Global Profit|Glb:Bdg Ratio|
 |---|---|---|---|---|---|---|
-|Sean Connery|$857,381,211|$328,071,243|$5293,09,968|2.6|$806,338,430|16.8|
-|George Lazenby|$496,640,912|$138,090,400|$358,550,512|3.6|$448,188,140|10.2|
-|Roger Moore|$594,410,522|$166,867,700|$427,542,822|3.6|$528,506,844|9.0|
-|Timothy Dalton|$379,864,046|$93,949,150|$285,914,896|4.0|$290,278,294|4.2|
-|Pierce Brosnan|$644,678,449|$223,328,250|$421,350,199|2.9|$454,928,173|3.4|
-|Daniel Craig|$885,619,047|$236,176,975|$649,442,072|3.7|$655,951,017|3.8|
-|Average|$643,099,031|$206,247,286|$529,309,968|3.2|$530,698,483|7.9|
-
+|Sean Connery|$857,381,211|$328,071,243|$529,309,968|1.6|$806,338,430|16.8|
+|George Lazenby|$496,640,912|$138,090,400|$358,550,512|1.9|$448,188,140|10.2|
+|Roger Moore|$594,410,522|$166,867,700|$427,542,822|2.6|$528,506,844|9.0|
+|Timothy Dalton|$379,864,046|$93,949,150|$285,914,896|3.0|$290,278,294|4.2|
+|Pierce Brosnan|$644,678,449|$223,328,250|$421,350,199|1.9|$454,928,173|3.4|
+|Daniel Craig|$885,619,047|$236,176,975|$649,442,072|2.7|$655,951,017|3.8|
+|Average|$643,099,031|$206,247,286|$445,351,745|2.2|$530,698,483|7.9|
      
-There's a lot to unpack here, so let's go slowly. First we see that while on average Craig grossed the most globally and and in foreign markets, Connery claims the box office crown domestically. Although Daniel Craig's interpretation of the character is easily the most raw and serious, he comes off a lot more stylish and debonair (read as: British) than Connery. Connery's 007 performances have more of a maverick feeling to them which could make them more attractive to Americans, with their 'Don't Tread on Me' mentality and fascination with the cowboy archetype. 
+There's a lot to unpack here, so let's go slowly. First we see that while on average Craig grossed the most in global and foreign markets, Connery claims the box office crown domestically. Although Daniel Craig's interpretation of the character is easily the most raw and serious, he comes off a lot more stylish and debonair (read as: British) than Connery. Connery's 007 performances have more of a maverick feeling to them which could make them more attractive to Americans, with their 'Don't Tread on Me' mentality and fascination with the cowboy archetype. 
 
-On the other end of the spectrum, at domestic and global box offices, Dalton's films grossed on average the least. As we saw, Dalton's second film *License to Kill* ranks as the lowest grossing Bond film domestically & globally, while his first film (*The Living Daylights*) is the third lowest grossing in both categories. Though *License to Kill* suffered from a higher-than-usual age classification in Britain <sup>[6]</sup> and a last-minute title change <sup> [7] </sup>, it doesn't explain why the first one was so poorly recieved. Well, what makes Dalton's Bond different from the rest?
+On the other end of the spectrum, at domestic and global box offices, Dalton's films grossed on average the least. As we saw, Dalton's second film *License to Kill* ranks as the lowest grossing Bond film domestically & globally, and his his first film (*The Living Daylights*) is the third lowest in both categories. Though *License to Kill* suffered some misfortunes including a higher-than-usual age classification in Britain <sup>[6]</sup> and a last-minute title change <sup> [7] </sup>, it doesn't explain why the first one was so poorly recieved. Well, what makes Dalton's Bond different from the rest?
 
 After Roger Moore's playful, light-hearted Bond, the grit and realism of Dalton's performances must have been quite jarring for audiences. Dalton wanted the Bond from the novels, a darker and more broooding Bond (I must disclose that I have never read any Bond novels). In an interview, Dalton summarized his approach thus: "I think Roger was fine as Bond, but the films had become too much techno-pop and had lost track of their sense of story.  Every film seemed to have a villain who had to rule or destroy the world. If you want to believe in the fantasy on screen, then you have to believe in the characters and use them as a stepping-stone to lead you into this fantasy world. That's a demand I made." <sup> [8] </sup> According to my parents (Dad has read all the Fleming novels, and Mom has read none) it seems that those who were familiar with the literary charcter were mostly pleased with Dalton's more grounded approach whereas those who only knew the movies didn't enjoy how serious it was. In contrast with this, Daniel Craig's Bond which is darker than Dalton's in many ways, was extremelly well recieved and it even followed Brosnan's more light-hearted, Moore-esque Bond. This might mean that either Dalton took the unsatisfying middleground between fun and serious, or he helped paved the way for the appreciation of a darker Bond, which Craig reaped.
 
-Next we see that Connery had the lowest ratio of global to domestic gross, while Dalton had the highest. As we discussed earlier, Connery's approach is quite American. While his average global gross is 3% lower than the Craig's (who has the highest average), his domestic gross is 28% higher than the next highest. Further, dividng the average gross for Connery by average gross for all bonds we find that Connery earned 33% more than average globally but 52% more domestically! So although his global:domestic ratio is low, it seems it is more because he has a strong domestic appeal rather than a weak global one.
+Next we see that Connery had the lowest ratio of foreign to domestic gross, while Dalton had the highest. Connery performed particularly well domestically (52% higher than average) but only slightly above average in the foreign market (16% higher than average). Meanwhile Dalton underperformed to a greater extent domestically (54% under average) than in foreign markets (36% below average).
+
+As we discussed earlier, Connery's approach is quite American. While his average global gross is 18% lower than the Craig's (who has the highest average), his domestic gross is 28% higher than the next highest. Further, Connery performed 16% higher than average in foreign markets but 52% higher domestically! So although his foreign:domestic ratio is low, it seems it is more because he has a strong domestic appeal rather than a weak global one.
 
 With grosses rivaled only by Craig but with the lowest budgets, not only does an average Connery film profit over 50% more than the average Bond film, but his Profit:Budget ratio is over twice as high as the the average and this ratio is 60% higher than the next highest actor's ratio. It is hard to pretend that this is a completely fair analysis, the movie industry has changed a lot over the last 55 years. Directors and producers continually push the medium to create a more engaging and visercal cinematic experience. More extravagent sets and costumes, new cameras, and better special effects have caused budgets to [continue to pass new milestones every few years](https://en.wikipedia.org/wiki/List_of_most_expensive_films#Record-holders). It is hard to get around this since both the budgets and peoples willingness to go to the theatres (i.e. box office gross) are a product of their time, but it won't hurt to have a look at how the budgets have evolved over time.
 
