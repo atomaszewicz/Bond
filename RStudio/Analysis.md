@@ -325,7 +325,11 @@ Domestic Change            |  Foreign
 :-------------------------:|:-------------------------:
 ![dom_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/dom_chng_plot.png) | ![glb_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/non_dom_chng_plot.png)
 
-For the most part the two markets agree on the sign, disagreeing on only 5/24 transitions, or 20% of the time. Most of the disagreements are when new actor premieres; for domestic gross, all but once, the change was negative, and for global the change was, all but once, positive. It seems that North Americans are cold to new interpretations of Agent 007, with the exception of Pierce Brosnan, (possibly correlated with the six year hiatus in the series and the lowest grossing film being what he had to live up to). In opposition to this, global audiences seem to liken a new actor to a reinvigoration of the series. The exception in the global case is George Lazenby, which as we've discussed, had a hard job of living up to Sean Connery. 
+Most of the disagreements (4/7) are when new actor premieres; for domestic gross, all but once, the change was negative, and in the foreign markets the change was, all but once, positive. It seems that North Americans are cold to new interpretations of Agent 007, with the exception of Pierce Brosnan, (possibly correlated with the six year hiatus in the series and the lowest grossing film being what he had to live up to). In opposition to this, foreigners audiences seem to like a reinvigoration of the series. The exception in the foreign case is George Lazenby, which as we've discussed, had a hard job of living up to Sean Connery. The three remaining disagreements occur around/just before the halfway point for the actors: Sean Connery's 3rd of 6, Moore's fourth of 7, Brosnan's 2nd of 4. In opposition to the previous result all three of these disagreements find the positive change in gross in the domestic market and the negative change being for foriegn markets.
+
+We've found rough patterns to how the two markets change in gross between films compares, but only in terms of the sign of this change. How do the magnitudes of these changes occur?
+
+
 
 The two markets generally agree on the sign of the change in gross (80% of the time), but what about the magnitude of the change? In a qualitative look at the two graphs, the magnitudes are generally comparable. To push this to a quantitative sense we have to decide how to compare two data sets. 
 
