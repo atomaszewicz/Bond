@@ -232,7 +232,7 @@ Financing movies is [very](http://www.npr.org/sections/money/2010/05/the_friday_
 
 Before we get started let's briefly discuss the specifics of the box office data. All numbers in this section are in $USD, inflation calculations are made to May 2017, and 'domestic' refers to the combined US & Canada box office figures. Our two sources for this section are the websites [Box Office Mojo (BOM)](http://www.boxofficemojo.com/) and [The Numbers](http://www.the-numbers.com/). BOM gives domestic box office figures both adjusted and unadjusted for inflation. The Numbers has domestic and global box office, as well as estimated budgets, all in unadjusted terms. Our first order of business is to get everything adjusted for inflation.
 
-### Global and Domestic Gross
+### Box Office Gross
 
 We recall that we already loaded our BOM and The Numbers data into dataframes named 'bom' and 'numb', respecitvely. 
 
@@ -250,6 +250,8 @@ bom$Bdj.Adj<-(bom$Adjusted.Gross*bud.dom)
 colnames(bom)[6]<-("Dom.Adj")
 #Then add a 'Profit' column, which is strictly global profit
 bom$Glb.Profit<-with(bom,Glb.Adj-Bdg.Adj)
+#Finally add a non-domestic column that is global gross less domestic gross
+bom$non.dom<-(bom$Glb.Adj-bom$Dom.Adj)
 ```
 We note that from here on out, unless stated otherwise, all values will be adjusted for inflation to May 2017. Let's look at the sums and means now that we have all of our information adjusted for inflation.
 
@@ -257,6 +259,7 @@ We note that from here on out, unless stated otherwise, all values will be adjus
 |---|---|---|
 |Global|$17,540,101,114|$701,604,045|
 |Domestic|$5,628,582,200|$225,143,288|
+|Non-Domestic|$11,911,518,914|$476,460,757|
 |Budget|$2,723,922,708|$108,956,908|
 |Profit|$14,816,178,405|$592,647,136|
 
@@ -271,12 +274,11 @@ To give a better idea of the finances of individual films in our gilded franchis
 |Profit|Goldfinger ($1360)|Diamonds are Forever ($570)|License to Kill ($250)|
 |Budget|Spectre ($270)|Living Daylights ($90)|Dr. No ($10)|
 
-Sean Connery's *Thunderball* is the highest grossing film globally and domestically, while his film *Goldfinger* was the most profitable with a budget in the 16th percentile. We also notice that *Thunderball*'s domestic gross is greater than half the Bond film's global gross, quite a feat for only the fourth film in the series. Timothy Dalton's *License to Kill* is the least successful in all financial respects even though in the rating section it's average of 4 rating is the median with 71/100. It turns out that the newest Bond film (*Spectre*) cost more to make than *License to Kill* profited.  Speaking of budgets, we see that not only is the newest film the most expensive, but the oldest (*Dr. No*) is the least. Assuming a linear increase between these two extremes, this gives that the budget increases by $10 mill every film<sup> [13] </sup>. These budget numbers are intriguing, but we will come back to them later, we will first look at how the domestic and global grosses evolved over time.
+Sean Connery's *Thunderball* is the highest grossing film globally and domestically, while his film *Goldfinger* was the most profitable with a budget in the 16th percentile. We also notice that *Thunderball*'s domestic gross is greater than half the Bond film's global gross, quite a feat for only the fourth film in the series. Timothy Dalton's *License to Kill* is the least successful in all financial respects even though in the rating section it's average of 4 rating is the median with 71/100. It turns out that the newest Bond film (*Spectre*) cost more to make than *License to Kill* profited.  Speaking of budgets, we see that not only is the newest film the most expensive, but the oldest (*Dr. No*) is the least. Assuming a linear increase between these two extremes, this gives that the budget increases by $10 mill every film<sup> [13] </sup>. These budget numbers are intriguing, but we will come back to them later, we will first look at how the global and domestic grosses have evolved over time.
 
-### Changes in Domestic & Global Gross
+### Domestic & Global Gross
 
 To study the evolution of the gross we make a dataframe with the changes in gross between films, similarly to what we did for ratings.
-
 
 ```R
 #Fill the dataframe up with change in global and domestic gross, as well as a counter variable and the names of Bond actors
