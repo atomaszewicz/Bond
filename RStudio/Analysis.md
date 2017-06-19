@@ -325,32 +325,15 @@ Domestic Change            |  Foreign
 :-------------------------:|:-------------------------:
 ![dom_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/dom_chng_plot.png) | ![glb_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/non_dom_chng_plot.png)
 
-Most of the disagreements (4/7) are when new actor premieres; for domestic gross, all but once, the change was negative, and in the foreign markets the change was, all but once, positive. It seems that North Americans are cold to new interpretations of Agent 007, with the exception of Pierce Brosnan, (possibly correlated with the six year hiatus in the series and the lowest grossing film being what he had to live up to). In opposition to this, foreigners audiences seem to like a reinvigoration of the series. The exception in the foreign case is George Lazenby, which as we've discussed, had a hard job of living up to Sean Connery. The three remaining disagreements occur around the halfway point for the actors: Sean Connery's 3rd of 6, Moore's fourth of 7, Brosnan's 2nd of 4. In opposition to the previous result all three of these disagreements find the positive change in gross in the domestic market and the negative change being for foriegn markets.
+Most of the disagreements (4/7) are when new actor premieres; for domestic gross, all but once, the change was negative, and in the foreign markets the change was, all but once, positive. It seems that North Americans are cold to new interpretations of Agent 007, with the exception of Pierce Brosnan, (possibly correlated with the six year hiatus in the series and the lowest grossing film being what he had to live up to). In opposition to this, foreigners audiences seem to like a reinvigoration of the series. The exception in the foreign case is George Lazenby, which as we've discussed, had a hard job of living up to Sean Connery. This is quite a powerful result, and I believe this could be used by the studio to decide where and how to spend advertising bucks when they finally choose a successor to Daniel Craig.
 
-We've found rough patterns to how the two markets change in gross between films compares, but only in terms of the signs of these changes. How do the magnitudes of these changes compare? The two markets have different sizes, so comparing them directly is unfair, we must find a sort of normalization factor for each market. Also how do we account for the seven cases where the sign of the change in gross disagrees between markets? Obviously since they disagree on the direction of the change, comparing the magnitudes of these cases is missing imporant information.
+The three remaining disagreements occur around the halfway point for the actors: Sean Connery's third of six, Moore's fourth of seven, Brosnan's second of four. Even though with new actors domestic audiences were underhwlemed, in all 4 of these 'midterm' cases, the domestic market had a positive change, while the foreign markets also flipped and reacted negatively to these. This is difficult to interpret seeing as there is no way audiences (or even the actor) know how long they will continue the roll for. Regardless, it is an intersting result I thought were mentioning.
 
-
-
-
-
-The two markets generally agree on the sign of the change in gross (80% of the time), but what about the magnitude of the change? In a qualitative look at the two graphs, the magnitudes are generally comparable. To push this to a quantitative sense we have to decide how to compare two data sets. 
-
-The first idea I had was to normalize each change by dividing through by the mean change for that market, then find the ratio of the normalized global change:normalized domestic change. Likely due to the 7.5 time difference between the means, this normalized ratio came out at a whopping 12. This is not very good support for theory that the magnitudes are similar.
-
-The next idea I had was to noramlize by the mean for that subset, for example: normalize the negative domestic changes by the mean of the domestic changes. The normalized ratio for this method turned out to be 1.2, which highly supports our theory that the magnitudes are 'comparable'. The problem with the method is that by dividing by the subsets mean, you are losing information about the sign of the change. So even if the magnitudes of the changes are similar, but have different sign, they are seen as 'close', which is like pretending that +100 & -100 are identical changes. 
-
-If we ignore the 5/24 occurances of differing signs, we get a normalized global change:normalized domestic change ratio of 0.9, and if we find the mean of just these cases of sign-disagreement, we get a 2.2 ratio. This indicates that when the global and domestic changes disagree on sign, the magnitudes are less similar than when they agree on sign (which pleases my gut since, if they can't even agree if the movie got better or worse, why would they agree on the magnitude of the change?). This isn't enough for me, I want to patch these together to get a final anwser number that reflects the ratio of global change to domestic change.
-
-In order to patch these two groups together, we need a way to make the 'disagreer' ratios reflect how they differ in sign. It's at times like this that one must reflect on what these basic operations we take for granted really signify. Thinking about it in bar plot terms, the ratio of global gross to domestic gross is (assuming they have the same sign) how many times the domestic gross could fit into the global gross, but you can also think about it as how the height of the domestic change bar compares to that of the global bar *or* how far away they extremes of the bar are from eachother. To measure how far away disagreers are from eachothercan be accomplished in a fairly straightforward way: find the total difference then divide by the absolute value of domestic change. For example: Say the normalized global change is 500, and the normalized domestic change is -300. The ratio we assign this pair is (500-(-300))/300=2.7
-
-you can think of it as a measure as how far away from how many times it would take the domestic bar to fit into the difference between the two bars. simply 
-
-
-Seeing how the global, domestic and foreign markets compare is important to our understanding of the evolution of the series, but wish so many different actors taking the role of 007, we must also study how these figures change with actor.
+The patterns that the domestic and foreign changes in gross generally follow are helpful in understanding the evolution series, but we have yet to study the most obvious evolutionary factor: the actor.
 
 ### Bond Actor
 
-We start by making a dataframe that contains the various actor's mean values for the financial data.
+To study how much the various 007 actors pulled in at the box office we must first create a dataframe that contains the various actor's mean values for the financial data.
 
 ```R
 #we fill up the 'Bond' column with the 'names' vector from earlier and 'Average' which will be for averages over all actors
