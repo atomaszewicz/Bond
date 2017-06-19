@@ -344,6 +344,7 @@ for(i in 1:6){
      boxoffice$Dom.Mean[i]<-mean(subset(bom$Dom.Adj,bom$Bond==names[i]))
      boxoffice$Non.Dom.Mean[i]<-mean(subset(bom$Non.Dom,bom$Bond==names[i]))
      boxoffice$Prft.Glb[i]<-mean(subset(bom$Prft.Glb,bom$Bond==names[i]))
+     boxoffice$Bdg[i]<-mean(subset(bom$Bdg.Adj,bom$Bond==names[i]))
      boxoffice$Glb.Bdg.Ratio[i]<-with(bom,sum(subset(bom$Glb.Adj,bom$Bond==names[i]))/sum(subset(bom$Bdg.Adj,bom$Bond==names[i])))
 }
 # Add a term that takes the ratio of non-domestic (foreign) and domestic average grosses 
@@ -355,14 +356,14 @@ for(i in 2:7){
 ```
 Here is what the dataframe looks like as a table:
 
-|Bond|Avg. Global Gross|Avg. Domestic Gross|Avg. Non-Domestic Gross|Non-Dom:Dom Ratio|Avg. Global Profit|Glb:Bdg Ratio|
+|Actor|Avg. Global Gross|Avg. Domestic Gross|Avg. Foreign Gross|For:Dom Ratio|Avg. Global Profit|Glb:Bdg Ratio|
 |---|---|---|---|---|---|---|
-|Sean Connery|$857,381,211|$328,071,243|$529,309,968|1.6|$806,338,430|16.8|
-|George Lazenby|$496,640,912|$138,090,400|$358,550,512|1.9|$448,188,140|10.2|
-|Roger Moore|$594,410,522|$166,867,700|$427,542,822|2.6|$528,506,844|9.0|
-|Timothy Dalton|$379,864,046|$93,949,150|$285,914,896|3.0|$290,278,294|4.2|
-|Pierce Brosnan|$644,678,449|$223,328,250|$421,350,199|1.9|$454,928,173|3.4|
-|Daniel Craig|$885,619,047|$236,176,975|$649,442,072|2.7|$655,951,017|3.8|
+|Connery|$857,381,211|$328,071,243|$529,309,968|1.6|$806,338,430|16.8|
+|Lazenby|$496,640,912|$138,090,400|$358,550,512|1.9|$448,188,140|10.2|
+|Moore|$594,410,522|$166,867,700|$427,542,822|2.6|$528,506,844|9.0|
+|Dalton|$379,864,046|$93,949,150|$285,914,896|3.0|$290,278,294|4.2|
+|Brosnan|$644,678,449|$223,328,250|$421,350,199|1.9|$454,928,173|3.4|
+|Craig|$885,619,047|$236,176,975|$649,442,072|2.7|$655,951,017|3.8|
 |Average|$643,099,031|$206,247,286|$445,351,745|2.2|$530,698,483|7.9|
      
 There's a lot to unpack here, so let's go slowly. First we see that while on average Craig grossed the most in global and foreign markets, Connery claims the box office crown domestically. Although Daniel Craig's interpretation of the character is easily the most raw and serious, he comes off a lot more stylish and debonair (read as: British) than Connery. Connery's 007 performances have more of a maverick feeling to them which could make them more attractive to Americans, with their 'Don't Tread on Me' mentality and fascination with the cowboy archetype. 
@@ -375,7 +376,7 @@ Next we see that Connery had the lowest ratio of foreign to domestic gross, whil
 
 As we discussed earlier, Connery's approach is quite American. While his average global gross is 18% lower than the Craig's (who has the highest average), his domestic gross is 28% higher than the next highest. Further, Connery performed 16% higher than average in foreign markets but 52% higher domestically! So although his foreign:domestic ratio is low, it seems it is more because he has a strong domestic appeal rather than a weak global one.
 
-With grosses rivaled only by Craig but with the lowest budgets, not only does an average Connery film profit over 50% more than the average Bond film, but his Profit:Budget ratio is over twice as high as the the average and this ratio is 60% higher than the next highest actor's ratio. It is hard to pretend that this is a completely fair analysis, the movie industry has changed a lot over the last 55 years. Directors and producers continually push the medium to create a more engaging and visercal cinematic experience. More extravagent sets and costumes, new cameras, and better special effects have caused budgets to [continue to pass new milestones every few years](https://en.wikipedia.org/wiki/List_of_most_expensive_films#Record-holders). It is hard to get around this since both the budgets and peoples willingness to go to the theatres (i.e. box office gross) are a product of their time, but it won't hurt to have a look at how the budgets have evolved over time.
+With grosses rivaled only by Craig but with the lowest budgets, not only does an average Connery film profit over 50% more than the average Bond film, but his Profit:Budget ratio is over twice the average and this ratio is 60% higher than the next highest actor's ratio. It is hard to pretend that this is a completely fair analysis, the movie industry has changed a lot over the last 55 years. Directors and producers continually push the medium to create a more engaging and visercal cinematic experience. More extravagent sets and costumes, new cameras, and better special effects have caused budgets to [continue to pass new milestones every few years](https://en.wikipedia.org/wiki/List_of_most_expensive_films#Record-holders). It is hard to get around this since both the budgets and peoples willingness to go to the theatres (i.e. box office gross) are a product of their time, but it won't hurt to have a look at how the budgets have evolved over time.
 
 ### Budgets
 
