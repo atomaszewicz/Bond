@@ -380,25 +380,42 @@ With grosses rivaled only by Craig but with the second lowest budgets (half the 
 
 ### Budgets
 
-Before we begin we create two new columns for the Profit:Budget and globa gross:Budget ratios in our 'bom' dataframe so we can look at the budgets film-by-film. We note here that we treat 'Profit' as Global Gross less Budget since films are a global product.
+To start we want two new columns (Profit:Budget and Global Gross:Budget ratios) in 'bom' to help analyze how the budgets affect the performance of the movie.
 
 ```R
 bom$Prft.Bdg.Ratio<-bom$Prft.Glb/bom$Bdg.Adj
 bom$Glb.Bdg.Ratio<-bom$Glb.Adj/bom$Bdg.Adj
 ```
 
-We have seen that Connery has the largest average return on investment with a whopping $800 mill average profit and a total profit of $2.6 bn from his 6 films. These new columns show us that Connery's first film *Dr. No* grossed almost 60 times it's budget, his second and third around 40 times, and his average gross was 17 times his average budget (A 600% return on investmentis fantastic, but it's nowhere near *Paranormal Activity* which had a profit [nearly 1300 times it's budget](http://www.pajiba.com/seriously_random_lists/percentagewise-the-20-most-profitable-movies-of-all-time.php).).
-Even at the bottom of this spectrum, Dalton's films profited $290 mill on average, and Pierce Brosnan's films grossed 3.4 times their budget. So if you've ever wondered why this franchise has lasted so long, here's why: they're very profitable movies. 
+We have seen that Connery has the largest average return on investment with a whopping $2.6 bn net profit and $800 mill average profit from his 6 films. These new columns show us that Connery's first film *Dr. No* grossed almost 60 times it's budget, his second and third around 40 times, and his average gross was 17 times his average budget. (A 600% return on investment is fantastic, but it's nowhere near *Paranormal Activity* which had a profit [nearly 1300 times it's budget](http://www.pajiba.com/seriously_random_lists/percentagewise-the-20-most-profitable-movies-of-all-time.php)). Even at the bottom of these two measures, Dalton's films profited $290 mill on average, and Pierce Brosnan's films grossed 3.4 times their budget. So if you've ever wondered why this franchise has lasted so long, here's why: they're very profitable movies with an average 17 time return on investment
 
-Our previous analysis showed that on average it seems that Bond films budgets have increased by $10mill/movie based on the highest and lowest grossing movies being the newest and oldest films in the franchise. We want to see if this is true, so we plot the budgets over time.
+Our previous analysis showed that on average it seems that Bond films budgets have increased by $10 mill/movie based on the highest and lowest grossing movies being the newest and oldest films in the franchise. This is a rather crude method, so first let's look at the trend based on built-in regression powers of ggplot2, then we plot to visuazlie. 
+
+```R
+#First we create the fit based on the multiple liner ('lm') method
+budget.fit<-lm(bom$Bdj.Adj ~ bom$Release, data=bom)
+#Then look at the details, which I have edited for readibility and relevance 
+summary(budget.fit)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-74109371 -26628614  -4977318  22375695  68159902 
+
+Coefficients:
+            Estimate Std. Error t value   
+(Intercept) 41159739   10142613   4.058
+bom$Release    12353       1269   9.737
+---
+Multiple R-squared:  0.8048,	Adjusted R-squared:  0.7963 
+```
 
 ![budg_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/budg_plot.png?raw=TRUE)
 
-So our two extremes were not anomalies, the film's budgets have defienitly increased, and quite dramatically. We add a linear regression to our plot to help visulize the upwards trend in budgets.  We note that our highest grossing film *Thunderball* had quite a large budget compared with the films around it (which might be partly due to it's [extensive underwater scenes](https://youtu.be/cuMM72G5k48?t=4m3s)). It cost three times as much to make as the proceeding film and twice as much as the average budget of the six succeeding films.  The $91 mill budget was not surpassed until Moore's $110 mill *Moonraker*, 15 years later.  
+So our two extremes were not anomalies, the film's budgets have defienitly increased, and quite dramatically. We add a linear regression to our plot to help visulize the upwards trend in budgets.  We note that our highest grossing film *Thunderball* had quite a large budget compared with the films around it (which might be partly due to it's [extensive underwater scenes](https://youtu.be/cuMM72G5k48?t=4m3s)). It cost three times as much to make as the proceeding film and twice as much as the average budget of the six succeeding films.  The $91 mill budget was not surpassed until *Moonraker*'s $110 mill pricetag 15 years later.  
 
-It is difficult to say how typical this is without doing a whole project on film budgets over time, but what we can do is look at how the films compare to the record holders at the time. Instead of spending a bunch of time on this, let's look at the first Bond film, the last and one in the middle. 
+It is difficult to say how typical this is without doing a whole project on film budgets over time, but what we can do is look at how the budgest of the 007 films compare to the budget record-holders of the time. Instead of spending a bunch of time on this, let's look at the first Bond film, the last and one in the middle. 
 
-**First**: In 1963 *Dr. No* cost  $1 million to make and in that same year the Elizabeth Taylor and Richard Burton epic [*Cleopatra*](https://en.wikipedia.org/wiki/Cleopatra_(1963_film)) broke a new record with an $31 million budget (neither figure adjusted for inflation since we simply want to compare). 
+**First**: In 1963 *Dr. No* cost  $1 million to make and in that same year the Elizabeth Taylor and Richard Burton epic [*Cleopatra*](https://en.wikipedia.org/wiki/Cleopatra_(1963_film)) broke a new record with a $31 million budget (neither figure adjusted for inflation since we simply want to compare). 
 
 **Median**: Roger Moore's 1983 *Octopussy* was made on a $27.5 million budget, and the record holder at the time was the 1978 movie [*Superman*](https://en.wikipedia.org/wiki/Superman_(1978_film)) with a budget of $88 million (when adjusted to 1983).
 
