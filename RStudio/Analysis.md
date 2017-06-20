@@ -380,16 +380,16 @@ With grosses rivaled only by Craig but with the second lowest budgets (half the 
 
 ### Budgets
 
-To start we want two new columns (Profit:Budget and Global Gross:Budget ratios) in 'bom' to help analyze how the budgets affect the performance of the movie.
+To help in our analysis we want columns of Profit:Budget and Global Gross:Budget ratios. We create them in the 'bom' dataframe.
 
 ```R
 bom$Prft.Bdg.Ratio<-bom$Prft.Glb/bom$Bdg.Adj
 bom$Glb.Bdg.Ratio<-bom$Glb.Adj/bom$Bdg.Adj
 ```
 
-We have seen that Connery has the largest average return on investment with a whopping $2.6 bn net profit and $800 mill average profit from his 6 films. These new columns show us that Connery's first film *Dr. No* grossed almost 60 times it's budget, his second and third around 40 times, and his average gross was 17 times his average budget. (A 600% return on investment is fantastic, but it's nowhere near *Paranormal Activity* which had a profit [nearly 1300 times it's budget](http://www.pajiba.com/seriously_random_lists/percentagewise-the-20-most-profitable-movies-of-all-time.php)). Even at the bottom of these two measures, Dalton's films profited $290 mill on average, and Pierce Brosnan's films grossed 3.4 times their budget. So if you've ever wondered why this franchise has lasted so long, here's why: they're very profitable movies with an average 17 time return on investment
+We have seen that Connery has the largest average return on investment with a whopping $2.6 bn net profit and $800 mill average profit from his 6 films. These new columns show us that Connery's first film *Dr. No* grossed almost 60 times it's budget, his second and third around 40 times, and his average gross was 17 times his average budget. (A 600% return on investment is fantastic, but it's nowhere near *Paranormal Activity* which had a profit [nearly 1300 times it's budget](http://www.pajiba.com/seriously_random_lists/percentagewise-the-20-most-profitable-movies-of-all-time.php)). Even at the bottom of these two measures, Dalton's films profited an average $290 mill  and Brosnan's films grossed 3.4 times their budget. So if you've ever wondered why this franchise has lasted so long, here's why: they're very profitable!
 
-Our previous analysis showed that on average it seems that Bond films budgets have increased by $10 mill/movie based on the highest and lowest grossing movies being the newest and oldest films in the franchise. This is a rather crude method, so first let's look at the trend based on built-in regression powers of ggplot2, then we plot to visuazlie. 
+Our previous analysis, based on a rather crude method, showed that on it seems that Bond films budgets have increased by an average $10 mill/movie. Let's take a deeper look at this, first looking at the basic relationship between date of release and budget using the built-in regression powers of ggplot2.
 
 ```R
 #First we create the fit based on the multiple liner ('lm') method
