@@ -389,7 +389,7 @@ bom$Glb.Bdg.Ratio<-bom$Glb.Adj/bom$Bdg.Adj
 
 We have seen that Connery has the largest average return on investment with a whopping $2.6 bn net profit and $800 mill average profit from his 6 films. These new columns show us that Connery's first film *Dr. No* grossed almost 60 times it's budget, his second and third around 40 times, and his average gross was 17 times his average budget. (A 600% return on investment is fantastic, but it's nowhere near *Paranormal Activity* which had a profit [nearly 1300 times it's budget](http://www.pajiba.com/seriously_random_lists/percentagewise-the-20-most-profitable-movies-of-all-time.php)). Even at the bottom of these two measures, Dalton's films profited an average $290 mill  and Brosnan's films grossed 3.4 times their budget. So if you've ever wondered why this franchise has lasted so long, here's why: they're very profitable!
 
-Our previous analysis, based on a rather crude method, showed that on it seems that Bond films budgets have increased by an average $10 mill/movie. Let's take a deeper look at this, first looking at the basic relationship between date of release and budget using the built-in regression powers of ggplot2.
+Our previous analysis, based on a rather crude method, showed that on it seems that Bond films budgets have increased by an average $10 mill/movie. Let's take a deeper look at this, first looking at the basic relationship between date of release and budget using the built-in regression powers of ggplot2. We chose a linear regression since we are mostly interested in the overall behaviour of the budget trend.
 
 ```R
 #First we create the fit based on the multiple liner ('lm') method
@@ -402,16 +402,18 @@ Residuals:
 -74109371 -26628614  -4977318  22375695  68159902 
 
 Coefficients:
-            Estimate Std. Error t value   
+            Estimate Std. Error t value
 (Intercept) 41159739   10142613   4.058
 bom$Release    12353       1269   9.737
 ---
 Multiple R-squared:  0.8048,	Adjusted R-squared:  0.7963 
 ```
 
+The slope is 12353 which means to the budget increasing by $12,353 a day (with an error of about $1269) or $4.6 mill a year (with an error of $463,185). Since the franchises averages one film every two years, the budget increases by $9.2 mill every film (with an error of $0.9 mill), fairly close to our rough calculation of $10 mill. 
+
 ![budg_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/budg_plot.png?raw=TRUE)
 
-So our two extremes were not anomalies, the film's budgets have defienitly increased, and quite dramatically. We add a linear regression to our plot to help visulize the upwards trend in budgets.  We note that our highest grossing film *Thunderball* had quite a large budget compared with the films around it (which might be partly due to it's [extensive underwater scenes](https://youtu.be/cuMM72G5k48?t=4m3s)). It cost three times as much to make as the proceeding film and twice as much as the average budget of the six succeeding films.  The $91 mill budget was not surpassed until *Moonraker*'s $110 mill pricetag 15 years later.  
+So our two extremes were not anomalies, the film's budgets have defienitly increased, and quite dramatically. Our highest grossing film globally, *Thunderball*, had quite a large budget compared with the films around it (which might be partly due to it's [extensive underwater scenes](https://youtu.be/cuMM72G5k48?t=4m3s)). It cost three times as much to make as the proceeding film and twice as much as the average budget of the six succeeding films. The $91 mill budget was not surpassed until *Moonraker*'s $110 mill pricetag 15 years later.  
 
 It is difficult to say how typical this is without doing a whole project on film budgets over time, but what we can do is look at how the budgest of the 007 films compare to the budget record-holders of the time. Instead of spending a bunch of time on this, let's look at the first Bond film, the last and one in the middle. 
 
@@ -428,8 +430,6 @@ We've now looked at both budgets and gross, but a better measure of the success 
 ![profit_budget_ratio](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/profit_budget_ratio.png?raw=TRUE)
 
 We added a LOESS-method trendline to show the decrease-to-plateau nature of the data. Whether on purpose or by some unintentional/external force the franchise seems to have nestled itself in a 5:2 profit:budget ratio ever since Dalton's last film in 1989. 
-
-Now we look at the films budgets to see if our presumption that they have increased is supported by data.
 
 
 
