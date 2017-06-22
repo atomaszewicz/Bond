@@ -357,7 +357,7 @@ for(i in 2:8){
 Here is what the dataframe looks like as a table:
 
 |Actor|Avg. Global Gross|Avg. Domestic Gross|Avg. Foreign Gross|For:Dom Ratio|Avg. Global Profit|Avg. Budget|Glb:Bdg Ratio|
-|---|---|---|---|---|---|---|
+|---|---|---|---|---|---|---|---|
 |Connery|$857,381,211|$328,071,243|$529,309,968|1.6|$806,338,430|$51,042,781|16.8|
 |Lazenby|$496,640,912|$138,090,400|$358,550,512|1.9|$448,188,140|$48,452,772|10.2|
 |Moore|$594,410,522|$166,867,700|$427,542,822|2.6|$528,506,844|$65,903,678|9.0|
@@ -388,6 +388,12 @@ bom$Glb.Bdg.Ratio<-bom$Glb.Adj/bom$Bdg.Adj
 ```
 
 We have seen that Connery has the largest average return on investment with a whopping $2.6 bn net profit and $800 mill average profit from his 6 films. These new columns show us that Connery's first film *Dr. No* grossed almost 60 times it's budget, his second and third around 40 times, and his average gross was 17 times his average budget. (A 600% return on investment is fantastic, but it's nowhere near *Paranormal Activity* which had a profit [nearly 1300 times it's budget](http://www.pajiba.com/seriously_random_lists/percentagewise-the-20-most-profitable-movies-of-all-time.php)). Even at the bottom of these two measures, Dalton's films profited an average $290 mill  and Brosnan's films grossed 3.4 times their budget. So if you've ever wondered why this franchise has lasted so long, here's why: they're very profitable!
+
+How has this profitability evolved over time? Namely, how is the return on investment change throughout the series? We plot the ratio of  profit:budget against time to see how our series looks to accountants.
+
+![profit_budget_ratio](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/profit_budget_ratio.png?raw=TRUE)
+
+We added a LOESS-method trendline to show the decrease-to-plateau nature of the data. Whether on purpose or by some unintentional/external force the franchise seems to have nestled itself in a 5:2 profit:budget ratio ever since Dalton's last film in 1989. 
 
 Our previous analysis, based on a rather crude method, showed that on it seems that Bond films budgets have increased by an average $10 mill/movie. Let's take a deeper look at this, first looking at the basic relationship between date of release and budget using the built-in regression powers of ggplot2. We chose a linear regression since we are mostly interested in the overall behaviour of the budget trend.
 
@@ -425,13 +431,8 @@ It is difficult to say how typical this is without doing a whole project on film
 
 This isn't exactly scientific: early on in the film industry they would produce a lot of low budget movies and a few expensive movies, whereas nowadays they produce a lot of films of similar budgets. What this treatment does is give one an idea of how the James Bond franchise has turned from just another film series to one of the industry's heavy-hitters. 
 
-We've now looked at both budgets and gross, but a better measure of the success of a product is return on investment. So let's plot the ratio of profit:budget to see how our series looks to accountants.
-
-![profit_budget_ratio](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/profit_budget_ratio.png?raw=TRUE)
-
-We added a LOESS-method trendline to show the decrease-to-plateau nature of the data. Whether on purpose or by some unintentional/external force the franchise seems to have nestled itself in a 5:2 profit:budget ratio ever since Dalton's last film in 1989. 
-
-
+### Conclusion
+The James Bond film franchise is *the* highest grossing film franchise of all time, when adjusted for inflation, grossing a huge $17.5 bill over 25 films, and profiting $14.8 billion. The highest grossing filmi in the series is *Thunderball*, making $1.39 bill globally and the most profitable was *Goldfinger* taking home $1.36 bill. The foriegn markets gross about twice as much as domestic markets and this market generally has a positive reaction to new Bonds, whereas the domestic market usually responds negatively. 
 
 
 # Footnotes
