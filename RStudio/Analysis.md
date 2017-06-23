@@ -34,13 +34,15 @@ Let's take a look at the online ratings first. The 4 metrics we used are Rotten 
 
 ### Metrics
 
-First let's look at how the different metrics rated the Bond franchise on average.
+First let's look at how the different metrics rated the Bond franchise on average. 
+
+Note: 'Avg.dumb' is named so because originally I tried some weighted averages to account for the different means of the metrics. I ultimately decided against it, but the variable name remains.
 
 ```R
 #We make variables for each rating type, as well as the average of the 4, then make a table of the values
 #Note that all the ratings have been set to be out of 100
-avg_all<-mean(mean(rate$RT.Crit),mean(rate$RT.User),mean(rate$LetterBoxd),mean(rate$IMDB))
-avgs<-data.frame(RT.Crit=(mean(rate$RT.Crit)),RT.User=(mean(rate$RT.User)),LetterBoxd=(mean(rate$LetterBoxd)),IMDB=(mean(rate$IMDB)),Avg.All=(avg_all))
+avg.dumb<-mean(mean(rate$RT.Crit),mean(rate$RT.User),mean(rate$LetterBoxd),mean(rate$IMDB))
+avgs<-data.frame(RT.Crit=(mean(rate$RT.Crit)),RT.User=(mean(rate$RT.User)),LetterBoxd=(mean(rate$LetterBoxd)),IMDB=(mean(rate$IMDB)),Avg.Dumb=(avg.dumb))
 ```
 Tables are boring, let's visualize this. To do this we must transform our dataframe using the 'melt()' function from the reshape 2 library.
 
@@ -434,10 +436,10 @@ This isn't exactly scientific: early on in the film industry they would produce 
 ### Summary
 The James Bond film franchise is *the* highest grossing film franchise of all time, when adjusted for inflation, grossing a huge $17.5 bill over 25 films, and profiting $14.8 billion. The highest grossing film in the series is *Thunderball*, making $1.39 bill globally and the most profitable was *Goldfinger* taking home $1.36 bill. The foreign markets grosses about twice as much as domestic markets. When it comes to new Bonds, the foreign market generally reacts positively, and domestic market negatively. Daniel Craig grossed the most in the global markets on average, but Sean Connery has the highest ratio of global gross to budget and the highest average domestic gross. The ratio of profit:budget has nestled into a 5:2 ratio since 1990, down from an initial 60:1 ratio. Lastly, budgets increase by about $10 mill per film, with the first film's budget being $10 mill, and the most recent's budget being $300 mill.
 
-## Conclusion
+## Come Together...
 You don't need to have read this analysis to know that the James Bond franchise is one of the biggets blockbuster franchises in the world, but it does help to quantify this fame with some numbers. We have seen that they are 'Ceritifed Fresh' according to Rotten Tomatoes, receiveing an average score of 71/100 based on 4 online rating scores, and that the entries in the series profit over $100 million on average. While Connery and Craig seemed to be neck-and-neck in most categories, on average Craig wins in my book, scoring an average of 78/100 and $890 million average global gross. 
 
-These numbers, although helpful in understanding the series and often supporting eachother (such as in the cae of Daniel Craig), are frustratingly disjoint. We will try to help bridge this gap in this section. We will thus create a new dataframe with both financial and online rating data.
+These numbers, although helpful in understanding the series and often supporting eachother (such as in the case of Daniel Craig), are frustratingly disjoint. To bridge this gap, we will create a new dataframe with both financial and online rating data.
 
 ```R
 #Make new dataframe with the financial and rating data we are interested in
