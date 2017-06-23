@@ -221,7 +221,7 @@ Every time a new Bond actor premieres a film, the rating all improve, with the e
 Studying the (dis)agreements among metrics for the sign of the change of ratings between films is quite a long way from taking an average. Let's briefly look at how we got here, and summarize the results along the way.
 
 
-### Conclusion 
+### Summary
 Throughout the Rating section, we have seen how our four metrics (Rotten Tomatoes Users, Rotten Tomatoes Critics, LetterBoxd and IMDb ratings/100) ratings differ between the 25 films and 6 actors in the Bond series. We saw that the series' average rating, based on our four metrics, was 71/100. LetterBoxd was the most generous rating, with a mean score of 79, and Rotten Tomatoe Users the harshest, scoring only 64 on average.  We found that on average Daniel Craig was the highest rated and Pierce Brosnan the lowest, with the mean score across all films and metrics of 78 and 63 respectively. We then studied how the ratings changed between films, and between actors, and saw that when a new Bond actor premiers, the metrics usually agree that it was a positive change, and on an actor's last film, the metrics' mostly disagree on the change in quality. 
 
 This is only ~~half~~ some of the story; as much as I like to think that the quality of movies, and by extension online ratings, is what matters, the trush is that the movie industry is a business and the bottom line rules. So let's put aside our tables of online ratings for now and follow the dollars.
@@ -431,8 +431,21 @@ It is difficult to say how typical this is without doing a whole project on film
 
 This isn't exactly scientific: early on in the film industry they would produce a lot of low budget movies and a few expensive movies, whereas nowadays they produce a lot of films of similar budgets. What this treatment does is give one an idea of how the James Bond franchise has turned from just another film series to one of the industry's heavy-hitters. 
 
-### Conclusion
+### Summary
 The James Bond film franchise is *the* highest grossing film franchise of all time, when adjusted for inflation, grossing a huge $17.5 bill over 25 films, and profiting $14.8 billion. The highest grossing film in the series is *Thunderball*, making $1.39 bill globally and the most profitable was *Goldfinger* taking home $1.36 bill. The foreign markets grosses about twice as much as domestic markets. When it comes to new Bonds, the foreign market generally reacts positively, and domestic market negatively. Daniel Craig grossed the most in the global markets on average, but Sean Connery has the highest ratio of global gross to budget and the highest average domestic gross. The ratio of profit:budget has nestled into a 5:2 ratio since 1990, down from an initial 60:1 ratio. Lastly, budgets increase by about $10 mill per film, with the first film's budget being $10 mill, and the most recent's budget being $300 mill.
+
+## Conclusion
+You don't need to have read this analysis to know that the James Bond franchise is one of the biggets blockbuster franchises in the world, but it does help to quantify this fame with some numbers. We have seen that they are 'Ceritifed Fresh' according to Rotten Tomatoes, receiveing an average score of 71/100 based on 4 online rating scores, and that the entries in the series profit over $100 million on average. While Connery and Craig seemed to be neck-and-neck in most categories, on average Craig wins in my book, scoring an average of 78/100 and $890 million average global gross. 
+
+These numbers, although helpful in understanding the series and often supporting eachother (such as in the cae of Daniel Craig), are frustratingly disjoint. We will try to help bridge this gap in this section. We will thus create a new dataframe with both financial and online rating data.
+
+```R
+#Make new dataframe with the financial and rating data we are interested in
+rate.finc<-data.frame(bom$Title,bom$Release,bom$Bond,bom$Glb.Adj,bom$Bgd.Adj,rate$Avg.Dumb)
+#Since R likes to mess up the names of our columns we correct them
+colnames(rate.finc)[c(1,2,3,4,5)]<-c("Title","Release","Bond","Glb.Adj","Bdg.Adj","Avg.Dumb")
+```
+
 
 # Footnotes
 <sup>[1]</sup> : In the FiveThirtyEight [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) I referenced, the point of interest is this paragraph: "The ratings from IMDb, Metacritic and Rotten Tomatoes were typically in the same ballpark, which makes this finding unsurprising: Fandango’s star rating was higher than the IMDb rating 79 percent of the time, the Metacritic aggregate critic score 77 percent of the time, the Metacritic user score 86 percent of the time, the Rotten Tomatoes critic score 62 percent of the time, and the Rotten Tomatoes user score 74 percent of the time." Therefore to see how much higher user scores are than the critics scores, we simply divide the two averages to eliminate the Fandango term: (RT.Crit)/(RT.User)=1.19 which gives us our quoted 19%. 
