@@ -461,7 +461,7 @@ It is difficult to say how typical this is without doing a whole project on film
 This isn't exactly scientific: early on in the film industry they would produce a lot of low budget movies and a few expensive movies, whereas nowadays they produce a lot of films of similar budgets. What this treatment does is give one an idea of how the James Bond franchise has turned from just another film series to one of the industry's heavy-hitters. 
 
 ### Summary
-The James Bond film franchise is *the* highest grossing film franchise of all time, when adjusted for inflation, grossing a huge $17.5 bill over 25 films, and profiting $14.8 billion. The highest grossing film in the series is *Thunderball*, making $1.39 bill globally and the most profitable was *Goldfinger* taking home $1.36 bill. The foreign markets grosses about twice as much as domestic markets. When it comes to new Bonds, the foreign market generally reacts positively, and domestic market negatively. Daniel Craig grossed the most in the global markets on average, but Sean Connery has the highest ratio of global gross to budget and the highest average domestic gross. The ratio of profit:budget has nestled into a 5:2 ratio since 1990, down from an initial 60:1 ratio. Lastly, budgets increase by about $10 mill per film, with the first film's budget being $10 mill, and the most recent's budget being $300 mill.
+The James Bond film franchise has become one of the biggest blockbuster franchises in the world. The first film was made on a $10 million budget, which is peanuts compared to the $300 million of the most recent entry. It is *the* highest grossing film franchise of all time, when adjusted for inflation, grossing a huge $17.5 bill over 25 films, and profiting $14.8 billion. From $10 million budgets all the way to $300 million, the franchise has The highest grossing film in the series is *Thunderball*, making $1.39 bill globally and the most profitable was *Goldfinger* taking home $1.36 bill. The foreign markets grosses about twice as much as domestic markets. When it comes to new Bonds, the foreign market generally reacts positively, and domestic market negatively. Daniel Craig grossed the most in the global markets on average, but Sean Connery has the highest ratio of global gross to budget and the highest average domestic gross. The ratio of profit:budget has nestled into a 5:2 ratio since 1990, down from an initial 60:1 ratio.
 
 ## Come Together...
 You don't need to have read this analysis to know that the James Bond franchise is one of the biggets blockbuster franchises in the world, but it does help to quantify this fame with some numbers. We have seen that they are 'Ceritifed Fresh' according to Rotten Tomatoes, receiveing an average score of 71/100 based on 4 online rating scores, and that the entries in the series profit over $100 million on average. While Connery and Craig seemed to be neck-and-neck in most categories, on average Craig wins in my book, scoring an average of 78/100 and $890 million average global gross. 
@@ -503,13 +503,28 @@ Yet again Craig just edges out Connery, and Dalton takes last place. However, Co
 
 [score_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/score_plot.png?raw=TRUE)
 
-According to this regression, the combined score has decreased over the serie's lifetime. We have seen that online ratings decrease throughout the franchise (although the ratings only change by -0.26 per film on average), and it can be shown that global gross also decreases over time, but it is nevertheless interesting to see the treneline drop almost a tenth of a point over the course of the series. One way to avoid how these ratings change over time is to not compare against date of release.
+According to this regression, the combined score has decreased over the serie's lifetime. We have seen that online ratings decrease throughout the franchise (although the ratings only change by an average of -0.26 per film), and it can be shown that global gross also decreases over time, but it is nevertheless interesting to see the trendline drop almost a tenth of a point over the course of the series. One way to avoid how these ratings change over time is to not compare against date of release.
 
 In fact, the reason I started this project was to look at how the online ratings and global gross compare, to *hopefully* prove something that I have long believed: The higher the quality of a movie, the more it will gross. This avoids the problem of the gross and ratings changing over time, get's down to the point of if quality leads to money. Let's take a look!
 
 [glb_rate_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/glb_rate_plot.png?raw=TRUE)
 
-So quality is related to financial gross! (At least in the James Bond franchise). 
+Quality is positively correlated to financial gross! A simple 1 point increase in the aggregated online rating translates to a $13.5 million increase in global gross. I'm sure most of us don't take online scores seriously enough that a 1 point difference will affect our likelihood of seeing the film, but in the James Bond series, it can be worth millions of dollars of box office revenue.
+
+
+
+## I'll Get You Next Time 007!
+I hope that this analysis has helped you understand both the financial and online rating landscapes for the Bond series, but this analysis is in no way final or complete. The code throughout sections is not always of the same style, and the plots don't always align in word choice. This is partly due to my having worked on this project for over a month, and thus different days different methods and ideas coming to me. The reason I am formally ending this now is so that I can use it as a finite project when applying for jobs.
+
+Beyond simple editing, there are sections and ideas I would like to expand or study. These ideas include: 
+
+-Working more with changes in gross between movies. I compared the sign of the changes, but I would also like to compare the magnitudes of the change, normalizing in some way for the size of the region, to see how dramatic each region's attitude is towards the new film 
+
+-Look at how budgets and aggregated online rating relate.
+
+- Do more with my combined score. An idea I had was to look at the changes between films, in a similar vein to with ratings and box office gross.
+
+-Study how the movie industry has evolved over time in the context of budgets, how box office grosses have evolved over time and how domestic and foreign markets compare usually.
 
 
 
