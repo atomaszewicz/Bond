@@ -88,11 +88,11 @@ So these two films had very extreme ratings in one metric, but how do the other 
 
 ```R
 rate[which.max(rate$Avg.All),]
-[1]    RT.Crit RT.User LetterBoxd IMDB Avg.All         Title
+[1]    RT.Crit RT.User LetterBoxd IMDB Avg.Dumb        Title
 [1]22      95      89       97.5   80   90.375 Casino Royale
 
 rate[which.min(rate$Avg.All),]
-[1]     RT.Crit RT.User LetterBoxd IMDB Avg.All            Title
+[1]     RT.Crit RT.User LetterBoxd IMDB Avg.Dumb            Title
 [1] 15      36      41       67.5   63   51.875 A View to a Kill
 ```
 
@@ -105,12 +105,39 @@ First we must add a 'date' and 'bond' column to our data
 rate$Date<-bom$Release
 rate$bond<-bom$Bond
 #Note that by doing this we are taking our average of 4 out of the column with all the ratings.
-rate_1col<-melt(rate,id=("Title","Date","Avg.All","Bond"))
+rate_1col<-melt(rate,id=("Title","Date","Avg.Dumb","Bond"))
 colnames(rate_1col)[c(4,5)]<-c("Metric","Rating")
 ```
 ![rate_metricbond](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/rate_metricbond.png?raw=TRUE)
  
 The ratings jump up and down to various degrees, but as we saw with the average of each metric, LetterBoxd scores are generally highest and RT User the lowest. Studying how the ratings fluctuate between bond actors and how the different metrics change from film to film could unlock a lot about the evolution of the Bond series as well as inform about differences and similarities between our metrics. These two topics will be the focus of our next two sections, and in Appendix A we briefly study how much higher the LetterBoxd scores are than the others. 
+
+Before we continue to these, I want to briefly see what the overall trend for the average film rating is throughout the series
+
+```R
+avg.score.fit<-lm(rate$Date ~ rate$Avg.Dumb,data=rate)
+#Then we print out the summary to learn more. I will edit it some for readability and relevance 
+summary(avg.score.fit)
+
+Call:
+lm(formula = rate$Avg.Dumb ~ rate$Date, data = rate)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-18.6619 -10.6572  -0.1755   6.1802  22.6602 
+
+Coefficients:
+              Estimate Std. Error t value    
+(Intercept) 72.5588382  3.2072146  22.624
+rate$Date   -0.0003596  0.0004012  -0.897  
+---
+Multiple R-squared:  0.03377,	Adjusted R-squared:  -0.008244 
+```
+The R-square is quite poor, but nonetheless we see that the slope is negative! -0.0003596 translates to a -0.131254 change in average rating per year, and assuming a film every two years, a -0.26 change in average score every film.
+
+Now we can look at how the different Bond actors scored on average.
+
+
 
 ### Bond Actor
 
@@ -447,6 +474,43 @@ rate.finc<-data.frame(bom$Title,bom$Release,bom$Bond,bom$Glb.Adj,bom$Bgd.Adj,rat
 #Since R likes to mess up the names of our columns we correct them
 colnames(rate.finc)[c(1,2,3,4,5)]<-c("Title","Release","Bond","Glb.Adj","Bdg.Adj","Avg.Dumb")
 ```
+My first idea to combine the two ways to view a movie is to create a combined score based on the mean rating and the global gross. To capture how each film performed in the context of the series, we will normalize by the relevant mean. This method then gives us a way of putting the two measurmenets on the same scale.
+
+```R
+rate.finc$Rate.Norm<-with(rate.finc,rate.finc$Avg.Dumb/avgs$Avg.All)
+rate.finc$Glb.Norm<-with(rate.finc,rate.finc$Glb.Adj/mean(rate.finc$Glb.Adj))
+```
+Now that we have the two sets of normalized measurments, we can take the mean of the two to create a 'combined score'.
+
+```R
+#We will use the name 'score' for the mean of the two normalized measurements
+for(i in 1:25){
+    rate.finc$score[i]<-mean(c(rate.finc$Rate.Norm[i],rate.finc$Glb.Norm[i]))
+}
+```
+Let's take a look at how the combined scores look on average for each actor
+
+|Bond|Score|
+|---|---|
+|Connery|1.15|
+|Lazenby|0.89|
+|Moore|0.87|
+|Dalton|0.77|
+|Brosnan|0.91|
+|Craig|1.18|
+
+Yet again Craig just edges out Connery, and Dalton takes last place. However, Connery's *Thunderball* and *Goldfinger* take the two top spots with scores of 1.63 and 1.57 respectively. Now that we have this data, we can look at it in a graph, adding a linear regression to show the franchise's trend.
+
+[score_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/score_plot.png?raw=TRUE)
+
+According to this regression, the combined score has decreased over the serie's lifetime. We have seen that online ratings decrease throughout the franchise (although the ratings only change by -0.26 per film on average), and it can be shown that global gross also decreases over time, but it is nevertheless interesting to see the treneline drop almost a tenth of a point over the course of the series. One way to avoid how these ratings change over time is to not compare against date of release.
+
+In fact, the reason I started this project was to look at how the online ratings and global gross compare, to *hopefully* prove something that I have long believed: The higher the quality of a movie, the more it will gross. This avoids the problem of the gross and ratings changing over time, get's down to the point of if quality leads to money. Let's take a look!
+
+[glb_rate_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/glb_rate_plot.png?raw=TRUE)
+
+So quality is related to financial gross! (At least in the James Bond franchise). 
+
 
 
 # Footnotes
