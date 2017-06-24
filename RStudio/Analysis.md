@@ -51,9 +51,9 @@ avgs_t<-melt(avgs)
 ```
 ![avg_rating_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/avg_rating_plot.png?raw=TRUE)
 
-The average for all the Bond films, based on the 4 metrics of choice is 71%, this translates to a 3.5/5 star rating. Is this a good score? A 70% critic score on Rotten Tomatoes is all that's needed to get a 'Certified Fresh' seal for your movie. How about the other metrics? Thankfully the superstars over at [FiveThirtyEight](https://fivethirtyeight.com) ('538') did an [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) wherein they compared online movie ratings from various sites for 209 titles <sup> [12] </sup>. 
+The average for all the Bond films, based on the 4 metrics of choice is 71%, this translates to a 3.5/5 star rating. Is this a good score? A 70% critic score on Rotten Tomatoes is all that's needed to get a 'Certified Fresh' seal for your movie. How about the other metrics? Thankfully the superstars over at [FiveThirtyEight](https://fivethirtyeight.com) ('538') did an [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) wherein they compared online movie ratings from various sites for 209 titles <sup> [1] </sup>. 
 
-I jumped on [GitHub](https://github.com/) and downloaded the [data](https://github.com/fivethirtyeight/data/tree/master/fandango) used in this article. We now study how the scores of the films analyzed by '538' compare with the scores of the Bond Franchise, to get a grasp on how Bond films stack up. Let's make a table of maxes, mins and means for the overlapping metrics (unfortunately their fourth metric was [Metacritic](http://www.metacritic.com/) instead of our choice LetterBoxd <sup>[11]</sup>).
+I jumped on [GitHub](https://github.com/) and downloaded the [data](https://github.com/fivethirtyeight/data/tree/master/fandango) used in this article. We now study how the scores of the films analyzed by '538' compare with the scores of the Bond Franchise, to get a grasp on how Bond films stack up. Let's make a table of maxes, mins and means for the overlapping metrics (unfortunately their fourth metric was [Metacritic](http://www.metacritic.com/) instead of our choice LetterBoxd <sup>[2]</sup>).
 
 ||RT Crit Max|RT Crit Min|RT Crit Mean|RT User Max|RT User Min|RT User Mean|IMDB Max|IMDB Min|IMDB Mean|Net Mean|
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -62,7 +62,7 @@ I jumped on [GitHub](https://github.com/) and downloaded the [data](https://gith
 
 From this table we see that the max scores are higher for the '538' analysis, while the mean and min scores are higher for the Bond films. Based on this, the Bond movies are above average, but have never thoroughly rocked nor stunk-up the theatre (or home theatre). Being such a long running blockbuster franchise, there is a lot of time, effort, care and **money** put into making a Bond film above average but since they're fairly formulaic, it is harder to 'WOW' the audience into a 100% score or dissapoint them into a 5% rating. In contrast to this, expectations for 'new' movies (i.e. those in the '538' data) can cause them to be anywhere from underground sleeper hits, to tremendous big-budget flops.
 
-One thing that bugged me about the results from the Bond series it that I expected critics's scores to be more, well, critical of movies than that of your average Joe Rotten Tomatoe. The average RT user rating for the Bond films was 10% (7 percentage-points) less than the critic ratings, while the results from the '538' article pegged user ratings 19% (3 percentage-points) higher than critic scores <sup>[1]</sup>. It could be that critics are more harsh on movies in general but they understand the place of the James Bond movies. So while the average theater-goer is keeping their score of Citizen Kane or Casablanca in mind when they pencil in their rating for the 007 films, critics understand that the Bond franchise should be judged for what it is: B-movies about a globe-trotting, babe-charming super spy, not exaclty high-art.
+One thing that bugged me about the results from the Bond series it that I expected critics's scores to be more, well, critical of movies than that of your average Joe Rotten Tomatoe. The average RT user rating for the Bond films was 10% (7 percentage-points) less than the critic ratings, while the results from the '538' article pegged user ratings 19% (3 percentage-points) higher than critic scores <sup>[3]</sup>. It could be that critics are more harsh on movies in general but they understand the place of the James Bond movies. So while the average theater-goer is keeping their score of Citizen Kane or Casablanca in mind when they pencil in their rating for the 007 films, critics understand that the Bond franchise should be judged for what it is: B-movies about a globe-trotting, babe-charming super spy, not exaclty high-art.
 
 Now that we've looked at how the franchise ranks on average, and how that average compares to other films, let's look at the ratings of specific films in the series.
 
@@ -169,7 +169,7 @@ bond_rate1<-melt(bond_rate,id=c("Bond","Avg.All"))
 
 So the most recent actor to wear the 007 tux, Daniel Craig, is the most highly rated with an average score of 78/100, and Sean Connery, the Bond that broke in the penguin suit, is the second highest at 76. With only 1 film in the franchise, it was surprising that George Lazen takes the third spot with 75. As we briefly saw earlier and will see again soon fatigue with the character seems to affect the ratings, which might have worked in George Lazen's favour. Brosnan (63.6) just edges out Moore (63.8) to get last place, and Dalton hovers near the franchise average with a 71 rating.
 
-As before, LetterBoxd scores are the highest, and Rotten Tomatoes users are almost always the most critical. Some metrics vary drasticaly across Bonds, while some are all similar: the range of RT critic averages across Bonds is 25 points, and IMDb's is 8 <sup> [2] </sup>. So the averages have a small range, but how much do the ratings change from film to film? This is the focus of the next section.
+As before, LetterBoxd scores are the highest, and Rotten Tomatoes users are almost always the most critical. Some metrics vary drasticaly across Bonds, while some are all similar: the range of RT critic averages across Bonds is 25 points, and IMDb's is 8 <sup> [4] </sup>. So the averages have a small range, but how much do the ratings change from film to film? This is the focus of the next section.
 
 ### Score Changes
 
@@ -292,7 +292,7 @@ We note that from here on out, unless stated otherwise, all values will be adjus
 |Budget|$2,723,922,708|$108,956,908|
 |Profit|$14,816,178,405|$592,647,136|
 
-With a net global box office gross of $17.5 billion James Bond is *the* most financially successful film franchise in history, trailed by *Star Wars*, *The Marvel Cinematic Universe* and *Harry Potter* (in that order) <sup> [5] </sup>. Over two thirds of this gross is non-domestic, which is not entirely surprising since our secret agent works for Britian, not America/Canada <sup> [4]</sup>. This success, along with the gross averaging over six times their budget, and the films profit around $600 mill on average give us insight into how it has become [one of films longest running franchises](https://en.wikipedia.org/wiki/List_of_film_series_with_more_than_twenty_entries).
+With a net global box office gross of $17.5 billion James Bond is *the* most financially successful film franchise in history, trailed by *Star Wars*, *The Marvel Cinematic Universe* and *Harry Potter* (in that order) <sup> [4] </sup>. Over two thirds of this gross is non-domestic, which is not entirely surprising since our secret agent works for Britian, not America/Canada. This success, along with the gross averaging over six times their budget, and the films profit around $600 mill on average give us insight into how it has become [one of films longest running franchises](https://en.wikipedia.org/wiki/List_of_film_series_with_more_than_twenty_entries).
 
 To give a better idea of the finances of individual films in our gilded franchise, let's take a quick look at the top, middle and bottom entries of each category. All figures are in millions of dollars.
 
@@ -304,7 +304,7 @@ To give a better idea of the finances of individual films in our gilded franchis
 |Profit|Goldfinger ($1360)|Diamonds are Forever ($570)|License to Kill ($250)|
 |Budget|Spectre ($270)|Living Daylights ($90)|Dr. No ($10)|
 
-Sean Connery's *Thunderball* is the highest grossing film globally and domestically, while *Skyfall* produced the most in the foreign markets. The most profitable film was *Goldfinger* with a budget in the bottom 20%. We also notice that *Thunderball* pulled in more gross domestically than half the Bond film's did globally, quite a feat for only the fourth film in the series. Timothy Dalton's *License to Kill* is the least successful in all financial respects even though in the rating section it's average of 4 rating is the median with 71/100. It turns out that the newest Bond film (*Spectre*) cost more to make than *License to Kill* profited.  Speaking of budgets, we see that not only is the newest film the most expensive, but the oldest (*Dr. No*) is the least. Assuming a linear increase between these two extremes, this gives that the budget increases by $10 mill every film<sup> [13] </sup>. These budget numbers are intriguing, but we will come back to them later, we will first look at how the global and domestic grosses have evolved over time.
+Sean Connery's *Thunderball* is the highest grossing film globally and domestically, while *Skyfall* produced the most in the foreign markets. The most profitable film was *Goldfinger* with a budget in the bottom 20%. We also notice that *Thunderball* pulled in more gross domestically than half the Bond film's did globally, quite a feat for only the fourth film in the series. Timothy Dalton's *License to Kill* is the least successful in all financial respects even though in the rating section it's average of 4 rating is the median with 71/100. It turns out that the newest Bond film (*Spectre*) cost more to make than *License to Kill* profited.  Speaking of budgets, we see that not only is the newest film the most expensive, but the oldest (*Dr. No*) is the least. Assuming a linear increase between these two extremes, this gives that the budget increases by $10 mill every film <sup> [6] </sup>. These budget numbers are intriguing, but we will come back to them later, we will first look at how the global and domestic grosses have evolved over time.
 
 ### Domestic & Global Gross
 
@@ -397,9 +397,9 @@ Here is what the dataframe looks like as a table:
      
 There's a lot to unpack here, so let's go slowly. First we see that while on average Craig grossed the most in global and foreign markets, Connery claims the box office crown domestically. Although Daniel Craig's interpretation of the character is easily the most raw and serious, he comes off a lot more stylish and debonair (read as: British) than Connery. Connery's 007 performances have more of a maverick feeling to them which Americans might like since part of their core identity is the 'Don't Tread on Me' mentality and fascination with the cowboy archetype.
 
-On the other end of the spectrum, at domestic and global box offices, Dalton's films grossed on average the least. As we saw, Dalton's second film *License to Kill* ranks as the lowest grossing Bond film domestically & globally, and his his first film (*The Living Daylights*) is the third lowest in both categories. Though *License to Kill* suffered some misfortunes including a higher-than-usual age classification in Britain <sup>[6]</sup> and a last-minute title change <sup> [7] </sup>, it doesn't explain why the first one was so poorly recieved. Well, what makes Dalton's Bond different from the rest?
+On the other end of the spectrum, at domestic and global box offices, Dalton's films grossed on average the least. As we saw, Dalton's second film *License to Kill* ranks as the lowest grossing Bond film domestically & globally, and his his first film (*The Living Daylights*) is the third lowest in both categories. Though *License to Kill* suffered some misfortunes including a [higher-than-usual age classification in Britain](http://www.bbfc.co.uk/releases/licence-kill) and [a last-minute title change][Secondary souce](https://www.theguardian.com/film/2008/aug/21/1), it doesn't explain why the first one was so poorly recieved. Well, what makes Dalton's Bond different from the rest?
 
-After Roger Moore's playful, light-hearted Bond, the grit and realism of Dalton's performances must have been quite jarring for audiences. Dalton wanted the Bond from the novels, a darker and more broooding Bond (I must disclose that I have never read any Bond novels). In an interview, Dalton summarized his approach thus: "I think Roger was fine as Bond, but the films had become too much techno-pop and had lost track of their sense of story.  Every film seemed to have a villain who had to rule or destroy the world. If you want to believe in the fantasy on screen, then you have to believe in the characters and use them as a stepping-stone to lead you into this fantasy world. That's a demand I made." <sup> [8] </sup> According to my parents (Dad has read all the Fleming novels, and Mom has read none) it seems that those who were familiar with the literary charcter were mostly pleased with Dalton's more grounded approach whereas those who only knew the movies didn't enjoy how serious it was. In contrast with this, Daniel Craig's Bond which is darker than Dalton's in many ways, was extremelly well recieved and it even followed Brosnan's more light-hearted, Moore-esque Bond. This might mean that either Dalton took the unsatisfying middleground between fun and serious, or he helped paved the way for the appreciation of a darker Bond, which Craig reaped.
+After Roger Moore's playful, light-hearted Bond, the grit and realism of Dalton's performances must have been quite jarring for audiences. Dalton wanted the Bond from the novels, a darker and more broooding Bond (I must disclose that I have never read any Bond novels). In an interview, Dalton summarized his approach thus: "I think Roger was fine as Bond, but the films had become too much techno-pop and had lost track of their sense of story.  Every film seemed to have a villain who had to rule or destroy the world. If you want to believe in the fantasy on screen, then you have to believe in the characters and use them as a stepping-stone to lead you into this fantasy world. That's a demand I made." <sup> [7] </sup> According to my parents (Dad has read all the Fleming novels, and Mom has read none) it seems that those who were familiar with the literary charcter were mostly pleased with Dalton's more grounded approach whereas those who only knew the movies didn't enjoy how serious it was. In contrast with this, Daniel Craig's Bond which is darker than Dalton's in many ways, was extremelly well recieved and it even followed Brosnan's more light-hearted, Moore-esque Bond. This might mean that either Dalton took the unsatisfying middleground between fun and serious, or he helped paved the way for the appreciation of a darker Bond, which Craig reaped.
 
 Next we see that Connery had the lowest ratio of foreign to domestic gross, while Dalton had the highest. Connery performed particularly well domestically (52% higher than average) but only slightly above average in the foreign market (16% higher than average). Meanwhile Dalton underperformed to a greater extent domestically (54% under average) than in foreign markets (36% below average).
 
@@ -516,20 +516,37 @@ Quality is positively correlated to financial gross! A simple 1 point increase i
 ## I'll Get You Next Time 007!
 I hope that this analysis has helped you understand both the financial and online rating landscapes for the Bond series, but this analysis is in no way final or complete. The code throughout sections is not always of the same style, and the plots don't always align in word choice. This is partly due to my having worked on this project for over a month, and thus different days different methods and ideas coming to me. The reason I am formally ending this now is so that I can use it as a finite project when applying for jobs.
 
-Beyond simple editing, there are sections and ideas I would like to expand or study. These ideas include: 
+Beyond simple editing, there are sections and ideas I would like to expand or study. If all goes according to plan, this section will slowly disappear over the following months.  These ideas include: 
 
--Working more with changes in gross between movies. I compared the sign of the changes, but I would also like to compare the magnitudes of the change, normalizing in some way for the size of the region, to see how dramatic each region's attitude is towards the new film 
+- Working more with changes in gross between movies. I compared the sign of the changes, but I would also like to compare the magnitudes of the change, normalizing in some way for the size of the region, to see how dramatic each region's attitude is towards the new film 
 
--Look at how budgets and aggregated online rating relate.
+- Look at how budgets and aggregated online rating relate.
 
 - Do more with my combined score. An idea I had was to look at the changes between films, in a similar vein to with ratings and box office gross.
 
--Study how the movie industry has evolved over time in the context of budgets, how box office grosses have evolved over time and how domestic and foreign markets compare usually.
+- Study how the movie industry has evolved over time in the context of budgets, how box office grosses have evolved over time and how domestic and foreign markets compare usually.
+
+
+
+
+Thanks for reading!
 
 
 
 # Footnotes
-<sup>[1]</sup> : In the FiveThirtyEight [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) I referenced, the point of interest is this paragraph: "The ratings from IMDb, Metacritic and Rotten Tomatoes were typically in the same ballpark, which makes this finding unsurprising: Fandango’s star rating was higher than the IMDb rating 79 percent of the time, the Metacritic aggregate critic score 77 percent of the time, the Metacritic user score 86 percent of the time, the Rotten Tomatoes critic score 62 percent of the time, and the Rotten Tomatoes user score 74 percent of the time." Therefore to see how much higher user scores are than the critics scores, we simply divide the two averages to eliminate the Fandango term: (RT.Crit)/(RT.User)=1.19 which gives us our quoted 19%. 
+
+<sup> [1] </sup>:
+The 209 titles are 'recent' as of October 2015, when the article was written.
+
+<sup>[2]</sup>:
+I briefly looked at the LetterBoxd and Metacritic for the Bond and 538 analysis, respectively, but they were so different I thought it was best to simply ignore them for that analysis. Here is the max/min/mean for the two
+
+||Mean|Max|Min|
+|---|---|---|---|
+|LetterBoxd|79.1|97.5|57.5|
+|Metacritic|59|94|13|
+
+<sup>[3]</sup> : In the FiveThirtyEight [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) I referenced, the point of interest is this paragraph: "The ratings from IMDb, Metacritic and Rotten Tomatoes were typically in the same ballpark, which makes this finding unsurprising: Fandango’s star rating was higher than the IMDb rating 79 percent of the time, the Metacritic aggregate critic score 77 percent of the time, the Metacritic user score 86 percent of the time, the Rotten Tomatoes critic score 62 percent of the time, and the Rotten Tomatoes user score 74 percent of the time." Therefore to see how much higher user scores are than the critics scores, we simply divide the two averages to eliminate the Fandango term: (RT.Crit)/(RT.User)=1.19 which gives us our quoted 19%. 
 
 If we wish to continue this analysis:
 
@@ -538,7 +555,7 @@ IMDb vs. RT.Crit: Our metric suggests RT critics rate Bond films 3% higher than 
 IMDb vs. RT.User: Our metric says RT Users scores are 7% lower than IMDb and FiveThirtyEight puts this number at 6%.
 
 
-<sup> [2] </sup>:
+<sup> [4] </sup>:
 To find the range of averages for a metric across bond actors you simply subtract the max from the min. For example, with IMDb
 
 ```R
@@ -549,10 +566,7 @@ max(bond_rate$IMDB)-min(bond_rate$IMDB)
 <sup>[3]</sup>:
 18 years before he finally accepted the role, Timothy Dalton said the following about turning down an offer in 1968 to play Bond in "Oh Her Majesty's Secret Service": "Originally I did not want to take over from Sean Connery. He was far too good, he was wonderful. [...] When you've seen Bond from the beginning, you don't take over from Sean Connery." Source (https://www.youtube.com/watch?v=amuodiP-8z4) *This link has been taken down since I posted it. Sadly I cannot find a working version*
 
-<sup>[4]</sup>:
-I have a future project planned to study how domestic (US) and global gross compares for your typical wide-release film, so eventually I will be able to give more insight into how this ratio stacks up to similar films.
-
-<sup>[5]</sup>: 
+<sup>[4]</sup>: 
 This can be calculated from figures [here](http://www.boxofficemojo.com/franchises/?view=Franchise&sort=sumgross&order=DESC&p=.htm), with the same process of finding the global gross adjusted for inflation from the domestic adjusted and global unadjusted.
 
 <sup> [5] </sup>:
@@ -561,41 +575,14 @@ mean(bo.diff$glb.dom.raw.ratio)
 [1] 0.6324663
 
 <sup>[6]</sup>:
-[Source](http://www.bbfc.co.uk/releases/licence-kill)
-
-<sup>[7]</sup>:
-[Secondary souce](https://www.theguardian.com/film/2008/aug/21/1)
-
-<sup>[8]</sup>:
-Source: Rubin, Steven Jay (1995). The Complete James Bond Movie Encyclopedia (Revised ed.). McGraw-Hill/Contemporary Books. ISBN 0-8092-3268-5.
-
-<sup> [9] </sup>:
-To show why this could affect our values, let's replace this 13th negative domestic change with a positive one (the negative element and positive element are the respective signs medians): this would give us a mean of $5,818,575, which is almost exactly half of the $11 mill global change mean. 
- 
-In order to 'neaturalize' a negative element, I added the negative of the median negative domestic change (which is then a positive number) and the median positive domestic change to the sum before dividing by the number of elements, which gives the mean. 
-
-NEW MEAN CHANGE=((REAL SUM OF DOMESTIC CHANGES)+(-MEDIAN NEGATIVE DOMESTIC CHANGE)+(MEDIAN POSITIVE DOMETIC CHANGE))/24
-
-<sup>[11]</sup>:
-I briefly looked at the LetterBoxd and Metacritic for the Bond and 538 analysis, respectively, but they were so different I thought it was best to simply ignore them for that analysis. Here is the max/min/mean for the two
-
-||Mean|Max|Min|
-|---|---|---|---|
-|LetterBoxd|79.1|97.5|57.5|
-|Metacritic|59|94|13|
-
-<sup> [12] </sup>:
-The 209 titles are 'recent' as of October 2015, when the article was written.
-
-<sup>[13]</sup>:
 The newest film has the highest budget and the oldest film has the lowest. So we find the increase as follows:
 
 ($270-$10)mill/(54years)=$4.8 mill/year
 
 With 25 films in 54 years that gives us an average of 2.2 years/film. This means that there is a $4.8x2.2 = 10 mill/film increase.
 
-<sup> [14]</sup>:
-[For example](https://en.wikipedia.org/wiki/George_Lazenby#Leaving_Bond) is George Lazenby who quit said: "prior to the release of the film, Lazenby announced that he no longer wished to play the role of James Bond, saying, '[The Producers] made me feel like I was mindless. They disregarded everything I suggested simply because I hadn't been in the film business like them for about a thousand years.' "  
+<sup>[7]</sup>:
+Source: Rubin, Steven Jay (1995). The Complete James Bond Movie Encyclopedia (Revised ed.). McGraw-Hill/Contemporary Books. ISBN 0-8092-3268-5.
 
 # Plot Code
 
