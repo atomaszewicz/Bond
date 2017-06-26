@@ -352,7 +352,7 @@ Foreign and domestic markets agree on the sign of the change in gross 70% of the
 
 Domestic Change            |  Foreign
 :-------------------------:|:-------------------------:
-![dom_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/dom_chng_plot.png) | ![glb_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/non_dom_chng_plot.png)
+![dom_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/dom_chng_plot.png?raw=TRUE) | ![glb_chng_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/non_dom_chng_plot.png?raw=TRUE)
 
 Most of the disagreements (4/7) are when new actor premieres; for domestic gross, all but once, the change was negative, and in the foreign markets the change was, all but once, positive. It seems that North Americans are cold to new interpretations of Agent 007, with the exception of Pierce Brosnan, (possibly correlated with the six year hiatus in the series and the lowest grossing film being what he had to live up to). In opposition to this, foreigners audiences seem to like a reinvigoration of the series. The exception in the foreign case is George Lazenby, which as we've discussed, had a hard job of living up to Sean Connery. This is quite a powerful result, and I believe this could be used by the studio to decide where and how to spend advertising bucks when they finally choose a successor to Daniel Craig.
 
