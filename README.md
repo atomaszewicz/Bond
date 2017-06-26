@@ -48,7 +48,7 @@ Normalizing global gross and online ratings by their means then taking the avera
 
 Lastly, comparing Global gross directly to online rating we see that a 1 point change in rating is correlated with a $13.5 mill increase in gross. 
 
-![glb_rate_plot](https://raw.github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/glb_rate_plot.png?raw=TRUE)
+![glb_rate_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/glb_rate_plot.png?raw=TRUE)
 
 # Improvements
 One thing missing from this analysis is the amount paid to an actor for a given film. That is because this info is missing for many films and when it is there, it is rather complicated as some actors recieved just a paycheck while some recieved a percentage of net merch or film gross. 
