@@ -2,7 +2,9 @@
 
 ## Set up
 
-Since I saved my cleaned-up Exif CSV as an Excel ".xlsx" file we load a package to bring Excel files into RStudio, another packgage to reshape data and , our favorite plotting package.
+The data from our online rating sites, and our two box office figure websites all have their own page in our [excel spreadsheet](https://github.com/atomaszewicz/Bond/blob/master/Data/jb_raw.xlsx). To read more about the sources of this data, you can look at the [Data folder](https://github.com/atomaszewicz/Bond/tree/master/Data) or the [README](https://github.com/atomaszewicz/Bond/blob/master/Data/README.md) in the Data folder.
+
+We are going to analyze these excel sheets in RStudio, so we will need to turn them into R dataframes. To handle the '.xlsx' excel file we load a package to bring Excel files into RStudio. We also load my favorite plotting package and a package to reshape data before we forget.
 
 
 ```R
