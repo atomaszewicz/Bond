@@ -53,7 +53,9 @@ avgs_t<-melt(avgs)
 ```
 ![avg_rating_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/avg_rating_plot.png?raw=TRUE)
 
-The average for all the Bond films, based on the 4 metrics of choice is 71%, this translates to a 3.5/5 star rating. Is this a good score? A 70% critic score on Rotten Tomatoes is all that's needed to get a 'Certified Fresh' seal for your movie. How about the other metrics? Thankfully the superstars over at [FiveThirtyEight](https://fivethirtyeight.com) ('538') did an [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) wherein they compared online movie ratings from various sites for 209 titles <sup> [1] </sup>. 
+The average for all the Bond films, based on the 4 metrics of choice is 71%, this translates to a 3.5/5 star rating. Is this a good score? To study this we might want to first take a step back and see how our individual ratings compare to the average rating on these sites.
+
+Thankfully for us, the superstars over at [FiveThirtyEight](https://fivethirtyeight.com) ('538') did an [article](https://fivethirtyeight.com/features/fandango-movies-ratings/) wherein they compared online movie ratings from various sites for 209 titles <sup> [1] </sup>. 
 
 I jumped on [GitHub](https://github.com/) and downloaded the [data](https://github.com/fivethirtyeight/data/tree/master/fandango) used in this article. We now study how the scores of the films analyzed by '538' compare with the scores of the Bond Franchise, to get a grasp on how Bond films stack up. Let's make a table of maxes, mins and means for the overlapping metrics (unfortunately their fourth metric was [Metacritic](http://www.metacritic.com/) instead of our choice LetterBoxd <sup>[2]</sup>).
 
@@ -253,7 +255,7 @@ Studying the (dis)agreements among metrics for the sign of the change of ratings
 
 
 ### Summary
-Throughout the Rating section, we have seen how our four metrics (Rotten Tomatoes Users, Rotten Tomatoes Critics, LetterBoxd and IMDb ratings/100) ratings differ between the 25 films and 6 actors in the Bond series. We saw that the series' average rating, based on our four metrics, was 71/100. LetterBoxd was the most generous rating, with a mean score of 79, and Rotten Tomatoe Users the harshest, scoring only 64 on average.  We found that on average Daniel Craig was the highest rated and Pierce Brosnan the lowest, with the mean score across all films and metrics of 78 and 63 respectively. We then studied how the ratings changed between films, and between actors, and saw that when a new Bond actor premiers, the metrics usually agree that it was a positive change, and on an actor's last film, the metrics' mostly disagree on the change in quality. 
+Throughout the Rating section, we have seen how our four metrics ratings differ between the 25 films and 6 actors in the Bond series. We saw that the series' average rating, based on our four metrics, was 71/100. Each metric rated the series slightly above your average movie, where LetterBoxd was the most generous rating, with a mean score of 79, and Rotten Tomatoe Users were the harshest, giving the series a 64 rating. We found that on average Daniel Craig was the highest rated and Pierce Brosnan the lowest, with the mean score across all films and metrics of 78 and 63 respectively. We then studied how the ratings changed between films, and between actors, and saw that when a new Bond actor premiers, the metrics usually agree that it was a positive change, and on an actor's last film, the metrics' mostly disagree on the change in quality. 
 
 This is only ~~half~~ some of the story; as much as I like to think that the quality of movies, and by extension online ratings, is what matters, the trush is that the movie industry is a business and the bottom line rules. So let's put aside our tables of online ratings for now and follow the dollars.
 
