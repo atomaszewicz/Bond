@@ -1,22 +1,23 @@
 # Bond
 
-6 Actors, 55 years, 25 films, over $17 billion in box office gross, and innumerable car chases, gadgets, martinis and babes. Agent 007 is one of film's most iconic characters and his film francise ranks as the most financially successful, when adjusted for inflation. The mixture of exaggerated villainy, epic heroism and bad puns are just right to make us both invested in the plot and characters yet able to laugh it off when Bond [jumps over a road in a motorboat](https://youtu.be/cODPt3T0cHE?t=51s).
+6 Actors, 55 years, 25 films, over $17 billion in box office gross, and innumerable car chases, gadgets, martinis and babes. Agent 007 is one of film's most iconic characters and his film francise ranks as *the* most financially successful, when adjusted for inflation. The mixture of exaggerated villainy, epic heroism and bad puns are just right to make us both invested in the plot and able to laugh it off when Bond [jumps over a road in a motorboat](https://youtu.be/cODPt3T0cHE?t=51s).
 
 # Outline
 After countless discussions with friends and family about the best bond film, the most beautiful babe, the most conniving villain and, of course, who wore the tuxedo best, I decided to look at the numbers. I pull financial and online-rating data from various sources, organize it in excel then study it in RStudio. 
 
+I begin by looking at how 4 online ratings (Rotten Tomatoes Users, Rotten Tomatoes Critics, Letterboxd and IMDb) compare and contrast for the 25 film franchise, and how they rate different films and actors. Next I look at financial data, including box office grosses and budgets, to gauge how successful the films and actors were, and in what markets (domestic & foreign) they stood out. I then briefly combine these two approaches.
+
 # Data
 
-For this project, we use box office data from [Box Office Mojo](http://www.boxofficemojo.com/franchises/chart/?id=jamesbond.htm) and [The Numbers](http://www.the-numbers.com/movies/franchise/James-Bond#tab=summary), online rating scores from IMDB, Letterboxd and both critic and users scores from Rotten Tomatoes (RT). If you want more information on the data collection, please see the [data section](https://github.com/atomaszewicz/Bond/tree/master/Data) of this project. 
-
-There are 26 Bond films total, with 24 of them having been produced by Eon productions. The two films not produced by Eon are: Casino Royale (1967) staring David Niven as Bond, and Never Say Never Again (1983) where Sean Connery reprises his role as 007 over a decade after his last performance as the super spy. I decided to disclude Casino Royale, since it is made with a very different tone than the rest of the films and it was the only appearence of David Niven as Bond. Never Say Never Again however is fairly in-line with the rest of the series, and features Connery, a staple of he series, in the role, so I decided to include it in our analysis.
-
+For this project, we use financial data from [Box Office Mojo](http://www.boxofficemojo.com/franchises/chart/?id=jamesbond.htm) and [The Numbers](http://www.the-numbers.com/movies/franchise/James-Bond#tab=summary). The online rating scores from [IMDB](http://www.imdb.com/), [Letterboxd](https://letterboxd.com/) and both critic and users scores from [Rotten Tomatoes](https://www.rottentomatoes.com/) (RT). If you want more information on the sources and methods of data collection, please see the [data section](https://github.com/atomaszewicz/Bond/tree/master/Data) of this project. 
 
 # Analysis
 
+For the full analysis please see [here](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Analysis.md).
+
 ## Online Rating
 
-The average of the aggregated score of our 4 metrics for the entire series is 71/100 (enough to be ['Certified Fresh'](https://www.rottentomatoes.com/about/) on Rotten Tomatoes). Letterboxd rates the films the highest and RT users rate it the lowest, with average scores of 79 and 64 respectively. Even though the ratings decrease over the course of the franchise by -0.3 per film, the actor with the highest aggregated score is Daniel Craig with 78/100, followed closely by Sean Connery, the first actor to portray the character, with a score of 76. The worst-rated actor was Pierce Brosnan with a score of 63. 
+The average of the aggregated score of our 4 metrics for the entire series is 71/100. Letterboxd rates the films the highest and RT users rate it the lowest, with average scores of 79 and 64 respectively. Even though the ratings decrease over the course of the franchise by -0.3 per film, the actor with the highest aggregated score is Daniel Craig with 78/100, followed closely by Sean Connery, the first actor to portray the character, with a score of 76. The worst-rated actor was Pierce Brosnan with a score of 63. 
 
 ![rate_metricbond](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/rate_metricbond.png?raw=TRUE)
 
