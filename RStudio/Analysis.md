@@ -507,7 +507,7 @@ Yet again Craig just edges out Connery, and Dalton takes last place. However, Co
 
 ![score_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/score_plot.png?raw=TRUE)
 
-According to this regression, the combined score has decreased over the serie's lifetime. We have seen that online ratings decrease throughout the franchise (although the ratings only change by an average of -0.26 per film), and it can be shown that global gross also decreases over time, but it is nevertheless interesting to see the trendline drop almost a tenth of a point over the course of the series. One way to avoid how these ratings change over time is to not compare against date of release.
+The changes are so sporadic that it is silly to simply look at the linear trend. However, I still put it on in order to demonstrate how the different eras of Bond fluctate around the franchise's trend.  We have seen that online ratings decrease throughout the franchise (although the ratings only change by an average of -0.26 per film), and it can be shown that global gross also decreases over time, but it is nevertheless interesting to see the trendline drop almost a tenth of a point over the course of the series. One way to avoid how these ratings change over time is to not compare against date of release.
 
 In fact, the reason I started this project was to look at how the online ratings and global gross compare, to *hopefully* prove something that I have long believed: The higher the quality of a movie, the more it will gross. This avoids the problem of the gross and ratings changing over time, get's down to the point of if quality leads to money. Let's take a look!
 
