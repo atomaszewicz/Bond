@@ -574,9 +574,11 @@ max(bond_rate$IMDB)-min(bond_rate$IMDB)
 This can be calculated from figures [here](http://www.boxofficemojo.com/franchises/?view=Franchise&sort=sumgross&order=DESC&p=.htm), with the same process of finding the global gross adjusted for inflation from the domestic adjusted and global unadjusted.
 
 <sup> [5] </sup>:
+```R
 bo.diff$glb.dom.raw.ratio<-with(bo.diff,bo.diff$Glb.Chng/bo.diff$Dom.Chng)
 mean(bo.diff$glb.dom.raw.ratio)
 [1] 0.6324663
+```
 
 <sup>[6]</sup>:
 The newest film has the highest budget and the oldest film has the lowest. So we find the increase as follows:
