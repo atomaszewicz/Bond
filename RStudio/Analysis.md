@@ -666,11 +666,19 @@ labels<-ggtitle("James Bond Film Budgets",subtitle="Adjusted for Inflation to Ma
 ```
 
 ## glb_chng_plot
- glb.chng<-ggplot(bo.diff,aes(x=Counter,y=Glb.Chng1,fill=glb.sgn))+geom_bar(stat='identity')+facet_grid(New.Bond ~ .,scales="free")+theme(strip.text.y = element_text(angle = 0))+scale_fill_manual("sign",values=c("positive"="BLUE","negative"="RED"))+geom_hline(aes(yintercept=0))+ylab("Change in Global Gross")+xlab("Film in Series")+ggtitle("Global Gross Change, Bond Franchise",subtitle="Adjusted for Inflation to May 2017, $mill")
+```R
+glb.chng<-ggplot(bo.diff,aes(x=Counter,y=Glb.Chng1,fill=glb.sgn))+geom_bar(stat='identity')+facet_grid(New.Bond ~ .,scales="free")
+theme1<-theme(strip.text.y = element_text(angle=0))+ scale_fill_manual("sign",values=c("positive"="BLUE","negative"="RED")) theme2<-geom_hline(aes(yintercept=0))
+labels<-ylab("Change in Global Gross")+xlab("Film in Series")+ggtitle("Global Gross Change, Bond Franchise",subtitle="Adjusted for Inflation to May 2017, $mill")
+```
 
 ## dom_chng_plot
-dom.chng<-ggplot(bo.diff,aes(x=Counter,y=Dom.Chng1,fill=dom.sgn))+geom_bar(stat='identity')+facet_grid(New.Bond ~ .,scales="free")+theme(strip.text.y = element_text(angle = 0))+scale_fill_manual("sign",values=c("positive"="BLUE","negative"="RED"))+geom_hline(aes(yintercept=0))+ylab("Change in Domestic Gross")+xlab("Film in Series")+ggtitle("Domestic Gross Change, Bond Franchise",subtitle="Adjusted for Inflation to May 2017, $mill")
-
+```R
+dom.chng<-ggplot(bo.diff,aes(x=Counter,y=Dom.Chng1,fill=dom.sgn))+geom_bar(stat='identity')+facet_grid(New.Bond ~ .,scales="free")
+theme<-theme(strip.text.y = element_text(angle=0))+scale_fill_manual("sign",values=c("positive"="BLUE","negative"="RED"))
+theme2<-geom_hline(aes(yintercept=0))
+labels<-ylab("Change in Domestic Gross")+xlab("Film in Series")+ggtitle("Domestic Gross Change, Bond Franchise",subtitle="Adjusted for Inflation to May 2017, $mill")
+```
  
 
 # Appendix
