@@ -602,7 +602,7 @@ avgs_t<-melt(avgs)
 #We plot only the first 4, as we will visualize the average of the 4 in another form
 avg_rating_plot<-ggplot(avgs_t[1:4,],aes(x=variable,y=value,fill=variable))+geom_col()+coord_cartesian(ylim=c(60,80))
 labels1<-xlab("Rating Metric")+ylab("Average Score/100")+ggtitle("Bond Film Average Rating by Metric")
-labels2<-annotate("text",x="IMDB",y=72,label="Average of \n4 Metrics",fontface='italic')+labs(fill="Metric")
+labels2<-annotate("text",x="IMDB",y=72,label="Average of \n 4 Metrics",fontface='italic')+labs(fill="Metric")
 avg_line<-geom_hline(aes(yintercept=avgs_t[5,2]),linetype="dashed")
 ```
 ## rate_metricbond
@@ -662,7 +662,8 @@ labels<-ggtitle("James Bond Film Profit to Budget Ratio")+ylab("Profit to Budget
 ## budg_plot
 A line plot of budgets over time with a linear regression line superimposed
 ```R
-budg_plot<-ggplot(bom,aes(x=Release,y=Bdg.Adj))+geom_line()+geom_point(aes(shape=Bond)) trendline<-geom_smooth(method='lm',se=FALSE)
+budg_plot<-ggplot(bom,aes(x=Release,y=Bdg.Adj))+geom_line()+geom_point(aes(shape=Bond)) 
+trendline<-geom_smooth(method='lm',se=FALSE)
 y_axis<-scale_y_continuous(breaks=c(1e+07,1e+08,2e+08,3e+08),labels=c("$10 mill","$100 mill","$200 mill","$300 mill"))
 labels<-ggtitle("James Bond Film Budgets",subtitle="Adjusted for Inflation to May 2017")+ylab("Budget")
 ```
@@ -670,7 +671,8 @@ labels<-ggtitle("James Bond Film Budgets",subtitle="Adjusted for Inflation to Ma
 ## glb_chng_plot
 ```R
 glb.chng<-ggplot(bo.diff,aes(x=Counter,y=Glb.Chng1,fill=glb.sgn))+geom_bar(stat='identity')+facet_grid(New.Bond ~ .,scales="free")
-theme1<-theme(strip.text.y = element_text(angle=0))+ scale_fill_manual("sign",values=c("positive"="BLUE","negative"="RED")) theme2<-geom_hline(aes(yintercept=0))
+theme1<-theme(strip.text.y = element_text(angle=0))+ scale_fill_manual("sign",values=c("positive"="BLUE","negative"="RED"))
+theme2<-geom_hline(aes(yintercept=0))
 labels<-ylab("Change in Global Gross")+xlab("Film in Series")+ggtitle("Global Gross Change, Bond Franchise",subtitle="Adjusted for Inflation to May 2017, $mill")
 ```
 
