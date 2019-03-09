@@ -43,7 +43,7 @@ The budgets have skyrocketd over the course of the series, from the first film's
 
 ![budg_plot](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/budg_plot.png?raw=TRUE)
 
-Looking at return on investment, Connery made the accountants the happiest with a profit:budget ratio of 17:1, whereas our golden boy Craig had the second lowest ratio at 19:5. Quite a large differece, but seeing as Connery's budgets were a quarter of Craig's this is not entirely surprising.
+Looking at return on investment, Connery made the accountants the happiest with a profit:budget ratio of 17:1, whereas our golden boy Craig had the second lowest ratio at 19:5. Quite a large differece, but seeing as Connery's budgets were a quarter of Craig's this is not entirely surprising. This ratio behaves logaithmically, falling to it's natural ratio of 5:2.
 
 ![profit_budg_ratio](https://github.com/atomaszewicz/Bond/blob/master/RStudio/Plots/profit_budget_ratio.png?raw=TRUE)
 
