@@ -1,9 +1,9 @@
 # Bond
 
-6 Actors, 55 years, 25 films, over $17 billion in box office gross, and innumerable car chases, gadgets, martinis and babes. Agent 007 is one of film's most iconic characters and his film francise ranks as *the* most financially successful, when adjusted for inflation. The mixture of exaggerated villainy, epic heroism and bad puns are just right to make us both invested in the plot and able to laugh it off when Bond [jumps over a road in a motorboat](https://youtu.be/cODPt3T0cHE?t=51s).
+6 Actors, 55 years, 25 films, over $17 billion in box office gross, and innumerable car chases, gadgets, martinis and babes. Agent 007 is one of film's most iconic characters and his film francise ranks as *the* most financially successful, when adjusted for inflation. The mixture of exaggerated villainy, epic heroism and bad puns are just right to let us be invested in the plot but able to laugh it off when Bond [jumps over a road in a motorboat](https://youtu.be/cODPt3T0cHE?t=51s).
 
 # Outline
-After countless discussions with friends and family about the best bond film, the most beautiful babe, the most conniving villain and, of course, who wore the tuxedo best, I decided to look at the numbers. I pull financial and online-rating data from various sources, organize it in excel then study it in RStudio. 
+After countless discussions with friends and family about the best Bond film and the best Bond.. I pull financial and online-rating data from various sources, organize it in excel then study it in RStudio. 
 
 I begin by looking at how 4 online ratings (Rotten Tomatoes Users, Rotten Tomatoes Critics, Letterboxd and IMDb) compare and contrast for the 25 film franchise, and how they rate different films and actors. Next I look at financial data, including box office grosses and budgets, to gauge how successful the films and actors were, and in what markets (domestic & foreign) they stood out. I then briefly combine these two approaches.
 
